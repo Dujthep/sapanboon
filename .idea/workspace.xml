@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb125707-515d-4ec9-b753-0da03d56eeae" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/sapanboon.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sapanboon.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/webpack.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,5 +56,23 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1398" height="219" key="GridCell.Tab.0.bottom" timestamp="1576512284415">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="219" key="GridCell.Tab.0.bottom/0.0.1440.900@0.0.1440.900" timestamp="1576512284415" />
+    <state width="1398" height="219" key="GridCell.Tab.0.center" timestamp="1576512284414">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="219" key="GridCell.Tab.0.center/0.0.1440.900@0.0.1440.900" timestamp="1576512284414" />
+    <state width="1398" height="219" key="GridCell.Tab.0.left" timestamp="1576512284409">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="219" key="GridCell.Tab.0.left/0.0.1440.900@0.0.1440.900" timestamp="1576512284409" />
+    <state width="1398" height="219" key="GridCell.Tab.0.right" timestamp="1576512284415">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state width="1398" height="219" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1576512284415" />
   </component>
 </project>

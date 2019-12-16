@@ -31,6 +31,13 @@ module.exports = (env, options) => ({
       {
         test: /\.s?css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+      },
+      {
+        test: /\.woff(2)?(\?[a-z0-9]+)?$/,
+        loader: "url-loader?&limit=10000&name=/fonts/[name].[ext]"
+      }, {
+        test: /\.(ttf|eot|svg)(\?[a-z0-9]+)?$/,
+        loader: "file-loader?&limit=10000&name=/fonts/[name].[ext]"
       }
     ]
   },
