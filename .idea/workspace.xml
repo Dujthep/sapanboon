@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb125707-515d-4ec9-b753-0da03d56eeae" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/css/components/_all.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/components/button.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/components/card.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/utilities/_all.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/utilities/mixins.sass" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/utilities/variables.sass" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/utilities/fonts.sass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/app.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/app.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/assets/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/utilities/_all.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/utilities/_all.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/utilities/variables.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/utilities/variables.sass" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,10 +65,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="434" y="249" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1576550158923">
+    <state x="434" y="249" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1576551662304">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="434" y="249" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1576550158923" />
+    <state x="434" y="249" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1576551662304" />
     <state width="1398" height="219" key="GridCell.Tab.0.bottom" timestamp="1576512284415">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
