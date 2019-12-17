@@ -1,0 +1,54 @@
+@function calculate-rem($size)
+  $rem-size: $size/16px
+  @return $rem-size * 1rem
+
+=min-width($size)
+  min-width: $size
+  min-width: calculate-rem($size)
+
+=width($size)
+  width: $size
+  width: calculate-rem($size)
+
+=height($size)
+  height: $size
+  height: calculate-rem($size)
+
+=font-size($size:16px)
+  font-size: $size
+  font-size: calculate-rem($size)
+
+=border-radius($size: 6px)
+  border-radius: $size
+  border-radius: calculate-rem($size)
+
+=py($size: 16px)
+  padding-top: $size
+  padding-top: calculate-rem($size)
+  padding-bottom: $size
+  padding-bottom: calculate-rem($size)
+
+@function hexRgba($hex, $opacity)
+  $r: red($hex)
+  $g: green($hex)
+  $b: blue($hex)
+  $a: $opacity
+  @return rgba($r, $g, $b, $a)
+
+=ellipsis ($lines: 3)
+  display: block
+  display: -webkit-box
+  max-height: $lines * 2rem
+  overflow: hidden
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical
+  /* autoprefixer: on */
+  -webkit-line-clamp: $lines
+
+=aspect-ratio($width, $height)
+  position: relative
+  &:before
+    content: ''
+    display: block
+    padding-top: ($height / $width) * 100%
+    width: 100%
