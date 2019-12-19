@@ -3,9 +3,9 @@ use Mix.Config
 # Configure your database
 config :sapanboon, Sapanboon.Repo,
   username: "postgres",
-  password: "postgres",
-  database: "sapanboon_dev",
-  hostname: "localhost",
+  password: "secret",
+  database: "sapanboon",
+  hostname: "sapanboon.odds.team",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
