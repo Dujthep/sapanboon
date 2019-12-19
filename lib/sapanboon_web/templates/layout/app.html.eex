@@ -4,25 +4,50 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Sapanboon · Phoenix Framework</title>
+    <title>สะพานบุญ</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-          </ul>
+    <section id="navigation-section">
+        <nav class="navbar navbar-dark bg-primary navbar-expand-lg fixed-top">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-collapse-content" aria-controls="navigation-collapse-content" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navigation-collapse-content">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">โครงการแนะนำ</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">โครงการทั้งหมด</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link " href="#">
+                    ส่งโครงการ
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="#" >
+                    เกี่ยวกับเรา
+                  </a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              </form>
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a href="" class="nav-link">
+                            เข้าสู่ระบบ
+                      </a>
+                  </li>
+              </ul>
+            </div>
         </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
-        </a>
-      </section>
-    </header>
+    </section>
     <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
