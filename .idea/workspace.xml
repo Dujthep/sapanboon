@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bb125707-515d-4ec9-b753-0da03d56eeae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/layouts/nav.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/layouts/nav.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/utilities/mixins.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/utilities/mixins.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/layout/app.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/layout/app.html.eex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +26,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -57,7 +57,7 @@
       <option name="presentableId" value="Default" />
       <updated>1576504548784</updated>
       <workItem from="1576504550465" duration="257000" />
-      <workItem from="1576650879894" duration="4000000" />
+      <workItem from="1576650879894" duration="4607000" />
     </task>
     <servers />
   </component>
@@ -85,5 +85,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="219" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1576567332944" />
+    <state x="221" y="98" key="SettingsEditor" timestamp="1576728667303">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="221" y="98" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1576728667303" />
   </component>
 </project>

@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Sapanboon · Phoenix Framework</title>
+    <title>สะพานบุญ</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
@@ -37,6 +37,13 @@
               <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               </form>
+              <ul class="navbar-nav">
+                  <li class="nav-item">
+                      <a href="" class="nav-link">
+                            เข้าสู่ระบบ
+                      </a>
+                  </li>
+              </ul>
             </div>
         </nav>
     </section>
