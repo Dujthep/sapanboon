@@ -4,29 +4,29 @@
 
 =min-width($size)
   min-width: $size
-  min-width: calculate-rem($size)
+  min-width: px-to-rem($size)
 
 =width($size)
   width: $size
-  width: calculate-rem($size)
+  width: px-to-rem($size)
 
 =height($size)
   height: $size
-  height: calculate-rem($size)
+  height: px-to-rem($size)
 
 =font-size($size:16px)
   font-size: $size
-  font-size: calculate-rem($size)
+  font-size: px-to-rem($size)
 
 =border-radius($size: 6px)
   border-radius: $size
-  border-radius: calculate-rem($size)
+  border-radius: px-to-rem($size)
 
 =py($size: 16px)
   padding-top: $size
-  padding-top: calculate-rem($size)
+  padding-top: px-to-rem($size)
   padding-bottom: $size
-  padding-bottom: calculate-rem($size)
+  padding-bottom: px-to-rem($size)
 
 @function hexRgba($hex, $opacity)
   $r: red($hex)

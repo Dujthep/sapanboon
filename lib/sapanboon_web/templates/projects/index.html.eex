@@ -1,0 +1,46 @@
+<h1>Listing Project</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Project</th>
+      <th>Code</th>
+      <th>Title</th>
+      <th>Cover</th>
+      <th>Pledged goal</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Donator</th>
+      <th>Donation</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for projects <- @project do %>
+    <tr>
+      <td><%= projects.project_id %></td>
+      <td><%= projects.code %></td>
+      <td><%= projects.title %></td>
+      <td><%= projects.cover %></td>
+      <td><%= projects.pledged_goal %></td>
+      <td><%= projects.start_date %></td>
+      <td><%= projects.end_date %></td>
+      <td><%= projects.description %></td>
+      <td><%= projects.status %></td>
+      <td><%= projects.donator %></td>
+      <td><%= projects.donation %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.projects_path(@conn, :show, projects) %></span>
+        <span><%= link "Edit", to: Routes.projects_path(@conn, :edit, projects) %></span>
+        <span><%= link "Delete", to: Routes.projects_path(@conn, :delete, projects), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Projects", to: Routes.projects_path(@conn, :new) %></span>
