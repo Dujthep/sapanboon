@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb125707-515d-4ec9-b753-0da03d56eeae" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.exs" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.exs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon/projects/project.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon/projects/project.ex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/router.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/router.ex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/project/form.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/project/form.html.eex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/project/index.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/project/index.html.eex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/project/show.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/project/show.html.eex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/priv/repo/migrations/20191219095122_projects/project.exs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/priv/repo/migrations/20191219103340_create_project.exs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/sapanboon/projects_test.exs" beforeDir="false" afterPath="$PROJECT_DIR$/test/sapanboon/projects_test.exs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/sapanboon_web/controllers/project_controller_test.exs" beforeDir="false" afterPath="$PROJECT_DIR$/test/sapanboon_web/controllers/project_controller_test.exs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +59,7 @@
       <workItem from="1576504550465" duration="257000" />
       <workItem from="1576650879894" duration="13505000" />
       <workItem from="1576760892334" duration="233000" />
-      <workItem from="1576763554336" duration="2596000" />
+      <workItem from="1576763554336" duration="2828000" />
     </task>
     <servers />
   </component>
