@@ -15,9 +15,7 @@ defmodule SapanboonWeb.Router do
 
   scope "/", SapanboonWeb do
     pipe_through :browser
-
-    get "/", PageController, :index
-    resources "/project", ProjectsController
+    get "/", ProjectsController, :index
 
   end
 

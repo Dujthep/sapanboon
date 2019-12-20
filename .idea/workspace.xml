@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb125707-515d-4ec9-b753-0da03d56eeae" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/controllers/page_controller.ex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/controllers/projects_controller.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/controllers/projects_controller.ex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/router.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/router.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/page/index.html.eex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/edit.html.eex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/form.html.eex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/index.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/index.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/new.html.eex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/show.html.eex" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +68,7 @@
       <workItem from="1576504550465" duration="257000" />
       <workItem from="1576650879894" duration="13505000" />
       <workItem from="1576760892334" duration="233000" />
-      <workItem from="1576763554336" duration="2828000" />
+      <workItem from="1576763554336" duration="5852000" />
     </task>
     <servers />
   </component>
@@ -98,5 +107,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="98" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1576752457324" />
+    <state x="368" y="196" width="703" height="508" key="find.popup" timestamp="1576822137371">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="368" y="196" width="703" height="508" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1576822137371" />
   </component>
 </project>
