@@ -1,0 +1,39 @@
+.project-card
+  height: px-to-rem(591px)
+  border-radius: 4px
+  border: solid 1px $very-light-pink
+  padding: 1rem
+
+  section
+    margin: 1rem 0 1rem 0
+
+    &:first-child
+      margin-top: 0
+
+    &:last-child
+      margin-bottom: 0
+
+  h3
+    +ellipsis(2)
+    color: $deep-sky-blue
+    font-size: px-to-rem(20px)
+    line-height: normal
+  
+  .project-image img
+  //   width: px-to-rem(311px)
+    height: px-to-rem(181px)
+
+  .project-progress
+    .text-between
+      display: flex
+      justify-content: space-between
+      
+    .progress
+      border-radius: px-to-rem(13px)
+
+  .introduce
+    +ellipsis(3)
+  
+  button
+    font-size: px-to-rem(24px)
+    height: px-to-rem(68px)
