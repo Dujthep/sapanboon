@@ -8,19 +8,19 @@
   </section>
 
   <section class="project-progress">
-    <div class="text-between">
+    <div class="text-between text-small">
       <span>เป้าหมาย</span>
       <span>ระยะเวลาในการระดมทุน</span>
     </div>
     <div class="text-between">
-      <span>200,000 บาท</span>
-      <span>01/02/62 - 01/06/62</span>
+      <h2 class="text-large">200,000 บาท</h2>
+      <span class="text-normal">01/02/62 - 01/06/62</span>
     </div>
     <div class="progress">
       <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
     </div>
     <div>
-      เหลือเวลาอีก 75 วัน
+      <span class="text-normal">เหลือเวลาอีก 75 วัน</span>
     </div>
   </section>
 
