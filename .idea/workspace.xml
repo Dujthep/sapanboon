@@ -3,7 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="bb125707-515d-4ec9-b753-0da03d56eeae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/layout/app.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/layout/app.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.exs" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.exs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon/projects/project.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon/projects/project.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/router.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/router.ex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/project/form.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/project/form.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/project/index.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/project/index.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/project/show.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/project/show.html.eex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/priv/repo/migrations/20191219095122_projects/project.exs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/priv/repo/migrations/20191219103340_create_project.exs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/sapanboon/projects_test.exs" beforeDir="false" afterPath="$PROJECT_DIR$/test/sapanboon/projects_test.exs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/sapanboon_web/controllers/project_controller_test.exs" beforeDir="false" afterPath="$PROJECT_DIR$/test/sapanboon_web/controllers/project_controller_test.exs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,10 +32,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -57,18 +67,27 @@
       <option name="presentableId" value="Default" />
       <updated>1576504548784</updated>
       <workItem from="1576504550465" duration="257000" />
-      <workItem from="1576650879894" duration="4607000" />
+      <workItem from="1576650879894" duration="13505000" />
+      <workItem from="1576760892334" duration="233000" />
+      <workItem from="1576763554336" duration="2596000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="434" y="249" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1576551662304">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="434" y="249" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1576551662304" />
+    <state x="280" y="0" key="CommitChangelistDialog2" timestamp="1576746603497">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="280" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1576746603497" />
     <state width="1398" height="219" key="GridCell.Tab.0.bottom" timestamp="1576567332944">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -85,9 +104,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="219" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1576567332944" />
-    <state x="221" y="98" key="SettingsEditor" timestamp="1576728667303">
+    <state x="221" y="98" key="SettingsEditor" timestamp="1576752457324">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="221" y="98" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1576728667303" />
+    <state x="221" y="98" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1576752457324" />
   </component>
 </project>

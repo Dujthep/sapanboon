@@ -7,6 +7,12 @@
 # General application configuration
 use Mix.Config
 
+config :sapanboon, Sapanboon.Repo,
+  database: "sapanboon_repo",
+  username: "user",
+  password: "pass",
+  hostname: "localhost"
+
 config :sapanboon,
   ecto_repos: [Sapanboon.Repo]
 

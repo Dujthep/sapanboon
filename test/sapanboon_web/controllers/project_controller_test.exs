@@ -3,9 +3,9 @@ defmodule SapanboonWeb.ProjectControllerTest do
 
   alias Sapanboon.Projects
 
-  @create_attrs %{name: "some name"}
-  @update_attrs %{name: "some updated name"}
-  @invalid_attrs %{name: nil}
+  @create_attrs %{"": 42, code: "some code", cover: "some cover", description: "some description", donation: "some donation", donator: "some donator", end_date: "some end_date", pledged_goal: "some pledged_goal", project_id: "some project_id", start_date: "some start_date", status: "some status", title: "some title"}
+  @update_attrs %{"": 43, code: "some updated code", cover: "some updated cover", description: "some updated description", donation: "some updated donation", donator: "some updated donator", end_date: "some updated end_date", pledged_goal: "some updated pledged_goal", project_id: "some updated project_id", start_date: "some updated start_date", status: "some updated status", title: "some updated title"}
+  @invalid_attrs %{"": nil, code: nil, cover: nil, description: nil, donation: nil, donator: nil, end_date: nil, pledged_goal: nil, project_id: nil, start_date: nil, status: nil, title: nil}
 
   def fixture(:project) do
     {:ok, project} = Projects.create_project(@create_attrs)
@@ -60,7 +60,7 @@ defmodule SapanboonWeb.ProjectControllerTest do
       assert redirected_to(conn) == Routes.project_path(conn, :show, project)
 
       conn = get(conn, Routes.project_path(conn, :show, project))
-      assert html_response(conn, 200) =~ "some updated name"
+      assert html_response(conn, 200) =~ "some updated code"
     end
 
     test "renders errors when data is invalid", %{conn: conn, project: project} do
