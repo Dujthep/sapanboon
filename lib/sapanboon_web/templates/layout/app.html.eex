@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
-    <section id="navigation-section">
+    <!-- <section id="navigation-section">
         <nav class="navbar navbar-dark bg-primary navbar-expand-lg fixed-top">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-collapse-content" aria-controls="navigation-collapse-content" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +46,7 @@
               </ul>
             </div>
         </nav>
-    </section>
+    </section> -->
     <main role="main" class="container">
       <%= render @view_module, @view_template, assigns %>
     </main>
