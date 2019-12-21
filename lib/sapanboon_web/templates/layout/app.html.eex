@@ -18,10 +18,10 @@
           <div class="collapse navbar-collapse" id="navigation-collapse-content">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#">โครงการแนะนำ</a>
+                <a class="nav-link" href="/">โครงการแนะนำ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">โครงการทั้งหมด</a>
+                <a class="nav-link" href="/">โครงการทั้งหมด</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link " href="#">
@@ -29,7 +29,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="#" >
+                <a class="nav-link " href="/abouts" >
                   เกี่ยวกับเรา
                 </a>
               </li>
