@@ -20,20 +20,13 @@
           <div class="collapse navbar-collapse" id="navigation-collapse-content">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="/">โครงการแนะนำ</a>
+                <a class="nav-link" href="/">หน้าแรก</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/">โครงการทั้งหมด</a>
+                <a class="nav-link" href="/"> เกี่ยวกับเรา </a>
               </li>
               <li class="nav-item dropdown">
-                <a class="nav-link " href="#">
-                  ส่งโครงการ
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="/abouts" >
-                  เกี่ยวกับเรา
-                </a>
+                <a class="nav-link " href="#"> ติดต่อเรา </a>
               </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
