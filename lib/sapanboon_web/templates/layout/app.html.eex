@@ -17,7 +17,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navigation-collapse-content">
+          <div class="collapse navbar-collapse " id="navigation-collapse-content">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
                 <a class="nav-link" href="/">หน้าแรก</a>
@@ -29,9 +29,14 @@
                 <a class="nav-link " href="#"> ติดต่อเรา </a>
               </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            </form>
+
+          <div class="input-group mb-3 col-3 my-2 my-lg-0" id="search-wrap">
+            <div class="input-group-prepend px-0">
+              <span class="input-group-text px-1" id="search"><i class="icon-search" ></i></span>
+            </div>
+            <input id="input-search" type="text" class="form-control" placeholder="search" aria-label="search" aria-describedby="search">
+          </div>
+
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a href="" class="nav-link">
