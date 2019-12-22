@@ -10,7 +10,9 @@
   <body>
     <section id="navigation-section">
       <nav class="navbar navbar-dark bg-primary navbar-expand-lg fixed-top">
-          <a class="navbar-brand" href="#">Navbar</a>
+          <a class="navbar-brand" href="#">
+            <img src="<%= Routes.static_path(@conn, "/images/sapanboon-logo-white.png") %>" alt="sapanboon">
+           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-collapse-content" aria-controls="navigation-collapse-content" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -47,7 +49,7 @@
           </div>
       </nav>
     </section>
-    <main role="main" class="container">
+    <main role="main" class="container-fluid">
       <%= render @view_module, @view_template, assigns %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
