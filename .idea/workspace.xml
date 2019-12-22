@@ -35,12 +35,19 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
+    <property name="settings.editor.selected.configurable" value="language.elixir.sdks.elixir" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/assets/css/utilities" />
     </key>
+  </component>
+  <component name="RubyModuleManagerSettings">
+    <option name="blackListedRootsPaths">
+      <list>
+        <option value="$PROJECT_DIR$" />
+      </list>
+    </option>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -103,10 +110,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state width="1398" height="219" key="GridCell.Tab.0.right/0.0.1440.900@0.0.1440.900" timestamp="1576567332944" />
-    <state x="221" y="98" key="SettingsEditor" timestamp="1576752457324">
+    <state x="221" y="98" key="SettingsEditor" timestamp="1576994732569">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="221" y="98" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1576752457324" />
+    <state x="221" y="98" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1576994732569" />
     <state x="368" y="196" width="703" height="508" key="find.popup" timestamp="1576822137371">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
