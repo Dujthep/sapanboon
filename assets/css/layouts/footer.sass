@@ -1,5 +1,32 @@
 footer
   background-color: $footer-bg
-  +height(183px)
+  +height(207px)
   +px(40px)
   +py(15px)
+
+  #footer-contact-block
+    +height(141px)
+    border-bottom: solid 1px $very-light-pink-two
+    display: flex
+    flex-direction: row
+    #footer-logo
+      +width(125px)
+      +height(125px)
+
+    .navbar-nav.nav-footer
+      flex-direction: row
+      justify-content: space-between
+
+      li.nav-item
+        a.nav-link
+          padding-top: 0
+
+
+    #contact
+      display: flex
+      flex-direction: column
+
+  #footer-copy-right-block
+    display: flex
+    align-items: center
+    justify-content: center
