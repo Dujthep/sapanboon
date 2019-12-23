@@ -69,14 +69,20 @@
                      </li>
                   </ul>
               </div>
-              <div class="col-3" id="contact">
+              <div class="col-4" id="contact">
                         <span>ที่อยู่: มูลนิธิสะพานบุญ 542 ถนนเพชรเกษม เขตหนองแขม กทม. 10160 ประเทศไทย</span>
                         <span>อีเมล: admin@sapanboon.org</span>
                         <span>โทรศัพท์: 02-807-4500 ต่อ 115, 081-651-1718</span>
 
               </div>
-               <div class="col-4">
-                   ติดตามความเคลื่อนไหว
+               <div class="col-3" id="social-wrap">
+                   <span>ติดตามความเคลื่อนไหว</span>
+                   <div id="social-icon-wrap">
+                        <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/facebook-icon.svg") %>" alt="facebook-sapanboon">
+                        <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/ig-icon.svg") %>" alt="ig-sapanboon">
+                        <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/twitter-icon.svg") %>" alt="twitter-sapanboon">
+                   </div>
+
                </div>
           </div>
           <div id="footer-copy-right-block">&copy; 2019 Sapanboon, All Rights Reserved. Design with Sapanboon</div>

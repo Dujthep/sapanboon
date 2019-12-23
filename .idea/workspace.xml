@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb125707-515d-4ec9-b753-0da03d56eeae" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/static/images/facebook-icon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/static/images/ig-icon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/static/images/twitter-icon.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/layouts/footer.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/layouts/footer.sass" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/css/utilities/mixins.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/utilities/mixins.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/css/utilities/variables.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/utilities/variables.sass" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/static/images/sapanboon-logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/static/images/sapanboon-logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/layout/app.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/layout/app.html.eex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +73,7 @@
       <workItem from="1576650879894" duration="13505000" />
       <workItem from="1576760892334" duration="233000" />
       <workItem from="1576763554336" duration="6104000" />
-      <workItem from="1577106560010" duration="3662000" />
+      <workItem from="1577106560010" duration="4400000" />
     </task>
     <servers />
   </component>
