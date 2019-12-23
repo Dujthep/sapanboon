@@ -3,15 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="bb125707-515d-4ec9-b753-0da03d56eeae" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/controllers/page_controller.ex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/controllers/projects_controller.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/controllers/projects_controller.ex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/router.ex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/router.ex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/page/index.html.eex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/edit.html.eex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/form.html.eex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/app.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/app.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/layouts/footer.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/layouts/footer.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/utilities/variables.sass" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/utilities/variables.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/layout/app.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/layout/app.html.eex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/index.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/index.html.eex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/new.html.eex" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/show.html.eex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/project_card.html.eex" beforeDir="false" afterPath="$PROJECT_DIR$/lib/sapanboon_web/templates/projects/project_card.html.eex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +73,7 @@
       <workItem from="1576650879894" duration="13505000" />
       <workItem from="1576760892334" duration="233000" />
       <workItem from="1576763554336" duration="6104000" />
+      <workItem from="1577106560010" duration="785000" />
     </task>
     <servers />
   </component>

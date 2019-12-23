@@ -1,5 +1,2 @@
-<div>
-        Hi Sapanboon <Naja></Naja>
-</div>
 
 <%= render "project_card.html" %>
