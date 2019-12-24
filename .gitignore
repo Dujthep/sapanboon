@@ -34,4 +34,6 @@ npm-debug.log
 /priv/static/
 
 .elixir_ls
-.idea
+.idea/
+.idea/workspace.xml
+sapanboon.iml

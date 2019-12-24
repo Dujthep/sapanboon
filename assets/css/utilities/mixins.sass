@@ -22,11 +22,39 @@
   border-radius: $size
   border-radius: px-to-rem($size)
 
+=pt($size: 16px)
+  padding-top: $size
+  padding-top: px-to-rem($size)
+
+=pb($size: 16px)
+  padding-bottom: $size
+  padding-bottom: px-to-rem($size)
+
+=pl($size: 16px)
+  padding-left: $size
+  padding-left: px-to-rem($size)
+
+=pr($size: 16px)
+  padding-right: $size
+  padding-right: px-to-rem($size)
+
 =py($size: 16px)
   padding-top: $size
   padding-top: px-to-rem($size)
   padding-bottom: $size
   padding-bottom: px-to-rem($size)
+
+=px($size: 16px)
+  padding-right: $size
+  padding-right: px-to-rem($size)
+  padding-left: $size
+  padding-left: px-to-rem($size)
+
+=mx($size: 16px)
+  margin-right: $size
+  margin-right: px-to-rem($size)
+  margin-left: $size
+  margin-left: px-to-rem($size)
 
 @function hexRgba($hex, $opacity)
   $r: red($hex)
