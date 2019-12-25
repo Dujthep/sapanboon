@@ -1,2 +1,1 @@
-
-<%= render "project_card.html" %>
+<%= render "project_card.html", list_project: @list_project %>

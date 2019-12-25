@@ -1,49 +1,54 @@
 .text-large
   font-size: px-to-rem(24px)
   line-height: normal
-  
-.project-card
-  height: px-to-rem(591px)
-  border-radius: 4px
-  border: solid 1px $very-light-pink
-  padding: 1rem
 
-  section
-    margin: 1rem 0
+.list-card
+  display: flex
+  flex-wrap: wrap
 
-    &:first-child
-      margin-top: 0
+  .project-card
+    height: px-to-rem(591px)
+    border-radius: 4px
+    border: solid 1px $very-light-pink
+    padding: 1rem
+    // margin: 1rem
 
-    &:last-child
-      margin-bottom: 0
+    section
+      margin: 1rem 0
 
-  h3
-    +ellipsis(2)
-    color: $deep-sky-blue
-    font-size: px-to-rem(20px)
-    line-height: normal
-  
-  .project-image
-    max-height: px-to-rem(181px)
+      &:first-child
+        margin-top: 0
 
-  .project-progress
-    .text-between
-      display: flex
-      justify-content: space-between
+      &:last-child
+        margin-bottom: 0
 
-    .text-small
-      font-size: px-to-rem(14px)
+    h3
+      +ellipsis(2)
+      color: $deep-sky-blue
+      font-size: px-to-rem(20px)
+      line-height: normal
+    
+    .project-image
+      max-height: px-to-rem(181px)
 
-    .text-normal
-      font-size: px-to-rem(16px)
-      
-    .progress
-      border-radius: px-to-rem(13px)
+    .project-progress
+      .text-between
+        display: flex
+        justify-content: space-between
 
-  .introduce
-    +ellipsis(3)
-    font-size: px-to-rem(18px)
-  
-  button
-    @extend .text-large
-    height: px-to-rem(68px)
+      .text-small
+        font-size: px-to-rem(14px)
+
+      .text-normal
+        font-size: px-to-rem(16px)
+        
+      .progress
+        border-radius: px-to-rem(13px)
+
+    .introduce
+      +ellipsis(3)
+      font-size: px-to-rem(18px)
+    
+    button
+      @extend .text-large
+      height: px-to-rem(68px)
