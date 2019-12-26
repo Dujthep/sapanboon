@@ -17,7 +17,6 @@ defmodule SapanboonWeb.Router do
     pipe_through :browser
     get "/", ProjectsController, :index
     get "/abouts", AboutController, :index
-    resources "/project_detail", ProjectDetailController
   end
 
   # Other scopes may use custom stacks.
