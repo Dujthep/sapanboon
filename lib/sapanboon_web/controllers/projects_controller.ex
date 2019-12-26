@@ -9,4 +9,10 @@ defmodule SapanboonWeb.ProjectsController do
     render(conn, "index.html", list_project: list_project)
   end
 
+  def detail(conn, %{"id" => id}) do
+    projects = Project.get_projects!(id)
+    render(conn, "detail.html", projects: projects)
+  end
+
+
 end
