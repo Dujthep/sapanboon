@@ -1,40 +1,44 @@
 <div class="list-card">
   <%= for project <- @list_project do %>
     <section class="col-4 p-3">
-      <section class="project-card">
-        <section class="title" title="ข้อความเต็ม">
-          <h3><%= project.code %> <%= project.description %></h3>
-        </section>
-
-        <section class="project-image text-center">
-          <img class="rounded img-fluid" src="https://dummyimage.com/311x181/000/fff.png" alt="project image">
-        </section>
-
-        <section class="project-progress">
-          <div class="text-between text-small">
-            <span>เป้าหมาย</span>
-            <span>ระยะเวลาในการระดมทุน</span>
-          </div>
-          <div class="text-between">
-            <h2 class="text-large">200,000 บาท</h2>
-            <span class="text-normal">01/02/62 - 01/06/62</span>
-          </div>
-          <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-          </div>
-          <div>
-            <span class="text-normal">เหลือเวลาอีก 75 วัน</span>
-          </div>
-        </section>
-
-        <section class="introduce" title="ข้อความเต็ม">
-          จะทำให้รัก เราเป็นตำนานจะทำให้รัก เราเป็นดั่งฝันดินแดนที่รกร้างว่างเปล่าจะสร้างด้วยกัน แค่ขอเพียงยังมีเราพร้อมที่จะทนจะเหนื่อยกว่านี้สักเท่าไรขอบคุณที่เธอนั้นเข้าใจด้วยดี
-        </section>
-
-        <section>
+      <section class="card">
+        <div class="card-body">
+          <section class="card-title" title="ข้อความเต็ม">
+            <span class="text-large text-dark">
+              <%= project.code %> 
+            </span>
+            <span class="text-large">
+              <%= project.title %>
+            </span>
+          </section>
         
-        <a type="button" class="btn btn-primary w-100" href="/details/<%= project.id %>"> รวมกันเราอยู่ </a>
-        </section>
+          <section>
+            <img class="card-img-top" src="<%= project.cover %>" alt="project image">
+          </section>
+
+          <section class="project-progress">
+            <div class="text-between text-small">
+              <span>เป้าหมาย</span>
+              <span>ระยะเวลาในการระดมทุน</span>
+            </div>
+            <div class="text-between">
+              <h2 class="text-large"><%= project.pledged_goal %></h2>
+              <span class="text-normal">01/02/62 - 01/06/62</span>
+            </div>
+            <div class="progress">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+            </div>
+            <div>
+              <span class="text-normal">เหลือเวลาอีก 75 วัน</span>
+            </div>
+          </section>
+        
+          <section class="card-text" title="ข้อความเต็ม">
+            <%= project.description %>
+          </section>
+        
+          <a type="button" class="btn btn-primary w-100" href="/details/<%= project.id %>"> รวมกันเราอยู่ </a>
+        </div>
       </section>
     </section>
   <% end %>
