@@ -22,7 +22,7 @@
               <span>ระยะเวลาในการระดมทุน</span>
             </div>
             <div class="text-between">
-              <h2 class="text-large">200,000 บาท</h2>
+              <h2 class="text-large"><%= project.pledged_goal %></h2>
               <span class="text-normal">01/02/62 - 01/06/62</span>
             </div>
             <div class="progress">
