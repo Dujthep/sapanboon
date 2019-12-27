@@ -33,8 +33,8 @@
             </div>
           </section>
         
-          <section class="introduce" title="ข้อความเต็ม">
-            จะทำให้รัก เราเป็นตำนานจะทำให้รัก เราเป็นดั่งฝันดินแดนที่รกร้างว่างเปล่าจะสร้างด้วยกัน แค่ขอเพียงยังมีเราพร้อมที่จะทนจะเหนื่อยกว่านี้สักเท่าไรขอบคุณที่เธอนั้นเข้าใจด้วยดี
+          <section class="card-text" title="ข้อความเต็ม">
+            <%= project.description %>
           </section>
         
           <a type="button" class="btn btn-primary w-100" href="/details/<%= project.id %>"> รวมกันเราอยู่ </a>
