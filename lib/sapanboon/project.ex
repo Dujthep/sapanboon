@@ -22,9 +22,13 @@ defmodule Sapanboon.Project do
   end
 
   def list_project_by_status(status) do
-    Projects
-    |> where([p], p.status == ^status)
-    |> Repo.all()
+    if status == nil or status == "" do
+      Repo.all(Projects)
+    else
+      Projects
+        |> where([p], p.status == ^status)
+        |> Repo.all()
+    end
   end
 
   @doc """
