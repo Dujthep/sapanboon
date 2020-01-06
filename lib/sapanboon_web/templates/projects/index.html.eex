@@ -1,1 +1,1 @@
-<%= render "project_card.html", list_project: @list_project %>
+<%= render "project_card.html", list_project: @list_project , conn: @conn %>

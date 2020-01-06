@@ -6,7 +6,7 @@ defmodule SapanboonWeb.ProjectsController do
 
   def index(conn, params) do
     list_project = Project.list_project_by_status(Map.get(params, "status"))
-    render(conn, "index.html", list_project: list_project)
+    render(conn, "index.html", list_project: list_project, conn: conn )
   end
 
   def detail(conn, %{"id" => id}) do
