@@ -21,6 +21,16 @@ defmodule Sapanboon.Project do
     Repo.all(Projects)
   end
 
+  def list_project_by_status(status) do
+    if status == nil or status == "" do
+      Repo.all(Projects)
+    else
+      Projects
+        |> where([p], p.status == ^status)
+        |> Repo.all()
+    end
+  end
+
   @doc """
   Gets a single projects.
 

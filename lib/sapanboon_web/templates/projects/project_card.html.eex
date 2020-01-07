@@ -1,4 +1,15 @@
 <div class="list-card">
+  <ul class="nav nav-pills col-12 justify-content-center mt-5 mb-5" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active text-large" id="home-tab"  href="?status=active" role="tab" aria-controls="home" aria-selected="true">โครงการที่กำลังระดมทุน</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-large" id="profile-tab"  href="?status=all" role="tab" aria-controls="profile" aria-selected="false">โครงการทั้งหมด</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-large" id="contact-tab"  href="?status=inactive" role="tab" aria-controls="contact" aria-selected="false">โครงการที่ปิดระดมทุน</a>
+    </li>
+  </ul>
   <%= for project <- @list_project do %>
     <section class="col-4 p-3">
       <section class="card">
@@ -41,5 +52,5 @@
         </div>
       </section>
     </section>
-  <% end %>
+  <% end %> 
 </div>
