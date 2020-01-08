@@ -21,6 +21,16 @@ defmodule Sapanboon.Project do
     Repo.all(Projects)
   end
 
+  def list_project_by_status(status) do
+    if status == nil or status == "" do
+      Repo.all(Projects)
+    else
+      Projects
+        |> where([p], p.status == ^status)
+        |> Repo.all()
+    end
+  end
+
   @doc """
   Gets a single projects.
 
@@ -100,101 +110,5 @@ defmodule Sapanboon.Project do
   """
   def change_projects(%Projects{} = projects) do
     Projects.changeset(projects, %{})
-  end
-
-  alias Sapanboon.Project.ProjectDetail
-
-  @doc """
-  Returns the list of project_detail.
-
-  ## Examples
-
-      iex> list_project_detail()
-      [%ProjectDetail{}, ...]
-
-  """
-  def list_project_detail do
-    Repo.all(ProjectDetail)
-  end
-
-  @doc """
-  Gets a single project_detail.
-
-  Raises `Ecto.NoResultsError` if the Project detail does not exist.
-
-  ## Examples
-
-      iex> get_project_detail!(123)
-      %ProjectDetail{}
-
-      iex> get_project_detail!(456)
-      ** (Ecto.NoResultsError)
-
-  """
-  def get_project_detail!(id), do: Repo.get!(ProjectDetail, id)
-
-  @doc """
-  Creates a project_detail.
-
-  ## Examples
-
-      iex> create_project_detail(%{field: value})
-      {:ok, %ProjectDetail{}}
-
-      iex> create_project_detail(%{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def create_project_detail(attrs \\ %{}) do
-    %ProjectDetail{}
-    |> ProjectDetail.changeset(attrs)
-    |> Repo.insert()
-  end
-
-  @doc """
-  Updates a project_detail.
-
-  ## Examples
-
-      iex> update_project_detail(project_detail, %{field: new_value})
-      {:ok, %ProjectDetail{}}
-
-      iex> update_project_detail(project_detail, %{field: bad_value})
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def update_project_detail(%ProjectDetail{} = project_detail, attrs) do
-    project_detail
-    |> ProjectDetail.changeset(attrs)
-    |> Repo.update()
-  end
-
-  @doc """
-  Deletes a ProjectDetail.
-
-  ## Examples
-
-      iex> delete_project_detail(project_detail)
-      {:ok, %ProjectDetail{}}
-
-      iex> delete_project_detail(project_detail)
-      {:error, %Ecto.Changeset{}}
-
-  """
-  def delete_project_detail(%ProjectDetail{} = project_detail) do
-    Repo.delete(project_detail)
-  end
-
-  @doc """
-  Returns an `%Ecto.Changeset{}` for tracking project_detail changes.
-
-  ## Examples
-
-      iex> change_project_detail(project_detail)
-      %Ecto.Changeset{source: %ProjectDetail{}}
-
-  """
-  def change_project_detail(%ProjectDetail{} = project_detail) do
-    ProjectDetail.changeset(project_detail, %{})
   end
 end
