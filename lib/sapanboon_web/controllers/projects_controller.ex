@@ -2,7 +2,7 @@ defmodule SapanboonWeb.ProjectsController do
   use SapanboonWeb, :controller
 
   alias Sapanboon.Project
-  alias Sapanboon.Project.Projects
+  # alias Sapanboon.Project.Projects
 
   def index(conn, params) do
     list_project = Project.list_project_by_status(Map.get(params, "status"))
