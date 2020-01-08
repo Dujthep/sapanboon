@@ -4,7 +4,7 @@
       <a class="nav-link active text-large" id="home-tab"  href="?status=active" role="tab" aria-controls="home" aria-selected="true">โครงการที่กำลังระดมทุน</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-large" id="profile-tab"  href="?status=all" role="tab" aria-controls="profile" aria-selected="false">โครงการทั้งหมด</a>
+      <a class="nav-link text-large" id="profile-tab"  href="/" role="tab" aria-controls="profile" aria-selected="false">โครงการทั้งหมด</a>
     </li>
     <li class="nav-item">
       <a class="nav-link text-large" id="contact-tab"  href="?status=inactive" role="tab" aria-controls="contact" aria-selected="false">โครงการที่ปิดระดมทุน</a>
