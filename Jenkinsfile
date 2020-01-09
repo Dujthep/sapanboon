@@ -31,7 +31,7 @@ pipeline {
         sh '''#!/bin/bash -xe
           ssh nc-user@139.5.145.171 \
           "cd /home/nc-user/sapanboon-cmd/phx.sapanboon.org/ \
-          && run.sh"
+          && sbatch run.sh"
         '''
       }
     }
