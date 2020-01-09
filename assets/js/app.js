@@ -16,3 +16,24 @@ import "phoenix_html"
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
+
+const tabs = document.querySelectorAll('.tab-menu > li > a');
+
+function removeActiveTabs() {
+    tabs.forEach(tab => {
+        tab.classList.remove('active');
+    });
+}
+
+function activeTabs(el) {
+    el.classList.add('active');
+}
+
+tabs.forEach(tab => {
+    tab.addEventListener('click', function (e) {
+        
+        removeActiveTabs();
+        activeTabs(tab);
+        // e.preventDefault();
+    });
+});
