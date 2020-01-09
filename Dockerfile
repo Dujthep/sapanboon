@@ -33,7 +33,7 @@ RUN mix compile
 RUN MIX_ENV=prod mix release
 
 # ---- Application Stage ----
-FROM alpine:3.9 AS app
+FROM alpine:3.9
 
 ENV LANG=C.UTF-8
 ENV HOME=/app
