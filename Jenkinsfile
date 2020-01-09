@@ -30,9 +30,8 @@ pipeline {
       steps {
         sh '''#!/bin/bash -xe
           ssh nc-user@139.5.145.171 \
-          'echo cd /home/nc-user/sapanboon-cmd/phx.sapanboon.org/ \
-          && docker-compose down \
-          && docker-compose up -d'
+          "cd /home/nc-user/sapanboon-cmd/phx.sapanboon.org/ \
+          && run.sh"
         '''
       }
     }
