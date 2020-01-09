@@ -2,11 +2,11 @@ use Mix.Config
 
 # Configure your database
 config :sapanboon, Sapanboon.Repo,
-  username: System.get_env("DB_USER") || "postgres",
-  password: System.get_env("DB_PASSWORD") || "postgres",
-  database: System.get_env("DB_NAME") || "sapanboon",
-  hostname: System.get_env("DB_HOST") || "sapanboon.odds.team",
-  port: System.get_env("DB_PORT") || "5432",
+  username: "postgres",
+  password: "secret",
+  database: "sapanboon",
+  hostname: "sapanboon.odds.team",
+  port: "5432",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
