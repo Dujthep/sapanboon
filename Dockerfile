@@ -21,7 +21,6 @@ ENV LANG=C.UTF-8
 COPY config ./config
 COPY lib ./lib
 COPY priv ./priv
-COPY rel ./rel
 COPY assets ./assets
 COPY mix.exs mix.lock ./
 
