@@ -1,0 +1,24 @@
+<div class="detail-banner">
+  <div class="bg-linear-gradient"></div>
+  <div class="carousel-inner">
+    <div class="carousel-inner">
+      <img id="cover-image" class="cover-image"  src="<%= Routes.static_path(@conn, "/images/bg2.jpg") %>">
+      <div class="carousel-caption">
+        <p class="slide-head">ติดต่อสะพานบุญ</p>
+        <div class="justify-content-center d-flex">
+          <div class="card width-carousel" style="background-color: transparent;border: 0px;">
+            <p class="slide-detail">
+            สะพานบุญ ชวนทำทาน คือการให้
+              ท่านว่าไว้ สวยงาม สามสถาน
+              หนึ่งให้ของ สองได้ธรรม สามเบิกบาน
+              ให้สุขสันต์ เกื้อกูล สุขนิรันดร์
+            </p>
+            <div class="card-body">
+              <div class="mb-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,8 +8,29 @@
   font-weight: map-get-strict($weight, light)
 
 body
-  +pt(80px)
+  +pt(73px)
 
   main
     min-height: 70vh
     +pb(20px)
+
+  .container-fluid
+      padding-right: 0px
+      padding-left: 0px
+      margin-right: auto
+      margin-left: auto
+
+  .slide-head
+    font-size: px-to-rem(60px)
+    font-weight: 500
+
+  .card.width-carousel 
+    @media (max-width:768px)
+        width: 100%
+    @media (min-width:1024px)
+        width: 70%
+    @media (min-width:1440px)
+        width: 50%
+    .slide-detail
+      font-size: px-to-rem(36px)
+      font-weight: 300
