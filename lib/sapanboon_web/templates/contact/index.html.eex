@@ -22,3 +22,11 @@
     </div>
   </div>
 </div>
+
+<div class="justify-content-center d-flex mt-5">
+    <img id="cover-image" class="cover-image"  src="<%= Routes.static_path(@conn, "/images/address.svg") %>">
+    <div class="col-md-10 text-md-left">
+      <label class="fs-medium-24 text-dark-gray">ที่อยู่</label><br>
+      <label class="fs-20 text-dark-gray">มูลนิธิสะพานบุญ 542 ถนนเพชรเกษม เขตหนองแขม กทม. 10160</label><br>
+    </div>
+</div>
