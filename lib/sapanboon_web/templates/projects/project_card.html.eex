@@ -24,7 +24,7 @@
           </section>
         
           <section>
-            <img class="card-img-top" src="<%= project.cover %>" alt="project image">
+            <img class="card-img-top" src="<%= project.img_card %>" alt="project image">
           </section>
 
           <section class="project-progress">

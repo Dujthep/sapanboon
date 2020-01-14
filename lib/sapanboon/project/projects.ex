@@ -14,6 +14,15 @@ defmodule Sapanboon.Project.Projects do
     field :start_date, :utc_datetime
     field :status, :string
     field :title, :string
+    field :location, :string
+    field :overView,  :string
+    field :projectSteps,  :string
+    field :projectBenefits, :string
+    field :projectMembers,  :string
+    field :img_card,  :string
+    field :lmg_detail_1,  :string
+    field :lmg_detail_2,  :string
+    field :lmg_detail_3,  :string
 
     timestamps()
   end
