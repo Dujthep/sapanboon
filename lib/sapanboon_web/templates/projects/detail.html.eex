@@ -105,9 +105,97 @@
               data-src="holder.js/500x500/auto" alt="500x500" 
               src="<%= @projects.lmg_detail_2 %>" data-holder-rendered="true">
         </div>
-
-        <hr class="featurette-divider">
-
         <!-- /END THE FEATURETTES -->
+</div>
 
+<div id="payment-panel" class="bg-blue">
+  <div class="container d-flex flex-column pt-5">
+    <label class="fs-28 text-center txt-light-dark-gray">ร่วมบริจาค</label>
+    <label class="fs-medium-24-32 text-center">
+      <%= @projects.code %> <%= @projects.title %>
+    </label>
+
+    <form id="donator-form" method="post" action="/payment" onsubmit="return checkform()" novalidate="novalidate">
+      <input type="hidden" id="project-name" name="projectName" value="<%= @projects.title %>">
+      <input type="hidden" id="project-id" name="projectId" value="<%= @projects.id %>">
+      <input type="hidden" id="project-image" name="projectImage" value="<%= @projects.cover %>">
+      <div class="form-group">
+        <label class="fs-28">จำนวนเงิน</label>
+        <section class="payment">
+          <div class="row">
+            <div class="col-md-3 col-xs-6 pb-3">
+              <input type="radio" name="amount" id="one-thousand" value="1000" checked="">
+              <label class="payment-amount fs-medium-24-32 text-primary" for="one-thousand">1,000 บาท</label>
+            </div>
+            <div class="col-md-3 col-xs-6 pb-3">
+              <input type="radio" name="amount" id="five-hundred" value="500">
+              <label class="payment-amount fs-medium-24-32 text-primary" for="five-hundred">500 บาท</label>
+            </div>
+            <div class="col-md-3 col-xs-6 pb-3">
+              <input type="radio" name="amount" id="one-hundred" value="100">
+              <label class="payment-amount fs-medium-24-32 text-primary" for="one-hundred">100 บาท</label>
+            </div>
+            <div class="col-md-3 col-xs-6 pb-3">
+              <input type="radio" name="amount" id="free-style">
+              <label id="input-payment" class="payment-amount px-3" for="free-style">
+                <div id="input-free-style" class="form-wrapper" style="display: none">
+                  <input id="input-amount" type="text" class="form-input fs-medium-20-24 text-center number" maxlength="9" name="inputAmount" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 &amp;&amp; event.charCode <= 57" required="">
+                </div>
+                <span id="label-free-style" class="fs-medium-20-24 text-primary">ระบุจำนวนเงิน</span>
+              </label>
+            </div>
+          </div>
+        </section>
       </div>
+
+      <div class="container-input">
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <div class="form-wrapper">
+              <input type="text" class="form-input" id="full-name" name="fullName" value="">
+              <label class="form-label" for="fullName">
+                <span class="form-label-content">ชื่อ-นามสกุล</span>
+              </label>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-wrapper">
+              <input type="text" class="form-input" id="tel-no" name="telNo" maxlength="10" onkeypress="return (event.charCode == 47 || event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 &amp;&amp; event.charCode <= 57">
+              <label class="form-label" for="telNo">
+                <span class="form-label-content">เบอร์โทรศัพท์</span>
+              </label>
+              <span class="fs-14 txt-light-gray">*เว้นว่างไว้หากไม่ประสงค์ออกนาม</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="d-flex flex-wrap justify-content-center">
+          <div class="col-center-sm-4">
+              <button class="btn btn-primary" id="go-payment">ยืนยันการบริจาค</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group mb-5">
+        <div class="d-flex justify-content-center">
+          <div class="box-social-payment">
+            <span class="fs-18">ชวนเพื่อนมาบริจาค</span>
+
+            <a>
+              <img class="icon-detail pointer" src="/images/line-icon.svg">
+            </a>
+
+            <a>
+              <img class="icon-detail pointer" src="/images/facebook-icon.svg">
+            </a>
+
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>

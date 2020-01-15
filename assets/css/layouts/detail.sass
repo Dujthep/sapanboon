@@ -1,16 +1,28 @@
 
 .fs-18
-    font-size: 18px !important
+    font-size: 18px 
 
 .fs-24
-    font-size: 24px !important
+    font-size: 24px 
 
 .fs-medium-24-bold
-    font-size: 24px !important
+    font-size: 24px
     @extend .bold
 
+.fs-medium-24-32, .btn-primary, .btn-gray, .btn-secondary, .btn-third
+    font-size: 32px
+
+.fs-28
+    font-size: 28px
+
 .fs-36 
-  font-size: 36px !important
+  font-size: 36px 
+
+.bg-blue
+    background-color: #e5f7ff
+
+.txt-light-dark-gray
+    color: #4a4a4a
 
 .bold
   font-weight: bold
@@ -54,3 +66,102 @@
 .lmg-detail
   width: auto
   heigth: auto
+
+.payment-amount
+    height: 110px
+
+.payment input[type="radio"]
+    display: none
+
+.payment input:checked+.payment-amount, .payment input:checked+.payment-channel
+    border: 3px solid #047afe
+    background-color: #ffffff
+    border-radius: 4px
+    opacity: 1
+
+.payment input:checked+.payment-amount:after, .payment input:checked+.payment-channel:after 
+    border-radius: 100%
+    background-clip: padding-box
+    position: absolute
+    top: -14px
+    right: -14px
+    width: 35px
+    height: 35px
+    font-family: 'FontAwesome'
+    content: '\f00c'
+    font-size: 20px
+    line-height: 35px
+    text-align: center
+    color: #fff
+    border: 1px solid #9eadb5
+    background-color: #9eadb5
+
+.payment-amount, .payment-channel
+  position: relative
+  display: flex
+  align-items: center
+  justify-content: center
+  border: 2px solid #b6b6b6
+  background-color: #e5f7ff
+  border-radius: 4px
+  cursor: pointer
+  opacity: 0.25
+  box-sizing: border-box
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+
+.form-wrapper 
+  overflow: hidden
+  position: relative
+  z-index: 1
+  display: inline-block
+  width: 90%
+  vertical-align: top
+
+.form-input:required
+    box-shadow: none
+
+.form-input
+  position: relative
+  margin-top: .5em
+  padding: 0.6em 0
+  width: 100%
+  box-sizing: border-box
+  font-size: 16px
+  outline: 0
+  border: none
+  border-bottom: solid 1px #ddd
+  transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1)
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 96%, #047afe 4%)
+  background-position: -400px 0
+  background-size: 400px 100%
+  background-repeat: no-repeat
+  
+.form-label-content
+    position: absolute
+    transition: all 200ms ease-in-out
+  
+.form-input ~ .form-label .form-label-content 
+    font-size: 14px
+    top: -10px
+
+.form-label 
+    position: absolute
+    bottom: 0
+    left: 0
+    padding: 0
+    width: 100%
+    height: calc(100% - 1em)
+    text-align: left
+    pointer-events: none
+    color: #9eadb5
+
+label
+    display: inline-block
+    margin-bottom: 0.5rem
+
+.icon-detail
+    width: 40px
+    height: 40px
+    -o-object-fit: contain
+    object-fit: contain
