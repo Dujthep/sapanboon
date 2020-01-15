@@ -19,6 +19,7 @@ defmodule SapanboonWeb.Router do
     get "/details/:id", ProjectsController, :detail
     get "/abouts", AboutController, :index
     get "/contact", ContactController, :index
+    get "/details/:id/payment", PaymentController, :index
   end
 
   # Other scopes may use custom stacks.
