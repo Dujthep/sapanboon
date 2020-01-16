@@ -12,7 +12,6 @@ defmodule Sapanboon.Repo.Migrations.CreateHistories do
       add :status, :string
 
       timestamps()
-    end
-
   end
+end
 end
