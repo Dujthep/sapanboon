@@ -13,6 +13,5 @@ defmodule SapanboonWeb.ProjectsController do
     projects = Project.get_projects!(id)
     render(conn, "detail.html", projects: projects)
   end
-
-
+  
 end

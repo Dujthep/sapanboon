@@ -39,7 +39,7 @@
 
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="/login" class="nav-link">
                           เข้าสู่ระบบ
                     </a>
                 </li>
