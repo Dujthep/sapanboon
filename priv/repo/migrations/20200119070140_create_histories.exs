@@ -10,8 +10,9 @@ defmodule Sapanboon.Repo.Migrations.CreateHistories do
       add :title, :string
       add :donation, :integer
       add :status, :string
+      add :email, :string
 
       timestamps()
+    end
   end
-end
 end

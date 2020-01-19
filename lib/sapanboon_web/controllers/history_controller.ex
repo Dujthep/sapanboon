@@ -4,9 +4,9 @@ defmodule SapanboonWeb.HistoryController do
   alias Sapanboon.Histories
   alias Sapanboon.Histories.History
 
-  def index(conn, %{"id" => id}) do
-    history = Histories.get_history!(id)
-    render(conn, "index.html", history: history)
+  def index(conn, _params) do
+    list_histories = Histories.list_histories_by_email()
+    render(conn, "index.html", list_histories: list_histories)
   end
 
   def new(conn, _params) do

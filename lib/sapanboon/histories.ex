@@ -21,6 +21,12 @@ defmodule Sapanboon.Histories do
     Repo.all(History)
   end
 
+  def list_histories_by_email() do
+    History
+      |> where([h], h.email == "sothon@odds.team")
+      |> Repo.all()
+  end
+
   @doc """
   Gets a single history.
 

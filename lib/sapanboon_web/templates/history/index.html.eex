@@ -1,2 +1,82 @@
-<h1>Listing Histories</h1>
-<%= @history.code %>
+<div class="container py-5">
+  <div class="row">
+    <div class="col">
+      <p class="fs-24 txt-light-dark-gray">รายการบริจาคของคุณ</p>
+    </div>
+  </div>
+
+  <div class="d-none d-sm-none d-md-none d-lg-block">
+  <table>
+    <thead>
+      <tr>
+        <th class="text-center"></th>
+        <th class="text-center">เลขที่</th>
+        <th>ชื่อโครงการ</th>
+        <th class="text-center">จำนวนเงิน (บาท)</th>
+        <th class="text-center">สถานะ</th>
+        <th class="text-center">อัพโหลด</th>
+        <th class="text-center">ดูสลิป</th>
+        <th class="text-center"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for history <- @list_histories do %>
+        <tr>
+          <td class="text-center">
+            <span class="fs-medium-16 bold">
+              <%= history.trans_date %>
+            </span>
+          </td>
+          <td class="text-center">
+            <span class="fs-16">
+              <%= history.trans_id %>
+            </span>
+          </td>
+          <td>
+            <span class="fs-16"><%= history.code %></span>
+            <span class="fs-16"><%= history.title %></span>
+          </td>
+          <td class="text-right">
+            <span class="fs-16 txt-bright-cyan">
+              <%= history.donation %>
+            </span>
+          </td>
+          <td class="text-center">
+            <%= if history.status === "pending" do %>
+              <img src="<%= Routes.static_path(@conn, "/images/pending.svg") %>" />
+            <% end %>
+            <%= if history.status === "approved" do %>
+              <img src="<%= Routes.static_path(@conn, "/images/approve.svg") %>" />
+            <% end %>
+            <%= if history.status === "cancel" do %>
+              <img src="<%= Routes.static_path(@conn, "/images/cancel.svg") %>" />
+            <% end %>
+            <%= if history.status === "reject" do %>
+              <img src="<%= Routes.static_path(@conn, "/images/reject.svg") %>" />
+            <% end %>
+          </td>
+          <td class="text-center">
+            <%= if history.status === "pending" do %>
+              <img src="<%= Routes.static_path(@conn, "/images/upload-mobile.svg") %>" />
+            <% end %>
+          </td>
+          <td class="text-center">
+            <%= if history.status !== "reject" do %>
+              <span id="view-slip" data-toggle="modal" data-target="#slip-modal">
+                <img src="<%= Routes.static_path(@conn, "/images/view-reciept-mobile.svg") %>" />
+              </span>
+            <% end %>
+          </td>
+          <td class="text-center">
+            <%= if history.status === "pending" do %>
+              <span id="cancel-trans" data-toggle="modal" data-target="#confirm-modal">
+                <img src="<%= Routes.static_path(@conn, "/images/cancel-trans.svg") %>" />
+              </span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+ </div>
+</div>
