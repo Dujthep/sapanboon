@@ -23,11 +23,45 @@
   </div>
 </div>
 
-<div class="justify-content-center d-flex mt-5">
-    <img id="cover-image" class="cover-image"  src="<%= Routes.static_path(@conn, "/images/address.svg") %>">
-    <div class="col-md-10 text-md-left">
-      <label class="fs-medium-24 text-dark-gray">ที่อยู่</label><br>
-      <label class="fs-20 text-dark-gray">มูลนิธิสะพานบุญ 542 ถนนเพชรเกษม เขตหนองแขม กทม. 10160</label><br>
+<div class="container p-5">
+    <div class="row pb-5 text-center">
+      <div class="col-sm-12 col-md-2">
+        <img id="address-image" src="<%= Routes.static_path(@conn, "/images/address.svg") %>">
+      </div>
+      <div class="col-sm-12 col-md-10 text-md-left mt-3 mt-md-0">
+        <label class="fs-medium-24 text-dark-gray">ที่อยู่</label><br>
+        <label class="fs-20 text-dark-gray">มูลนิธิสะพานบุญ 542 ถนนเพชรเกษม เขตหนองแขม กทม. 10160</label><br>
+      </div>
     </div>
-</div>
+
+    <div class="row text-center">
+      <div class="col-md-2">
+        <img id="tel-image" src="<%= Routes.static_path(@conn, "/images/tel.svg") %>">
+      </div>
+      <div class="col-sm-12 col-md-4 text-md-left mb-5 mb-md-0">
+        <label class="fs-medium-20 text-dark-gray">เบอร์ติดต่อ</label><br>
+        <label class="fs-20 text-dark-gray">02-807-4500 ต่อ 115, 081-651-1718</label>
+      </div>
+
+      <div class="col-sm-12 col-md-2">
+        <img id="email-image" src="<%= Routes.static_path(@conn, "/images/email.svg") %>">
+      </div>
+      <div class="col-sm-12 col-md-4 text-md-left mb-5">
+          <label class="fs-medium-20 text-dark-gray">อีเมล</label><br>
+          <label class="fs-20 text-dark-gray">admin@sapanboon.org</label>
+      </div>
+    </div>
+
+    <div class="row pb-5 text-center">
+      <div class="offset-md-2 col-sm-12 col-md-10 text-md-left">
+        <label class="fs-medium-20 text-dark-gray">ติดตามความเคลื่อนไหว</label>
+      </div>
+      <div class="offset-md-2 col-sm-12 col-md-4 text-md-left mb-5">
+        <img class="icon-50" src="<%= Routes.static_path(@conn, "/images/facebook-icon.svg") %>">
+        <img class="icon-50" src="<%= Routes.static_path(@conn, "/images/ig-icon.svg") %>">
+        <img class="icon-50" src="<%= Routes.static_path(@conn, "/images/twitter-icon.svg") %>">
+      </div>
+    </div>
+
+  </div>
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/custom.js") %>"></script>

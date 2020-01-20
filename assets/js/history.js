@@ -3,7 +3,6 @@ window.jQuery = $;
 window.$ = $;
 
 $(document).ready(function () {
-  console.log('Hi')
   $("#confirm-modal").on("show.bs.modal", function(event) {
     $('.modal-body #confirm').show();
     $('.modal-body #error').hide();
