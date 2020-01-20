@@ -4,7 +4,7 @@ window.$ = $;
 
 $(document).ready(function () {
   console.log('Hi')
-  $("#confirm-modal").on("show.bs.modal", function(event) {
+  $("#confirm-modal").on("show.bs.modal", function (event) {
     $('.modal-body #confirm').show();
     $('.modal-body #error').hide();
     const button = $(event.relatedTarget)
@@ -13,9 +13,9 @@ $(document).ready(function () {
   })
 })
 
-function viewSlip(imgSlip) {
-  $('.modal-body #img').attr("src", imgSlip);
-}
+// function viewSlip(imgSlip) {
+//   $('.modal-body #img').attr("src", imgSlip);
+// }
 
 function cancelTrans() {
   const transId = $(".modal-body input").val();
@@ -25,13 +25,21 @@ function cancelTrans() {
     data: { transactionId: transId },
     type: 'POST',
     dataType: 'json',
-    success: function(data){
+    success: function (data) {
       location.reload();
       $(".loader").removeClass("is-active");
     },
-    error: function(data){
+    error: function (data) {
       $('.modal-body #confirm').hide();
       $('.modal-body #error').show();
     }
+  })
+}
+
+
+window.onload = function () {
+  var mb = document.getElementById("view-slip");
+  mb.addEventListener("click", function(){
+      $('.modal-body #img').attr("src", $(this).attr("data"));
   })
 }

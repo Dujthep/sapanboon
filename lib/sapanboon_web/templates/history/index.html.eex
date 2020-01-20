@@ -73,7 +73,7 @@
           </td>
           <td class="text-center">
             <%= if history.status !== "reject" do %>
-              <span id="view-slip" data-toggle="modal" data-target="#slip-modal" onclick="viewSlip('<%= history.image_slip %>')">
+              <span id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.image_slip %>">
                 <img src="<%= Routes.static_path(@conn, "/images/view-reciept-mobile.svg") %>" />
               </span>
             <% end %>
