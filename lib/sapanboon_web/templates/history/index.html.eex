@@ -1,3 +1,6 @@
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/history.js") %>">
+</script>
+
 <div class="container py-5">
   <div class="row">
     <div class="col">
@@ -70,7 +73,7 @@
           </td>
           <td class="text-center">
             <%= if history.status !== "reject" do %>
-              <span id="view-slip" data-toggle="modal" data-target="#slip-modal">
+              <span id="view-slip" data-toggle="modal" data-target="#slip-modal" onclick="viewSlip('abc')">
                 <img src="<%= Routes.static_path(@conn, "/images/view-reciept-mobile.svg") %>" />
               </span>
             <% end %>

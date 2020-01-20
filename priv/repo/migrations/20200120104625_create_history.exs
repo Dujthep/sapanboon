@@ -1,4 +1,4 @@
-defmodule Sapanboon.Repo.Migrations.CreateHistories do
+defmodule Sapanboon.Repo.Migrations.CreateHistory do
   use Ecto.Migration
 
   def change do
@@ -11,6 +11,7 @@ defmodule Sapanboon.Repo.Migrations.CreateHistories do
       add :donation, :integer
       add :status, :string
       add :email, :string
+      add :image_slip, :string
 
       timestamps()
     end

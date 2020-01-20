@@ -11,6 +11,7 @@ defmodule Sapanboon.Histories.History do
     field :donation, :integer
     field :status, :string
     field :email, :string
+    field :image_slip, :string
 
     timestamps()
   end
@@ -18,7 +19,7 @@ defmodule Sapanboon.Histories.History do
   @doc false
   def changeset(history, attrs) do
     history
-    |> cast(attrs, [:project_id, :trans_id, :trans_date, :code, :title, :donation, :status, :email])
-    |> validate_required([:project_id, :trans_id, :trans_date, :code, :title, :donation, :status, :email])
+    |> cast(attrs, [:project_id, :trans_id, :trans_date, :code, :title, :donation, :status, :email, :image_slip])
+    |> validate_required([:project_id, :trans_id, :trans_date, :code, :title, :donation, :status, :email, :image_slip])
   end
 end
