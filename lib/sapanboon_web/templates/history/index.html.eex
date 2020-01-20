@@ -16,7 +16,7 @@
         <th class="text-center">สถานะ</th>
         <th class="text-center">อัพโหลด</th>
         <th class="text-center">ดูสลิป</th>
-        <th class="text-center"></th>
+        <th class="text-center">ยกเลิกรายการ</th>
       </tr>
     </thead>
     <tbody>
@@ -57,7 +57,15 @@
           </td>
           <td class="text-center">
             <%= if history.status === "pending" do %>
-              <img src="<%= Routes.static_path(@conn, "/images/upload-mobile.svg") %>" />
+              <label class="mb-0" for="inp-upload-<%= history.trans_id %>">
+                <span id="btn-upload-<%= history.trans_id %>">
+                  <img src="<%= Routes.static_path(@conn, "/images/upload-mobile.svg") %>" />
+                </span>
+                <input type="file"
+                  name="inp-upload-<%= history.trans_id %>"
+                  id="inp-upload-<%= history.trans_id %>"
+                  style="display:none" accept="image/jpg, image/png">
+              </label>
             <% end %>
           </td>
           <td class="text-center">
@@ -79,4 +87,16 @@
     </tbody>
   </table>
  </div>
+</div>
+
+<!-- The Modal View Slip -->
+<div class="modal" id="slip-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal body -->
+      <div class="modal-body">
+        <img id="img" class="img-fluid" src="" alt="">
+      </div>
+    </div>
+  </div>
 </div>
