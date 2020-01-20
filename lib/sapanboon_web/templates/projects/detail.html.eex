@@ -100,7 +100,7 @@
         </div>
 
        <!-- รูปที่ 2 -->
-        <div class="col-md-12 text-center">
+        <div class="col-md-12 text-center mb-5">
           <img class="featurette-image img-fluid mx-auto lmg-detail" 
               data-src="holder.js/500x500/auto" alt="500x500" 
               src="<%= @projects.lmg_detail_2 %>" data-holder-rendered="true">
