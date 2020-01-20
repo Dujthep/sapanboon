@@ -31,6 +31,16 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+config :ueberauth, Ueberauth,
+  providers: [
+    google: {Ueberauth.Strategy.Google, [] },
+    facebook: { Ueberauth.Strategy.Facebook, [] },
+  ]
+
+# config :ueberauth, Ueberauth.Strategy.Google.OAuth,
+#   client_id: "DRF5F54-T3F-SDDSapps.googleusercontent.com", #made up code 
+#   client_secret: "e2d2DW-24rf2-f2433FW42S" #made up code
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

@@ -20,7 +20,7 @@ defmodule Sapanboon.MixProject do
   def application do
     [
       mod: {Sapanboon.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :ueberauth],
     ]
   end
 
@@ -42,7 +42,8 @@ defmodule Sapanboon.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:ueberauth, "~> 0.6"}
     ]
   end
 
