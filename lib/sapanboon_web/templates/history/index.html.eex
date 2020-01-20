@@ -73,7 +73,7 @@
           </td>
           <td class="text-center">
             <%= if history.status !== "reject" do %>
-              <span id="view-slip" data-toggle="modal" data-target="#slip-modal" onclick="viewSlip('abc')">
+              <span id="view-slip" data-toggle="modal" data-target="#slip-modal" onclick="viewSlip('<%= history.image_slip %>')">
                 <img src="<%= Routes.static_path(@conn, "/images/view-reciept-mobile.svg") %>" />
               </span>
             <% end %>
@@ -99,6 +99,69 @@
       <!-- Modal body -->
       <div class="modal-body">
         <img id="img" class="img-fluid" src="" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal" id="error-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div id="error" class="flex-column">
+          <div class="d-flex justify-content-center fs-16 py-4">
+            <label id="error-text">อัพโหลดสลิปล้มเหลว กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่</label>
+          </div>
+          <div class="d-flex justify-content-center pb-4">
+            <button id="conform-payment" class="btn btn-secondary fs-18 mr-4" data-dismiss="modal" style="width: 200px;">ย้อนกลับ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="confirm-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal body -->
+      <div class="modal-body">
+        <input type="hidden">
+        <div id="confirm" class="flex-column">
+          <div class="d-flex justify-content-center py-5">
+            <img src="/assets/delete.svg">
+          </div>
+          <div class="d-flex justify-content-center fs-24 txt-lightslategray">
+            ยกเลิกรายการ
+          </div>
+          <div class="d-flex justify-content-center fs-16 pb-4">
+            แน่ใจหรือไม่ว่าคุณต้องการลบรายการนี้
+          </div>
+           <div class="d-block d-sm-none pb-4 row text-center">
+              <div class="form-group">
+                <button id="conform-payment" class="btn btn-primary fs-18" onclick="cancelTrans()" style="width: 240px; height: 60px;">ตกลง</button>
+              </div>
+              <div class="form-group">
+                <button id="conform-payment" class="btn btn-third fs-18" style="width: 240px; height: 60px;" data-dismiss="modal">ย้อนกลับ</button>
+              </div>
+           </div>
+           <div class="d-none d-md-block">
+              <div class="pb-4 d-flex justify-content-around">
+                <button id="conform-payment" class="btn btn-primary fs-18" onclick="cancelTrans()" style="width: 200px; height: 60px;">ตกลง</button>
+                <button id="conform-payment" class="btn btn-third fs-18" style="width: 200px; height: 60px;" data-dismiss="modal">ย้อนกลับ</button>
+              </div>
+           </div>
+        </div>
+        <div id="error" class="flex-column">
+          <div class="d-flex justify-content-center fs-16 pb-4">
+            การทำรายการผิดพลาด กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่
+          </div>
+          <div class="d-flex justify-content-center pb-4">
+            <button id="conform-payment" class="btn btn-secondary fs-18 mr-4" data-dismiss="confirm-modal" style="width: 200px;">ย้อนกลับ</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

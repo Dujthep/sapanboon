@@ -1,18 +1,37 @@
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 
-document.addEventListener("DOMContentLoaded", function() {
-  // var slipModal = document.getElementById('slip-modal');
-  // console.log(slipModal)
-  // slipModal.addEventListener('show.bs.modal', function(event){
-  //   console.log(event)
-  // }, false);
+$(document).ready(function () {
+  console.log('Hi')
+  $("#confirm-modal").on("show.bs.modal", function(event) {
+    $('.modal-body #confirm').show();
+    $('.modal-body #error').hide();
+    const button = $(event.relatedTarget)
+    const modal = $(this)
+    modal.find(".modal-body input").val(button.data('whatever'))
+  })
+})
 
-
-
-});
-
-function viewSlip(imageSlip) {
-  console.log(imageSlip)
+function viewSlip(imgSlip) {
+  $('.modal-body #img').attr("src", imgSlip);
 }
 
-
-
+function cancelTrans() {
+  const transId = $(".modal-body input").val();
+  $(".loader").addClass("is-active");
+  $.ajax({
+    url: '/cancel_trans',
+    data: { transactionId: transId },
+    type: 'POST',
+    dataType: 'json',
+    success: function(data){
+      location.reload();
+      $(".loader").removeClass("is-active");
+    },
+    error: function(data){
+      $('.modal-body #confirm').hide();
+      $('.modal-body #error').show();
+    }
+  })
+}
