@@ -22,6 +22,7 @@ defmodule SapanboonWeb.Router do
     get "/contact", ContactController, :index
     get "/login", LoginController, :index
     get "/history", HistoryController, :index
+    get "/success/:id", SuccessController, :index
   end
 
   # Other scopes may use custom stacks.

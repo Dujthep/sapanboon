@@ -82,7 +82,10 @@
     </div>
 
     <div class="col-lg-12 col-md-12 text-center mb-5 pt-3">
-        <button id="conform-payment" class="btn btn-primary col-md-5 col-sm-12" onclick="onSubmit()">ยืนยันการโอน</button>
+        <%# <button id="conform-payment" class="btn btn-primary col-md-5 col-sm-12" 
+        onclick="onSubmit()">ยืนยันการโอน</button> %>
+        <a class="btn btn-primary col-md-5 col-sm-12" id="conform-payment" 
+        href="/success/<%= @projects.id %>">ยืนยันการโอน</a>
     </div>
 
 </div>

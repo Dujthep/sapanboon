@@ -1,0 +1,41 @@
+<div class="articles" style="min-height: 550px;">
+      <div class="container-fluid">
+  <div class="d-flex justify-content-center mt-3">
+    <p id="h-thank-you" class="fs-32 bold">ขอบคุณสำหรับการบริจาค</p>
+  </div>
+  <div class="d-flex justify-content-center">
+    <p class="fs-18">อีเมลยืนยันการชำระเงินถูกส่งไปที่อีเมล </p>
+    &nbsp;
+    <p class="fs-18 text-primary">zgmf-x2o-srike-freedom@hotmail.com</p>
+  </div>
+  <div class="form-group mb-5">
+    <div id="payment-panel" class="offset-lg-2 col-lg-8 mt-3">
+      <div class="container-fluid d-flex flex-column pb-3 payment-panel">
+        <div class="text-center mt-3">
+          <div class="form-group">
+            <img class="img-fluid" src="<%= Routes.static_path(@conn, "/images/success.svg") %>">
+          </div>
+          <div class="form-group">
+            <label class="fs-18">บริจาคโดย</label>
+          </div>
+          <div class="form-group">
+            <label class="fs-24 bold">Kanin Pradidtanon</label>
+          </div>
+          <div class="form-group">
+            <label class="fs-18">บริจาคให้</label>
+          </div>
+          <div class="form-group">
+            <label class="fs-24 bold"><%= @projects.title %></label>
+          </div>
+          <div class="form-group">
+            <div class="col-center-sm-4">
+              <a class="btn btn-primary fs-24" id="go-projects" href="/">ดูโครงการอื่น</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
