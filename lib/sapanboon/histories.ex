@@ -27,6 +27,12 @@ defmodule Sapanboon.Histories do
       |> Repo.all()
   end
 
+  def cancel_trans(%History{} = history, attrs) do
+    history
+    |> History.changeset(attrs)
+    |> Repo.update()
+  end
+
   @doc """
   Gets a single history.
 
