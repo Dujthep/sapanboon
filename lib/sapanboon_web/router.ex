@@ -26,6 +26,11 @@ defmodule SapanboonWeb.Router do
     put "/cancel_trans", HistoryController, :cancel_trans
   end
 
+  scope "/auth", SapanboonWeb do 
+    pipe_through :browser
+    get "/:provider", LoginController, :request
+    get "/:provider/callback", LoginController, :callback
+  end
   # Other scopes may use custom stacks.
   # scope "/api", SapanboonWeb do
   #   pipe_through :api
