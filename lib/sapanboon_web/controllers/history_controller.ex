@@ -9,6 +9,18 @@ defmodule SapanboonWeb.HistoryController do
     render(conn, "index.html", list_histories: list_histories)
   end
 
+  def cancel_trans(conn, %{"id" => id, "status" => status}) do
+    status_params = %{"status" => status}
+    history = Histories.get_history!(id)
+
+    case Histories.update_history(history, status_params) do
+      {:ok, _history} ->
+        json(conn, "Cancel Transaltion successfully.")
+      {:error } ->
+        json(conn, "Cancel Transaltion Error.")
+    end
+  end
+
   def new(conn, _params) do
     changeset = Histories.change_history(%History{})
     render(conn, "new.html", changeset: changeset)
