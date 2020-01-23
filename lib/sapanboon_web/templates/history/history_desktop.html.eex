@@ -1,0 +1,82 @@
+<div class="d-none d-sm-none d-md-none d-lg-block">
+  <table>
+    <thead>
+      <tr>
+        <th class="text-center"></th>
+        <th class="text-center">เลขที่</th>
+        <th>ชื่อโครงการ</th>
+        <th class="text-center">จำนวนเงิน (บาท)</th>
+        <th class="text-center">สถานะ</th>
+        <th class="text-center">อัพโหลด</th>
+        <th class="text-center">ดูสลิป</th>
+        <th class="text-center">ยกเลิกรายการ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for history <- @list_histories do %>
+        <tr>
+          <td class="text-center">
+            <span class="fs-medium-16 bold">
+              <%= history.trans_date %>
+            </span>
+          </td>
+          <td class="text-center">
+            <span class="fs-16">
+              <%= history.trans_id %>
+            </span>
+          </td>
+          <td>
+            <span class="fs-16"><%= history.code %></span>
+            <span class="fs-16"><%= history.title %></span>
+          </td>
+          <td class="text-right">
+            <span class="fs-16 txt-bright-cyan">
+              <%= history.donation %>
+            </span>
+          </td>
+          <td class="text-center">
+            <%= if history.status === "pending" do %>
+              <img src="<%= Routes.static_path(@conn, "/images/pending.svg") %>" />
+            <% end %>
+            <%= if history.status === "approved" do %>
+              <img src="<%= Routes.static_path(@conn, "/images/approve.svg") %>" />
+            <% end %>
+            <%= if history.status === "cancel" do %>
+              <img src="<%= Routes.static_path(@conn, "/images/cancel.svg") %>" />
+            <% end %>
+            <%= if history.status === "reject" do %>
+              <img src="<%= Routes.static_path(@conn, "/images/reject.svg") %>" />
+            <% end %>
+          </td>
+          <td class="text-center">
+            <%= if history.status === "pending" do %>
+              <label class="mb-0" for="inp-upload-<%= history.trans_id %>">
+                <span id="btn-upload-<%= history.trans_id %>">
+                  <img src="<%= Routes.static_path(@conn, "/images/upload-mobile.svg") %>" />
+                </span>
+                <input type="file"
+                  name="inp-upload-<%= history.trans_id %>"
+                  id="inp-upload-<%= history.trans_id %>"
+                  style="display:none" accept="image/jpg, image/png">
+              </label>
+            <% end %>
+          </td>
+          <td class="text-center">
+            <%= if history.image_slip !== "" && history.status !== "reject" do %>
+              <span id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.image_slip %>">
+                <img src="<%= Routes.static_path(@conn, "/images/view-reciept-mobile.svg") %>" />
+              </span>
+            <% end %>
+          </td>
+          <td class="text-center">
+            <%= if history.status === "pending" do %>
+              <span id="cancel-trans" data-toggle="modal" data-target="#confirm-modal" data-payload="<%= history.id %>">
+                <img src="<%= Routes.static_path(@conn, "/images/cancel-trans.svg") %>" />
+              </span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

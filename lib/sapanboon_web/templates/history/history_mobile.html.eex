@@ -1,0 +1,78 @@
+<div class="d-lg-none d-md-none d-sm-block">
+  <%= for history <- @list_histories do %>
+    <div class="row">
+      <div class="col-sm-12">
+        <span class="fs-medium-16 bold">
+          <%= history.trans_date %>
+        </span>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-7">
+        <span class="fs-16"><%= history.code %></span>
+        <span class="fs-16"><%= history.title %></span>
+      </div>
+      <div class="col-4 text-right">
+        <span class="fs-16 txt-bright-cyan">
+          <%= history.donation %>
+        </span>
+        <br>
+        <%= if history.status === "pending" do %>
+          <img src="<%= Routes.static_path(@conn, "/images/pending.svg") %>" />
+        <% end %>
+        <%= if history.status === "approved" do %>
+          <img src="<%= Routes.static_path(@conn, "/images/approve.svg") %>" />
+        <% end %>
+        <%= if history.status === "cancel" do %>
+          <img src="<%= Routes.static_path(@conn, "/images/cancel.svg") %>" />
+        <% end %>
+        <%= if history.status === "reject" do %>
+          <img src="<%= Routes.static_path(@conn, "/images/reject.svg") %>" />
+        <% end %>
+      </div>
+      <div class="col-1 p-0 d-flex align-items-top">
+        <%= if history.status !== "reject" do %>
+          <div class="dropleft">
+            <span data-toggle="dropdown">
+              <img src="<%= Routes.static_path(@conn, "/images/more.svg") %>" />
+            </span>
+            <div class="dropdown-menu">
+              <%= if history.image_slip !== "" && history.status !== "reject" do %>
+                <div class="dropdown-item">
+                  <span id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.image_slip %>">
+                    <img src="<%= Routes.static_path(@conn, "/images/view-reciept-mobile.svg") %>" />
+                    ดูสลิป
+                  </span>
+                  <div class="dropdown-divider"></div>
+                </div>
+              <% end %>
+              <%= if history.status === "pending" do %>
+                <div class="dropdown-item">
+                  <label class="mb-0" for="inp-upload-<%= history.trans_id %>">
+                    <span id="btn-upload-<%= history.trans_id %>">
+                      <img src="<%= Routes.static_path(@conn, "/images/upload-mobile.svg") %>" />
+                      อัพโหลด
+                    </span>
+                    <input type="file"
+                      name="inp-upload-<%= history.trans_id %>"
+                      id="inp-upload-<%= history.trans_id %>"
+                      style="display:none" accept="image/png, image/jpeg">
+                  </label>
+                </div>
+              <% end %>
+              <%= if history.status === "pending" do %>
+                <div class="dropdown-item">
+                  <div class="dropdown-divider"></div>
+                    <span id="cancel-trans" data-toggle="modal" data-target="#confirm-modal" data-payload="<%= history.id %>">
+                      <img src="<%= Routes.static_path(@conn, "/images/cancel-trans.svg") %>" />
+                      ยกเลิก
+                    </span>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end%>
+</div>
