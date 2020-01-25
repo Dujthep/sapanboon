@@ -1,26 +1,22 @@
 import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
 
-$("#amount-error").hide()
-  $('#line-shared').attr('data-url',window.location.href);
-  $('#line-shared').css('background-image','url(/assets/icon-line-9917a76169d3aa1fdc29b27b714070bfbb070f9204aa1c383a953ee1e7a0a405.svg) !important')
-  $('#line-shared').css('width','40px !important')
+document.addEventListener("DOMContentLoaded", function() {
 
-  function checkform() {
-    if ("<%= current_user %>" != '') {
-      return true
-    } else {
-      alert("กรุณาเข้าสู่ระบบ ก่อนทำรายการ")
-      return false
-    }
-  }
+});
+
+// function checkform() {
+//   alert("hello")
+//   // if ("<%= current_user %>" != '') {
+//   //   return true
+//   // } else {
+//   //   alert("กรุณาเข้าสู่ระบบ ก่อนทำรายการ")
+//   //   return false
+//   // }
+// }
 
   $(document).ready(function() {
-
-    function hidePayment() {
-      $(".prompt-pay-form").hide();
-      $(".visa-form").hide();
-      $(".qr-code-form").hide();
-    }
 
     $('#donator-form').validate({
       rules : {
@@ -47,15 +43,6 @@ $("#amount-error").hide()
       });
     });
 
-    $(document).on("change", 'input[name="payment-chanel"]', function() {
-      hidePayment();
-      if ($(this).val() === "promptPay" || $(this).val() === "qrCode") {
-        $(".prompt-pay-form").show();
-      } else if ($(this).val() === "visa") {
-        $(".visa-form").show();
-      }
-    });
-
     $(document).on('click', 'input[name="amount"]', function() {
       $('input[name=inputAmount]').removeClass('error')
       if($(this).val() === "on") {
@@ -69,3 +56,23 @@ $("#amount-error").hide()
       }
     })
   });
+
+  // $("#amount-error").hide()
+  // $('#line-shared').attr('data-url',window.location.href);
+  // $('#line-shared').css('background-image','url(/assets/icon-line-9917a76169d3aa1fdc29b27b714070bfbb070f9204aa1c383a953ee1e7a0a405.svg) !important')
+  // $('#line-shared').css('width','40px !important')
+
+  // function hidePayment() {
+  //   $(".prompt-pay-form").hide();
+  //   $(".visa-form").hide();
+  //   $(".qr-code-form").hide();
+  // }
+
+  // $(document).on("change", 'input[name="payment-chanel"]', function() {
+  //   hidePayment();
+  //   if ($(this).val() === "promptPay" || $(this).val() === "qrCode") {
+  //     $(".prompt-pay-form").show();
+  //   } else if ($(this).val() === "visa") {
+  //     $(".visa-form").show();
+  //   }
+  // });

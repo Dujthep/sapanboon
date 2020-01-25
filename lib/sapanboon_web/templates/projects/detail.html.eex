@@ -1,49 +1,51 @@
 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
-<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/deta.js") %>"></script>
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/detail.js") %>"></script>
 
-  <div class="carousel-inner">
-      <img id="cover-image" class="cover-image" src="<%= @projects.cover %>">
-      <div class="detail-banner-detail-page box-title-detail-page d-none d-sm-block">
-            <div class="container position-relative">
-              <h1 class="fs-32">
-                <%= @projects.code %> <%= @projects.title %>
-                <input type="hidden" id="projectName" name="projectName" value="<%= @projects.title %>">
-              </h1>
-              <img id="location-icon" class="d-inline" src="<%= Routes.static_path(@conn, "/images/location-icon.svg") %>" alt="location-sapanboon">
-              <p class="fs-18 d-inline"><%= @projects.location %></p>
-              <p class="fs-18 margin-30">ระยะเวลาโครงการคงเหลือ 
-               <%= if @projects.status == "active" do %>
-               <%= end %>
+<div class="carousel-inner">
+    <img id="cover-image" class="cover-image" src="<%= @projects.cover %>">
+    <div class="detail-banner-detail-page box-title-detail-page d-none d-sm-block">
+          <div class="container position-relative">
+            <h1 class="fs-32">
+              <%= @projects.code %> <%= @projects.title %>
+              <input type="hidden" id="projectName" name="projectName" value="<%= @projects.title %>">
+            </h1>
+            <img id="location-icon" class="d-inline" src="<%= Routes.static_path(@conn, "/images/location-icon.svg") %>" alt="location-sapanboon">
+            <p class="fs-18 d-inline"><%= @projects.location %></p>
+            <p class="fs-18 margin-30">ระยะเวลาโครงการคงเหลือ 
+              <%= if @projects.status == "active" do %>
+              <%= Kernel.trunc((((DateTime.diff(@projects.end_date, DateTime.utc_now)/60)/60)/24)) %>
+              <%= end %>
 
-               <%= if @projects.status == "pending" do %>
-               <%= end %>
+              <%= if @projects.status == "pending" do %>
+              <%= Kernel.trunc((((DateTime.diff(@projects.end_date, @projects.start_date)/60)/60)/24)) %>
+              <%= end %>
 
-               <%= if @projects.status == "inactive" do %>
-               -
-               <%= end %>
-              วัน</p>
+              <%= if @projects.status == "inactive" do %>
+              -
+              <%= end %>
+            วัน</p>
 
 
-                <%= if @projects.status == "active" do %>
-                  <a class="btn btn-primary btn-block" href="#payment-panel">
-                    <%= "ร่วมบริจาค SPB#{@projects.code}" %>
-                  </a>
-                <%= end %>
-
-               <%= if @projects.status == "complete" do %>
-                <a class="btn btn-secondary btn-block">
-                  สำเร็จแล้ว
+              <%= if @projects.status == "active" do %>
+                <a class="btn btn-primary btn-block" href="#payment-panel">
+                  <%= "ร่วมบริจาค #{@projects.code}" %>
                 </a>
-                <%= end %>
+              <%= end %>
 
-               <%= if @projects.status == "expire" do %>
-                <a class="btn btn-secondary btn-block">
-                  หมดเวลาระดมทุน
-                </a>
-                <%= end %>
-            </div>
-      </div>
-  </div>
+              <%= if @projects.status == "complete" do %>
+              <a class="btn btn-secondary btn-block">
+                สำเร็จแล้ว
+              </a>
+              <%= end %>
+
+              <%= if @projects.status == "expire" do %>
+              <a class="btn btn-secondary btn-block">
+                หมดเวลาระดมทุน
+              </a>
+              <%= end %>
+          </div>
+    </div>
+</div>
 
 <div class="container marketing">
 
@@ -59,7 +61,8 @@
                 </div>
                 <div class="box-donate d-flex justify-content-center">
                   <span class="text-primary fs-24">
-                    0<span class="text-primary fs-16 align-self-center pl-1">บาท</span>
+                    <%= format_number(@projects.donation) %>
+                    <span class="text-primary fs-16 align-self-center pl-1">บาท</span>
                   </span>
                 </div>
               </div>
@@ -68,20 +71,20 @@
                 <div class="box-budget border-right-0">
                   <span class="fs-18 fs-black-1">โครงการ</span>
                   <span class="text-primary fs-36">
-                    0%
+                    <%= calculate_percent(@projects.donation,@projects.pledged_goal)  %>%
                   </span>
                 </div>
                 <div class="box-budget border-right-0">
                   <span class="fs-18 fs-black-1">เป้าหมาย</span>
                   <span class="text-primary fs-36">
-                    <%= @projects.pledged_goal %>
+                    <%= format_number(@projects.pledged_goal) %>
                     <span class="text-primary fs-16">บาท</span>
                   </span>
                 </div>
                 <div class="box-budget">
                   <span class="fs-18 fs-black-1">จำนวนผู้บริจาค</span>
                   <span class="text-primary fs-36">
-                    0
+                    <%= format_number(@projects.donator) %>
                   </span>
                 </div>
               </div>
@@ -230,3 +233,11 @@
 
   </div>
 </div>
+
+<script>
+
+  function checkform() {
+    alert("Validate session login.")
+  }
+ 
+</script>
