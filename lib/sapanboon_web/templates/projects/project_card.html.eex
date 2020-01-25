@@ -33,14 +33,16 @@
               <span>ระยะเวลาในการระดมทุน</span>
             </div>
             <div class="text-between">
-              <h2 class="text-large"><%= project.pledged_goal %></h2>
+              <h2 class="text-large"><%= format_number(project.pledged_goal) %></h2>
               <span class="text-normal">01/02/62 - 01/06/62</span>
             </div>
             <div class="progress">
-              <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+              <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.donation,project.pledged_goal)  %>%" aria-valuenow="<%= calculate_percent(project.donation,project.pledged_goal)  %>" aria-valuemin="0" aria-valuemax="100">75%</div>
             </div>
             <div>
-              <span class="text-normal">เหลือเวลาอีก 75 วัน</span>
+              <span class="text-normal">เหลือเวลาอีก 
+              <%= Kernel.trunc((((DateTime.diff(project.end_date, DateTime.utc_now)/60)/60)/24)) %>
+               วัน</span>
             </div>
           </section>
         
