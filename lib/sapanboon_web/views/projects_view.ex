@@ -3,8 +3,8 @@ defmodule SapanboonWeb.ProjectsView do
 
   def format_date_time(date) do
     {date.year, date.month, date.day}
-    |> Calendar.Strftime.strftime!("%A %d %B", :th)
-    |> Kernel.<>(" #{date.year + 543}")
+    # |> Calendar.Strftime.strftime!("%A %d %B", :th)
+    # |> Kernel.<>(" #{date.year + 543}")
   end
 
   def active_class(conn, path) do 

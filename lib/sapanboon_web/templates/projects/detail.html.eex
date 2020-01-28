@@ -14,15 +14,15 @@
             <p class="fs-18 margin-30">ระยะเวลาโครงการคงเหลือ 
               <%= if @projects.status == "active" do %>
               <%= Kernel.trunc((((DateTime.diff(@projects.end_date, DateTime.utc_now)/60)/60)/24)) %>
-              <%= end %>
+              <% end %>
 
               <%= if @projects.status == "pending" do %>
               <%= Kernel.trunc((((DateTime.diff(@projects.end_date, @projects.start_date)/60)/60)/24)) %>
-              <%= end %>
+              <% end %>
 
               <%= if @projects.status == "inactive" do %>
               -
-              <%= end %>
+              <% end %>
             วัน</p>
 
 
@@ -30,19 +30,19 @@
                 <a class="btn btn-primary btn-block" href="#payment-panel">
                   <%= "ร่วมบริจาค #{@projects.code}" %>
                 </a>
-              <%= end %>
+              <% end %>
 
               <%= if @projects.status == "complete" do %>
               <a class="btn btn-secondary btn-block">
                 สำเร็จแล้ว
               </a>
-              <%= end %>
+              <% end %>
 
               <%= if @projects.status == "expire" do %>
               <a class="btn btn-secondary btn-block">
                 หมดเวลาระดมทุน
               </a>
-              <%= end %>
+              <% end %>
           </div>
     </div>
 </div>

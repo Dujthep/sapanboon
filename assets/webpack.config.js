@@ -17,7 +17,9 @@ module.exports = (env, options) => ({
     'custom': ['./js/custom.js'].concat(glob.sync('./vendor/**/*.js')),
     'history': ['./js/history.js'].concat(glob.sync('./vendor/**/*.js')),
     'detail': ['./js/detail.js'].concat(glob.sync('./vendor/**/*.js')),
-
+    'payment': ['./js/payment.js'].concat(glob.sync('./vendor/**/*.js')),
+    'promptpay-qr': ['./js/qrcode/promptpay-qr.js'].concat(glob.sync('./vendor/**/*.js')),
+    'qrcode': ['./js/qrcode/qrcode.min.js'].concat(glob.sync('./vendor/**/*.js'))
   },
   output: {
     filename: '[name].js',
