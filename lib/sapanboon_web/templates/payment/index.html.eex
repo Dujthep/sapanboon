@@ -17,7 +17,7 @@
     </div>
 
     <input type="hidden" id="project-name" name="projectName" value="<%= @projects.title %>">
-    <input type="hidden" id="amount" name="amount" value="100">
+    <input type="hidden" id="amount" name="amount" value="67">
     <input type="hidden" id="transactionId" name="transactionId" value="5e1f44124d5c360001929d8d">
     <div class="form-group">
         <div id="payment-panel" class="offset-lg-2 col-lg-8 mt-3">
@@ -51,8 +51,10 @@
                                     <label class="fs-18">จำนวนเงิน</label>
                                 </div>
                                 <div class="col-md-4 text-left d-flex justify-content-center justify-content-md-start">
-                                    <label class="fs-24 " name="amount" id="amount">
-                                    100 บาท</label>
+                                    <label class="fs-24 " 
+                                           name="amount" 
+                                           id="amount">100 บาท
+                                    </label>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
@@ -66,7 +68,7 @@
                                     <label class="d-flex justify-content-center justify-content-md-start" for="upload">
                                         <span id="btn-upload" class="btn btn-file" aria-hidden="true">เลือกไฟล์
                                         </span>
-                                        <input type="file" name="upload" onchange="attachedFile()" id="upload" style="display:none" accept="image/png, image/jpeg">
+                                        <input type="file" name="upload" id="upload" style="display:none" accept="image/*">
                                     </label>
                                 </div>
                             </div>
@@ -85,10 +87,10 @@
     </div>
 
     <div class="col-lg-12 col-md-12 text-center mb-5 pt-3">
-        <%# <button id="conform-payment" class="btn btn-primary col-md-5 col-sm-12" 
-        onclick="onSubmit()">ยืนยันการโอน</button> %>
-        <a class="btn btn-primary col-md-5 col-sm-12" id="conform-payment" 
-        href="/success/<%= @projects.id %>">ยืนยันการโอน</a>
+        <a class="btn btn-primary col-md-5 col-sm-12" 
+           id="confirm-payment" 
+           href="/success/<%= @projects.id %>">ยืนยันการโอน
+        </a>
     </div>
 
 </div>
