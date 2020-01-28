@@ -8,6 +8,9 @@ defmodule Sapanboon.User do
     field :last_name, :string
     field :provider, :string
     field :token, :string
+    field :uid, :string
+    field :name, :string
+    field :role, :string
 
     timestamps()
   end
@@ -15,7 +18,9 @@ defmodule Sapanboon.User do
   @doc false
   def changeset(user, attrs) do
     user
-    |> cast(attrs, [:first_name, :last_name, :email, :provider, :token])
-    |> validate_required([:first_name, :last_name, :email, :provider, :token])
+    |> cast(attrs, [:first_name, :last_name, :email, :provider, :token, :uid, :name, :role])
+    |> validate_required([:first_name, :last_name, :email, :provider, :token, :uid, :name, :role])
   end
+
+  def get_by!(id), do: Repo.get!(History, id)
 end
