@@ -3,9 +3,9 @@ use Mix.Config
 # Configure your database
 config :sapanboon, Sapanboon.Repo,
   username: "postgres",
-  password: "postgres",
-  database: "sapanboon_test",
-  hostname: "localhost",
+  password: "secret",
+  database: "sapanboon",
+  hostname: "sapanboon.odds.team",
   pool: Ecto.Adapters.SQL.Sandbox
 
 # We don't run a server during test. If one is required,
