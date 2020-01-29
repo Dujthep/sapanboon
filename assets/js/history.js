@@ -3,7 +3,6 @@ window.jQuery = $;
 window.$ = $;
 
 $(document).ready(function () {
-
   $("#view-slip").on("click", function () {
     $('.modal-body #img').attr("src", $(this).attr("data"));
   })
