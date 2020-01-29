@@ -11,7 +11,7 @@
             </h1>
             <img id="location-icon" class="d-inline" src="<%= Routes.static_path(@conn, "/images/location-icon.svg") %>" alt="location-sapanboon">
             <p class="fs-18 d-inline"><%= @projects.location %></p>
-            <p class="fs-18 margin-30">ระยะเวลาโครงการคงเหลือ 
+            <p class="fs-18 margin-30">ระยะเวลาโครงการคงเหลือ
               <%= if @projects.status == "active" do %>
               <%= Kernel.trunc((((DateTime.diff(@projects.end_date, DateTime.utc_now)/60)/60)/24)) %>
               <% end %>
@@ -22,8 +22,7 @@
 
               <%= if @projects.status == "inactive" do %>
               -
-              <% end %>
-            วัน</p>
+              <% end %>วัน</p>
 
 
               <%= if @projects.status == "active" do %>
@@ -237,7 +236,13 @@
 <script>
 
   function checkform() {
-    alert("Validate session login.")
+      if ("<%= inspect @conn.assigns[:user] %>" != 'nil') {
+        return true
+      } else {
+        alert("กรุณาเข้าสู่ระบบ ก่อนทำรายการ")
+        return false
+      }
   }
- 
+
 </script>
+

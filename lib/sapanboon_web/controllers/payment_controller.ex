@@ -5,6 +5,7 @@ defmodule SapanboonWeb.PaymentController do
 
   def index(conn, %{"id" => id}) do
     projects = Project.get_projects!(id)
+
     render(conn, "index.html", projects: projects)
   end
 

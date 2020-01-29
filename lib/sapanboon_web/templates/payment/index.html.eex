@@ -9,11 +9,11 @@
 
     <div class="d-flex justify-content-center">
         <p class="fs-18">ชื่อผู้บริจาค </p>&nbsp;
-        <p class="fs-18 text-primary">Kanin Pradidtanon</p>
+        <p class="fs-18 text-primary"><%= @conn.assigns[:user].name %></p>
     </div>
     <div class="d-flex justify-content-center">
         <p class="fs-18">อีเมลยืนยันการชำระเงินถูกส่งไปที่อีเมล </p>&nbsp;
-        <p class="fs-18 text-primary">zgmf-x2o-srike-freedom@hotmail.com</p>
+        <p class="fs-18 text-primary"><%= @conn.assigns[:user].email %></p>
     </div>
 
     <input type="hidden" id="project-name" name="projectName" value="<%= @projects.title %>">

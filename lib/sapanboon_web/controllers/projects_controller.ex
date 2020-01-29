@@ -2,6 +2,7 @@ defmodule SapanboonWeb.ProjectsController do
   use SapanboonWeb, :controller
 
   alias Sapanboon.Project
+  alias Sapanboon.{Repo, User}
   # alias Sapanboon.Project.Projects
 
   def index(conn, params) do
