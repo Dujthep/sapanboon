@@ -29,6 +29,7 @@ defmodule SapanboonWeb.Router do
 
   scope "/auth", SapanboonWeb do 
     pipe_through :browser
+    get "/signout", LoginController, :delete
     get "/:provider", LoginController, :request
     get "/:provider/callback", LoginController, :callback
   end

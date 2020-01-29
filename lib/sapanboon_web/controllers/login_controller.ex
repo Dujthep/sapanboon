@@ -10,9 +10,6 @@ defmodule SapanboonWeb.LoginController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    IO.inspect("=====================");
-    IO.inspect(auth);
-    IO.inspect("=====================");
     user_params = %{
       token: auth.credentials.token,
       first_name: auth.info.first_name,
@@ -47,5 +44,11 @@ defmodule SapanboonWeb.LoginController do
       user ->
         {:ok, user}
     end
+  end
+
+  def delete(conn, _params) do
+    conn
+    |> configure_session(drop: true)
+    |> redirect(to: Routes.projects_path(conn, :index))
   end
 end
