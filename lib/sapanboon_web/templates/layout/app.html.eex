@@ -37,7 +37,15 @@
             </div>
             <input id="input-search" type="text" class="form-control" placeholder="search" aria-label="search" aria-describedby="search">
           </div>
-
+          <%= if @conn.assigns[:user] do %>
+            <li>
+              Welcome, <%= @conn.assigns.user.first_name %>!
+            </li>
+          <% else %>
+            <li>
+              Google Sign In
+            </li>
+          <% end%>
           <ul class="navbar-nav">
               <li class="nav-item dropdown">
                 <a href="/login" class="nav-link">
