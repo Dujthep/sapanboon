@@ -30,7 +30,7 @@ function addEventClickToConfirmPaymentID() {
   var confirmPayment = document.getElementById('confirm-payment')
   if (confirmPayment) {
     confirmPayment.addEventListener('click', function() {
-      // onSubmit()
+      onSubmit()
     })
   }
 }
@@ -47,9 +47,9 @@ function attachedFile() {
 function onSubmit() {
   const file = $('#upload')[0].files[0]
   const id = $('#transactionId').val()
+  const projectId = $('#projectId').val()
 
   if (file != null) {
-    $('.loader').addClass('is-active')
     var formData = new FormData()
     formData.append('file', file)
     formData.append('id', id)
@@ -60,18 +60,13 @@ function onSubmit() {
       contentType: false,
       type: 'POST',
       success: function(data) {
-        document.location.href = '/success'
+        document.location.href = '/success/' + projectId
       },
       error: function(data) {
-        $('#error-text').text(
-          'อัพโหลดสลิปล้มเหลว กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่'
-        )
-        $('#error-modal').modal('show')
-        $('.loader').removeClass('is-active')
+        alert('อัพโหลดสลิปล้มเหลว กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่')
       }
     })
   } else {
-    $('#error-text').text('กรุณาแนบหลักฐานการโอน')
-    $('#error-modal').modal('show')
+    alert('กรุณาแนบหลักฐานการโอน')
   }
 }

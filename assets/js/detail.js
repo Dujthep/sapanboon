@@ -6,16 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-// function checkform() {
-//   alert("hello")
-//   // if ("<%= current_user %>" != '') {
-//   //   return true
-//   // } else {
-//   //   alert("กรุณาเข้าสู่ระบบ ก่อนทำรายการ")
-//   //   return false
-//   // }
-// }
-
   $(document).ready(function() {
 
     $('#donator-form').validate({
