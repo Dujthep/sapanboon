@@ -6,6 +6,8 @@ To start your Phoenix server:
   * Create and migrate your database with `mix ecto.setup`
   * Install Node.js dependencies with `cd assets && npm install`
   * Start Phoenix endpoint with `mix phx.server`
+  * Run Test `mix test --trace`
+  * Run Test Coverage `mix test --cover`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
