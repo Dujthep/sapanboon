@@ -1,49 +1,63 @@
 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/detail.js") %>"></script>
 
+<div>
+  <div class="box-social d-sm-block">
+  <span class="fs-18">ชวนเพื่อนมาบริจาค</span>
+  <div>
+      <a id="line-icon" data-id="<%= @projects.project_id %>" data-title="<%= @projects.title %>"">
+        <img class="icon pointer" src="<%= Routes.static_path(@conn, "/images/line.svg") %>">
+      </a>
+
+      <a >
+        <img class="icon pointer" src="<%= Routes.static_path(@conn, "/images/facebook.svg") %>">
+      </a>
+  </div>
+</div>
 <div class="carousel-inner">
-    <img id="cover-image" class="cover-image" src="<%= @projects.cover %>">
-    <div class="detail-banner-detail-page box-title-detail-page d-none d-sm-block">
-          <div class="container position-relative">
-            <h1 class="fs-32">
-              <%= @projects.code %> <%= @projects.title %>
-              <input type="hidden" id="projectName" name="projectName" value="<%= @projects.title %>">
-            </h1>
-            <img id="location-icon" class="d-inline" src="<%= Routes.static_path(@conn, "/images/location-icon.svg") %>" alt="location-sapanboon">
-            <p class="fs-18 d-inline"><%= @projects.location %></p>
-            <p class="fs-18 margin-30">ระยะเวลาโครงการคงเหลือ
-              <%= if @projects.status == "active" do %>
-              <%= Kernel.trunc((((DateTime.diff(@projects.end_date, DateTime.utc_now)/60)/60)/24)) %>
-              <% end %>
+  <img id="cover-image" class="cover-image" src="<%= @projects.cover %>">
+  <div class="detail-banner-detail-page box-title-detail-page d-none d-sm-block">
+    <div class="container position-relative">
+      <h1 class="fs-32">
+        <%= @projects.code %> <%= @projects.title %>
+        <input type="hidden" id="projectName" name="projectName" value="<%= @projects.title %>">
+      </h1>
+      <img id="location-icon" class="d-inline" src="<%= Routes.static_path(@conn, "/images/location-icon.svg") %>" alt="location-sapanboon">
+      <p class="fs-18 d-inline"><%= @projects.location %></p>
+      <p class="fs-18 margin-30">ระยะเวลาโครงการคงเหลือ
+        <%= if @projects.status == "active" do %>
+        <%= Kernel.trunc((((DateTime.diff(@projects.end_date, DateTime.utc_now)/60)/60)/24)) %>
+        <% end %>
 
-              <%= if @projects.status == "pending" do %>
-              <%= Kernel.trunc((((DateTime.diff(@projects.end_date, @projects.start_date)/60)/60)/24)) %>
-              <% end %>
+        <%= if @projects.status == "pending" do %>
+        <%= Kernel.trunc((((DateTime.diff(@projects.end_date, @projects.start_date)/60)/60)/24)) %>
+        <% end %>
 
-              <%= if @projects.status == "inactive" do %>
-              -
-              <% end %>วัน</p>
+        <%= if @projects.status == "inactive" do %>
+        -
+        <% end %>วัน</p>
 
 
-              <%= if @projects.status == "active" do %>
-                <a class="btn btn-primary btn-block" href="#payment-panel">
-                  <%= "ร่วมบริจาค #{@projects.code}" %>
-                </a>
-              <% end %>
+        <%= if @projects.status == "active" do %>
+          <a class="btn btn-primary btn-block" href="#payment-panel">
+            <%= "ร่วมบริจาค #{@projects.code}" %>
+          </a>
+        <% end %>
 
-              <%= if @projects.status == "complete" do %>
-              <a class="btn btn-secondary btn-block">
-                สำเร็จแล้ว
-              </a>
-              <% end %>
+        <%= if @projects.status == "complete" do %>
+        <a class="btn btn-secondary btn-block">
+          สำเร็จแล้ว
+        </a>
+        <% end %>
 
-              <%= if @projects.status == "expire" do %>
-              <a class="btn btn-secondary btn-block">
-                หมดเวลาระดมทุน
-              </a>
-              <% end %>
-          </div>
+        <%= if @projects.status == "expire" do %>
+        <a class="btn btn-secondary btn-block">
+          หมดเวลาระดมทุน
+        </a>
+        <% end %>
+      </div>
     </div>
+  </div>
 </div>
 
 <div class="container marketing">
