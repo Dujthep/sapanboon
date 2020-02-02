@@ -33,13 +33,13 @@
       <div class="col-1 p-0 d-flex align-items-top">
         <%= if history.status !== "reject" do %>
           <div class="dropleft">
-            <span data-toggle="dropdown">
+            <span class="pointer" data-toggle="dropdown">
               <img src="<%= Routes.static_path(@conn, "/images/more.svg") %>" />
             </span>
             <div class="dropdown-menu">
               <%= if history.image_slip !== "" && history.status !== "reject" do %>
                 <div class="dropdown-item">
-                  <span id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.image_slip %>">
+                  <span class="pointer" id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.image_slip %>">
                     <img src="<%= Routes.static_path(@conn, "/images/view-reciept-mobile.svg") %>" />
                     ดูสลิป
                   </span>
@@ -48,22 +48,23 @@
               <% end %>
               <%= if history.status === "pending" do %>
                 <div class="dropdown-item">
-                  <label class="mb-0" for="inp-upload-<%= history.trans_id %>">
-                    <span id="btn-upload-<%= history.trans_id %>">
+                  <label class="mb-0" for="file-upload">
+                    <span class="pointer" id="btn-upload">
                       <img src="<%= Routes.static_path(@conn, "/images/upload-mobile.svg") %>" />
                       อัพโหลด
                     </span>
                     <input type="file"
-                      name="inp-upload-<%= history.trans_id %>"
-                      id="inp-upload-<%= history.trans_id %>"
-                      style="display:none" accept="image/png, image/jpeg">
+                      name="file-upload"
+                      id="file-upload"
+                      style="display:none" accept="image/png, image/jpeg"
+                      data-payload="<%= history.id %>">
                   </label>
                 </div>
               <% end %>
               <%= if history.status === "pending" do %>
                 <div class="dropdown-item">
                   <div class="dropdown-divider"></div>
-                    <span id="cancel-trans" data-toggle="modal" data-target="#confirm-modal" data-payload="<%= history.id %>">
+                    <span class="pointer" id="cancel-trans" data-toggle="modal" data-target="#confirm-modal" data-payload="<%= history.id %>">
                       <img src="<%= Routes.static_path(@conn, "/images/cancel-trans.svg") %>" />
                       ยกเลิก
                     </span>
