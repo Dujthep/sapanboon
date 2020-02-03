@@ -34,7 +34,7 @@ config :phoenix, :json_library, Jason
 config :ueberauth, Ueberauth,
   providers: [
     google: { Ueberauth.Strategy.Google, [default_scope: "email profile plus.me"] },
-    facebook: { Ueberauth.Strategy.Facebook, [default_scope: "email public_profile"] },
+    facebook: { Ueberauth.Strategy.Facebook, [default_scope: "email public_profile", display: "popup"] },
   ]
 
 config :ueberauth, Ueberauth.Strategy.Google.OAuth,
