@@ -33,13 +33,17 @@ config :phoenix, :json_library, Jason
 
 config :ueberauth, Ueberauth,
   providers: [
-    google: {Ueberauth.Strategy.Google, [default_scope: "email profile plus.me"] },
-    facebook: { Ueberauth.Strategy.Facebook, [] },
+    google: { Ueberauth.Strategy.Google, [default_scope: "email profile plus.me"] },
+    facebook: { Ueberauth.Strategy.Facebook, [default_scope: "email public_profile"] },
   ]
 
 config :ueberauth, Ueberauth.Strategy.Google.OAuth,
   client_id: "581587157167-s2l0vlfofdj5f0uij76ln11o3toruohh.apps.googleusercontent.com", #made up code 
   client_secret: "HlMNukHSTN9-z_O8WeDMUp8J" #made up code
+
+# config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
+#   client_id: "119501292726732",
+#   client_secret: "8224f14476e6b53e22d586dfce131764"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

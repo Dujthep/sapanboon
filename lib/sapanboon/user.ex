@@ -19,7 +19,7 @@ defmodule Sapanboon.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:first_name, :last_name, :email, :provider, :token, :uid, :name, :role])
-    |> validate_required([:first_name, :last_name, :email, :provider, :token, :uid, :name, :role])
+    |> validate_required([:email, :provider, :token, :uid, :name, :role])
   end
 
   def get_by!(id), do: Repo.get!(History, id)

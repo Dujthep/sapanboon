@@ -10,6 +10,8 @@ defmodule SapanboonWeb.LoginController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+
+    IO.inspect(auth)
     user_params = %{
       token: auth.credentials.token,
       first_name: auth.info.first_name,
