@@ -25,6 +25,25 @@
   </div>
 </div>
 
+<!-- The Modal Confirm Slip -->
+<div class="modal" id="slip-confirm-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal body -->
+      <div class="modal-header">
+        <h5 class="modal-title">โปรดตรวจสอบไฟล์ที่ต้องการ Upload</h5>
+      </div>
+      <div class="modal-body">
+        <img id="img" class="img-fluid" src="" alt="">
+      </div>
+      <div class="modal-footer">
+        <button id="btn-confirm-slip" class="btn btn-primary fs-18">ตกลง</button>
+        <button id="btn-ignore-slip" class="btn btn-third fs-18" data-dismiss="modal">ย้อนกลับ</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div class="modal" id="error-modal">
   <div class="modal-dialog">

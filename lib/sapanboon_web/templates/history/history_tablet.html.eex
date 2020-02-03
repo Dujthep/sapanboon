@@ -39,27 +39,28 @@
           </td>
           <td class="text-center">
             <%= if history.status === "pending" do %>
-              <label class="mb-0" for="inp-upload-<%= history.trans_id %>">
-                <span id="btn-upload-<%= history.trans_id %>">
+              <label class="mb-0" for="file-upload">
+                <span class="pointer" id="btn-upload">
                   <img src="<%= Routes.static_path(@conn, "/images/upload-mobile.svg") %>" />
                 </span>
                 <input type="file"
-                  name="inp-upload-<%= history.trans_id %>"
-                  id="inp-upload-<%= history.trans_id %>"
-                  style="display:none" accept="image/jpg, image/png">
+                  name="file-upload"
+                  id="file-upload"
+                  style="display:none" accept="image/jpg, image/png"
+                  data-payload="<%= history.id %>">
               </label>
             <% end %>
           </td>
           <td class="text-center">
             <%= if history.image_slip !== "" && history.status !== "reject" do %>
-              <span id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.image_slip %>">
+              <span class="pointer" id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.image_slip %>">
                 <img src="<%= Routes.static_path(@conn, "/images/view-reciept-mobile.svg") %>" />
               </span>
             <% end %>
           </td>
           <td class="text-center">
             <%= if history.status === "pending" do %>
-              <span id="cancel-trans" data-toggle="modal" data-target="#confirm-modal" data-payload="<%= history.id %>">
+              <span class="pointer" id="cancel-trans" data-toggle="modal" data-target="#confirm-modal" data-payload="<%= history.id %>">
                 <img src="<%= Routes.static_path(@conn, "/images/cancel-trans.svg") %>" />
               </span>
             <% end %>
