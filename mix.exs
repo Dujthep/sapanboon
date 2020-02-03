@@ -45,6 +45,9 @@ defmodule Sapanboon.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:ueberauth, "~> 0.6"},
       {:ueberauth_google, "~> 0.7"},
+      {:bamboo, "1.2.0"},
+      {:bamboo_smtp, "2.1.0"},
+      {:gen_smtp, "0.15.0"},
       {:ueberauth_facebook, "~> 0.8"},
       {:poison, "~> 3.1"}
     ]

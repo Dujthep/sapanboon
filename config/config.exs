@@ -31,6 +31,7 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Config Authentication
 config :ueberauth, Ueberauth,
   providers: [
     google: { Ueberauth.Strategy.Google, [default_scope: "email profile plus.me"] },
@@ -38,12 +39,23 @@ config :ueberauth, Ueberauth,
   ]
 
 config :ueberauth, Ueberauth.Strategy.Google.OAuth,
-  client_id: "581587157167-s2l0vlfofdj5f0uij76ln11o3toruohh.apps.googleusercontent.com", #made up code 
+  client_id: "581587157167-s2l0vlfofdj5f0uij76ln11o3toruohh.apps.googleusercontent.com", #made up code
   client_secret: "HlMNukHSTN9-z_O8WeDMUp8J" #made up code
 
 config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
   client_id: "119501292726732",
   client_secret: "8224f14476e6b53e22d586dfce131764"
+
+# Config Sending Email with SMTP
+config :sapanboon, Sapanboon.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: "smtp.gmail.com",
+  port: 587,
+  username: "sapanboon.dev@gmail.com",
+  password: "Sapanboon1$",
+  tls: :if_available, # can be `:always` or `:never`
+  ssl: false, # can be `true`
+  retries: 1
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
