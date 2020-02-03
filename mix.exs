@@ -44,7 +44,10 @@ defmodule Sapanboon.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:ueberauth, "~> 0.6"},
-      {:ueberauth_google, "~> 0.7"}
+      {:ueberauth_google, "~> 0.7"},
+      {:bamboo, "1.2.0"},
+      {:bamboo_smtp, "2.1.0"},
+      {:gen_smtp, "0.15.0"}
     ]
   end
 

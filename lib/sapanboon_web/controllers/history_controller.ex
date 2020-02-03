@@ -4,6 +4,8 @@ defmodule SapanboonWeb.HistoryController do
   alias Sapanboon.Histories
   alias Sapanboon.Histories.History
 
+  alias Sapanboon.{Mailer, Email}
+
   def index(conn, _params) do
     list_histories = Histories.list_histories_by_email()
     render(conn, "index.html", list_histories: list_histories)
@@ -12,13 +14,14 @@ defmodule SapanboonWeb.HistoryController do
   def cancel_trans(conn, %{"id" => id, "status" => status}) do
     status_params = %{"status" => status}
     history = Histories.get_history!(id)
-
-    case Histories.update_history(history, status_params) do
-      {:ok, _history} ->
-        json(conn, "Cancel Transaltion successfully.")
-      {:error } ->
-        json(conn, "Cancel Transaltion Error.")
-    end
+    Email.send_email("sothon@odds.team") |> Mailer.deliver_now
+    json(conn, "Cancel Transaltion successfully.")
+    # case Histories.update_history(history, status_params) do
+    #   {:ok, _history} ->
+    #     json(conn, "Cancel Transaltion successfully.")
+    #   {:error } ->
+    #     json(conn, "Cancel Transaltion Error.")
+    # end
   end
 
   def new(conn, _params) do
