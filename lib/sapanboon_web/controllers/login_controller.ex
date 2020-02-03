@@ -10,21 +10,17 @@ defmodule SapanboonWeb.LoginController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-
-    IO.inspect(auth)
     user_params = %{
       token: auth.credentials.token,
       first_name: auth.info.first_name,
       last_name: auth.info.last_name,
       email: auth.info.email,
-      provider: "google",
+      provider: conn.path_params["provider"],
       uid: auth.uid,
       name: auth.info.name,
       role: "user"
     }
-
     changeset = User.changeset(%User{}, user_params)
-
     case insert_or_update_user(changeset) do
       {:ok, user} ->
         conn
@@ -39,7 +35,7 @@ defmodule SapanboonWeb.LoginController do
   end
 
   defp insert_or_update_user(changeset) do
-    case Repo.get_by(User, email: changeset.changes.email) do
+    case Repo.get_by(User, email: changeset.changes.email, provider: changeset.changes.provider) do
       nil ->
         Repo.insert(changeset)
 
