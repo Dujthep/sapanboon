@@ -5,11 +5,11 @@
   <div class="box-social d-sm-block">
   <span class="fs-18">ชวนเพื่อนมาบริจาค</span>
   <div>
-      <a id="line-icon" data-id="<%= @projects.project_id %>" data-title="<%= @projects.title %>"">
+      <a id="line-icon" data-id="<%= @projects.project_id %>" data-title="<%= @projects.title %>">
         <img class="icon pointer" src="<%= Routes.static_path(@conn, "/images/line.svg") %>">
       </a>
-
-      <a >
+    
+      <a id="face-icon" data-id="<%= @projects.id %>" data-title="<%= @projects.img_card %>">
         <img class="icon pointer" src="<%= Routes.static_path(@conn, "/images/facebook.svg") %>">
       </a>
   </div>

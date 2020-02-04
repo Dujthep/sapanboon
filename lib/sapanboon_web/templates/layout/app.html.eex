@@ -7,6 +7,18 @@
     <title>สะพานบุญ</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <%= csrf_meta_tag() %>
+
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: '119501292726732',
+          autoLogAppEvents : true,
+          xfbml            : true,
+          version          : 'v5.0'
+        });
+      };
+    </script>
+    <script async defer src="https://connect.facebook.net/en_US/sdk.js"></script>
   </head>
   <body>
     <section id="navigation-section">
