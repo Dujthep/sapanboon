@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width">
   </head>
   <body>
-    <p>Hello!</p>
     <%= render @view_module, @view_template, assigns %>
-    <p>- The AChieveFrontoffice Team.</p>
   </body>
 </html>

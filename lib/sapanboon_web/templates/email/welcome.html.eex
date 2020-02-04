@@ -1,0 +1,6 @@
+<p>
+  <strong>Welcome<strong> to MyApp!
+</p>
+<p>
+  <%# Your email address is <%= @email_address %> %>
+</p>
