@@ -1,6 +1,42 @@
-<p>
-  <strong>Welcome<strong> to MyApp!
-</p>
-<p>
-  Your email address is <%= @email_address %>
-</p>
+
+<table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;background-position:left bottom;">
+  <tr style="border-collapse:collapse;">
+  <td align="center" class="es-m-txt-c" bgcolor="transparent" style="padding:0;Margin:0;"><h1 style="Margin:0;line-height:36px;mso-line-height-rule:exactly;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;font-size:30px;font-style:normal;font-weight:bold;color:#047AFE;">ขอบคุณที่บริจาคกับสะพานบุญ</h1></td>
+  </tr>
+  <tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:20px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:30px;color:#131313;"><strong>รายละเอียดการบริจาค</strong></p></td>
+  </tr>
+  <tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:24px;color:#4A4A4A;">ชื่อโครงการ</p></td>
+  </tr>
+  <tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:20px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:30px;color:#047AFE;"><strong><%= @mailUser.projectName %></strong></p></td>
+  </tr>
+  <tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:24px;color:#4A4A4A;">เลขที่รายการ</p></td>
+  </tr>
+  <tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:20px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:30px;color:#047AFE;"><strong><%= @mailUser.transactionNo %></strong></p></td>
+  </tr>
+  <tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:24px;color:#4A4A4A;">ผู้บริจาค</p></td>
+  </tr>
+  <tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:20px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:30px;color:#047AFE;"><b><%= @mailUser.fullName %></b></p></td>
+  </tr>
+  <tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:20px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:30px;color:#4A4A4A;"><span style="font-size:16px;">จำนวนเงิน</span></p></td>
+  </tr>
+  <tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:20px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:30px;color:#047AFE;"><strong><%= @mailUser.amount %>&nbsp;บาท</strong></p></td>
+  </tr>
+  <tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:16px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:24px;color:#4A4A4A;">วันที่ และเวลา</p></td>
+  </tr>
+  <tr style="border-collapse:collapse;">
+  <td align="left" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:20px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:30px;color:#047AFE;"><strong><%= @mailUser.day %>&nbsp;<%= @mailUser.month %>&nbsp;<%= @mailUser.year %>&nbsp;เวลา &nbsp;<%= @mailUser.time %> น.</strong></p></td>
+  </tr>
+  <tr style="border-collapse:collapse;">
+  <td align="center" style="padding:0;Margin:0;padding-top:20px;"><p style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-size:20px;font-family:helvetica, 'helvetica neue', arial, verdana, sans-serif;line-height:30px;color:#047AFE;"><span style="color:#000000;"><strong>สถานะการบริจาค :</strong></span> รอการตรวจสอบเอกสาร</p></td>
+  </tr>
+</table>
