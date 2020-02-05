@@ -52,7 +52,7 @@
           <div class="link-menu">
             <%= if @conn.assigns[:user] do %>
               <div class="user-info">
-                <span>Welcome, <%= @conn.assigns.user.name %></span>
+                <span><%= @conn.assigns.user.name %></span>
                 <div class="user-menu">
                   <%= link "รายการของฉัน", to: Routes.history_path(@conn, :index)%>
                   <%= link "Sign out", to: Routes.login_path(@conn, :delete)%>
