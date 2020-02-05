@@ -14,12 +14,12 @@ defmodule SapanboonWeb.ContactControllerTest do
 
     test "Check wording address on contact pages.", %{conn: conn} do
       conn = get(conn, Routes.contact_path(conn, :index))
-      assert html_response(conn, 200) =~ "มูลนิธิสะพานบุญ 542 ถนนเพชรเกษม เขตหนองแขม กทม. 10160"
+      assert html_response(conn, 200) =~ "มูลนิธิสะพานบุญ 556 ถนนลาดพร้าว แขวงพลับพลา เขตวังทองหลาง 10310"
     end
 
     test "Check wording phone number on contact pages.", %{conn: conn} do
       conn = get(conn, Routes.contact_path(conn, :index))
-      assert html_response(conn, 200) =~ "02-807-4500 ต่อ 115, 081-651-1718"
+      assert html_response(conn, 200) =~ "081-651-1718"
     end
 
     test "Check wording email on contact pages.", %{conn: conn} do

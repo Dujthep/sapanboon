@@ -3,7 +3,7 @@
 
 <div>
   <div class="box-social d-sm-block">
-  <span class="fs-18">ชวนเพื่อนมาบริจาค</span>
+  <span class="fs-18 font-donate">ชวนเพื่อนมาบริจาค</span>
   <div>
       <a id="line-icon" data-id="<%= @projects.project_id %>" data-title="<%= @projects.title %>">
         <img class="icon pointer" src="<%= Routes.static_path(@conn, "/images/line.svg") %>">
@@ -228,7 +228,7 @@
       <div class="form-group mb-5">
         <div class="d-flex justify-content-center">
           <div class="box-social-payment">
-            <span class="fs-18">ชวนเพื่อนมาบริจาค</span>
+            <span class="fs-18 font-donate">ชวนเพื่อนมาบริจาค</span>
 
             <a>
               <img class="icon-detail pointer" src="/images/line-icon.svg">
