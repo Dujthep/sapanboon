@@ -16,13 +16,13 @@
         <div class="card-body">
           <section class="card-title" title="ข้อความเต็ม">
             <span class="text-large text-dark">
-              <%= project.code %> 
+              <%= project.code %>
             </span>
             <span class="text-large">
               <%= project.title %>
             </span>
           </section>
-        
+
           <section>
             <img class="card-img-top" src="<%= project.img_card %>" alt="project image">
           </section>
@@ -40,19 +40,19 @@
               <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.donation,project.pledged_goal)  %>%" aria-valuenow="<%= calculate_percent(project.donation,project.pledged_goal)  %>" aria-valuemin="0" aria-valuemax="100">75%</div>
             </div>
             <div>
-              <span class="text-normal">เหลือเวลาอีก 
+              <span class="text-normal">เหลือเวลาอีก
               <%= Kernel.trunc((((DateTime.diff(project.end_date, DateTime.utc_now)/60)/60)/24)) %>
                วัน</span>
             </div>
           </section>
-        
+
           <section class="card-text" title="ข้อความเต็ม">
             <%= project.description %>
           </section>
-        
+
           <a type="button" class="btn btn-primary w-100" href="/details/<%= project.id %>"> รวมกันเราอยู่ </a>
         </div>
       </section>
     </section>
-  <% end %> 
+  <% end %>
 </div>

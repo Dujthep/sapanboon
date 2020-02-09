@@ -23,53 +23,104 @@
   <body>
     <section id="navigation-section">
       <nav class="navbar navbar-dark bg-primary navbar-expand-lg fixed-top">
-          <a class="navbar-brand" href="/">
-            <img src="<%= Routes.static_path(@conn, "/images/sapanboon-logo-white.png") %>" alt="sapanboon">
-           </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-collapse-content" aria-controls="navigation-collapse-content" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+        <a class="navbar-brand" href="/">
+          <img src="<%= Routes.static_path(@conn, "/images/sapanboon-logo-white.png") %>" alt="sapanboon">
+          </a>
+        <%# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-collapse-content" aria-controls="navigation-collapse-content" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> %>
 
-          <div class="collapse navbar-collapse " id="navigation-collapse-content">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="/">หน้าแรก</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/abouts"> เกี่ยวกับเรา </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="/contact"> ติดต่อเรา </a>
-              </li>
-            </ul>
+        <button type="button" id="sidebarCollapse" class="btn btn-default d-block d-sm-none">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <div class="input-group mb-3 col-3 my-2 my-lg-0" id="search-wrap">
-            <div class="input-group-prepend px-0">
-              <span class="input-group-text px-1" id="search"><i class="icon-search" ></i></span>
-            </div>
-            <input id="input-search" type="text" class="form-control" placeholder="search" aria-label="search" aria-describedby="search">
-          </div>
-          <div class="link-menu">
-            <%= if @conn.assigns[:user] do %>
-              <div class="user-info">
-                <span><%= @conn.assigns.user.name %></span>
-                <div class="user-menu">
-                  <%= link "รายการของฉัน", to: Routes.history_path(@conn, :index)%>
-                  <%= link "Sign out", to: Routes.login_path(@conn, :delete)%>
+        <div class="navbar-collapse d-none d-lg-block" id="navigation-collapse-content">
+          <ul class="link-menu navbar-nav mr-auto">
+            <li class="nav-item">
+              <%= active_link(@conn, "หน้าแรก", to: "/", class: "nav-link") %>
+            </li>
+            <li class="nav-item">
+              <%= active_link(@conn, "เกี่ยวกับเรา", to: "/abouts", class: "nav-link") %>
+            </li>
+            <li class="nav-item">
+              <%= active_link(@conn, "ติดต่อเรา", to: "/contact", class: "nav-link") %>
+            </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-link has-search">
+              <span class="icon-search form-control-feedback"></span>
+              <input id="search-box" type="text" class="form-control" placeholder="Search">
+            </li>
+            <li class="nav-item link-menu">
+              <%= if @conn.assigns[:user] do %>
+                <div class="user-info">
+                  <span><%= @conn.assigns.user.name %></span>
+                  <div class="user-menu">
+                    <%= link "รายการของฉัน", to: Routes.history_path(@conn, :index)%>
+                    <%= link "ออกจากระบบ", to: Routes.login_path(@conn, :delete)%>
+                  </div>
                 </div>
-              </div>
-            <% else %>
-              <a href="/login" class="nav-link">
-                เข้าสู่ระบบ
-              </a>
-            <% end%>
-          </div>
+              <% else %>
+                <%= active_link(@conn, "เข้าสู่ระบบ", to: "/login", class: "nav-link") %>
+              <% end%>
+            </li>
+          </ul>
         </div>
       </nav>
     </section>
+
+    <!-- Sidebar -->
+    <nav id="sidebar">
+      <ul class="list-unstyled">
+        <li>
+          <div class="has-search">
+            <span class="icon-search form-control-feedback"></span>
+            <input id="search-box" type="text" class="form-control" placeholder="Search">
+          </div>
+        </li>
+        <li>
+          <%= link "หน้าแรก", to: "/", class: "menu fs-16 fs-light text-white", id: "go-project-active-sidebar" %>
+        </li>
+        <li>
+          <%= link "เกี่ยวกับเรา", to: "/abouts", class: "menu fs-16 fs-light text-white", id: "go-about-sidebar" %>
+        </li>
+        <li>
+          <%= link "ติดต่อเรา", to: "/contact", class: "menu fs-16 fs-light text-white", id: "go-contact-sidebar" %>
+        </li>
+        <%= if @conn.assigns[:user] do %>
+          <li>
+            <%= link "รายการของฉัน", to: Routes.history_path(@conn, :index), class: "menu fs-16 fs-light text-white" %>
+          </li>
+        <% end %>
+        <li>
+          <div class="p-1">
+            <div class="d-flex login-tmp">
+              <div class="col-4 align-self-center text-center">
+                <img src="<%= Routes.static_path(@conn, "/images/username-log-in.svg") %>" alt="sapanboon">
+              </div>
+              <%= if @conn.assigns[:user] do %>
+                <div class="col-8 align-self-center p-0">
+                  <span class="fs-medium-18"><%= @conn.assigns.user.name %></span><br>
+                  <%= link "ออกจากระบบ", to: Routes.login_path(@conn, :delete), class: "fs-16" %>
+                </div>
+              <% else %>
+                <div class="col align-self-center p-0">
+                  <%= link "เข้าสู่ระบบ", to: "/login", class: "m-0 fs-16 fs-light text-white mx-2", id: "go-login-sidebar" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Dark Overlay element -->
+    <div class="overlay"></div>
+
     <main role="main" class="container-fluid">
       <%= render @view_module, @view_template, assigns %>
     </main>
+
     <footer>
         <div class="d-flex flex-column">
           <div  id="footer-contact-block">

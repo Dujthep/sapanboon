@@ -19,6 +19,19 @@ import "phoenix_html"
 
 $.ajaxSetup({ cache: true });
 
+$('#sidebarCollapse').on('click', function (e) {
+    $('#sidebar').toggleClass('active');
+    $('.overlay').toggleClass('active');
+    e.stopPropagation();
+});
+$(document).click(function (e) {
+    if (e.target.id !== "search-box") {
+        $('#sidebar').removeClass('active');
+        $('.overlay').removeClass('active');
+    }
+    e.stopPropagation();
+});
+
 const tabs = document.querySelectorAll('.tab-menu > li > a');
 
 function removeActiveTabs() {
