@@ -32,23 +32,23 @@ $(document).click(function (e) {
     e.stopPropagation();
 });
 
-const tabs = document.querySelectorAll('.tab-menu > li > a');
+// const tabs = document.querySelectorAll('.tab-menu > li > a');
 
-function removeActiveTabs() {
-    tabs.forEach(tab => {
-        tab.classList.remove('active');
-    });
-}
+// function removeActiveTabs() {
+//     tabs.forEach(tab => {
+//         tab.classList.remove('active');
+//     });
+// }
 
-function activeTabs(el) {
-    el.classList.add('active');
-}
+// function activeTabs(el) {
+//     el.classList.add('active');
+// }
 
-tabs.forEach(tab => {
-    tab.addEventListener('click', function (e) {
+// tabs.forEach(tab => {
+//     tab.addEventListener('click', function (e) {
 
-        removeActiveTabs();
-        activeTabs(tab);
-        // e.preventDefault();
-    });
-});
+//         removeActiveTabs();
+//         activeTabs(tab);
+//         // e.preventDefault();
+//     });
+// });

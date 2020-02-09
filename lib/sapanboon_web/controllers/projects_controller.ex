@@ -13,5 +13,5 @@ defmodule SapanboonWeb.ProjectsController do
     IO.inspect(projects.id)
     render(conn, "detail.html", projects: projects)
   end
-  
+
 end

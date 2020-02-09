@@ -27,7 +27,7 @@ defmodule SapanboonWeb.Router do
     put "/cancel_trans", HistoryController, :cancel_trans
   end
 
-  scope "/auth", SapanboonWeb do 
+  scope "/auth", SapanboonWeb do
     pipe_through :browser
     get "/signout", LoginController, :delete
     get "/:provider", LoginController, :request
