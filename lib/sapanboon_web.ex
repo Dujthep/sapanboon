@@ -41,6 +41,7 @@ defmodule SapanboonWeb do
 
       import SapanboonWeb.ErrorHelpers
       import SapanboonWeb.Gettext
+      import PhoenixActiveLink
       alias SapanboonWeb.Router.Helpers, as: Routes
     end
   end

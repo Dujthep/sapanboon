@@ -49,7 +49,8 @@ defmodule Sapanboon.MixProject do
       {:bamboo_smtp, "~> 2.1.0"},
       {:gen_smtp, "0.15.0"},
       {:ueberauth_facebook, "~> 0.8"},
-      {:poison, "~> 3.1"}
+      {:poison, "~> 3.1"},
+      {:phoenix_active_link, "~> 0.2.1"}
     ]
   end
 
