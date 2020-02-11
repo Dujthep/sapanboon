@@ -23,10 +23,13 @@ defmodule Sapanboon.Project do
 
   def list_project_by_status(status) do
     if status == nil or status == "" do
-      Repo.all(Projects)
+      Projects
+      |> limit(6)
+      |> Repo.all()
     else
       Projects
         |> where([p], p.status == ^status)
+        |> limit(6)
         |> Repo.all()
     end
   end
