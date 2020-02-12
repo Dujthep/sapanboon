@@ -15,6 +15,11 @@ defmodule SapanboonWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api", SapanboonWeb.Api, as: :api do
+    pipe_through :api
+    resources "/project", ProjectController, only: [:show, :index]
+  end
+
   scope "/", SapanboonWeb do
     pipe_through :browser
     get "/", ProjectsController, :index
