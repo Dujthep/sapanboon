@@ -21,7 +21,8 @@ config :sapanboon, SapanboonWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "rXSOy4rdwiT+gUB2kzOHKm4Mm2aLJaaG13s8KNsibBwFyP7996NcvNO43AfIiGVL",
   render_errors: [view: SapanboonWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Sapanboon.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: Sapanboon.PubSub, adapter: Phoenix.PubSub.PG2],
+  live_view: [signing_salt: "6BS4MhbURtSQiqjzoMD5Sm7KujT2zznn"]
 
 # Configures Elixir's Logger
 config :logger, :console,

@@ -8,6 +8,7 @@ defmodule SapanboonWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug SapanboonWeb.Plugs.SetUser
+    plug Phoenix.LiveView.Flash
   end
 
   pipeline :api do
