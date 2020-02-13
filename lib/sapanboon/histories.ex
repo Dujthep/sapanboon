@@ -33,6 +33,12 @@ defmodule Sapanboon.Histories do
     |> Repo.update()
   end
 
+  def create_trans(attrs \\ %{}) do
+    %Projects{}
+    |> History.changeset(attrs)
+    |> Repo.insert()
+  end
+
   @doc """
   Gets a single history.
 
