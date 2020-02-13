@@ -25,7 +25,7 @@ defmodule SapanboonWeb.Api.ProjectController do
   end
 
   def update(conn, %{"project_id" => project_id, "params" => params}) do
-    project = Project.get_projects!(project_id)
+    project = Project.get_projects_by_project_id!(project_id)
     case Project.update_projects(project, params) do
       {:ok, project} ->
         conn
@@ -41,7 +41,7 @@ defmodule SapanboonWeb.Api.ProjectController do
   end
 
   def delete(conn, %{"project_id" => project_id}) do
-    project = Project.get_projects!(project_id)
+    project = Project.get_projects_by_project_id!(project_id)
     {:ok, _res} = Project.delete_projects(project)
     conn
       |> put_status(:ok)

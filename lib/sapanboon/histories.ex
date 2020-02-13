@@ -8,15 +8,6 @@ defmodule Sapanboon.Histories do
 
   alias Sapanboon.Histories.History
 
-  @doc """
-  Returns the list of histories.
-
-  ## Examples
-
-      iex> list_histories()
-      [%History{}, ...]
-
-  """
   def list_histories do
     Repo.all(History)
   end
