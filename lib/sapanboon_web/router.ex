@@ -18,7 +18,6 @@ defmodule SapanboonWeb.Router do
   scope "/api", SapanboonWeb.Api do
     pipe_through :api
     get "/project", ProjectController, :index
-    get "/project:id", ProjectController, :show
     post "/project", ProjectController, :create
     delete "/project:id", ProjectController, :delete
     put "/project", ProjectController, :update
