@@ -88,12 +88,10 @@
     </div>
 
     <div class="col-lg-12 col-md-12 text-center mb-5 pt-3">
-        <!-- <a class="btn btn-primary col-md-5 col-sm-12" 
-           id="confirm-payment" 
-           href="/success/<%= @projects.id %>">ยืนยันการโอน
+        <a class="btn btn-primary col-md-5 col-sm-12" 
+           id="confirm-payment" href="/success/<%= @projects.id %>">ยืนยันการโอน
         </a> 
-        -->
-        <button id="confirm-payment" >ยืนยันการโอน</button>
+        <%# <button id="confirm-payment" >ยืนยันการโอน</button> %>
     </div>
 
 </div>
