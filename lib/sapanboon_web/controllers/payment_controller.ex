@@ -7,10 +7,6 @@ defmodule SapanboonWeb.PaymentController do
 
   def index(conn, %{"id" => id}) do
     projects = Project.get_projects!(id)
-    render(conn, "index.html", projects: projects)
-  end
-
-end
 
     # params = %{
     #   status: "pending"
@@ -23,3 +19,8 @@ end
     #   {:error, %Ecto.Changeset{} = changeset} ->
     #     render(conn, "new.html", changeset: changeset)
     # end
+
+    render(conn, "index.html", projects: projects)
+  end
+
+end
