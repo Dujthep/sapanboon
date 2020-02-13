@@ -31,6 +31,6 @@ defmodule Sapanboon.Project.Projects do
   def changeset(projects, attrs) do
     projects
     |> cast(attrs, [:project_id, :code, :title, :cover, :pledged_goal, :start_date, :end_date, :description, :status, :donator, :donation])
-    |> validate_required([:project_id, :code, :title, :cover, :pledged_goal, :start_date, :end_date, :description, :status, :donator, :donation])
+    |> validate_required([:code, :title])
   end
 end

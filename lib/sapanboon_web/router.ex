@@ -15,13 +15,13 @@ defmodule SapanboonWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", SapanboonWeb.Api, as: :api do
+  scope "/api", SapanboonWeb.Api do
     pipe_through :api
     get "/project", ProjectController, :index
     get "/project:id", ProjectController, :show
     post "/project", ProjectController, :create
     delete "/project:id", ProjectController, :delete
-    patch "/project:id", ProjectController, :update
+    put "/project", ProjectController, :update
   end
 
   scope "/", SapanboonWeb do

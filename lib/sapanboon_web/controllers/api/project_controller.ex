@@ -1,5 +1,6 @@
 defmodule SapanboonWeb.Api.ProjectController do
   use SapanboonWeb, :controller
+  require Logger
 
   alias Sapanboon.Project
 
@@ -14,31 +15,33 @@ defmodule SapanboonWeb.Api.ProjectController do
   end
 
   def create(conn, %{"params" => params}) do
-    case Project.create_project(params) do
-      {:ok, res} ->
+    case Project.create_projects(params) do
+      {:ok, project} ->
         conn
-        |> Conn.put_status(200)
-        |> render("show.json", res: res)
+        |> put_status(:ok)
+        |> render("show.json", project: project)
 
       {:error, %{errors: errors}} ->
         conn
         |> put_status(422)
-        |> render(ErrorView, "422.json", %{errors: errors})
+        |> put_view(SapanboonWeb.ErrorView)
+        |> render("422.json", %{errors: errors})
     end
   end
 
   def update(conn, %{"id" => id, "params" => params}) do
     project = Project.get_projects!(id)
     case Project.update_projects(project, params) do
-      {:ok, res} ->
+      {:ok, project} ->
         conn
-        |> Conn.put_status(200)
-        |> render("show.json", res: res)
+        |> put_status(:ok)
+        |> render("show.json", project: project)
 
       {:error, %{errors: errors}} ->
         conn
         |> put_status(422)
-        |> render(ErrorView, "422.json", %{errors: errors})
+        |> put_view(SapanboonWeb.ErrorView)
+        |> render("422.json", %{errors: errors})
     end
   end
 
@@ -46,8 +49,8 @@ defmodule SapanboonWeb.Api.ProjectController do
     project = Project.get_projects!(id)
     {:ok, _res} = Project.delete_projects(project)
     conn
-      |> Conn.put_status(200)
-      |> Conn.send_resp(:no_content, "")
+      |> put_status(:ok)
+      |> send_resp(:no_content, "")
   end
 
 end

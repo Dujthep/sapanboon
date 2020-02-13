@@ -11,7 +11,7 @@ defmodule SapanboonWeb.Api.ProjectView do
 
   def render("page.json", %{project: project}) do
     %{
-      id: project.id,
+      code: project.code,
       title: project.title
     }
   end
