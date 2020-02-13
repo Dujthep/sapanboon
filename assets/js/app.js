@@ -11,10 +11,11 @@ import css from "../css/app.sass"
 // Import dependencies
 //
 import "phoenix_html"
-import { Socket } from "phoenix"
+import {Socket} from "phoenix"
 import LiveSocket from "phoenix_live_view"
-let liveSocket = new LiveSocket("/live", Socket)
-liveSocket.connect();
+let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+liveSocket.connect()
 
 // Import local files
 //
