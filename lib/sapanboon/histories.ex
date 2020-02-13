@@ -24,26 +24,6 @@ defmodule Sapanboon.Histories do
     |> Repo.update()
   end
 
-  def create_trans(attrs \\ %{}) do
-    %Projects{}
-    |> History.changeset(attrs)
-    |> Repo.insert()
-  end
-
-  @doc """
-  Gets a single history.
-
-  Raises `Ecto.NoResultsError` if the History does not exist.
-
-  ## Examples
-
-      iex> get_history!(123)
-      %History{}
-
-      iex> get_history!(456)
-      ** (Ecto.NoResultsError)
-
-  """
   def get_history!(id), do: Repo.get!(History, id)
 
   def create_history(attrs \\ %{}) do
