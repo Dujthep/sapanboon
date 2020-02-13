@@ -24,7 +24,8 @@ defmodule SapanboonWeb do
       import Plug.Conn
       import SapanboonWeb.Gettext
       alias SapanboonWeb.Router.Helpers, as: Routes
-      import Phoenix.LiveView.Controller, only: [live_render: 3]
+      # import Phoenix.LiveView.Controller, only: [live_render: 3]
+      import Phoenix.LiveView.Controller
     end
   end
 
@@ -44,7 +45,8 @@ defmodule SapanboonWeb do
       import SapanboonWeb.Gettext
       import PhoenixActiveLink
       alias SapanboonWeb.Router.Helpers, as: Routes
-      import Phoenix.LiveView, only: [live_render: 2, live_render: 3]
+      # import Phoenix.LiveView, only: [live_render: 2, live_render: 3]
+      import Phoenix.LiveView.Helpers
     end
   end
 
