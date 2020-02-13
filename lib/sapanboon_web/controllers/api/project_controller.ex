@@ -5,13 +5,8 @@ defmodule SapanboonWeb.Api.ProjectController do
   alias Sapanboon.Project
 
   def index(conn, _params) do
-    list_project = list_project = Project.list_project()
+    list_project = Project.list_project()
     render(conn, "index.json", list_project: list_project)
-  end
-
-  def show(conn, %{"id" => id}) do
-    project = Project.get_projects!(id)
-    render(conn, "show.json", project: project)
   end
 
   def create(conn, %{"params" => params}) do
@@ -29,8 +24,8 @@ defmodule SapanboonWeb.Api.ProjectController do
     end
   end
 
-  def update(conn, %{"id" => id, "params" => params}) do
-    project = Project.get_projects!(id)
+  def update(conn, %{"project_id" => project_id, "params" => params}) do
+    project = Project.get_projects_by_project_id!(project_id)
     case Project.update_projects(project, params) do
       {:ok, project} ->
         conn
@@ -45,8 +40,8 @@ defmodule SapanboonWeb.Api.ProjectController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    project = Project.get_projects!(id)
+  def delete(conn, %{"project_id" => project_id}) do
+    project = Project.get_projects_by_project_id!(project_id)
     {:ok, _res} = Project.delete_projects(project)
     conn
       |> put_status(:ok)
