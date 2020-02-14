@@ -1,2 +1,2 @@
-<%= live_render(@conn, SapanboonWeb.TodoLive) %>
-<%# <%= render "project_card.html", list_project: @list_project , conn: @conn %>
+<%# <%= live_render(@conn, SapanboonWeb.TodoLive) %>
+<%= render "project_card.html", list_project: @list_project , conn: @conn %>

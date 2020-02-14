@@ -11,12 +11,9 @@ defmodule SapanboonWeb.TodoLive do
         """
     end
 
-    def mount(_params, socket) do
+    def mount(_params,project  , socket) do
+        IO.inspect(project)
         {:ok, assign(socket, :temperature, 38)}
     end
 
-    def handle_event("inc_temperature", _value, socket) do
-        {:ok, new_temp} = Thermostat.inc_temperature(socket.assigns.id)
-        {:noreply, assign(socket, :temperature, new_temp)}
-    end
   end
