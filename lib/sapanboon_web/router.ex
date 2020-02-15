@@ -29,6 +29,7 @@ defmodule SapanboonWeb.Router do
     live "/", TodoLive  
     get "/details/:id", ProjectsController, :detail
     get "/details/:id/payment", PaymentController, :index
+    get "/transaction/:id", ProjectsController, :insert_transaction
     get "/abouts", AboutController, :index
     get "/contact", ContactController, :index
     get "/login", LoginController, :index
