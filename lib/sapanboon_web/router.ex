@@ -26,7 +26,6 @@ defmodule SapanboonWeb.Router do
   scope "/", SapanboonWeb do
     pipe_through :browser
     get "/", ProjectsController, :index
-    live "/", TodoLive  
     get "/details/:id", ProjectsController, :detail
     get "/details/:id/payment", PaymentController, :index
     get "/transaction/:id", ProjectsController, :insert_transaction

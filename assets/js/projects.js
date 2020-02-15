@@ -1,0 +1,9 @@
+import $ from 'jquery';
+window.jQuery = $;
+window.$ = $;
+
+import 'bootstrap';
+
+$(document).ready(function () {
+    
+});

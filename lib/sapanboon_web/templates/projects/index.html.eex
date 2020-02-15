@@ -1,2 +1,4 @@
-<%= live_render(@conn, SapanboonWeb.TodoLive) %>
-<%# <%= render "project_card.html", list_project: @list_project , conn: @conn %>
+<%# <%= live_render(@conn, SapanboonWeb.TodoLive) %>
+
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/projects.js") %>"></script>
+<%= render "project_card.html", list_project: @list_project , conn: @conn %>
