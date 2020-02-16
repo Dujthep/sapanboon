@@ -19,33 +19,51 @@ defmodule SapanboonWeb.Api.ProjectController do
       {:error, %{errors: errors}} ->
         conn
         |> put_status(422)
-        |> put_view(SapanboonWeb.ErrorView)
-        |> render("422.json", %{errors: errors})
+        |> render(SapanboonWeb.ErrorView, "422.json")
     end
   end
 
   def update(conn, %{"project_id" => project_id, "params" => params}) do
-    project = Project.get_projects_by_project_id!(project_id)
-    case Project.update_projects(project, params) do
-      {:ok, project} ->
-        conn
-        |> put_status(:ok)
-        |> render("show.json", project: project)
+    case Project.get_projects_by_project_id(project_id) do
+      project ->
+        case project do
+          nil ->
+            conn
+            |> put_status(404)
+            |> render(SapanboonWeb.ErrorView, "404.json")
+          %{} ->
+            case Project.update_projects(project, params) do
+              {:ok, project} ->
+                conn
+                |> put_status(:ok)
+                |> render("show.json", project: project)
 
-      {:error, %{errors: errors}} ->
-        conn
-        |> put_status(422)
-        |> put_view(SapanboonWeb.ErrorView)
-        |> render("422.json", %{errors: errors})
+              {:error, %{errors: errors}} ->
+                conn
+                |> put_status(422)
+                |> render(SapanboonWeb.ErrorView, "422.json")
+            end
+        end
     end
   end
 
   def delete(conn, %{"project_id" => project_id}) do
-    project = Project.get_projects_by_project_id!(project_id)
-    {:ok, _res} = Project.delete_projects(project)
-    conn
-      |> put_status(:ok)
-      |> send_resp(:no_content, "")
+    case Project.get_projects_by_project_id(project_id) do
+      project ->
+        case project do
+          nil ->
+            conn
+            |> put_status(404)
+            |> render(SapanboonWeb.ErrorView, "404.json")
+          %{} ->
+            case Project.delete_projects(project) do
+              {:ok, _project} ->
+                conn
+                  |> put_status(:ok)
+                  |> render("show.json", project: project)
+            end
+        end
+    end
   end
 
 end

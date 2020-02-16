@@ -15,15 +15,15 @@ defmodule SapanboonWeb.ErrorView do
   # end
 
   def render("404.json", _assigns) do
-    %{errors: %{detail: "Page not found"}}
+    %{errors: %{message: "Page not found"}}
   end
 
   def render("422.json", _assigns) do
-    %{errors: %{detail: "Bad request"}}
+    %{errors: %{message: "Bad request"}}
   end
 
   def render("500.json", _assigns) do
-    %{errors: %{detail: "Internal server error"}}
+    %{errors: %{message: "Internal server error"}}
   end
 
   # In case no render clause matches or no

@@ -27,7 +27,7 @@ defmodule Sapanboon.Project do
 
   def get_projects!(id), do: Repo.get!(Projects, id)
 
-  def get_projects_by_project_id!(project_id), do: Repo.get_by!(Projects, project_id)
+  def get_projects_by_project_id(project_id), do: Repo.get_by(Projects, project_id: project_id)
 
   def create_projects(attrs \\ %{}) do
     %Projects{}
