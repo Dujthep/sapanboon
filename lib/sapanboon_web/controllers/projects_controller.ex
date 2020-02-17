@@ -18,6 +18,7 @@ defmodule SapanboonWeb.ProjectsController do
 
   def insert_transaction(conn, %{"id" => id}) do
     projects = Project.get_projects!(id)
+
     trans_params = %{
       ProjectID: projects.project_id,
       Amount: 1000,
@@ -32,9 +33,8 @@ defmodule SapanboonWeb.ProjectsController do
             %{"Content-Type" => "application/x-www-form-urlencoded"}
         ) do
         {:ok, %HTTPoison.Response{status_code: 200, body: body }} ->
-          body
-          IO.puts body
-          Logger.info "Deleting user from the system: #{inspect(body)}"
+          body = Poison.Parser.parse!(body)
+
           params = %{
             project_id: projects.project_id,
             code: projects.code,
@@ -43,7 +43,7 @@ defmodule SapanboonWeb.ProjectsController do
             payment_type: "promptPay",
             full_name: conn.assigns[:user].name,
             email: conn.assigns[:user].email,
-            # trans_id: json(body.id)
+            trans_id: body["id"]
           }
 
           case Histories.create_history(params) do
