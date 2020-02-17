@@ -7,7 +7,7 @@ defmodule SapanboonWeb.ProjectsController do
   alias Sapanboon.Histories.History
 
   def index(conn, params) do
-    list_project = Project.list_project_by_status(Map.get(params, "status"))
+    list_project = Project.list_project_by_status(Map.get(params, "status"), 1)
     render(conn, "index.html", list_project: list_project, conn: conn )
   end
 
@@ -64,8 +64,8 @@ defmodule SapanboonWeb.ProjectsController do
     end
   end
 
-  def load_more(conn, _) do
-
+  def load_more(conn, params) do
+    list = Project.list_project_by_status(Map.get(params, "status"), 1)
+    json(conn, list)
   end
-
 end

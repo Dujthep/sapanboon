@@ -4,7 +4,6 @@ defmodule Sapanboon.Project do
   """
 
   import Ecto.Query, warn: false
-  import Ecto.Query, only: [from: 2]
 
   alias Sapanboon.Repo
   alias Sapanboon.Project.Projects
@@ -13,29 +12,26 @@ defmodule Sapanboon.Project do
     Repo.all(Projects)
   end
 
-  def list_project_by_status(status) do
+  def list_project_by_status(status, page) do
 
-    status = if status == nil or status == "", do: "active", else: status
-
-    query = from u in Sapanboon.Project.Projects,
-          where: u.status == ^status
-    entries = Repo.paginate(query, cursor_fields: [:inserted_at, :id], limit: 6)
-
-    # @metadata = entries.metadata
-    entries.entries
-
+    # status = if status == nil or status == "", do: "active", else: status
+    # query = from u in Sapanboon.Project.Projects,
+    #       where: u.status == ^status
+    # Repo.paginate(query, cursor_fields: [:inserted_at, :id], limit: 6).entries
     # IO.inspect(entries)
     # Repo.all(query);
-    # if status == nil or status == "" do
-    #   Projects
-    #   |> limit(6)
-    #   |> Repo.all()
-    # else
-    #   Projects
-    #     |> where([p], p.status == ^status)
-    #     |> limit(6)
-    #     |> Repo.all()
-    # end
+    if status == nil or status == "" do
+      Projects
+      |> limit(6)
+      |>  offset((^page - 1) * 6)
+      |> Repo.all()
+    else
+      Projects
+        |> where([p], p.status == ^status)
+        |> limit(6)
+        |>  offset((^page - 1) * 6)
+        |> Repo.all()
+    end
   end
 
   def get_projects!(id), do: Repo.get!(Projects, id)

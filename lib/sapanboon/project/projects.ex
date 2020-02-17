@@ -2,6 +2,15 @@ defmodule Sapanboon.Project.Projects do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, only:
+    [
+      :code, :cover, :description, :donation,
+      :donator, :end_date, :pledged_goal,
+      :project_id, :start_date, :status,
+      :title, :location, :overView, :projectSteps,
+      :projectBenefits, :projectMembers,
+      :img_card, :lmg_detail_1, :lmg_detail_2, :lmg_detail_3]
+  }
   schema "project" do
     field :code, :string
     field :cover, :string

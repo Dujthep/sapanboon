@@ -35,6 +35,7 @@ defmodule SapanboonWeb.Router do
     get "/history", HistoryController, :index
     get "/success/:id", SuccessController, :index
     put "/cancel_trans", HistoryController, :cancel_trans
+    get "/load_more", ProjectsController, :load_more
   end
 
   scope "/auth", SapanboonWeb do
