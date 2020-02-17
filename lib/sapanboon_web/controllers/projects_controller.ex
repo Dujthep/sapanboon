@@ -65,7 +65,7 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def load_more(conn, params) do
-    list = Project.list_project_by_status(Map.get(params, "status"), 1)
+    list = Project.list_project_by_status(Map.get(params, "status"), Map.get(params, "page"))
     json(conn, list)
   end
 end

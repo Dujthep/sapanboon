@@ -16,9 +16,4 @@ defmodule SapanboonWeb.Api.ProjectView do
       title: project.title
     }
   end
-
-  def render("load_more.json", %{list: list}) do
-    %{data: render_many(list, SapanboonWeb.Api.ProjectView, "load_more.json")}
-  end
-
 end
