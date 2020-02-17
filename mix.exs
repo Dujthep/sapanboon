@@ -53,7 +53,8 @@ defmodule Sapanboon.MixProject do
       {:phoenix_active_link, "~> 0.2.1"},
       {:phoenix_live_view, "~> 0.6.0"},
       {:calendar, "~> 1.0.0"},
-      {:httpoison, "~> 1.6"}
+      {:httpoison, "~> 1.6"},
+      {:paginator, "~> 0.6"}
     ]
   end
 

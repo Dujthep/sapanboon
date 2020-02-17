@@ -26,42 +26,45 @@ defmodule SapanboonWeb.ProjectsController do
       FullName: conn.assigns[:user].name
     }
 
-    case HTTPoison.post(
-          "https://beta.api.sapanboon.org/transaction",
-          URI.encode_query(trans_params),
-          %{"Content-Type" => "application/x-www-form-urlencoded"}
-      ) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body }} -> 
-        body
-        IO.puts body
-        Logger.info "Deleting user from the system: #{inspect(body)}"
-        params = %{
-          project_id: projects.project_id,
-          code: projects.code,
-          name: projects.title,
-          status: "pending",
-          payment_type: "promptPay",
-          full_name: conn.assigns[:user].name,
-          email: conn.assigns[:user].email,
-          # trans_id: json(body.id)
-        }
+      case HTTPoison.post(
+            "https://beta.api.sapanboon.org/transaction",
+            URI.encode_query(trans_params),
+            %{"Content-Type" => "application/x-www-form-urlencoded"}
+        ) do
+        {:ok, %HTTPoison.Response{status_code: 200, body: body }} ->
+          body
+          IO.puts body
+          Logger.info "Deleting user from the system: #{inspect(body)}"
+          params = %{
+            project_id: projects.project_id,
+            code: projects.code,
+            name: projects.title,
+            status: "pending",
+            payment_type: "promptPay",
+            full_name: conn.assigns[:user].name,
+            email: conn.assigns[:user].email,
+            # trans_id: json(body.id)
+          }
 
-        case Histories.create_history(params) do
-          {:ok, _projects} ->
-            conn
-            |> put_flash(:info, "History created successfully.")
-            # |> redirect(to: Routes.payment_path(conn, :index, id))
-            |> redirect(to: Routes.projects_path(conn, :detail, id))
-          {:error, %Ecto.Changeset{} = changeset} ->
-            conn
-            |> redirect(to: Routes.projects_path(conn, :detail, id))
-        end
+          case Histories.create_history(params) do
+            {:ok, _projects} ->
+              conn
+              |> put_flash(:info, "History created successfully.")
+              # |> redirect(to: Routes.payment_path(conn, :index, id))
+              |> redirect(to: Routes.projects_path(conn, :detail, id))
+            {:error, %Ecto.Changeset{} = changeset} ->
+              conn
+              |> redirect(to: Routes.projects_path(conn, :detail, id))
+          end
 
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         IO.puts "Not found :("
       {:error, %HTTPoison.Error{reason: reason}} ->
         IO.inspect reason
     end
+  end
+
+  def load_more(conn, _) do
 
   end
 
