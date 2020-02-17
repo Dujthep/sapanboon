@@ -52,7 +52,7 @@ function onSubmit() {
   if (file != null) {
     var formData = new FormData()
     formData.append('file', file)
-    formData.append('id', id)
+    formData.append('id', '5e4a8995e6a63e0001a340c6')
     $.ajax({
       url: 'https://beta.api.sapanboon.org/uploadSlip',
       data: formData,

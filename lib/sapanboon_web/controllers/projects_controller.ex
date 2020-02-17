@@ -50,8 +50,8 @@ defmodule SapanboonWeb.ProjectsController do
             {:ok, _projects} ->
               conn
               |> put_flash(:info, "History created successfully.")
-              # |> redirect(to: Routes.payment_path(conn, :index, id))
-              |> redirect(to: Routes.projects_path(conn, :detail, id))
+              |> redirect(to: Routes.payment_path(conn, :index, id))
+              # |> redirect(to: Routes.projects_path(conn, :detail, id))
             {:error, %Ecto.Changeset{} = changeset} ->
               conn
               |> redirect(to: Routes.projects_path(conn, :detail, id))

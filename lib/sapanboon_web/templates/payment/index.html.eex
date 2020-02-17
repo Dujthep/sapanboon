@@ -16,82 +16,83 @@
         <p class="fs-18 text-primary"><%= @conn.assigns[:user].email %></p>
     </div>
 
-    <input type="hidden" id="project-name" name="projectName" value="<%= @projects.title %>">
-    <input type="hidden" id="project-id" name="projectId" value="<%= @projects.id %>">
-    <input type="hidden" id="amount" name="amount" value="67">
-    <input type="hidden" id="transactionId" name="transactionId" value="5e1f44124d5c360001929d8d">
-    <div class="form-group">
-        <div id="payment-panel" class="offset-lg-2 col-lg-8 mt-3">
-            <div class="container-fluid d-flex flex-column py-3 payment-panel">
-                <div id="pending">
-                    <div class="d-flex justify-content-center">
-                        <div>
-                            <p class="fs-24"><%= @projects.title %></p>
+    <form id="donator-form" method="put" action="/updatetransaction" novalidate="novalidate">  
+        <input type="hidden" id="project-name" name="projectName" value="<%= @projects.title %>">
+        <input type="hidden" id="project-id" name="projectId" value="<%= @projects.id %>">
+        <input type="hidden" id="amount" name="amount" value="67">
+        <input type="hidden" id="transactionId" name="transactionId" value="5e4a8995e6a63e0001a340c6">
+        <div class="form-group">
+            <div id="payment-panel" class="offset-lg-2 col-lg-8 mt-3">
+                <div class="container-fluid d-flex flex-column py-3 payment-panel">
+                    <div id="pending">
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                <p class="fs-24"><%= @projects.title %></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div class="col-6 text-center">
-                            <p class="fs-18">ธนาคารเกียรตินาคิน ออมทรัพย์ สาขา เดอะมอลล์บางแค</p>
+                        <div class="d-flex justify-content-center">
+                            <div class="col-6 text-center">
+                                <p class="fs-18">ธนาคารเกียรตินาคิน ออมทรัพย์ สาขา เดอะมอลล์บางแค</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="fs-18">มูลนิธิสะพานบุญ</p>
+                            </div>
                         </div>
-                        <div class="col-6">
-                            <p class="fs-18">มูลนิธิสะพานบุญ</p>
+                        <div class="d-flex justify-content-center">
+                            <div>
+                                <p class="fs-24">20-5555999-5</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <div>
-                            <p class="fs-24">20-5555999-5</p>
-                        </div>
-                    </div>
-                    <div class="text-center">
-                    <div class="d-flex justify-content-center"> <div id="qrcode"></div> </div>
+                        <div class="text-center">
+                        <div class="d-flex justify-content-center"> <div id="qrcode"></div> </div>
 
-                        <div class="col-md-12 mt-3">
-                            <div class="d-flex align-items-center">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-4 text-left d-flex justify-content-center justify-content-md-start">
-                                    <label class="fs-18">จำนวนเงิน</label>
+                            <div class="col-md-12 mt-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-4 text-left d-flex justify-content-center justify-content-md-start">
+                                        <label class="fs-18">จำนวนเงิน</label>
+                                    </div>
+                                    <div class="col-md-4 text-left d-flex justify-content-center justify-content-md-start">
+                                        <label class="fs-24 " 
+                                            name="amount" 
+                                            id="amount">100 บาท
+                                        </label>
+                                    </div>
                                 </div>
-                                <div class="col-md-4 text-left d-flex justify-content-center justify-content-md-start">
-                                    <label class="fs-24 " 
-                                           name="amount" 
-                                           id="amount">100 บาท
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <div class="col-md-3"></div>
-                                <div class="col-md-4 text-left  d-flex justify-content-center justify-content-md-start">
-                                    <label class="fs-18">หลักฐานการโอนเงิน</label>
-                                </div>
-                                <div class="col-md-5 text-left">
-                                    <label type="text" class="d-flex justify-content-center justify-content-md-start" id="fileName">
-                                    </label>
-                                    <label class="d-flex justify-content-center justify-content-md-start" for="upload">
-                                        <span id="btn-upload" class="btn btn-file" aria-hidden="true">เลือกไฟล์
-                                        </span>
-                                        <input type="file" name="upload" id="upload" style="display:none" accept="image/*">
-                                    </label>
+                                <div class="d-flex align-items-center">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-4 text-left  d-flex justify-content-center justify-content-md-start">
+                                        <label class="fs-18">หลักฐานการโอนเงิน</label>
+                                    </div>
+                                    <div class="col-md-5 text-left">
+                                        <label type="text" class="d-flex justify-content-center justify-content-md-start" id="fileName">
+                                        </label>
+                                        <label class="d-flex justify-content-center justify-content-md-start" for="upload">
+                                            <span id="btn-upload" class="btn btn-file" aria-hidden="true">เลือกไฟล์
+                                            </span>
+                                            <input type="file" name="upload" id="upload" style="display:none" accept="image/*">
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="success" style="display: none">
-                    <div class="text-center">
-                        <div class="form-group">
-                            <label class="fs-18">ทางทีมงานจะทำการตรวจสอบการรับเงินเมื่อตรวจสอบเสร็จจะส่งอีเมล์ยืนยัน</label>
+                    <div id="success" style="display: none">
+                        <div class="text-center">
+                            <div class="form-group">
+                                <label class="fs-18">ทางทีมงานจะทำการตรวจสอบการรับเงินเมื่อตรวจสอบเสร็จจะส่งอีเมล์ยืนยัน</label>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-lg-12 col-md-12 text-center mb-5 pt-3">
-        <a class="btn btn-primary col-md-5 col-sm-12" 
-           id="confirm-payment" href="/success/<%= @projects.id %>">ยืนยันการโอน
-        </a> 
-        <%# <button id="confirm-payment" >ยืนยันการโอน</button> %>
-    </div>
+        <div class="col-lg-12 col-md-12 text-center mb-5 pt-3">
+            <a class="btn btn-primary col-md-5 col-sm-12"  id="confirm-payment">ยืนยันการโอน
+            </a> 
+            <%# <button id="confirm-payment" >ยืนยันการโอน</button> %>
+        </div>
+    </form>
 
 </div>
