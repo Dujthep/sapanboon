@@ -4,7 +4,7 @@ defmodule Sapanboon.Project.Projects do
 
   @derive {Jason.Encoder, only:
     [
-      :code, :cover, :description, :donation,
+      :id, :code, :cover, :description, :donation,
       :donator, :end_date, :pledged_goal,
       :project_id, :start_date, :status,
       :title, :location, :overView, :projectSteps,
