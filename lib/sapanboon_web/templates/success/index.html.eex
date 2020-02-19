@@ -6,7 +6,7 @@
   <div class="d-flex justify-content-center">
     <p class="fs-18">อีเมลยืนยันการชำระเงินถูกส่งไปที่อีเมล </p>
     &nbsp;
-    <p class="fs-18 text-primary">zgmf-x2o-srike-freedom@hotmail.com</p>
+    <p class="fs-18 text-primary"><%= @conn.assigns[:user].email %></p>
   </div>
   <div class="form-group mb-5">
     <div id="payment-panel" class="offset-lg-2 col-lg-8 mt-3">
@@ -19,13 +19,13 @@
             <label class="fs-18">บริจาคโดย</label>
           </div>
           <div class="form-group">
-            <label class="fs-24 bold">Kanin Pradidtanon</label>
+            <label class="fs-24 bold"><%= @conn.assigns[:user].name %></label>
           </div>
           <div class="form-group">
             <label class="fs-18">บริจาคให้</label>
           </div>
           <div class="form-group">
-            <label class="fs-24 bold"><%= @projects.title %></label>
+            <label class="fs-24 bold"><%= @history.name %></label>
           </div>
           <div class="form-group">
             <div class="col-center-sm-4">

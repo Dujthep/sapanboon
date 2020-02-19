@@ -49,24 +49,27 @@ function onSubmit() {
   const id = $('#transactionId').val()
   const projectId = $('#projectId').val()
 
-  if (file != null) {
-    var formData = new FormData()
-    formData.append('file', file)
-    formData.append('id', '5e4a8995e6a63e0001a340c6')
-    $.ajax({
-      url: 'https://beta.api.sapanboon.org/uploadSlip',
-      data: formData,
-      processData: false,
-      contentType: false,
-      type: 'POST',
-      success: function(data) {
-        document.location.href = '/success/' + projectId
-      },
-      error: function(data) {
-        alert('อัพโหลดสลิปล้มเหลว กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่')
-      }
-    })
-  } else {
-    alert('กรุณาแนบหลักฐานการโอน')
-  }
+  console.log(id)
+  console.log(file)
+
+  // if (file != null) {
+  //   var formData = new FormData()
+  //   formData.append('file', file)
+  //   formData.append('id', id)
+  //   $.ajax({
+  //     url: 'https://beta.api.sapanboon.org/uploadSlip',
+  //     data: formData,
+  //     processData: false,
+  //     contentType: false,
+  //     type: 'POST',
+  //     success: function(data) {
+  //       document.location.href = '/success/' + projectId
+  //     },
+  //     error: function(data) {
+  //       alert('อัพโหลดสลิปล้มเหลว กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่')
+  //     }
+  //   })
+  // } else {
+  //   alert('กรุณาแนบหลักฐานการโอน')
+  // }
 }
