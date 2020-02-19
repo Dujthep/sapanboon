@@ -35,16 +35,20 @@ defmodule SapanboonWeb.ProjectsController do
         ) do
         {:ok, %HTTPoison.Response{status_code: 200, body: body }} ->
           body = Poison.Parser.parse!(body)
+          IO.inspect(body)
 
           params = %{
-            project_id: projects.project_id,
+            amount: body["amount"],
             code: projects.code,
-            name: projects.title,
-            status: "pending",
-            payment_type: "promptPay",
-            full_name: conn.assigns[:user].name,
             email: conn.assigns[:user].email,
-            trans_id: body["id"]
+            full_name: conn.assigns[:user].name,
+            status: "pending",
+            name: projects.title,
+            payment_type: "PromptPay",
+            project_id: projects.project_id,
+            trans_id: body["id"],
+            trans_date: body["created"],
+            trans_no: to_string(body["transactionNo"])
           }
 
           case Histories.create_history(params) do
@@ -52,7 +56,6 @@ defmodule SapanboonWeb.ProjectsController do
               conn
               |> put_flash(:info, "History created successfully.")
               |> redirect(to: Routes.payment_path(conn, :index, id))
-              # |> redirect(to: Routes.projects_path(conn, :detail, id))
             {:error, %Ecto.Changeset{} = changeset} ->
               conn
               |> redirect(to: Routes.projects_path(conn, :detail, id))
