@@ -16,11 +16,13 @@
         <p class="fs-18 text-primary"><%= @conn.assigns[:user].email %></p>
     </div>
 
-    <form id="donator-form" method="get" action="/update_transaction/<%= @history.id %>" novalidate="novalidate">  
+    <%# <form id="donator-form" novalidate="novalidate">   %>
         <input type="hidden" id="project-name" name="projectName" value="<%= @history.name %>">
         <input type="hidden" id="project-id" name="projectId" value="<%= @history.project_id %>">
         <input type="hidden" id="amount" name="amount" value="<%= @history.amount %>">
         <input type="hidden" id="transactionId" name="transactionId" value="<%= @history.trans_id %>">
+        <input type="hidden" id="history_id" name="history_id" value="<%= @history.id %>">
+        
         <div class="form-group">
             <div id="payment-panel" class="offset-lg-2 col-lg-8 mt-3">
                 <div class="container-fluid d-flex flex-column py-3 payment-panel">
@@ -91,6 +93,6 @@
         <div class="col-lg-12 col-md-12 text-center mb-5 pt-3">
             <button id="confirm-payment" class="btn btn-primary col-md-5 col-sm-12">ยืนยันการโอน</button>
         </div>
-    </form>
+    <%# </form> %>
 
 </div>

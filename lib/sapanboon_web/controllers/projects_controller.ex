@@ -25,12 +25,11 @@ defmodule SapanboonWeb.ProjectsController do
       Email: conn.assigns[:user].email,
       PaymentType: "PromptPay",
       FullName: conn.assigns[:user].name
-    }
+    } |> Poison.encode!
 
       case HTTPoison.post(
-            "https://beta.api.sapanboon.org/transaction",
-            URI.encode_query(trans_params),
-            %{"Content-Type" => "application/x-www-form-urlencoded"}
+            "http://localhost:8080/transaction", trans_params,
+            %{"Content-Type" => "application/json"}
         ) do
         {:ok, %HTTPoison.Response{status_code: 200, body: body }} ->
           body = Poison.Parser.parse!(body)
