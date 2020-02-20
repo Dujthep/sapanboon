@@ -8,7 +8,6 @@ defmodule SapanboonWeb.ProjectsController do
 
   def index(conn, params) do
     list_project = Project.list_project_by_status(Map.get(params, "status"), 1)
-    IO.inspect(list_project)
     render(conn, "index.html", list_project: list_project, conn: conn )
   end
 
@@ -70,7 +69,6 @@ defmodule SapanboonWeb.ProjectsController do
 
   def load_more(conn, params) do
     list = Project.list_project_by_status(Map.get(params, "status"), Map.get(params, "page"))
-    IO.inspect(list)
     json(conn, list)
   end
 end
