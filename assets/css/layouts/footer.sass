@@ -1,3 +1,5 @@
+$minx-width: 769px 
+
 footer
   background-color: $footer-bg
   +height(207px)
@@ -9,14 +11,23 @@ footer
     border-bottom: solid 1px $very-light-pink-two
     display: flex
     flex-direction: row
+    flex: 0 0 100%
     #footer-logo
-      +width(125px)
-      +height(125px)
+      flex: 0 0 100%
+      display: inline-flex
+      justify-content: center
+      @media (min-width: $minx-width)
+        flex: 0 0 25%
+      img
+        +width(125px)
+        +height(125px)
+        
+       
+            
 
     .navbar-nav.nav-footer
       flex-direction: row
       justify-content: space-between
-
       li.nav-item
         a.nav-link
           padding-top: 0
