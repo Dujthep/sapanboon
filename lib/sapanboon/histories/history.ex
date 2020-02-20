@@ -26,5 +26,3 @@ defmodule Sapanboon.Histories.History do
     # |> validate_required([:project_id, :code, :name, :email, :trans_id, :trans_date, :trans_no, :amount, :status, :image_slip, :payment_type, :full_name])
   end
 end
-
-HHHHH
