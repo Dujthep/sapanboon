@@ -23,8 +23,8 @@ defmodule SapanboonWeb.Api.ProjectController do
     end
   end
 
-  def update(conn, %{"project_id" => project_id, "params" => params}) do
-    case Project.get_projects_by_project_id(project_id) do
+  def update(conn, params) do
+    case Project.get_projects_by_project_id(Map.get(params, "project_id")) do
       project ->
         case project do
           nil ->
