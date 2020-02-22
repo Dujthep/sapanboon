@@ -3,18 +3,18 @@ defmodule Sapanboon.Histories.History do
   import Ecto.Changeset
 
   schema "histories" do
-    field :project_id, :string
-    field :code, :string
+    field :projectId, :string
+    field :code, :integer
     field :name, :string
     field :email, :string
-    field :trans_id, :string
-    field :trans_date, :utc_datetime
-    field :trans_no, :string
+    field :transId, :string
+    field :transDate, :utc_datetime
+    field :transNo, :string
     field :amount, :integer
     field :status, :string
-    field :image_slip, :string
-    field :payment_type, :string
-    field :full_name, :string
+    field :imageSlip, :string
+    field :paymentType, :string
+    field :fullName, :string
 
     timestamps()
   end
@@ -22,7 +22,7 @@ defmodule Sapanboon.Histories.History do
   @doc false
   def changeset(history, attrs) do
     history
-    |> cast(attrs, [:project_id, :code, :name, :email, :trans_id, :trans_date, :trans_no, :amount, :status, :image_slip, :payment_type, :full_name])
-    # |> validate_required([:project_id, :code, :name, :email, :trans_id, :trans_date, :trans_no, :amount, :status, :image_slip, :payment_type, :full_name])
+    |> cast(attrs, [:projectId, :code, :name, :email, :transId, :transDate, :transNo, :amount, :status, :imageSlip, :paymentType, :fullName])
+    # |> validate_required([:projectId, :code, :name, :email, :transId, :transDate, :transNo, :amount, :status, :imageSlip, :paymentType, :fullName])
   end
 end

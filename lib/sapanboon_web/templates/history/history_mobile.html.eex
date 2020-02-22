@@ -10,7 +10,7 @@
     <div class="row mb-3">
       <div class="col-7">
         <span class="fs-16"><%= history.code %></span>
-        <span class="fs-16"><%= history.title %></span>
+        <span class="fs-16"><%= history.name %></span>
       </div>
       <div class="col-4 text-right">
         <span class="fs-16 txt-bright-cyan">

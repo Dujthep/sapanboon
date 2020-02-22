@@ -12,8 +12,8 @@ $(document).ready(function () {
     return c.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
   }
 
-  function calculatePercent(amount, budget) {
-    percent = Math.round((amount / budget) * 100)
+  function calculatePercent(donation, budget) {
+    percent = Math.round((donation / budget) * 100)
     if (percent < 1 && percent > 0)
       return 1
     else
@@ -41,9 +41,9 @@ $(document).ready(function () {
 
   function checkStatusDate(item) {
 
-    if (item.status === 'active') {
-      return diffDate(item.end_date, Date.now())
-    } else if (item.status === 'pending') {
+    if (item.projectStatus === 'active') {
+      return diffDate(item.dateTo, Date.now())
+    } else if (item.projectStatus === 'pending') {
       return diffDate(item.dateTo, item.dateFrom)
     } else {
       return "-"
@@ -65,12 +65,12 @@ $(document).ready(function () {
                       ${data.code}
                     </span>
                     <span class="text-large">
-                      ${data.title}
+                      ${data.name}
                     </span>
                   </section>
 
                   <section>
-                    <img class="card-img-top" src="${data.img_card}" alt="project image">
+                    <img class="card-img-top" src="${data.images1}" alt="project image">
                   </section>
 
                   <section class="project-progress">
@@ -79,21 +79,21 @@ $(document).ready(function () {
                       <span>ระยะเวลาในการระดมทุน</span>
                     </div>
                     <div class="text-between">
-                      <h2 class="text-large">${currencyFormat(data.pledged_goal)}</h2>
+                      <h2 class="text-large">${currencyFormat(data.budget)}</h2>
                       <span class="text-normal">01/02/62 - 01/06/62</span>
                     </div>
                     <div class="progress">
-                      <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.donation,project.pledged_goal)  %>%" aria-valuenow="<%= calculate_percent(project.donation,project.pledged_goal)  %>" aria-valuemin="0" aria-valuemax="100">75%</div>
+                      <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.donation,project.budget)  %>%" aria-valuenow="<%= calculate_percent(project.donation,project.budget)  %>" aria-valuemin="0" aria-valuemax="100">75%</div>
                     </div>
                     <div>
-                      <span class="text-normal">เหลือเวลาอีก  
+                      <span class="text-normal">เหลือเวลาอีก
                       ${checkStatusDate(data)}
                       วัน</span>
                     </div>
                   </section>
 
                   <section class="card-text" title="ข้อความเต็ม">
-                    ${data.description}
+                    ${data.introduce}
                   </section>
 
                   <a type="button" class="btn btn-primary w-100" href="/details/${data.id}"> รวมกันเราอยู่ </a>

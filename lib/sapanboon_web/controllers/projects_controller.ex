@@ -39,14 +39,14 @@ defmodule SapanboonWeb.ProjectsController do
             amount: body["amount"],
             code: projects.code,
             email: conn.assigns[:user].email,
-            full_name: conn.assigns[:user].name,
+            fullName: conn.assigns[:user].name,
             status: "pending",
-            name: projects.title,
-            payment_type: "PromptPay",
-            project_id: projects.project_id,
-            trans_id: body["id"],
-            trans_date: body["created"],
-            trans_no: to_string(body["transactionNo"])
+            name: projects.name,
+            paymentType: "PromptPay",
+            projectId: projects.projectId,
+            transId: body["id"],
+            transDate: body["created"],
+            transNo: to_string(body["transactionNo"])
           }
 
           case Histories.create_history(params) do

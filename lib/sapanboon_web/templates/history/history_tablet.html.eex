@@ -20,7 +20,7 @@
           <td class="text-center"><span class="fs-16"><%= history.trans_id %></span></td>
           <td>
             <span class="fs-16"><%= history.code %></span>
-            <span class="fs-16"><%= history.title %></span>
+            <span class="fs-16"><%= history.name %></span>
           </td>
           <td class="text-right"><span class="fs-16 txt-bright-cyan"><%= history.donation %></span></td>
           <td class="text-center">

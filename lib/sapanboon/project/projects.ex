@@ -4,34 +4,55 @@ defmodule Sapanboon.Project.Projects do
 
   @derive {Jason.Encoder, only:
     [
-      :id, :code, :cover, :description, :donation,
-      :donator, :end_date, :pledged_goal,
-      :project_id, :start_date, :status,
-      :title, :location, :overView, :projectSteps,
-      :projectBenefits, :projectMembers,
-      :img_card, :lmg_detail_1, :lmg_detail_2, :lmg_detail_3]
+      :projectId, :name, :code, :taxId, :projectOwner, :dateFrom,
+      :dateTo, :location, :budget, :introduce, :overview, :email,
+      :facebook,  :instagram, :twitter, :website, :line,  :projectSteps1,
+      :projectSteps2, :projectSteps3, :projectSteps4, :projectSteps5,
+      :members1, :members2, :members3, :members4, :members5, :benefits1, :benefits2,
+      :benefits3, :benefits4, :benefits5, :images1, :images2, :images3, :images4,
+      :images5, :projectStatus, :donation
+    ]
   }
   schema "project" do
-    field :code, :string
-    field :cover, :string
-    field :description, :string
-    field :donation, :integer
-    field :donator, :integer
-    field :end_date, :utc_datetime
-    field :pledged_goal, :integer
-    field :project_id, :string
-    field :start_date, :utc_datetime
-    field :status, :string
-    field :title, :string
+    field :projectId, :string
+    field :name, :string
+    field :code, :integer
+    field :taxId, :string
+    field :projectOwner, :string
+    field :dateFrom, :utc_datetime
+    field :dateTo, :utc_datetime
     field :location, :string
-    field :overView,  :string
-    field :projectSteps,  :string
-    field :projectBenefits, :string
-    field :projectMembers,  :string
-    field :img_card,  :string
-    field :lmg_detail_1,  :string
-    field :lmg_detail_2,  :string
-    field :lmg_detail_3,  :string
+    field :budget, :integer
+    field :introduce, :string
+    field :overview, :string
+    field :email, :string
+    field :facebook,  :string
+    field :instagram, :string
+    field :twitter, :string
+    field :website, :string
+    field :line,  :string
+    field :projectSteps1, :string
+    field :projectSteps2, :string
+    field :projectSteps3, :string
+    field :projectSteps4, :string
+    field :projectSteps5, :string
+    field :members1, :string
+    field :members2, :string
+    field :members3, :string
+    field :members4, :string
+    field :members5, :string
+    field :benefits1, :string
+    field :benefits2, :string
+    field :benefits3, :string
+    field :benefits4, :string
+    field :benefits5, :string
+    field :images1, :string
+    field :images2, :string
+    field :images3, :string
+    field :images4, :string
+    field :images5, :string
+    field :projectStatus, :string
+    field :donation, :integer
 
     timestamps()
   end
@@ -39,7 +60,7 @@ defmodule Sapanboon.Project.Projects do
   @doc false
   def changeset(projects, attrs) do
     projects
-    |> cast(attrs, [:project_id, :code, :title, :cover, :pledged_goal, :start_date, :end_date, :description, :status, :donator, :donation])
-    |> validate_required([:code, :title])
+    |> cast(attrs, [:projectId, :name, :code, :taxId, :projectOwner, :dateFrom, :dateTo, :location, :budget, :introduce, :overview, :email, :facebook,  :instagram, :twitter, :website, :line,  :projectSteps1, :projectSteps2, :projectSteps3, :projectSteps4, :projectSteps5, :members1, :members2, :members3, :members4, :members5, :benefits1, :benefits2, :benefits3, :benefits4, :benefits5, :images1, :images2, :images3, :images4, :images5, :projectStatus, :donation])
+    |> validate_required([:code, :name])
   end
 end

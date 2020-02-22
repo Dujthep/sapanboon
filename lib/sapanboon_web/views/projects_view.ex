@@ -7,7 +7,7 @@ defmodule SapanboonWeb.ProjectsView do
     # |> Kernel.<>(" #{date.year + 543}")
   end
 
-  def active_class(conn, path) do 
+  def active_class(conn, path) do
     # IO.inspect(conn.params["status"])
     if conn.params["status"] == path, do: "nav-link text-large active", else: "nav-link text-large"
   end
@@ -25,9 +25,9 @@ defmodule SapanboonWeb.ProjectsView do
     end)
   end
 
-  def calculate_percent(amount, budget) do
-    if budget > 0 do
-      percent = ((amount / budget) * 100)
+  def calculate_percent(donation, budget) do
+    if budget && budget > 0 do
+      percent = ((donation / budget) * 100)
       if percent < 1 && percent > 0, do: 1, else: percent
     end
   end

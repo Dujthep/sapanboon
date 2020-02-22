@@ -35,7 +35,7 @@
 #       assert history.donation == 42
 #       assert history.project_id == "some project_id"
 #       assert history.status == "some status"
-#       assert history.title == "some title"
+#       assert history.name == "some title"
 #       assert history.trans_date == DateTime.from_naive!(~N[2010-04-17T14:00:00Z], "Etc/UTC")
 #       assert history.trans_id == "some trans_id"
 #     end
@@ -51,7 +51,7 @@
 #       assert history.donation == 43
 #       assert history.project_id == "some updated project_id"
 #       assert history.status == "some updated status"
-#       assert history.title == "some updated title"
+#       assert history.name == "some updated title"
 #       assert history.trans_date == DateTime.from_naive!(~N[2011-05-18T15:01:01Z], "Etc/UTC")
 #       assert history.trans_id == "some updated trans_id"
 #     end

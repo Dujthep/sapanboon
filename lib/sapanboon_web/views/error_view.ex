@@ -18,8 +18,8 @@ defmodule SapanboonWeb.ErrorView do
     %{errors: %{message: "Page not found"}}
   end
 
-  def render("422.json", _assigns) do
-    %{errors: %{message: "Bad request"}}
+  def render("422.json", assigns) do
+    %{errors: %{message: "Bad request", assigns: assigns}}
   end
 
   def render("500.json", _assigns) do

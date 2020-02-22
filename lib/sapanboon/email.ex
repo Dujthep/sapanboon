@@ -12,7 +12,7 @@ defmodule Sapanboon.Email do
       projectName: "โครงการทดสอบ",
       email: email_address,
       fullName: "Sothon Sitsiwalai",
-      amount: "1,000",
+      donation: "1,000",
       paymentType: "Prompay",
       transactionNo: "123",
       day: "10", month: "มกราคม", year: "2563", time: "10:00",

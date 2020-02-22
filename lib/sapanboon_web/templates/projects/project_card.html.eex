@@ -22,12 +22,12 @@
                 <%= project.code %>
               </span>
               <span class="text-large">
-                <%= project.title %>
+                <%= project.name %>
               </span>
             </section>
 
             <section>
-              <img class="card-img-top" src="<%= project.img_card %>" alt="project image">
+              <img class="card-img-top" src="<%= project.images1 %>" alt="project image">
             </section>
 
             <section class="project-progress">
@@ -36,21 +36,21 @@
                 <span>ระยะเวลาในการระดมทุน</span>
               </div>
               <div class="text-between">
-                <h2 class="text-large"><%= format_number(project.pledged_goal) %></h2>
+                <h2 class="text-large"><%= format_number(project.budget) %></h2>
                 <span class="text-normal">01/02/62 - 01/06/62</span>
               </div>
               <div class="progress">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.donation,project.pledged_goal)  %>%" aria-valuenow="<%= calculate_percent(project.donation,project.pledged_goal)  %>" aria-valuemin="0" aria-valuemax="100">75%</div>
+                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.donation,project.budget)  %>%" aria-valuenow="<%= calculate_percent(project.donation,project.budget)  %>" aria-valuemin="0" aria-valuemax="100">75%</div>
               </div>
               <div>
                 <span class="text-normal">เหลือเวลาอีก
-                <%= Kernel.trunc((((DateTime.diff(project.end_date, DateTime.utc_now)/60)/60)/24)) %>
+                <%= Kernel.trunc((((DateTime.diff(project.dateTo, DateTime.utc_now)/60)/60)/24)) %>
                 วัน</span>
               </div>
             </section>
 
             <section class="card-text" title="ข้อความเต็ม">
-              <%= project.description %>
+              <%= project.introduce %>
             </section>
 
             <a type="button" class="btn btn-primary w-100" href="/details/<%= project.id %>"> รวมกันเราอยู่ </a>

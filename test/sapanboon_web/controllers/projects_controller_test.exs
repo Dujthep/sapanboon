@@ -3,9 +3,9 @@
 
 #   alias Sapanboon.Project
 
-#   @create_attrs %{code: "some code", cover: "some cover", description: "some description", donation: 42, donator: 42, end_date: "2010-04-17T14:00:00Z", pledged_goal: 42, project_id: "some project_id", start_date: "2010-04-17T14:00:00Z", status: "some status", title: "some title"}
-#   @update_attrs %{code: "some updated code", cover: "some updated cover", description: "some updated description", donation: 43, donator: 43, end_date: "2011-05-18T15:01:01Z", pledged_goal: 43, project_id: "some updated project_id", start_date: "2011-05-18T15:01:01Z", status: "some updated status", title: "some updated title"}
-#   @invalid_attrs %{code: nil, cover: nil, description: nil, donation: nil, donator: nil, end_date: nil, pledged_goal: nil, project_id: nil, start_date: nil, status: nil, title: nil}
+#   @create_attrs %{code: "some code", cover: "some cover", introduce: "some introduce", donation: 42, donator: 42, dateTo: "2010-04-17T14:00:00Z", budget: 42, project_id: "some project_id", start_date: "2010-04-17T14:00:00Z", status: "some status", title: "some title"}
+#   @update_attrs %{code: "some updated code", cover: "some updated cover", introduce: "some updated introduce", donation: 43, donator: 43, dateTo: "2011-05-18T15:01:01Z", budget: 43, project_id: "some updated project_id", start_date: "2011-05-18T15:01:01Z", status: "some updated status", title: "some updated title"}
+#   @invalid_attrs %{code: nil, cover: nil, introduce: nil, donation: nil, donator: nil, dateTo: nil, budget: nil, project_id: nil, start_date: nil, status: nil, title: nil}
 
 #   def fixture(:projects) do
 #     {:ok, projects} = Project.create_projects(@create_attrs)

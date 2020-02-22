@@ -3,18 +3,18 @@ defmodule Sapanboon.Repo.Migrations.CreateHistories do
 
   def change do
     create table(:histories) do
-      add :project_id, :string
-      add :code, :string
+      add :projectId, :string
+      add :code, :integer
       add :name, :string
       add :email, :string
-      add :trans_id, :string
-      add :trans_date, :utc_datetime
-      add :trans_no, :string
+      add :transId, :string
+      add :transDate, :utc_datetime
+      add :transNo, :string
       add :amount, :integer
       add :status, :string
-      add :image_slip, :string
-      add :payment_type, :string
-      add :full_name, :string
+      add :imageSlip, :string
+      add :paymentType, :string
+      add :fullName, :string
 
       timestamps()
     end

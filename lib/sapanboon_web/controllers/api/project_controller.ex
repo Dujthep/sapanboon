@@ -9,7 +9,7 @@ defmodule SapanboonWeb.Api.ProjectController do
     render(conn, "index.json", list_project: list_project)
   end
 
-  def create(conn, %{"params" => params}) do
+  def create(conn, params) do
     case Project.create_projects(params) do
       {:ok, project} ->
         conn
@@ -24,13 +24,14 @@ defmodule SapanboonWeb.Api.ProjectController do
   end
 
   def update(conn, params) do
-    case Project.get_projects_by_project_id(Map.get(params, "project_id")) do
+    case Project.get_projects_by_project_id(Map.get(params, "projectId")) do
       project ->
         case project do
           nil ->
             conn
             |> put_status(404)
-            |> render(SapanboonWeb.ErrorView, "404.json")
+            |> put_view(SapanboonWeb.ErrorView)
+            |> render("404.json")
           %{} ->
             case Project.update_projects(project, params) do
               {:ok, project} ->
@@ -41,14 +42,15 @@ defmodule SapanboonWeb.Api.ProjectController do
               {:error, %{errors: errors}} ->
                 conn
                 |> put_status(422)
-                |> render(SapanboonWeb.ErrorView, "422.json")
+                |> put_view(SapanboonWeb.ErrorView)
+                |> render("422.json", errors)
             end
         end
     end
   end
 
-  def delete(conn, %{"project_id" => project_id}) do
-    case Project.get_projects_by_project_id(project_id) do
+  def delete(conn, %{"projectId" => projectId}) do
+    case Project.get_projects_by_project_id(projectId) do
       project ->
         case project do
           nil ->

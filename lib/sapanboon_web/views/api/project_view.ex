@@ -13,7 +13,7 @@ defmodule SapanboonWeb.Api.ProjectView do
     %{
       status: "success",
       code: project.code,
-      title: project.title
+      title: project.name
     }
   end
 end
