@@ -21,17 +21,17 @@
       <img id='location-icon' class='d-inline' src='<%= Routes.static_path(@conn, "/images/location-icon.svg") %>' alt='location-sapanboon'>
       <p class="fs-18 d-inline"><%= @projects.location %></p>
       <p class="fs-18 margin-30">ระยะเวลาโครงการคงเหลือ
-        <%= if @projects.projectStatus == "active" do
-            Kernel.trunc((((DateTime.diff(@projects.dateTo, DateTime.utc_now)/60)/60)/24))
-          end %>
+        <%= if @projects.projectStatus == "active" do %>
+          <%=  Kernel.trunc((((DateTime.diff(@projects.dateTo, DateTime.utc_now)/60)/60)/24)) %>
+         <% end %>
 
-        <%= if @projects.projectStatus == "pending" do
-            Kernel.trunc((((DateTime.diff(@projects.dateTo, @projects.start_date)/60)/60)/24))
-        end %>
+        <%= if @projects.projectStatus == "pending" do %>
+         <%=  Kernel.trunc((((DateTime.diff(@projects.dateTo, @projects.start_date)/60)/60)/24)) %>
+        <% end %>
 
-        <%= if @projects.projectStatus == "inactive" do%>
+        <%= if @projects.projectStatus == "inactive" do %>
             -
-        <%= end %>วัน
+        <% end %>วัน
       </p>
 
         <%= if @projects.projectStatus == "active" do %>

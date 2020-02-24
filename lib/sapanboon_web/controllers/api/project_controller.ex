@@ -15,7 +15,6 @@ defmodule SapanboonWeb.Api.ProjectController do
         conn
         |> put_status(:ok)
         |> render("show.json", project: project)
-
       {:error, %{errors: errors}} ->
         conn
         |> put_status(422)
