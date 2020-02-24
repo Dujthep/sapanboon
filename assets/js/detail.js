@@ -22,7 +22,6 @@ function shareFacebook() {
   const id = faceIcon.getAttribute("data-id");
   const pic = faceIcon.getAttribute("data-title");
   const u = window.location.origin + "/details/" + id;
-  console.log(u);
   window.open(u);
   FB.ui({
     method: 'feed',
@@ -47,6 +46,33 @@ $(document).ready(function() {
     //     }
     //   }
     // });
+
+  $("#go-payment").click(function() {
+    let csrf_token = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+
+    console.log($('input[name="amount"]:checked').val())
+
+    // $.ajax({
+    //   url: '/transaction',
+    //   type: 'POST',
+    //   data: {
+    //     id: id,
+    //     status: "cancel"
+    //   },
+    //   beforeSend: function(xhr) {
+    //     xhr.setRequestHeader("X-CSRF-Token", csrf_token);
+    //   },
+    //   dataType: 'json',
+    //   success: function () {
+    //     // location.reload();
+    //     // $(".loader").removeClass("is-active");
+    //   },
+    //   error: function () {
+    //     // $('.modal-body #confirm').hide();
+    //     // $('.modal-body #error').show();
+    //   }
+    // })
+  })
 
   $('input.number').keyup(function(event) {
     // skip for arrow keys

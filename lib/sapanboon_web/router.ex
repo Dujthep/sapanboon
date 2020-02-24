@@ -28,7 +28,7 @@ defmodule SapanboonWeb.Router do
     get "/", ProjectsController, :index
     get "/details/:id", ProjectsController, :detail
     get "/details/:id/payment", PaymentController, :index
-    get "/transaction/:id", ProjectsController, :insert_transaction
+    post "/transaction/", ProjectsController, :insert_transaction
     get "/abouts", AboutController, :index
     get "/contact", ContactController, :index
     get "/login", LoginController, :index
