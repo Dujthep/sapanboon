@@ -11,25 +11,28 @@ defmodule SapanboonWeb.PaymentController do
     render(conn, "index.html", history: history)
   end
 
-  def update_transaction(conn, %{"post" => post_params}) do
-    IO.inspect(post_params)
-    id = post_params.historyId
-    history = Histories.get_history!(id)
-    history_params = %{
-      image_slip: post_params.image
-    }
-
-    case Histories.update_history(history,history_params) do
-      {:ok, history} ->
-        conn
-        |> put_flash(:info, "History updated successfully.")
-        |> redirect(to: Routes.success_path(conn, :index, id))
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        conn
-        |> redirect(to: Routes.payment_path(conn, :index, id))
+  def update_transaction(conn, params) do
+    id = Map.get(params, "id")
+    case Histories.get_history!(id) do
+      history ->
+        case history do
+          nil ->
+            conn
+            |> put_status(404)
+            |> put_view(SapanboonWeb.ErrorView)
+            |> render("404.json")
+          %{} ->
+            case Histories.update_history(history, params) do
+              {:ok, history} ->
+                json(conn, %{
+                  id: history.id,
+                  msg: "History updated successfully.",
+                })
+              {:error, %Ecto.Changeset{} = changeset} ->
+                json(conn, "History updated Error.")
+            end
+        end
     end
-
   end
 
 end

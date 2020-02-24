@@ -162,6 +162,7 @@
       <%= @projects.code %> <%= @projects.name %>
     </label>
 
+    <form id="donator-form" method="get" action="/transaction/<%= @projects.id %>" onsubmit="return checkform()" novalidate="novalidate">
       <input type="hidden" id="project-name" name="projectName" value="<%= @projects.name %>">
       <input type="hidden" id="project-id" name="projectId" value="<%= @projects.id %>">
       <input type="hidden" id="project-image" name="projectImage" value="<%= @projects.images2 %>">
@@ -241,6 +242,7 @@
         </div>
       </div>
 
+    </form>
 
   </div>
 </div>
