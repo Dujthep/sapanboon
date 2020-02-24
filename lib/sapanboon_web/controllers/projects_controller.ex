@@ -16,12 +16,15 @@ defmodule SapanboonWeb.ProjectsController do
     render(conn, "detail.html", projects: projects)
   end
 
-  def insert_transaction(conn, %{"id" => id}) do
-    projects = Project.get_projects!(id)
+  def insert_transaction(conn, %{"id" => id, "amount" => amount}) do
+    {id, _} = Integer.parse(id)
+    {amount, _} = Integer.parse(amount)
 
+    projects = Project.get_projects!(id)
+    IO.inspect(projects)
     trans_params = %{
       ProjectID: projects.projectId,
-      Amount: 1000,
+      Amount: amount,
       Email: conn.assigns[:user].email,
       PaymentType: "PromptPay",
       FullName: conn.assigns[:user].name
