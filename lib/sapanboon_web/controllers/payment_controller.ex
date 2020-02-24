@@ -11,11 +11,12 @@ defmodule SapanboonWeb.PaymentController do
     render(conn, "index.html", history: history)
   end
 
-  def update_transaction(conn, %{"id" => id,"image"=>image}) do
-    
+  def update_transaction(conn, %{"post" => post_params}) do
+    IO.inspect(post_params)
+    id = post_params.historyId
     history = Histories.get_history!(id)
     history_params = %{
-      image_slip: image
+      image_slip: post_params.image
     }
 
     case Histories.update_history(history,history_params) do

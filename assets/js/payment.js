@@ -54,6 +54,7 @@ function onSubmit() {
     var formData = new FormData()
     formData.append('file', file)
     formData.append('id', id)
+
     $.ajax({
       url: 'http://localhost:8080/uploadSlipPhx',
       data: formData,
@@ -61,9 +62,25 @@ function onSubmit() {
       contentType: false,
       type: 'POST',
       success: function(data) {
-        var image = '111'
-        document.location.href =
-          '/update_transaction/' + history_id + '/' + image
+        var image = "https://minio.sapanboon.org/sapanboon/5d274d08403c12000113676dimage5"
+        $.ajax({
+          url: '/update_transaction',
+          data: {
+            post: {
+              historyId: history_id,
+              image: image
+            }
+          },
+          type: 'POST',
+          dataType: 'json',
+          success: function(data) {
+            console.log(data)
+          },
+          error: function(data) {
+            console.log('ERROR ::===============')
+          }
+        })
+
       },
       error: function(data) {
         console.log(data)

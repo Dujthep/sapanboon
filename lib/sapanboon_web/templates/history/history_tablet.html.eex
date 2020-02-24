@@ -17,7 +17,7 @@
           <td colspan="7"><span class="fs-medium-16 bold"><%= history.trans_date %></span></td>
         </tr>
         <tr>
-          <td class="text-center"><span class="fs-16"><%= history.trans_id %></span></td>
+          <td class="text-center"><span class="fs-16"><%= history.transId %></span></td>
           <td>
             <span class="fs-16"><%= history.code %></span>
             <span class="fs-16"><%= history.name %></span>

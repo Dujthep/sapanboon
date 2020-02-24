@@ -22,7 +22,7 @@
           </td>
           <td class="text-center">
             <span class="fs-16">
-              <%= history.trans_id %>
+              <%= history.transId %>
             </span>
           </td>
           <td>

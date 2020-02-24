@@ -20,7 +20,7 @@ defmodule SapanboonWeb.ProjectsController do
     projects = Project.get_projects!(id)
 
     trans_params = %{
-      ProjectID: projects.project_id,
+      ProjectID: projects.projectId,
       Amount: 1000,
       Email: conn.assigns[:user].email,
       PaymentType: "PromptPay",
