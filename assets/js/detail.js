@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("face-icon").addEventListener("click", shareFacebook);
 });
 
-
 function shareLine() {
   const lineIcon = document.getElementById('line-icon')
   const id = lineIcon.getAttribute("data-id");
@@ -15,7 +14,6 @@ function shareLine() {
   var src =  window.location.origin + "/details/" + id;
   window.open('https://social-plugins.line.me/lineit/share/ui?' + 'text=' + 'ขอเชิญร่วมบริจาคโครงการ ' + title + ' ตามรายละเอียดด้านล่างนี้' + '&url=' + src);
 }
-
 
 function shareFacebook() {
   const faceIcon = document.getElementById('face-icon')

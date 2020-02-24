@@ -17,9 +17,9 @@
       <section class="col-lg-4 col-md-6 col-sm-6 col-xs-12 pb-5">
         <section class="card">
           <div class="card-body">
-            <section class="card-title" title="ข้อความเต็ม">
+            <section class="card-title" title="SPB<%= project.code %>">
               <span class="text-large text-dark">
-                <%= project.code %>
+                SPB<%= project.code %>
               </span>
               <span class="text-large">
                 <%= project.name %>
@@ -49,7 +49,7 @@
               </div>
             </section>
 
-            <section class="card-text" title="ข้อความเต็ม">
+            <section class="card-text" title="<%= project.introduce %>">
               <%= project.introduce %>
             </section>
 
