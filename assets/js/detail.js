@@ -2,7 +2,7 @@ import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("line-icon").addEventListener("click", shareLine);
   document.getElementById("face-icon").addEventListener("click", shareFacebook);
 });
@@ -12,7 +12,7 @@ function shareLine() {
   const lineIcon = document.getElementById('line-icon')
   const id = lineIcon.getAttribute("data-id");
   const title = lineIcon.getAttribute("data-title");
-  var src =  window.location.origin + "/details/" + id;
+  var src = window.location.origin + "/details/" + id;
   window.open('https://social-plugins.line.me/lineit/share/ui?' + 'text=' + 'ขอเชิญร่วมบริจาคโครงการ ' + title + ' ตามรายละเอียดด้านล่างนี้' + '&url=' + src);
 }
 
@@ -27,67 +27,70 @@ function shareFacebook() {
     method: 'feed',
     link: u,
     picture: pic,
-  },function(res){console.log(res)});
+  }, function (res) { console.log(res) });
 }
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-    // $('#donator-form').validate({
-    //   rules : {
-    //     inputAmount: {
-    //       required: true
-    //     }
-    //   },
-    //   messages: {
-    //     inputAmount: {
-    //       required: "โปรดระบุจำนวนเงิน",
-    //       maxlength: "โปรดระบุจำนวนเงินไม่เกิด 7 หลัก"
-    //     }
-    //   }
-    // });
+  // $('#donator-form').validate({
+  //   rules : {
+  //     inputAmount: {
+  //       required: true
+  //     }
+  //   },
+  //   messages: {
+  //     inputAmount: {
+  //       required: "โปรดระบุจำนวนเงิน",
+  //       maxlength: "โปรดระบุจำนวนเงินไม่เกิด 7 หลัก"
+  //     }
+  //   }
+  // });
 
-  $("#go-payment").click(function() {
+  $("#go-payment").click(function () {
     let csrf_token = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
-    console.log($('input[name="amount"]:checked').val())
+    let data = {
+      id: $("#project-id").val(),
+      amount: ''
+    }
 
-    // $.ajax({
-    //   url: '/transaction',
-    //   type: 'POST',
-    //   data: {
-    //     id: id,
-    //     status: "cancel"
-    //   },
-    //   beforeSend: function(xhr) {
-    //     xhr.setRequestHeader("X-CSRF-Token", csrf_token);
-    //   },
-    //   dataType: 'json',
-    //   success: function () {
-    //     // location.reload();
-    //     // $(".loader").removeClass("is-active");
-    //   },
-    //   error: function () {
-    //     // $('.modal-body #confirm').hide();
-    //     // $('.modal-body #error').show();
-    //   }
-    // })
+    $('input[name="amount"]:checked').val() === "on" ? data.amount = $('#input-amount').val() : data.amount = $('input[name="amount"]:checked').val()
+
+    $.ajax({
+      url: '/transaction',
+      type: 'POST',
+      data: data,
+      beforeSend: function (xhr) {
+        xhr.setRequestHeader("X-CSRF-Token", csrf_token);
+      },
+      dataType: 'json',
+      success: function (res) {
+        console.log(res);
+        // location.reload();
+        // $(".loader").removeClass("is-active");
+      },
+      error: function () {
+        // $('.modal-body #confirm').hide();
+        // $('.modal-body #error').show();
+      }
+    })
   })
 
-  $('input.number').keyup(function(event) {
+  $('input.number').keyup(function (event) {
     // skip for arrow keys
-    if(event.which >= 37 && event.which <= 40) return;
+    if (event.which >= 37 && event.which <= 40) return;
 
     // format number
-    $(this).val(function(index, value) {
+    $(this).val(function (index, value) {
       const valueReplace = value.split(",").join("");
       return valueReplace > 0 ? value.replace(/\D/g, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") : '';
     });
   });
 
-  $(document).on('click', 'input[name="amount"]', function() {
+  $(document).on('click', 'input[name="amount"]', function () {
     $('input[name=inputAmount]').removeClass('error')
-    if($(this).val() === "on") {
+    if ($(this).val() === "on") {
       $("#input-free-style").show();
       $("#label-free-style").hide();
       $("#input-amount").focus();
