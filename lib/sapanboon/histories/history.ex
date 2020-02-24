@@ -2,6 +2,10 @@ defmodule Sapanboon.Histories.History do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, only:
+    [:projectId, :code, :name, :email, :transId, :transDate, :transNo, :amount, :status, :imageSlip, :paymentType, :fullName]
+  }
+
   schema "histories" do
     field :projectId, :string
     field :code, :integer

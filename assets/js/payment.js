@@ -49,7 +49,7 @@ function onSubmit() {
   const id = $('#transactionId').val()
   const projectId = $('#projectId').val()
   const history_id = $('#history_id').val()
-
+  const csrf_token = $("meta[name='csrf-token']").attr("content")
   if (file != null) {
     var formData = new FormData()
     formData.append('file', file)
@@ -62,22 +62,24 @@ function onSubmit() {
       contentType: false,
       type: 'POST',
       success: function(data) {
-        var image = "https://minio.sapanboon.org/sapanboon/5d274d08403c12000113676dimage5"
+        var imageSlip = "https://minio.sapanboon.org/sapanboon/5d274d08403c12000113676dimage5"
         $.ajax({
           url: '/update_transaction',
           data: {
-            post: {
-              historyId: history_id,
-              image: image
-            }
+              id: history_id,
+              imageSlip: imageSlip
           },
           type: 'POST',
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader("X-CSRF-Token", csrf_token);
+          },
           dataType: 'json',
           success: function(data) {
             console.log(data)
+            window.location.href = '/success/' + data.id
           },
           error: function(data) {
-            console.log('ERROR ::===============')
+            console.log(data)
           }
         })
 
