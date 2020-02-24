@@ -13,12 +13,18 @@ defmodule SapanboonWeb.ProjectsController do
 
   def detail(conn, %{"id" => id}) do
     projects = Project.get_projects!(id)
-    render(conn, "detail.html", projects: projects)
+    IO.inspect(projects)
+    histories = Histories.list_histories_by_projectId()
+    render(conn, "detail.html", projects: projects, histories: histories)
   end
 
-  def insert_transaction(conn, %{"id" => id, "amount" => amount}) do
+  def insert_transaction(conn, %{"id" => id, "amount" => amount, "fullName"  => fullName}) do
     {id, _} = Integer.parse(id)
     {amount, _} = Integer.parse(amount)
+
+    url = "http://localhost:8080"
+    paymentType = "PromptPay"
+    statusPending = "pending"
 
     projects = Project.get_projects!(id)
     IO.inspect(projects)
@@ -26,12 +32,12 @@ defmodule SapanboonWeb.ProjectsController do
       ProjectID: projects.projectId,
       Amount: amount,
       Email: conn.assigns[:user].email,
-      PaymentType: "PromptPay",
-      FullName: conn.assigns[:user].name
+      PaymentType: paymentType,
+      FullName: fullName
     } |> Poison.encode!
 
       case HTTPoison.post(
-            "http://localhost:8080/transaction", trans_params,
+            url<>"/transaction", trans_params,
             %{"Content-Type" => "application/json"}
         ) do
         {:ok, %HTTPoison.Response{status_code: 200, body: body }} ->
@@ -42,10 +48,10 @@ defmodule SapanboonWeb.ProjectsController do
             amount: body["amount"],
             code: projects.code,
             email: conn.assigns[:user].email,
-            fullName: conn.assigns[:user].name,
-            status: "pending",
+            fullName: fullName,
+            status: statusPending,
             name: projects.name,
-            paymentType: "PromptPay",
+            paymentType: paymentType,
             projectId: projects.projectId,
             transId: body["id"],
             transDate: body["created"],

@@ -45,17 +45,18 @@ function attachedFile() {
 }
 
 function onSubmit() {
+  const url = 'http://localhost:8080'
   const file = $('#upload')[0].files[0]
-  const id = $('#transactionId').val()
+  const transactionId = $('#transactionId').val()
   const history_id = $('#history_id').val()
   const csrf_token = $("meta[name='csrf-token']").attr('content')
   if (file != null) {
     var formData = new FormData()
     formData.append('file', file)
-    formData.append('id', id)
+    formData.append('id', transactionId)
 
     $.ajax({
-      url: 'http://localhost:8080/uploadSlipPhx',
+      url: url + '/uploadSlipPhx',
       data: formData,
       processData: false,
       contentType: false,

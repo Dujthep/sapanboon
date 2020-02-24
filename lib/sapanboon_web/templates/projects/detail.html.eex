@@ -1,59 +1,55 @@
-<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
-<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/detail.js") %>"></script>
-
-<div>
-  <div class="box-social d-sm-block">
+<div class="d-sm-block">
+  <div class="box-social">
   <span class="fs-18 font-donate">ชวนเพื่อนมาบริจาค</span>
-  <div>
-      <a id="line-icon" data-id="<%= @projects.projectId %>" data-title="<%= @projects.name %>">
-        <img class="icon pointer" src="<%= Routes.static_path(@conn, "/images/line.svg") %>">
+      <a id='line-icon' data-id='<%= @projects.projectId %>' data-title='<%= @projects.name %>'>
+        <img class='icon pointer' src='<%= Routes.static_path(@conn, "/images/line.svg") %>'>
       </a>
 
-      <a id="face-icon" data-id="<%= @projects.id %>" data-title="<%= @projects.images1 %>">
-        <img class="icon pointer" src="<%= Routes.static_path(@conn, "/images/facebook.svg") %>">
+      <a id="face-icon" data-id='<%= @projects.id %>' data-title='<%= @projects.images1 %>'>
+        <img class='icon pointer' src='<%= Routes.static_path(@conn, "/images/facebook.svg") %>' >
       </a>
-  </div>
 </div>
+
 <div class="carousel-inner">
   <img id="cover-image" class="cover-image" src="<%= @projects.images1 %>">
   <div class="detail-banner-detail-page box-title-detail-page d-none d-sm-block">
     <div class="container position-relative">
       <h1 class="fs-32">
-        <%= @projects.code %> <%= @projects.name %>
+        SPB<%= @projects.code %> <%= @projects.name %>
         <input type="hidden" id="projectName" name="projectName" value="<%= @projects.name %>">
       </h1>
-      <img id="location-icon" class="d-inline" src="<%= Routes.static_path(@conn, "/images/location-icon.svg") %>" alt="location-sapanboon">
+      <img id='location-icon' class='d-inline' src='<%= Routes.static_path(@conn, "/images/location-icon.svg") %>' alt='location-sapanboon'>
       <p class="fs-18 d-inline"><%= @projects.location %></p>
       <p class="fs-18 margin-30">ระยะเวลาโครงการคงเหลือ
-        <%= if @projects.projectStatus == "active" do %>
-        <%= Kernel.trunc((((DateTime.diff(@projects.dateTo, DateTime.utc_now)/60)/60)/24)) %>
-        <% end %>
+        <%= if @projects.projectStatus == "active" do
+            Kernel.trunc((((DateTime.diff(@projects.dateTo, DateTime.utc_now)/60)/60)/24))
+          end %>
 
-        <%= if @projects.projectStatus == "pending" do %>
-        <%= Kernel.trunc((((DateTime.diff(@projects.dateTo, @projects.start_date)/60)/60)/24)) %>
-        <% end %>
+        <%= if @projects.projectStatus == "pending" do
+            Kernel.trunc((((DateTime.diff(@projects.dateTo, @projects.start_date)/60)/60)/24))
+        end %>
 
-        <%= if @projects.projectStatus == "inactive" do %>
-        -
-        <% end %>วัน</p>
-
+        <%= if @projects.projectStatus == "inactive" do%>
+            -
+        <%= end %>วัน
+      </p>
 
         <%= if @projects.projectStatus == "active" do %>
           <a class="btn btn-primary btn-block" href="#payment-panel">
-            <%= "ร่วมบริจาค #{@projects.code}" %>
+            <%= "ร่วมบริจาค SPB#{@projects.code}" %>
           </a>
         <% end %>
 
         <%= if @projects.projectStatus == "complete" do %>
-        <a class="btn btn-secondary btn-block">
-          สำเร็จแล้ว
-        </a>
+          <a class="btn btn-secondary btn-block">
+            สำเร็จแล้ว
+          </a>
         <% end %>
 
         <%= if @projects.projectStatus == "expire" do %>
-        <a class="btn btn-secondary btn-block">
-          หมดเวลาระดมทุน
-        </a>
+          <a class="btn btn-secondary btn-block">
+            หมดเวลาระดมทุน
+          </a>
         <% end %>
       </div>
     </div>
@@ -61,7 +57,6 @@
 </div>
 
 <div class="container marketing">
-
         <!-- START THE FEATURETTES -->
         <div class="row d-none d-sm-block mt-5 mb-5">
           <div class="col">
@@ -81,12 +76,14 @@
               </div>
 
               <div class="d-inline-flex justify-content-center mt-3">
+                
                 <div class="box-budget border-right-0">
                   <span class="fs-18 fs-black-1">โครงการ</span>
                   <span class="text-primary fs-36">
                     <%= calculate_percent(@projects.donation,@projects.budget)  %>%
                   </span>
                 </div>
+
                 <div class="box-budget border-right-0">
                   <span class="fs-18 fs-black-1">เป้าหมาย</span>
                   <span class="text-primary fs-36">
@@ -94,12 +91,14 @@
                     <span class="text-primary fs-16">บาท</span>
                   </span>
                 </div>
+
                 <div class="box-budget">
                   <span class="fs-18 fs-black-1">จำนวนผู้บริจาค</span>
                   <span class="text-primary fs-36">
-                    <%= format_number(@projects.projectOwner) %>
+                    <%= Enum.count(@histories) %>
                   </span>
                 </div>
+                
               </div>
             </div>
           </div>
@@ -163,9 +162,6 @@
     </label>
 
     <form id="donator-form" method="get" action="/transaction/<%= @projects.id %>" onsubmit="return checkform()" novalidate="novalidate">
-      <input type="hidden" id="project-name" name="projectName" value="<%= @projects.name %>">
-      <input type="hidden" id="project-id" name="projectId" value="<%= @projects.id %>">
-      <input type="hidden" id="project-image" name="projectImage" value="<%= @projects.images2 %>">
       <div class="form-group">
         <label class="fs-28">จำนวนเงิน</label>
         <section class="payment">
@@ -247,8 +243,9 @@
   </div>
 </div>
 
+<script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/detail.js") %>"></script>
 <script>
-
   function checkform() {
       if ("<%= inspect @conn.assigns[:user] %>" != 'nil') {
         return true
@@ -257,6 +254,5 @@
         return false
       }
   }
-
 </script>
 

@@ -37,15 +37,27 @@
               </div>
               <div class="text-between">
                 <h2 class="text-large"><%= format_number(project.budget) %></h2>
-                <span class="text-normal">01/02/62 - 01/06/62</span>
+                <span class="text-normal">
+                <%= d = project.dateFrom 
+                "#{d.day}/#{d.month}/#{d.year+ 543}"
+                %>
+                 -
+                <%= d = project.dateTo 
+                "#{d.day}/#{d.month}/#{d.year+ 543}"
+                %>
+                 </span>
               </div>
               <div class="progress">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.donation,project.budget)  %>%" aria-valuenow="<%= calculate_percent(project.donation,project.budget)  %>" aria-valuemin="0" aria-valuemax="100">75%</div>
               </div>
               <div>
-                <span class="text-normal">เหลือเวลาอีก
-                <%= Kernel.trunc((((DateTime.diff(project.dateTo, DateTime.utc_now)/60)/60)/24)) %>
-                วัน</span>
+                <span class="text-normal">
+                เหลือเวลาอีก
+                <%= Kernel.trunc(
+                  (
+                    ((DateTime.diff(project.dateTo, DateTime.utc_now)/60)/60)/24)
+                  ) %> วัน
+                </span>
               </div>
             </section>
 

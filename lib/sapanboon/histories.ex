@@ -18,6 +18,12 @@ defmodule Sapanboon.Histories do
       |> Repo.all()
   end
 
+  def list_histories_by_projectId() do
+    History
+      |> where([h], h.projectId == "5d274d08403c12000113676d")
+      |> Repo.all()
+  end
+
   def cancel_trans(%History{} = history, attrs) do
     history
     |> History.changeset(attrs)
