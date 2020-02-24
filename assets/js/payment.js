@@ -62,7 +62,8 @@ function onSubmit() {
       contentType: false,
       type: 'POST',
       success: function(data) {
-        var image = "https://minio.sapanboon.org/sapanboon/5d274d08403c12000113676dimage5"
+        console.log(data)
+        var image = data
         $.ajax({
           url: '/update_transaction',
           data: {
@@ -77,7 +78,7 @@ function onSubmit() {
             console.log(data)
           },
           error: function(data) {
-            console.log('ERROR ::===============')
+            alert("ERROR ::===============")
           }
         })
 
