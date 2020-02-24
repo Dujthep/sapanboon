@@ -47,9 +47,8 @@ function attachedFile() {
 function onSubmit() {
   const file = $('#upload')[0].files[0]
   const id = $('#transactionId').val()
-  const projectId = $('#projectId').val()
   const history_id = $('#history_id').val()
-  const csrf_token = $("meta[name='csrf-token']").attr("content")
+  const csrf_token = $("meta[name='csrf-token']").attr('content')
   if (file != null) {
     var formData = new FormData()
     formData.append('file', file)
@@ -61,31 +60,28 @@ function onSubmit() {
       processData: false,
       contentType: false,
       type: 'POST',
-      success: function(data) {
-        var imageSlip = "https://minio.sapanboon.org/sapanboon/5d274d08403c12000113676dimage5"
+      success: function(imagePath) {
+        var imageSlip = imagePath
         $.ajax({
           url: '/update_transaction',
           data: {
-              id: history_id,
-              imageSlip: imageSlip
+            id: history_id,
+            imageSlip: imageSlip
           },
           type: 'POST',
           beforeSend: function(xhr) {
-            xhr.setRequestHeader("X-CSRF-Token", csrf_token);
+            xhr.setRequestHeader('X-CSRF-Token', csrf_token)
           },
           dataType: 'json',
           success: function(data) {
-            console.log(data)
             window.location.href = '/success/' + data.id
           },
           error: function(data) {
-            console.log(data)
+            alert(data)
           }
         })
-
       },
       error: function(data) {
-        console.log(data)
         alert('อัพโหลดสลิปล้มเหลว กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่')
       }
     })
