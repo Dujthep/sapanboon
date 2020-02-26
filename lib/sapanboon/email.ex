@@ -18,10 +18,10 @@ defmodule Sapanboon.Email do
       email: email,
       fullName: value.fullName,
       amount: value.amount,
-      paymentType: "Prompay",
-      transactionNo: "123",
+      paymentType: value.paymentType,
+      transactionNo: value.transactionNo,
       day: "10", month: "มกราคม", year: "2563", time: "10:00",
-      project_id: "1"
+      project_id: value.project_id
     }
     base_email()
       |> to(email)
