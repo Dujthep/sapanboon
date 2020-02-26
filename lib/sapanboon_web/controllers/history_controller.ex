@@ -14,7 +14,7 @@ defmodule SapanboonWeb.HistoryController do
   def cancel_trans(conn, %{"id" => id, "status" => status}) do
     # status_params = %{"status" => status}
     # history = Histories.get_history!(id)
-    Email.send_email_payment("sothon@odds.team") |> Mailer.deliver_later()
+    # Email.send_email_payment(conn.assigns[:user].email) |> Mailer.deliver_later()
     json(conn, "Cancel Transaltion successfully.")
     # case Histories.update_history(history, status_params) do
     #   {:ok, _history} ->

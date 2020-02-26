@@ -28,6 +28,7 @@ defmodule SapanboonWeb.ProjectsController do
 
     projects = Project.get_projects!(id)
     IO.inspect(projects)
+
     trans_params = %{
       ProjectID: projects.projectId,
       Amount: amount,
