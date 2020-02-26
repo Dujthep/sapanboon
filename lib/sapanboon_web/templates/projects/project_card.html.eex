@@ -1,4 +1,4 @@
-<div class="list-card">
+<div class="list-card container-fluid pb-3">
 
   <ul class="nav nav-pills justify-content-center mt-5 mb-5 tab-menu" id="myTab" role="tablist">
     <li class="nav-item">

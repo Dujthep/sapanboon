@@ -117,7 +117,7 @@
     <!-- Dark Overlay element -->
     <div class="overlay"></div>
 
-    <main role="main" class="container-fluid">
+    <main role="main" class="container-fluid p-0">
       <%= render @view_module, @view_template, assigns %>
     </main>
   </body>
