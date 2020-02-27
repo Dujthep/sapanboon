@@ -34,7 +34,7 @@ RUN mix deps.compile
 RUN cd assets && npm install && npm rebuild node-sass && npm run deploy
 RUN mix phx.digest
 RUN mix compile
-RUN MIX_ENV=$ENV_DEPLOY
+RUN MIX_ENV=beta
 RUN mix release
 
 # ---- Application Stage ----
