@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    ENV_DEPLOY="beta"
+    ENV_DEPLOY = 'beta'
     NAMESPACE = 'sapanboon'
     APP_NAME = 'sapanboon-phx'
     GIT_HOST = 'gitlab.odds.team'
