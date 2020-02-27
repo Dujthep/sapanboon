@@ -61,7 +61,7 @@
                   </div>
                 </div>
               <% else %>
-                <%= active_link(@conn, "เข้าสู่ระบบ", to: "/login", class: "nav-link") %>
+                <%= active_link(@conn, "เข้าสู่ระบบ", to: "/login", class: "nav-link", id: "go-login") %>
               <% end%>
             </li>
           </ul>
