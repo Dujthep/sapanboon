@@ -65,7 +65,7 @@
               <%= project.introduce %>
             </section>
 
-            <a type="button" class="btn btn-primary w-100" href="/details/<%= project.id %>"> รวมกันเราอยู่ </a>
+            <a type="button" class="btn btn-primary w-100" href="/details/<%= project.id %>"> ร่วมบริจาค SPB<%= project.code %> </a>
           </div>
         </section>
       </section>
