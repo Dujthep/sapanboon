@@ -1,6 +1,6 @@
 <div class="d-sm-block">
   <div class="box-social">
-  <span class="fs-18 font-donate">ชวนเพื่อนมาบริจาค</span>
+  <span class="fs-18 font-white">ชวนเพื่อนมาบริจาค</span>
       <a id='line-icon' data-id='<%= @projects.projectId %>' data-title='<%= @projects.name %>'>
         <img class='icon pointer' src='<%= Routes.static_path(@conn, "/images/line.svg") %>'>
       </a>
@@ -80,7 +80,7 @@
                 <div class="box-budget border-right-0">
                   <span class="fs-18 fs-black-1">โครงการ</span>
                   <span class="text-primary fs-36">
-                    <%= calculate_percent(@projects.donation,@projects.budget)  %>%
+                    <%= calculate_percent(@transSum,@projects.budget)  %>%
                   </span>
                 </div>
 
@@ -158,7 +158,7 @@
   <div class="container d-flex flex-column pt-5">
     <label class="fs-28 text-center txt-light-dark-gray">ร่วมบริจาค</label>
     <label class="fs-medium-24-32 text-center">
-      <%= @projects.code %> <%= @projects.name %>
+      SPB<%= @projects.code %> <%= @projects.name %>
     </label>
 
     <form id="donator-form" method="get" action="/transaction/<%= @projects.id %>" onsubmit="return checkform()" novalidate="novalidate">
@@ -224,7 +224,7 @@
       <div class="form-group mb-5">
         <div class="d-flex justify-content-center">
           <div class="box-social-payment">
-            <span class="fs-18 font-donate">ชวนเพื่อนมาบริจาค</span>
+            <span class="fs-18 font-black">ชวนเพื่อนมาบริจาค</span>
 
             <a>
               <img class="icon-detail pointer" src="/images/line-icon.svg">

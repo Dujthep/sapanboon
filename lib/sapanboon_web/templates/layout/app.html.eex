@@ -121,7 +121,7 @@
       <%= render @view_module, @view_template, assigns %>
     </main>
   </body>
-  <footer class="p-0">
+  <footer class="p-3">
       <div class="row footer">
         <div class="col-lg-3 mb-3">
           <img  src="<%= Routes.static_path(@conn, "/images/sapanboon-logo.png") %>" alt="sapanboon" width="125px">
