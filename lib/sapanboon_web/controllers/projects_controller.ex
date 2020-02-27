@@ -13,9 +13,11 @@ defmodule SapanboonWeb.ProjectsController do
 
   def detail(conn, %{"id" => id}) do
     projects = Project.get_projects!(id)
-    IO.inspect(projects)
+    
     histories = Histories.list_histories_by_projectId()
-    render(conn, "detail.html", projects: projects, histories: histories)
+    transSum = Histories.sum_history(projects.projectId)
+
+    render(conn, "detail.html", projects: projects, histories: histories, transSum: transSum)
   end
 
   def insert_transaction(conn, %{"id" => id, "amount" => amount, "fullName"  => fullName}) do

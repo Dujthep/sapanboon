@@ -51,4 +51,8 @@ defmodule Sapanboon.Histories do
   def change_history(%History{} = history) do
     History.changeset(history, %{})
   end
+
+  def sum_history(id) do
+    Repo.one(from h in History, where: h.projectId == ^id , select: sum(h.amount))
+  end
 end
