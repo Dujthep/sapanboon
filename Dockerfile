@@ -1,55 +1,47 @@
-# ---- Build Stage ----
-FROM elixir:1.9.0-alpine AS app_builder
+FROM elixir:1.9.0-alpine as build
 
 # install build dependencies
 RUN apk add --update git build-base nodejs nodejs-npm
 
-# Create the application build directory
+# prepare build dir
 RUN mkdir /app
 WORKDIR /app
 
-# Install hex and rebar
+# install hex + rebar
 RUN mix local.hex --force && \
     mix local.rebar --force
 
-# Set environment variables for building the application
-ARG ENV_SECRET_KEY_BASE="secrete_key"
-ENV SECRET_KEY_BASE=${ENV_SECRET_KEY_BASE}
-ENV LANG=C.UTF-8
+# set build ENV
+ENV MIX_ENV=beta
 
-# Copy over all the necessary application files and directories
-COPY config ./config
-COPY lib ./lib
-COPY priv ./priv
-COPY assets ./assets
+# install mix dependencies
 COPY mix.exs mix.lock ./
-
-ARG ENV_DEPLOY
-ENV ENV_DEPLOY $ENV_DEPLOY
-RUN echo $ENV_DEPLOY
-
-# Fetch the application dependencies and build the application
+COPY config config
 RUN mix deps.get
 RUN mix deps.compile
+
+# build assets
+COPY assets assets
 RUN cd assets && npm install && npm rebuild node-sass && npm run deploy
 RUN mix phx.digest
+
+# build project
+COPY priv priv
+COPY lib lib
 RUN mix compile
-RUN MIX_ENV=beta
+
+# build release
 RUN mix release
 
-# ---- Application Stage ----
+# release stage
 FROM alpine:3.9
 
-ENV LANG=C.UTF-8
-ENV HOME=/app
-
-# Install openssl
-RUN apk add --update bash openssl ncurses-libs postgresql-client && \
-    rm -rf /var/cache/apk/*
+#install bash
+RUN apk add --update bash openssl
 
 RUN mkdir /app
 WORKDIR /app
 
-COPY --from=app_builder /app/_build/prod/rel/sapanboon ./
+COPY --from=build /app/_build/beta/rel/sapanboon ./
 RUN chown -R nobody: /app
 USER nobody
