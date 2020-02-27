@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    ENV_DEPLOY="prod"
+    ENV_DEPLOY="beta"
     NAMESPACE = 'sapanboon'
     APP_NAME = 'sapanboon-phx'
     GIT_HOST = 'gitlab.odds.team'
@@ -21,7 +21,7 @@ pipeline {
       steps {
         script{
           withDockerRegistry(credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.REGISTRY}") {
-            def image = docker.build("${env.REGISTRY}/${env.NAMESPACE}/${env.APP_NAME}","--build-arg ENV_DEPLOY=${env.ENV_DEPLOY} .")
+            def image = docker.build("${env.REGISTRY}/${env.NAMESPACE}/${env.APP_NAME}/beta","--build-arg ENV_DEPLOY=${env.ENV_DEPLOY} .")
             image.push()
           }
         }

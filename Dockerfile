@@ -24,13 +24,18 @@ COPY priv ./priv
 COPY assets ./assets
 COPY mix.exs mix.lock ./
 
+ARG ENV_DEPLOY
+ENV ENV_DEPLOY $ENV_DEPLOY
+RUN echo $ENV_DEPLOY
+
 # Fetch the application dependencies and build the application
 RUN mix deps.get
 RUN mix deps.compile
 RUN cd assets && npm install && npm rebuild node-sass && npm run deploy
 RUN mix phx.digest
 RUN mix compile
-RUN MIX_ENV=prod mix release
+RUN MIX_ENV=$ENV_DEPLOY
+RUN mix release
 
 # ---- Application Stage ----
 FROM alpine:3.9

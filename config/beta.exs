@@ -11,7 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :sapanboon, SapanboonWeb.Endpoint,
   load_from_system_env: true,
-  url: [host: "phx.sapanboon.org", port: 80],
+  url: [host: "beta.sapanboon.org", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 config :sapanboon, SapanboonWeb.Endpoint,
