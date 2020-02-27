@@ -21,7 +21,7 @@ pipeline {
       steps {
         script{
           withDockerRegistry(credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.REGISTRY}") {
-            def image = docker.build("${env.REGISTRY}/${env.NAMESPACE}/${env.APP_NAME}","--build-arg ENV_DEPLOY=${env.ENV_DEPLOY} .")
+            def image = docker.build("${env.REGISTRY}/${env.NAMESPACE}/${env.APP_NAME}", "--build-arg ENV_DEPLOY=${env.ENV_DEPLOY} .")
             image.push()
           }
         }
