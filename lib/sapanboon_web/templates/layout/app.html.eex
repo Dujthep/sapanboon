@@ -121,8 +121,8 @@
       <%= render @view_module, @view_template, assigns %>
     </main>
   </body>
-  <footer class="p-3">
-      <div class="row footer">
+  <footer class="p-3 footer">
+      <div class="row ">
         <div class="col-lg-3 mb-3">
           <img  src="<%= Routes.static_path(@conn, "/images/sapanboon-logo.png") %>" alt="sapanboon" width="125px">
         </div>
@@ -164,7 +164,11 @@
             <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/ig-icon.svg") %>" alt="ig-sapanboon">
             <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/twitter-icon.svg") %>" alt="twitter-sapanboon">
         </div>
+        
       </div>
+      <div class="d-flex justify-content-center">
+          <span>© 2019 Sapanboon, All Rights Reserved. Design with Sapanboon</span>
+        </div>
     </footer>
 </html>
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
