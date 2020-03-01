@@ -13,7 +13,7 @@ defmodule SapanboonWeb.ProjectsController do
     Enum.map list_project, fn project ->
       percent = calculate_percent(Histories.sum_history(project.projectId), project.budget)
       # problem here !!!
-      project[:website] = percent
+      # project[:website] = percent
       IO.inspect(project)
     end
     

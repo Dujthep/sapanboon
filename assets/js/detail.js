@@ -5,6 +5,8 @@ window.$ = $
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('line-icon').addEventListener('click', shareLine)
   document.getElementById('face-icon').addEventListener('click', shareFacebook)
+  document.getElementById('line-icon-down').addEventListener('click', shareLine)
+  document.getElementById('face-icon-down').addEventListener('click', shareFacebook)
 })
 
 function shareLine() {
@@ -28,8 +30,6 @@ function shareFacebook() {
   const id = faceIcon.getAttribute('data-id')
   const pic = faceIcon.getAttribute('data-title')
   const u = window.location.origin + '/details/' + id
-  console.log(u)
-  window.open(u)
   FB.ui(
     {
       method: 'feed',

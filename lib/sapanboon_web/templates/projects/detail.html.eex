@@ -226,11 +226,11 @@
           <div class="box-social-payment">
             <span class="fs-18 font-black">ชวนเพื่อนมาบริจาค</span>
 
-            <a>
+            <a id="line-icon-down">
               <img class="icon-detail pointer" src="/images/line-icon.svg">
             </a>
 
-            <a>
+            <a id="face-icon-down">
               <img class="icon-detail pointer" src="/images/facebook-icon.svg">
             </a>
 
