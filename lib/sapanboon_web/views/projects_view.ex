@@ -1,6 +1,18 @@
 defmodule SapanboonWeb.ProjectsView do
   use SapanboonWeb, :view
 
+  def render("show.json", %{projects: projects}) do
+    %{data: render_one(projects, SapanboonWeb.ProjectsView, "page.json")}
+  end
+
+  def render("page.json", %{projects: projects}) do
+    %{
+      status: "successfully",
+      code: projects.code,
+      title: projects.name
+    }
+  end
+
   def format_date_time(date) do
     {date.year, date.month, date.day}
     # |> Calendar.Strftime.strftime!("%A %d %B", :th)
