@@ -55,7 +55,7 @@
                                 <div class="col-md-4 text-left d-flex justify-content-center justify-content-md-start">
                                     <label class="fs-24 " 
                                         name="amount" 
-                                        id="amount"><%= @history.amount %> บาท
+                                        id="amount"><%= format_number(@history.amount) %> บาท
                                     </label>
                                 </div>
                             </div>
