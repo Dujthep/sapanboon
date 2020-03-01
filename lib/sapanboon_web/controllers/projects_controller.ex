@@ -9,6 +9,14 @@ defmodule SapanboonWeb.ProjectsController do
 
   def index(conn, params) do
     list_project = Project.list_project_by_status(Map.get(params, "status"), 1)
+
+    Enum.map list_project, fn project ->
+      percent = calculate_percent(Histories.sum_history(project.projectId), project.budget)
+      # problem here !!!
+      project[:website] = percent
+      IO.inspect(project)
+    end
+    
     render(conn, "index.html", list_project: list_project, conn: conn )
   end
 
@@ -137,6 +145,13 @@ defmodule SapanboonWeb.ProjectsController do
                   |> render("show.json", projects: projects)
             end
         end
+    end
+  end
+
+  def calculate_percent(donation, budget) do
+    if budget && budget > 0 do
+      percent = ((donation / budget) * 100)
+      if percent < 1 && percent > 0, do: 1, else: percent
     end
   end
 
