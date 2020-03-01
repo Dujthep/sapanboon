@@ -62,7 +62,7 @@ function onSubmit() {
       type: 'POST',
       success: function(imagePath) {
         $.ajax({
-          url: '/update_transaction',
+          url: 'api/transaction',
           data: {
             transId: transactionId,
             imageSlip: imagePath

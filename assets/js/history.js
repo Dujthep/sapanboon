@@ -14,20 +14,20 @@ $(document).ready(function () {
   $(".modal #btn-cancel-trans").click(function() {
     const transId = $('#cancel-trans').attr("data-payload")
     const csrf_token = $("meta[name='csrf-token']").attr("content")
+    const url = 'http://localhost:8080'
     $.ajax({
-      url: '/update_transaction',
-      data: {
-        transId: transId,
+      url: url + '/updateStatus',
+      data: JSON.stringify({
+        id: transId,
         status: "cancel"
-      },
+      }),
       type: 'PUT',
       beforeSend: function(xhr) {
         xhr.setRequestHeader("X-CSRF-Token", csrf_token);
       },
-      dataType: 'json',
+      contentType: "application/json",
       success: function () {
         location.reload();
-        $(".loader").removeClass("is-active");
       },
       error: function () {
         $('.modal-body #confirm').hide();
@@ -45,6 +45,7 @@ $(document).ready(function () {
     const url = 'http://localhost:8080'
     const file = $("td #file-upload")[0].files[0]
     const transId = $("td #file-upload").attr("data-payload")
+    const csrf_token = $("meta[name='csrf-token']").attr('content')
     if (file) {
       $('#slip-confirm-modal').modal('hide');
       var formData = new FormData();
@@ -58,22 +59,22 @@ $(document).ready(function () {
         type: 'POST',
         success: function(imagePath){
           $.ajax({
-            url: '/update_transaction',
+            url: 'api/transaction',
             data: {
               transId: transId,
               imageSlip: imagePath
             },
             type: 'PUT',
             beforeSend: function(xhr) {
-              xhr.setRequestHeader('X-CSRF-Token', csrf_token)
+              xhr.setRequestHeader("X-CSRF-Token", csrf_token);
             },
             dataType: 'json',
-            success: function(data) {
-              console.log(data)
+            success: function () {
               location.reload();
             },
-            error: function(data) {
-              $('#error-modal').modal('show')
+            error: function () {
+              $('.modal-body #confirm').hide();
+              $('.modal-body #error').show();
             }
           })
         },

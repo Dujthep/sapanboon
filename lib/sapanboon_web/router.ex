@@ -34,7 +34,6 @@ defmodule SapanboonWeb.Router do
     get "/contact", ContactController, :index
     get "/login", LoginController, :index
     get "/history", HistoryController, :index
-    put "/update_transaction", HistoryController, :update_transaction
     get "/success/:id", SuccessController, :index
   end
 
