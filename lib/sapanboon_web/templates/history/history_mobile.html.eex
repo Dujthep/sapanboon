@@ -64,7 +64,7 @@
               <%= if history.status === "pending" do %>
                 <div class="dropdown-item">
                   <div class="dropdown-divider"></div>
-                    <span class="pointer" id="cancel-trans" data-toggle="modal" data-target="#confirm-modal" data-payload="<%= history.id %>">
+                    <span class="pointer" id="cancel-trans" data-toggle="modal" data-target="#confirm-modal" data-payload="<%= history.transId %>">
                       <img src="<%= Routes.static_path(@conn, "/images/cancel-trans.svg") %>" />
                       ยกเลิก
                     </span>

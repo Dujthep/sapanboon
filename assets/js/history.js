@@ -12,12 +12,12 @@ $(document).ready(function () {
 
   $('.modal-body #error').hide();
   $(".modal #btn-cancel-trans").click(function() {
-    const id = $('#cancel-trans').attr("data-payload")
+    const transId = $('#cancel-trans').attr("data-payload")
     const csrf_token = $("meta[name='csrf-token']").attr("content")
     $.ajax({
       url: '/update_transaction',
       data: {
-        id: id,
+        transId: transId,
         status: "cancel"
       },
       type: 'PUT',
@@ -44,12 +44,12 @@ $(document).ready(function () {
   $("#btn-confirm-slip").click(function() {
     const url = 'http://localhost:8080'
     const file = $("td #file-upload")[0].files[0]
-    const id = $("td #file-upload").attr("data-payload")
+    const transId = $("td #file-upload").attr("data-payload")
     if (file) {
       $('#slip-confirm-modal').modal('hide');
       var formData = new FormData();
       formData.append('file', file);
-      formData.append('id', id);
+      formData.append('id', transId);
       $.ajax({
         url: url + '/uploadSlipPhx',
         data: formData,
@@ -60,7 +60,7 @@ $(document).ready(function () {
           $.ajax({
             url: '/update_transaction',
             data: {
-              id: history_id,
+              transId: transId,
               imageSlip: imagePath
             },
             type: 'PUT',

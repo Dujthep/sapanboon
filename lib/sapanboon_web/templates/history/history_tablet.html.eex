@@ -60,7 +60,7 @@
           </td>
           <td class="text-center">
             <%= if history.status === "pending" do %>
-              <span class="pointer" id="cancel-trans" data-toggle="modal" data-target="#confirm-modal" data-payload="<%= history.id %>">
+              <span class="pointer" id="cancel-trans" data-toggle="modal" data-target="#confirm-modal" data-payload="<%= history.transId %>">
                 <img src="<%= Routes.static_path(@conn, "/images/cancel-trans.svg") %>" />
               </span>
             <% end %>

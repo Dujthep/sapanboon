@@ -12,8 +12,7 @@ defmodule SapanboonWeb.HistoryController do
   end
 
   def update_transaction(conn, params) do
-    id = Map.get(params, "id")
-    case Histories.get_history!(id) do
+    case Histories.get_history_by_trans_id(Map.get(params, "transId")) do
       history ->
         case history do
           nil ->

@@ -32,6 +32,8 @@ defmodule Sapanboon.Histories do
 
   def get_history!(id), do: Repo.get!(History, id)
 
+  def get_history_by_trans_id(transId), do: Repo.get_by(History, transId: transId)
+
   def create_history(attrs \\ %{}) do
     %History{}
     |> History.changeset(attrs)

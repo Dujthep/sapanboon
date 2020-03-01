@@ -48,7 +48,6 @@ function onSubmit() {
   const url = 'http://localhost:8080'
   const file = $('#upload')[0].files[0]
   const transactionId = $('#transactionId').val()
-  const history_id = $('#history_id').val()
   const csrf_token = $("meta[name='csrf-token']").attr('content')
   if (file != null) {
     var formData = new FormData()
@@ -65,7 +64,7 @@ function onSubmit() {
         $.ajax({
           url: '/update_transaction',
           data: {
-            id: history_id,
+            transId: transactionId,
             imageSlip: imagePath
           },
           type: 'PUT',
