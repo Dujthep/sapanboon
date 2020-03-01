@@ -12,11 +12,10 @@ $(document).ready(function () {
 
   $('.modal-body #error').hide();
   $(".modal #btn-cancel-trans").click(function() {
-    $(".loader").addClass("is-active");
     const id = $('#cancel-trans').attr("data-payload")
     const csrf_token = $("meta[name='csrf-token']").attr("content")
     $.ajax({
-      url: '/cancel_trans',
+      url: '/update_transaction',
       data: {
         id: id,
         status: "cancel"
@@ -43,6 +42,7 @@ $(document).ready(function () {
   })
 
   $("#btn-confirm-slip").click(function() {
+    const url = 'http://localhost:8080'
     const file = $("td #file-upload")[0].files[0]
     const id = $("td #file-upload").attr("data-payload")
     if (file) {
@@ -50,24 +50,37 @@ $(document).ready(function () {
       var formData = new FormData();
       formData.append('file', file);
       formData.append('id', id);
-      $(".loader").addClass("is-active");
-      // $.ajax({
-      //   url: "https://beta.api.sapanboon.org/uploadSlip",
-      //   data: formData,
-      //   processData: false,
-      //   contentType: false,
-      //   type: 'POST',
-      //   success: function(data){
-      //     alert("อัพโหลดสลิป สำเร็จแล้ว")
-      //     location.reload();
-      //     $(".loader").removeClass("is-active");
-      //   },
-      //   error: function(data){
-      //     $("#error-text").text("อัพโหลดสลิปล้มเหลว กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่");
-      //     $('#error-modal').modal('show')
-      //     $(".loader").removeClass("is-active");
-      //   },
-      // });
+      $.ajax({
+        url: url + '/uploadSlipPhx',
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function(imagePath){
+          $.ajax({
+            url: '/update_transaction',
+            data: {
+              id: history_id,
+              imageSlip: imagePath
+            },
+            type: 'PUT',
+            beforeSend: function(xhr) {
+              xhr.setRequestHeader('X-CSRF-Token', csrf_token)
+            },
+            dataType: 'json',
+            success: function(data) {
+              console.log(data)
+              location.reload();
+            },
+            error: function(data) {
+              $('#error-modal').modal('show')
+            }
+          })
+        },
+        error: function(data){
+          $('#error-modal').modal('show')
+        },
+      });
     }
   })
 

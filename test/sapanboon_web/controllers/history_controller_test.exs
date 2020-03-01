@@ -3,9 +3,9 @@
 
 #   alias Sapanboon.Histories
 
-#   @create_attrs %{code: "some code", donation: 42, project_id: "some project_id", status: "some status", title: "some title", trans_date: "2010-04-17T14:00:00Z", trans_id: "some trans_id"}
-#   @update_attrs %{code: "some updated code", donation: 43, project_id: "some updated project_id", status: "some updated status", title: "some updated title", trans_date: "2011-05-18T15:01:01Z", trans_id: "some updated trans_id"}
-#   @invalid_attrs %{code: nil, donation: nil, project_id: nil, status: nil, title: nil, trans_date: nil, trans_id: nil}
+#   @create_attrs %{code: "some code", donation: 42, project_id: "some project_id", status: "some status", title: "some title", transDate: "2010-04-17T14:00:00Z", trans_id: "some trans_id"}
+#   @update_attrs %{code: "some updated code", donation: 43, project_id: "some updated project_id", status: "some updated status", title: "some updated title", transDate: "2011-05-18T15:01:01Z", trans_id: "some updated trans_id"}
+#   @invalid_attrs %{code: nil, donation: nil, project_id: nil, status: nil, title: nil, transDate: nil, trans_id: nil}
 
 #   def fixture(:history) do
 #     {:ok, history} = Histories.create_history(@create_attrs)

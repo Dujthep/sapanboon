@@ -62,14 +62,13 @@ function onSubmit() {
       contentType: false,
       type: 'POST',
       success: function(imagePath) {
-        var imageSlip = imagePath
         $.ajax({
           url: '/update_transaction',
           data: {
             id: history_id,
-            imageSlip: imageSlip
+            imageSlip: imagePath
           },
-          type: 'POST',
+          type: 'PUT',
           beforeSend: function(xhr) {
             xhr.setRequestHeader('X-CSRF-Token', csrf_token)
           },
@@ -78,7 +77,7 @@ function onSubmit() {
             window.location.href = '/success/' + data.id
           },
           error: function(data) {
-            alert(data)
+            alert('อัพโหลดสลิปล้มเหลว กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่')
           }
         })
       },

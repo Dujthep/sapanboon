@@ -14,15 +14,15 @@
     <tbody>
       <%= for history <- @list_histories do %>
         <tr>
-          <td colspan="7"><span class="fs-medium-16 bold"><%= history.trans_date %></span></td>
+          <td colspan="7"><span class="fs-medium-16 bold"><%= history.transDate %></span></td>
         </tr>
         <tr>
-          <td class="text-center"><span class="fs-16"><%= history.transId %></span></td>
+          <td class="text-center"><span class="fs-16"><%= history.transNo %></span></td>
           <td>
             <span class="fs-16"><%= history.code %></span>
             <span class="fs-16"><%= history.name %></span>
           </td>
-          <td class="text-right"><span class="fs-16 txt-bright-cyan"><%= history.donation %></span></td>
+          <td class="text-right"><span class="fs-16 txt-bright-cyan"><%= history.amount %></span></td>
           <td class="text-center">
             <%= if history.status === "pending" do %>
             <img src="<%= Routes.static_path(@conn, "/images/pending.svg") %>" />
@@ -47,13 +47,13 @@
                   name="file-upload"
                   id="file-upload"
                   style="display:none" accept="image/jpg, image/png"
-                  data-payload="<%= history.id %>">
+                  data-payload="<%= history.transId %>">
               </label>
             <% end %>
           </td>
           <td class="text-center">
-            <%= if history.image_slip !== "" && history.status !== "reject" do %>
-              <span class="pointer" id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.image_slip %>">
+            <%= if history.imageSlip && history.status !== "reject" do %>
+              <span class="pointer" id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.imageSlip %>">
                 <img src="<%= Routes.static_path(@conn, "/images/view-reciept-mobile.svg") %>" />
               </span>
             <% end %>

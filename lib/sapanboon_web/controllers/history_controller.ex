@@ -11,17 +11,41 @@ defmodule SapanboonWeb.HistoryController do
     render(conn, "index.html", list_histories: list_histories)
   end
 
-  def cancel_trans(conn, %{"id" => id, "status" => status}) do
-    # status_params = %{"status" => status}
-    # history = Histories.get_history!(id)
-    # Email.send_email_payment(conn.assigns[:user].email) |> Mailer.deliver_later()
-    json(conn, "Cancel Transaltion successfully.")
-    # case Histories.update_history(history, status_params) do
-    #   {:ok, _history} ->
-    #     json(conn, "Cancel Transaltion successfully.")
-    #   {:error } ->
-    #     json(conn, "Cancel Transaltion Error.")
-    # end
+  def update_transaction(conn, params) do
+    id = Map.get(params, "id")
+    case Histories.get_history!(id) do
+      history ->
+        case history do
+          nil ->
+            conn
+            |> put_status(404)
+            |> put_view(SapanboonWeb.ErrorView)
+            |> render("404.json")
+          %{} ->
+            case Histories.update_history(history, params) do
+              {:ok, history} ->
+                mail_user = %{
+                  projectName: history.name,
+                  email: history.email,
+                  fullName: history.fullName,
+                  amount: history.amount,
+                  paymentType: history.paymentType,
+                  transactionNo: history.transNo,
+                  day: "10", month: "มกราคม", year: "2563", time: "10:00",
+                  status: "รอตรวจสอบเอกสาร"
+                }
+                Email.send_email(mail_user) |> Mailer.deliver_later()
+                conn
+                |> put_status(:ok)
+                |> render("show.json", history: history)
+              {:error, %{errors: errors}} ->
+                conn
+                |> put_status(422)
+                |> put_view(SapanboonWeb.ErrorView)
+                |> render("422.json", errors)
+            end
+        end
+    end
   end
 
   def new(conn, _params) do
