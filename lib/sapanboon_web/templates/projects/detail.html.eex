@@ -76,11 +76,11 @@
               </div>
 
               <div class="d-inline-flex justify-content-center mt-3">
-                
+
                 <div class="box-budget border-right-0">
                   <span class="fs-18 fs-black-1">โครงการ</span>
                   <span class="text-primary fs-36">
-                    <%= calculate_percent(@transSum,@projects.budget)  %>%
+                    <%# <%= calculate_percent(@transSum,@projects.budget)  %>% %>
                   </span>
                 </div>
 
@@ -98,7 +98,7 @@
                     <%= Enum.count(@histories) %>
                   </span>
                 </div>
-                
+
               </div>
             </div>
           </div>
