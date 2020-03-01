@@ -38,14 +38,12 @@
               <div class="text-between">
                 <h2 class="text-large"><%= format_number(project.budget) %></h2>
                 <span class="text-normal">
-                <%= d = project.dateFrom 
-                "#{d.day}/#{d.month}/#{d.year+ 543}"
-                %>
+                <% d = project.dateFrom %>
+                <%= "#{d.day}"<>" "<>Enum.at(@month, d.month - 1)<>" "<>"#{d.year+ 543}" %>
                  -
-                <%= d = project.dateTo 
-                "#{d.day}/#{d.month}/#{d.year+ 543}"
-                %>
-                 </span>
+                <% d = project.dateTo %>
+                <%= "#{d.day}"<>" "<>Enum.at(@month, d.month - 1)<>" "<>"#{d.year+ 543}" %> 
+                </span>
               </div>
               <div class="progress">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.donation,project.budget)  %>%" aria-valuenow="<%= calculate_percent(project.donation,project.budget)  %>" aria-valuemin="0" aria-valuemax="100">75%</div>

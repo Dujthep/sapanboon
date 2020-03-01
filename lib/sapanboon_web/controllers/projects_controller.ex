@@ -17,7 +17,8 @@ defmodule SapanboonWeb.ProjectsController do
       IO.inspect(project)
     end
     
-    render(conn, "index.html", list_project: list_project, conn: conn )
+    month = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."]
+    render(conn, "index.html", list_project: list_project, conn: conn, month: month )
   end
 
   def detail(conn, %{"id" => id}) do
