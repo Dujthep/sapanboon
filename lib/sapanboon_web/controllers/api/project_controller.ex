@@ -3,6 +3,7 @@ defmodule SapanboonWeb.Api.ProjectController do
   require Logger
 
   alias Sapanboon.Project
+  alias Sapanboon.Project.Projects
 
   def index(conn, _params) do
     list_project = Project.list_project()
@@ -23,29 +24,27 @@ defmodule SapanboonWeb.Api.ProjectController do
   end
 
   def update(conn, params) do
-    case Project.get_projects_by_project_id(Map.get(params, "projectId")) do
+    project = case Project.get_projects_by_project_id(Map.get(params, "projectId")) do
       project ->
         case project do
-          nil ->
-            conn
-            |> put_status(404)
-            |> put_view(SapanboonWeb.ErrorView)
-            |> render("404.json")
-          %{} ->
-            case Project.update_projects(project, params) do
-              {:ok, project} ->
-                conn
-                |> put_status(:ok)
-                |> render("show.json", project: project)
-
-              {:error, %{errors: errors}} ->
-                conn
-                |> put_status(422)
-                |> put_view(SapanboonWeb.ErrorView)
-                |> render("422.json", errors)
-            end
+          nil -> %Projects{projectId: Map.get(params, "projectId")}
+          project -> project
         end
     end
+
+    case Project.insert_or_update_projects(project, params) do
+      {:ok, project} ->
+        conn
+        |> put_status(:ok)
+        |> render("show.json", project: project)
+
+      {:error, %{errors: errors}} ->
+        conn
+        |> put_status(422)
+        |> put_view(SapanboonWeb.ErrorView)
+        |> render("422.json", errors)
+    end
+
   end
 
   def delete(conn, %{"projectId" => projectId}) do
