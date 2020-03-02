@@ -35,6 +35,7 @@ defmodule SapanboonWeb.Router do
     get "/login", LoginController, :index
     get "/history", HistoryController, :index
     get "/success/:id", SuccessController, :index
+    get "/admin", LoginController, :admin
   end
 
   scope "/auth", SapanboonWeb do
@@ -43,6 +44,7 @@ defmodule SapanboonWeb.Router do
     get "/:provider", LoginController, :request
     get "/:provider/callback", LoginController, :callback
   end
+
   # Other scopes may use custom stacks.
   # scope "/api", SapanboonWeb do
   #   pipe_through :api

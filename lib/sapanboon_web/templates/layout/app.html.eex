@@ -55,14 +55,17 @@
               <%= if @conn.assigns[:user] do %>
                 <div class="user-info">
                   <span><%= @conn.assigns.user.name %></span>
-                  <div class="user-menu">
+                  <div class="user-menu"> 
                     <%= link "รายการของฉัน", to: Routes.history_path(@conn, :index)%>
+                    <%= if @conn.assigns.user.role  === "admin" do %>
+                      <%= link "หน้าจอ Admin", to: Routes.login_path(@conn, :admin)%>
+                    <% end %>
                     <%= link "ออกจากระบบ", to: Routes.login_path(@conn, :delete)%>
                   </div>
                 </div>
               <% else %>
                 <%= active_link(@conn, "เข้าสู่ระบบ", to: "/login", class: "nav-link", id: "go-login") %>
-              <% end%>
+              <%  end%>
             </li>
           </ul>
         </div>
@@ -91,7 +94,7 @@
           <li>
             <%= link "รายการของฉัน", to: Routes.history_path(@conn, :index), class: "menu fs-16 fs-light text-white" %>
           </li>
-        <% end %>
+        <%  end %>
         <li>
           <div class="p-1">
             <div class="d-flex login-tmp">
@@ -107,7 +110,7 @@
                 <div class="col align-self-center p-0">
                   <%= link "เข้าสู่ระบบ", to: "/login", class: "m-0 fs-16 fs-light text-white mx-2", id: "go-login-sidebar" %>
                 </div>
-              <% end %>
+              <%  end %>
             </div>
           </div>
         </li>

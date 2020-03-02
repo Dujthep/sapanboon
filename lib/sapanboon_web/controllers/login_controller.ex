@@ -20,14 +20,17 @@ defmodule SapanboonWeb.LoginController do
       name: auth.info.name,
       role: "user"
     }
+
     changeset = User.changeset(%User{}, user_params)
+
     case insert_or_update_user(changeset) do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Welcome back")
         |> put_session(:user_id, user.id)
         |> redirect(to: Routes.projects_path(conn, :index))
-    {:error, _reason} ->
+
+      {:error, _reason} ->
         conn
         |> put_flash(:error, "error signing in")
         |> redirect(to: Routes.login_path(conn, :index))
@@ -48,5 +51,10 @@ defmodule SapanboonWeb.LoginController do
     conn
     |> configure_session(drop: true)
     |> redirect(to: Routes.projects_path(conn, :index))
+  end
+
+  def admin(conn, _params) do
+    url = Enum.join(["https://beta.admin.sapanboon.org/sapanboon/?uid=", conn.assigns.user.uid])
+    redirect(conn, external: url)
   end
 end
