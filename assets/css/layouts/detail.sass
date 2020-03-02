@@ -2,15 +2,31 @@
 .fs-18
     font-size: 18px
 
+
+.fs-20
+  font-size: 20px
+
 .fs-24
     font-size: 24px
 
-.fs-medium-24-bold
+.fs-medium
+  font-family: medium
+
+.fs-medium-20
+    font-size: 20px
+    @extend .fs-medium
+
+.fs-medium-24
     font-size: 24px
+    @extend .fs-medium
+
+.fs-medium-24-bold
+    @extend .fs-medium-24
     @extend .bold
 
 .fs-medium-24-32, .btn-primary, .btn-gray, .btn-secondary, .btn-third
     font-size: 32px
+    @extend .fs-medium
 
 .fs-28
     font-size: 28px
@@ -184,6 +200,9 @@ label
 
 .font-white
     color: #ffffff
+
+.text-dark-gray
+    color: #626463
 
 .top-right
     position: absolute
