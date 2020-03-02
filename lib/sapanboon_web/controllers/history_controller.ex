@@ -23,6 +23,7 @@ defmodule SapanboonWeb.HistoryController do
           %{} ->
             case Histories.update_history(history, params) do
               {:ok, history} ->
+                dateTime = Calendar.DateTime.now! "Asia/Bangkok"
                 mail_user = %{
                   projectName: history.name,
                   email: history.email,
@@ -30,7 +31,7 @@ defmodule SapanboonWeb.HistoryController do
                   amount: history.amount,
                   paymentType: history.paymentType,
                   transactionNo: history.transNo,
-                  day: "10", month: "มกราคม", year: "2563", time: "10:00",
+                  dateTime: dateTime,
                   status: "รอตรวจสอบเอกสาร"
                 }
                 Email.send_email(mail_user) |> Mailer.deliver_later()
