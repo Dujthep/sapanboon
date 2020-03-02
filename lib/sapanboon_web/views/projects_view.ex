@@ -21,27 +21,26 @@ defmodule SapanboonWeb.ProjectsView do
 
   def active_class(conn, path) do
     # IO.inspect(conn.params["status"])
-    if conn.params["status"] == path, do: "nav-link text-large active", else: "nav-link text-large"
+    if conn.params["status"] == path,
+      do: "nav-link text-large active",
+      else: "nav-link text-large"
   end
 
   def format_number(number) do
     number
     |> to_string
-    |> String.replace(~r/\d+(?=\.)|\A\d+\z/, fn(int) ->
+    |> String.replace(~r/\d+(?=\.)|\A\d+\z/, fn int ->
       int
-      |> String.graphemes
-      |> Enum.reverse
+      |> String.graphemes()
+      |> Enum.reverse()
       |> Enum.chunk_every(3, 3, [])
       |> Enum.join(",")
-      |> String.reverse
+      |> String.reverse()
     end)
   end
 
   def calculate_percent(donation, budget) do
-    if budget && budget > 0 do
-      percent = ((donation / budget) * 100)
-      if percent < 1 && percent > 0, do: 1, else: percent
-    end
+    percent = donation / budget * 100
+    if percent < 1, do: 1, else: percent
   end
-
 end
