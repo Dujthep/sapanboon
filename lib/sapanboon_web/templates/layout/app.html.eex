@@ -30,7 +30,7 @@
           <span class="navbar-toggler-icon"></span>
         </button> %>
 
-        <button type="button" id="sidebarCollapse" class="btn btn-default d-lg-none d-xl-block">
+        <button type="button" id="sidebarCollapse" class="btn btn-default d-xl-none d-lg-none d-md-block">
           <span class="navbar-toggler-icon"></span>
         </button>
 
