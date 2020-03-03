@@ -91,6 +91,7 @@ $(document).ready(function() {
   })
 
   $(document).on('click', 'input[name="amount"]', function() {
+    console.log($(this).val())
     $('input[name=inputAmount]').removeClass('error')
     if ($(this).val() === 'on') {
       $('#input-free-style').show()

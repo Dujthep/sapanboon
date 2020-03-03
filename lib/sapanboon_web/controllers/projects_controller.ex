@@ -42,6 +42,7 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def insert_transaction(conn, %{"id" => id, "amount" => amount, "fullName" => fullName}) do
+    IO.inspect(amount)
     {id, _} = Integer.parse(id)
     {amount, _} = Integer.parse(amount)
 

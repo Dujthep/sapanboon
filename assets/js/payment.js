@@ -62,7 +62,7 @@ function onSubmit() {
       type: 'POST',
       success: function(imagePath) {
         $.ajax({
-          url: 'api/transaction',
+          url: '/api/transaction',
           data: {
             transId: transactionId,
             imageSlip: imagePath
@@ -73,7 +73,7 @@ function onSubmit() {
           },
           dataType: 'json',
           success: function(data) {
-            window.location.href = '/success/' + data.id
+            window.location.href = '/success/' + data.data.id
           },
           error: function(data) {
             alert('อัพโหลดสลิปล้มเหลว กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่')

@@ -2,15 +2,31 @@
 .fs-18
     font-size: 18px
 
+
+.fs-20
+  font-size: 20px
+
 .fs-24
     font-size: 24px
 
-.fs-medium-24-bold
+.fs-medium
+  font-family: medium
+
+.fs-medium-20
+    font-size: 20px
+    @extend .fs-medium
+
+.fs-medium-24
     font-size: 24px
+    @extend .fs-medium
+
+.fs-medium-24-bold
+    @extend .fs-medium-24
     @extend .bold
 
 .fs-medium-24-32, .btn-primary, .btn-gray, .btn-secondary, .btn-third
     font-size: 32px
+    @extend .fs-medium
 
 .fs-28
     font-size: 28px
@@ -90,14 +106,15 @@
     right: -14px
     width: 35px
     height: 35px
-    font-family: 'FontAwesome'
-    content: '\f00c'
-    font-size: 20px
+    font-family: 'sapanboon-icon'
+    content: '\e902'
+    font-size: 35px
     line-height: 35px
     text-align: center
     color: #fff
     border: 1px solid #9eadb5
     background-color: #9eadb5
+    font-weight: bold
 
 .payment-amount, .payment-channel
     position: relative
@@ -183,6 +200,9 @@ label
 
 .font-white
     color: #ffffff
+
+.text-dark-gray
+    color: #626463
 
 .top-right
     position: absolute
