@@ -93,7 +93,25 @@ $(document).ready(function () {
 
   $('#search-box').on("keydown", function (e) {
     if (e.which === 13) {
-      console.log(window.location, $(this).val())
+      // console.log(window.location, $(this).val())
+      const csrf_token = $("meta[name='csrf-token']").attr("content")
+      const url = 'http://localhost:4000'
+      $.ajax({
+        url: url + `/search/?param=${$(this).val()}`,
+        type: 'GET',
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader("X-CSRF-Token", csrf_token);
+        },
+        contentType: "application/json",
+        success: function (data) {
+          console.log(data)
+          $("#project-card").empty()
+          // location.reload();
+        },
+        error: function () {
+
+        }
+      })
     }
   })
 

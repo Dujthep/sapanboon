@@ -36,6 +36,7 @@ defmodule SapanboonWeb.Router do
     get "/history", HistoryController, :index
     get "/success/:id", SuccessController, :index
     get "/admin", LoginController, :admin
+    get "/search", ProjectsController, :search
   end
 
   scope "/auth", SapanboonWeb do

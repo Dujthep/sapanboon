@@ -13,25 +13,28 @@ defmodule Sapanboon.Project do
   end
 
   def list_project_by_status(status, page) do
-
-    # status = if status == nil or status == "", do: "active", else: status
-    # query = from u in Sapanboon.Project.Projects,
-    #       where: u.status == ^status
-    # Repo.paginate(query, cursor_fields: [:inserted_at, :id], limit: 6).entries
-    # IO.inspect(entries)
-    # Repo.all(query);
     if status == nil or status == "" do
       Projects
       |> limit(6)
-      |>  offset((^page - 1) * 6)
+      |> offset((^page - 1) * 6)
       |> Repo.all()
     else
       Projects
-        |> where([p], p.projectStatus == ^status)
-        |> limit(6)
-        |>  offset((^page - 1) * 6)
-        |> Repo.all()
+      |> where([p], p.projectStatus == ^status)
+      |> limit(6)
+      |> offset((^page - 1) * 6)
+      |> Repo.all()
     end
+  end
+
+  def get_project_by_param(param) do
+    like = "%#{param}%"
+
+    from(
+      p in Projects,
+      where: like(p.name, ^like)
+    )
+    |> Repo.all()
   end
 
   def get_projects!(id), do: Repo.get!(Projects, id)
