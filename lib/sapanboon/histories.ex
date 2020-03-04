@@ -12,12 +12,6 @@ defmodule Sapanboon.Histories do
     Repo.all(History)
   end
 
-  def list_histories_by_email() do
-    History
-      |> where([h], h.email == "sothon@odds.team")
-      |> Repo.all()
-  end
-
   def list_histories_by_projectId() do
     History
       |> where([h], h.projectId == "5d274d08403c12000113676d")
@@ -33,6 +27,8 @@ defmodule Sapanboon.Histories do
   def get_history!(id), do: Repo.get!(History, id)
 
   def get_history_by_trans_id(transId), do: Repo.get_by(History, transId: transId)
+
+  def get_history_by_email(email), do: Repo.get_by(History, email: email)
 
   def create_history(attrs \\ %{}) do
     %History{}
