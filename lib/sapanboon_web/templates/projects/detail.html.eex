@@ -80,7 +80,13 @@
                 <div class="box-budget border-right-0">
                   <span class="fs-18 fs-black-1">โครงการ</span>
                   <span class="text-primary fs-36">
-                    <%= Float.ceil(calculate_percent(@transSum,@projects.budget),2) %>%
+                    <%= 
+                    if @transSum > 0 do
+                      Float.ceil(calculate_percent(@transSum,@projects.budget),2) 
+                    else
+                      0
+                    end 
+                    %>%
                   </span>
                 </div>
 

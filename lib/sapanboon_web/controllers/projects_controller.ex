@@ -34,11 +34,12 @@ defmodule SapanboonWeb.ProjectsController do
 
   def detail(conn, %{"id" => id}) do
     projects = Project.get_projects!(id)
-    # histories = Histories.list_histories_by_projectId(projects.projectId)
-    # transSum = Histories.sum_history(projects.projectId)
+    histories = Histories.list_histories_by_projectId(projects.projectId)
+    transSum = Histories.sum_history(projects.projectId)
 
-    histories = 0
-    transSum = 0
+    IO.inspect("histories ===================")
+    IO.inspect(histories)
+    IO.inspect("=============================")
 
     render(conn, "detail.html", projects: projects, histories: histories, transSum: transSum)
   end
