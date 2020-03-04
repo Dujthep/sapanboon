@@ -26,7 +26,8 @@ defmodule SapanboonWeb.HistoryController do
                 map_status = %{
                   "pending" => "รอตรวจสอบเอกสาร",
                   "approved" => "อนุมัติการบริจาค",
-                  "cancel" => "ยกเลิกการบริจาค"
+                  "cancel" => "ยกเลิกการบริจาค",
+                  "reject" => "ไม่อนุมัติการบริจาค"
                 }
                 dateTime = Calendar.DateTime.now! "Asia/Bangkok"
                 mail_user = %{
