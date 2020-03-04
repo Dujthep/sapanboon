@@ -14,7 +14,7 @@
       </div>
       <div class="col-4 text-right">
         <span class="fs-16 txt-bright-cyan">
-          <%= history.amount %>
+          <%= format_number(history.amount) %>
         </span>
         <br>
         <%= if history.status === "pending" do %>

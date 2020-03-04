@@ -22,7 +22,7 @@
             <span class="fs-16"><%= history.code %></span>
             <span class="fs-16"><%= history.name %></span>
           </td>
-          <td class="text-right"><span class="fs-16 txt-bright-cyan"><%= history.amount %></span></td>
+          <td class="text-right"><span class="fs-16 txt-bright-cyan"><%= format_number(history.amount) %></span></td>
           <td class="text-center">
             <%= if history.status === "pending" do %>
             <img src="<%= Routes.static_path(@conn, "/images/pending.svg") %>" />

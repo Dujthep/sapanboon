@@ -31,7 +31,7 @@
           </td>
           <td class="text-right">
             <span class="fs-16 txt-bright-cyan">
-              <%= history.amount %>
+              <%= format_number(history.amount) %>
             </span>
           </td>
           <td class="text-center">
