@@ -12,9 +12,9 @@ defmodule Sapanboon.Histories do
     Repo.all(History)
   end
 
-  def list_histories_by_projectId() do
+  def list_histories_by_projectId(id) do
     History
-      |> where([h], h.projectId == "5d274d08403c12000113676d")
+      |> where([h], h.projectId == ^id)
       |> Repo.all()
   end
 
