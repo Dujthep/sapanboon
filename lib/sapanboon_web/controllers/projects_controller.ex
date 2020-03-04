@@ -10,10 +10,6 @@ defmodule SapanboonWeb.ProjectsController do
   def index(conn, params) do
     list_project = Project.list_project_by_status(Map.get(params, "status"), 1)
 
-    # Enum.map(list_project, fn project ->
-    #   percent = calculate_percent(Histories.sum_history(project.projectId), project.budget)
-    # end)
-
     month = [
       "ม.ค.",
       "ก.พ.",
@@ -36,11 +32,6 @@ defmodule SapanboonWeb.ProjectsController do
     projects = Project.get_projects!(id)
     histories = Histories.list_histories_by_projectId(projects.projectId)
     transSum = Histories.sum_history(projects.projectId)
-
-    IO.inspect("histories ===================")
-    IO.inspect(histories)
-    IO.inspect("=============================")
-
     render(conn, "detail.html", projects: projects, histories: histories, transSum: transSum)
   end
 
