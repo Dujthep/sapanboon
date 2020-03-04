@@ -98,12 +98,23 @@ $(document).ready(function () {
           <div class="card-body">
             <section class="card-title" title="ข้อความเต็ม">
               <span class="text-large text-dark">
-                ${data.code}
+                SPB${data.code}
               </span>
               <span class="text-large">
                 ${data.name}
               </span>
             </section>
+
+            <div class="row">
+              <div class="top-right px-2">
+                <a id='line-icon' data-id="${data.projectId}" data-title="${data.name}">
+                  <img class="icon-detail pointer" src="/images/line-icon.svg">
+                </a>
+                <a id="face-icon" data-id="${data.id}" data-title="${data.images1}">
+                  <img class="icon-detail pointer" src="/images/facebook-icon.svg">
+                </a>
+              </div>
+            </div>
 
             <section>
               <img class="card-img-top" src="${data.images1}" alt="project image">
