@@ -30,6 +30,12 @@ defmodule Sapanboon.Histories do
 
   def get_history_by_email(email), do: Repo.get_by(History, email: email)
 
+  def get_history_list_by_email(email) do
+    History
+    |> where([h], h.email == ^email)
+    |> Repo.all()
+  end
+
   def create_history(attrs \\ %{}) do
     %History{}
     |> History.changeset(attrs)

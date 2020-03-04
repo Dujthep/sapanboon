@@ -7,7 +7,7 @@ defmodule SapanboonWeb.HistoryController do
   alias Sapanboon.{Mailer, Email}
 
   def index(conn, _params) do
-    list_histories = Histories.get_history_by_email(conn.assigns[:user].email)
+    list_histories = Histories.get_history_list_by_email(conn.assigns[:user].email)
     render(conn, "index.html", list_histories: list_histories)
   end
 
