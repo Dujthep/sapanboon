@@ -45,7 +45,8 @@ function attachedFile() {
 }
 
 function onSubmit() {
-  const url = 'http://localhost:8080'
+  const url = $("#url-api").val()
+  console.log(url)
   const file = $('#upload')[0].files[0]
   const transactionId = $('#transactionId').val()
   const csrf_token = $("meta[name='csrf-token']").attr('content')

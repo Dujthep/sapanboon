@@ -1,6 +1,7 @@
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/history.js") %>">
 </script>
 
+<input type="hidden" id="url-api" name="url-api" value="<%= @url_api %>">
 <div class="container py-5">
   <div class="row">
     <div class="col">

@@ -1,6 +1,7 @@
 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
 <script type='text/javascript' src='<%= Routes.static_path(@conn, "/js/payment.js") %>'></script>
 
+<input type="hidden" id="url-api" name="url-api" value="<%= @url_api %>">
 <div class="container-fluid pt-5 pb-3">
 
     <div class="d-flex justify-content-center mt-3">
@@ -20,7 +21,7 @@
     <input type="hidden" id="amount" name="amount" value="<%= @history.amount %>">
     <input type="hidden" id="transactionId" name="transactionId" value="<%= @history.transId %>">
     <input type="hidden" id="history_id" name="history_id" value="<%= @history.id %>">
-    
+
     <div class="form-group">
         <div id="payment-panel" class="offset-lg-2 col-lg-8 mt-3">
             <div class="container-fluid d-flex flex-column py-3 payment-panel">
@@ -53,8 +54,8 @@
                                     <label class="fs-18">จำนวนเงิน</label>
                                 </div>
                                 <div class="col-md-4 text-left d-flex justify-content-center justify-content-md-start">
-                                    <label class="fs-24 " 
-                                        name="amount" 
+                                    <label class="fs-24 "
+                                        name="amount"
                                         id="amount"><%= format_number(@history.amount) %> บาท
                                     </label>
                                 </div>

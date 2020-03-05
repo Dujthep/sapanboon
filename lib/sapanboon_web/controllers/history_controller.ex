@@ -7,8 +7,9 @@ defmodule SapanboonWeb.HistoryController do
   alias Sapanboon.{Mailer, Email}
 
   def index(conn, _params) do
+    url_api = Application.fetch_env!(:sapanboon, :api_transaction)
     list_histories = Histories.get_history_list_by_email(conn.assigns[:user].email)
-    render(conn, "index.html", list_histories: list_histories)
+    render(conn, "index.html", list_histories: list_histories, url_api: url_api)
   end
 
   def update_transaction(conn, params) do

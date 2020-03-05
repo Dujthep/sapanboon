@@ -14,7 +14,7 @@ $(document).ready(function () {
   $(".modal #btn-cancel-trans").click(function() {
     const transId = $('#cancel-trans').attr("data-payload")
     const csrf_token = $("meta[name='csrf-token']").attr("content")
-    const url = 'http://localhost:8080'
+    const url = $("#url-api").val()
     $.ajax({
       url: url + '/updateStatus',
       data: JSON.stringify({
@@ -42,7 +42,7 @@ $(document).ready(function () {
   })
 
   $("#btn-confirm-slip").click(function() {
-    const url = 'http://localhost:8080'
+    const url = $("#url-api").val()
     const file = $("td #file-upload")[0].files[0]
     const transId = $("td #file-upload").attr("data-payload")
     const csrf_token = $("meta[name='csrf-token']").attr('content')
