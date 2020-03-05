@@ -10,7 +10,7 @@ defmodule SapanboonWeb.PaymentController do
     url_api = Application.fetch_env!(:sapanboon, :api_transaction)
     history = Histories.get_history!(id)
     IO.inspect(history)
-    render(conn, "index.html", history: history)
+    render(conn, "index.html", history: history, url_api: url_api)
   end
 
 end
