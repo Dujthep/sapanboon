@@ -25,7 +25,8 @@
                 <%= project.name %>
               </span>
             </section>
-
+            <div class="bottom-left px-2">
+            </div>
             <div class="row">
               <div class="top-right px-2">
                 <a id='line-icon' data-id='<%= project.projectId %>' data-title='<%= project.name %>'>
@@ -39,6 +40,15 @@
 
             <section>
               <img class="card-img-top" src="<%= project.images1 %>" alt="project image">
+              <div class="row">
+              <div class="bottom-left px-2">
+                <i class="icon-username"></i>
+                <span class="text-normal text-dark">
+                  <%= project.donation %>
+                </span>
+              </div>
+            </div>
+            
             </section>
 
             <section class="project-progress">

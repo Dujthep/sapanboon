@@ -14,7 +14,7 @@ defmodule SapanboonWeb.HistoryView do
     }
   end
 
-  def format_number(number) do
+    def format_number(number) do
     number
     |> to_string
     |> String.replace(~r/\d+(?=\.)|\A\d+\z/, fn int ->
