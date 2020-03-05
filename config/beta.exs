@@ -29,6 +29,8 @@ config :sapanboon, SapanboonWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :sapanboon, :api_transaction, "https://beta.api.sapanboon.org/"
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

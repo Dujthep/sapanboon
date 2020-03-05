@@ -40,7 +40,7 @@ defmodule SapanboonWeb.ProjectsController do
     {id, _} = Integer.parse(id)
     {amount, _} = Integer.parse(amount)
 
-    url = "http://localhost:8080"
+    url = Application.fetch_env!(:sapanboon, :api_transaction)
     paymentType = "PromptPay"
     statusPending = "pending"
 
