@@ -13,19 +13,31 @@ defmodule Sapanboon.Project do
   end
 
   def list_project_by_status(status, page) do
-    if status == nil or status == "" do
-      Projects
-      |> limit(6)
-      |> offset((^page - 1) * 6)
-      |> order_by([p], [desc: p.code])
-      |> Repo.all()
-    else
-      Projects
-      |> where([p], p.projectStatus == ^status)
-      |> limit(6)
-      |> offset((^page - 1) * 6)
-      |> order_by([p], [desc: p.code])
-      |> Repo.all()
+    cond do
+      status == nil or status == "" ->
+        Projects
+        |> where([p], p.projectStatus != "inactive")
+        |> limit(6)
+        |> offset((^page - 1) * 6)
+        |> order_by([p], desc: p.code)
+        |> Repo.all()
+
+      status == "complete" ->
+        Projects
+        |> where([p], p.projectStatus == "complete")
+        |> or_where([p], p.projectStatus == "expire")
+        |> limit(6)
+        |> offset((^page - 1) * 6)
+        |> order_by([p], desc: p.code)
+        |> Repo.all()
+
+      true ->
+        Projects
+        |> where([p], p.projectStatus == ^status)
+        |> limit(6)
+        |> offset((^page - 1) * 6)
+        |> order_by([p], desc: p.code)
+        |> Repo.all()
     end
   end
 
