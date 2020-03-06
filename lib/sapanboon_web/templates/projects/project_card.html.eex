@@ -39,7 +39,9 @@
             </div>
 
             <section>
-              <img class="card-img-top" src="<%= project.images1 %>" alt="project image">
+              <a href="/details/<%= project.id %>">
+                <img class="card-img-top" src="<%= project.images1 %>" alt="project image">
+              </a>
               <div class="row">
               <div class="bottom-left px-2">
                 <i class="icon-username"></i>
