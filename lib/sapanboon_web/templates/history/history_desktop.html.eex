@@ -3,13 +3,13 @@
     <thead>
       <tr>
         <th class="text-center"></th>
-        <th class="text-center">เลขที่</th>
-        <th>ชื่อโครงการ</th>
-        <th class="text-center">จำนวนเงิน (บาท)</th>
-        <th class="text-center">สถานะ</th>
-        <th class="text-center">อัพโหลด</th>
-        <th class="text-center">ดูสลิป</th>
-        <th class="text-center">ยกเลิกรายการ</th>
+        <th class="text-center bold">เลขที่</th>
+        <th class="bold">ชื่อโครงการ</th>
+        <th class="text-center bold">จำนวนเงิน (บาท)</th>
+        <th class="text-center bold">สถานะ</th>
+        <th class="text-center bold">อัพโหลด</th>
+        <th class="text-center bold">ดูสลิป</th>
+        <th class="text-center bold">ยกเลิกรายการ</th>
       </tr>
     </thead>
     <tbody>
@@ -17,7 +17,8 @@
         <tr>
           <td class="text-center">
             <span class="fs-medium-16 bold">
-              <%= history.transDate %>
+              <% d = history.transDate %>
+              <%= "#{d.day}"<>" "<>Enum.at(@month, d.month - 1)<>" "<>"#{d.year+ 543}" %>
             </span>
           </td>
           <td class="text-center">
@@ -26,7 +27,7 @@
             </span>
           </td>
           <td>
-            <span class="fs-16"><%= history.code %></span>
+            <span class="fs-16">SPB<%= history.code %></span>
             <span class="fs-16"><%= history.name %></span>
           </td>
           <td class="text-right">

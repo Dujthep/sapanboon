@@ -5,13 +5,13 @@
 <div class="container py-5">
   <div class="row">
     <div class="col">
-      <p class="fs-24 txt-light-dark-gray">รายการบริจาคของคุณ</p>
+      <p class="fs-24 txt-light-dark-gray bold">รายการบริจาคของคุณ</p>
     </div>
   </div>
 
-  <%= render "history_desktop.html", list_histories: @list_histories , conn: @conn %>
-  <%= render "history_tablet.html", list_histories: @list_histories , conn: @conn %>
-  <%= render "history_mobile.html", list_histories: @list_histories , conn: @conn %>
+  <%= render "history_desktop.html", list_histories: @list_histories, month: @month, conn: @conn %>
+  <%= render "history_tablet.html", list_histories: @list_histories, month: @month, conn: @conn %>
+  <%= render "history_mobile.html", list_histories: @list_histories, month: @month, conn: @conn %>
 </div>
 
 <!-- The Modal View Slip -->
