@@ -17,12 +17,14 @@ defmodule Sapanboon.Project do
       Projects
       |> limit(6)
       |> offset((^page - 1) * 6)
+      |> order_by([p], [desc: p.code])
       |> Repo.all()
     else
       Projects
       |> where([p], p.projectStatus == ^status)
       |> limit(6)
       |> offset((^page - 1) * 6)
+      |> order_by([p], [desc: p.code])
       |> Repo.all()
     end
   end

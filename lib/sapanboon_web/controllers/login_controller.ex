@@ -54,7 +54,7 @@ defmodule SapanboonWeb.LoginController do
   end
 
   def admin(conn, _params) do
-    url = Enum.join(["https://beta.admin.sapanboon.org/sapanboon/?uid=", conn.assigns.user.uid])
+    url = Enum.join([Application.fetch_env!(:sapanboon, :admin_page), conn.assigns.user.uid])
     redirect(conn, external: url)
   end
 end

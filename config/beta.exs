@@ -27,7 +27,8 @@ config :sapanboon, SapanboonWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
-config :sapanboon, :api_transaction, "https://beta.api.sapanboon.org/"
+config :sapanboon, :api_transaction, "https://beta.api.sapanboon.org"
+config :sapanboon, :admin_page, "https://beta.admin.sapanboon.org/sapanboon/?uid="
 
 # ## SSL Support
 #
