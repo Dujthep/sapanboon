@@ -28,6 +28,7 @@ config :sapanboon, SapanboonWeb.Endpoint,
 config :logger, level: :info
 
 config :sapanboon, :api_transaction, "https://beta.api.sapanboon.org"
+config :sapanboon, :admin_page, "https://beta.admin.sapanboon.org/sapanboon/?uid="
 
 # ## SSL Support
 #

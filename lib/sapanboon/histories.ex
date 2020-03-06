@@ -28,11 +28,10 @@ defmodule Sapanboon.Histories do
 
   def get_history_by_trans_id(transId), do: Repo.get_by(History, transId: transId)
 
-  def get_history_by_email(email), do: Repo.get_by(History, email: email)
-
   def get_history_list_by_email(email) do
     History
     |> where([h], h.email == ^email)
+    |> order_by([h], [desc: h.transId])
     |> Repo.all()
   end
 
