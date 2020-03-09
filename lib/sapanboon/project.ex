@@ -41,6 +41,14 @@ defmodule Sapanboon.Project do
     end
   end
 
+  def update_pending_project() do
+    dateTime = Calendar.DateTime.now! "Asia/Bangkok"
+    Projects
+      |> where([p], p.dateFrom <= ^dateTime and p.projectStatus == "pending")
+      |> update([set: [projectStatus: "active"]])
+      |> Repo.update_all([])
+  end
+
   def get_project_by_param(param) do
     like = "%#{param}%"
 
