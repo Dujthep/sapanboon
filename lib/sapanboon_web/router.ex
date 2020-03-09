@@ -23,6 +23,10 @@ defmodule SapanboonWeb.Router do
     put "/transaction", HistoryController, :update_transaction
   end
 
+  scope "/crontab", SapanboonWeb do
+    put "/pending", CrontabController, :pending
+  end
+
   scope "/", SapanboonWeb do
     pipe_through :browser
     get "/", ProjectsController, :index

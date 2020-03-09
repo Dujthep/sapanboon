@@ -3,13 +3,14 @@
     <div class="row">
       <div class="col-sm-12">
         <span class="fs-medium-16 bold">
-          <%= history.transDate %>
+          <% d = history.transDate %>
+          <%= "#{d.day}"<>" "<>Enum.at(@month, d.month - 1)<>" "<>"#{d.year+ 543}" %>
         </span>
       </div>
     </div>
     <div class="row mb-3">
       <div class="col-7">
-        <span class="fs-16"><%= history.code %></span>
+        <span class="fs-16">SPB<%= history.code %></span>
         <span class="fs-16"><%= history.name %></span>
       </div>
       <div class="col-4 text-right">

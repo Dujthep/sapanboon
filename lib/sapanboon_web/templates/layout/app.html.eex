@@ -91,6 +91,11 @@
           <li>
             <%= link "รายการของฉัน", to: Routes.history_path(@conn, :index), class: "menu fs-16 fs-light text-white" %>
           </li>
+          <%= if @conn.assigns.user.role  === "admin" do %>
+            <li>
+              <%= link "หน้าจอ Admin", to: Routes.login_path(@conn, :admin), class: "menu fs-16 fs-light text-white", id: "go-admin"%>
+            </li>
+          <% end %>
         <%  end %>
         <li>
           <div class="p-1">

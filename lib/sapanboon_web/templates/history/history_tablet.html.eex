@@ -2,24 +2,27 @@
   <table>
     <thead>
       <tr>
-        <th class="text-center">เลขที่</th>
-        <th>ชื่อโครงการ</th>
-        <th class="text-center">จำนวนเงิน (บาท)</th>
-        <th class="text-center">สถานะ</th>
-        <th class="text-center">อัพโหลด</th>
-        <th class="text-center">ดูสลิป</th>
-        <th class="text-center"></th>
+        <th class="text-center bold">เลขที่</th>
+        <th class="bold">ชื่อโครงการ</th>
+        <th class="text-center bold">จำนวนเงิน (บาท)</th>
+        <th class="text-center bold">สถานะ</th>
+        <th class="text-center bold">อัพโหลด</th>
+        <th class="text-center bold">ดูสลิป</th>
+        <th class="text-center bold"></th>
       </tr>
     </thead>
     <tbody>
       <%= for history <- @list_histories do %>
         <tr>
-          <td colspan="7"><span class="fs-medium-16 bold"><%= history.transDate %></span></td>
+          <td colspan="7"><span class="fs-medium-16 bold">
+            <% d = history.transDate %>
+            <%= "#{d.day}"<>" "<>Enum.at(@month, d.month - 1)<>" "<>"#{d.year+ 543}" %>
+          </span></td>
         </tr>
         <tr>
           <td class="text-center"><span class="fs-16"><%= history.transNo %></span></td>
           <td>
-            <span class="fs-16"><%= history.code %></span>
+            <span class="fs-16">SPB<%= history.code %></span>
             <span class="fs-16"><%= history.name %></span>
           </td>
           <td class="text-right"><span class="fs-16 txt-bright-cyan"><%= format_number(history.amount) %></span></td>
