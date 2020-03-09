@@ -57,6 +57,8 @@ defmodule SapanboonWeb.ProjectsController do
       }
       |> Poison.encode!()
 
+      IO.inspect(url <> "/transaction")
+
     case HTTPoison.post(
            url <> "/transaction",
            trans_params,

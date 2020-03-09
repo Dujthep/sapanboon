@@ -26,13 +26,10 @@
         <a class="navbar-brand" href="/">
           <img src="<%= Routes.static_path(@conn, "/images/sapanboon-logo-white.png") %>" alt="sapanboon">
           </a>
-        <%# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-collapse-content" aria-controls="navigation-collapse-content" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button> %>
 
-        <button type="button" id="sidebarCollapse" class="btn btn-default d-xl-none d-lg-none d-md-block">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <span id="sidebarCollapse" class="btn btn-default d-xl-none d-lg-none d-md-block">
+          <span class="navbar-toggler-icon fa-bars"></span>
+        </span>
 
         <div class="navbar-collapse d-none d-lg-block" id="navigation-collapse-content">
           <ul class="link-menu navbar-nav mr-auto">
