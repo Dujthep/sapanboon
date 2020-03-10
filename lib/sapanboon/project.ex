@@ -7,6 +7,7 @@ defmodule Sapanboon.Project do
 
   alias Sapanboon.Repo
   alias Sapanboon.Project.Projects
+  alias Sapanboon.Histories.History
 
   def list_project do
     Repo.all(Projects)
@@ -47,6 +48,16 @@ defmodule Sapanboon.Project do
       |> where([p], p.dateFrom <= ^dateTime and p.projectStatus == "pending")
       |> update([set: [projectStatus: "active"]])
       |> Repo.update_all([])
+  end
+
+  def update_complete_project() do
+    Projects
+      |> join(:inner, [p], h in History, on: p.projectId == h.projectId)
+      |> where([p], p.projectStatus == "active")
+      |> group_by([p], [p.projectId, p.budget])
+      |> having([p, h], sum(h.amount) >= p.budget)
+      |> select([:projectId])
+      |> Repo.all([])
   end
 
   def get_project_by_param(param) do
