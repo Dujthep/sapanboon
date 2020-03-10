@@ -1,5 +1,6 @@
 defmodule SapanboonWeb.ProjectsView do
   use SapanboonWeb, :view
+  import SapanboonWeb.ShareHelper
 
   def render("show.json", %{projects: projects}) do
     %{data: render_one(projects, SapanboonWeb.ProjectsView, "page.json")}
@@ -26,19 +27,6 @@ defmodule SapanboonWeb.ProjectsView do
       else: "nav-link text-large"
   end
 
-  def format_number(number) do
-    number
-    |> to_string
-    |> String.replace(~r/\d+(?=\.)|\A\d+\z/, fn int ->
-      int
-      |> String.graphemes()
-      |> Enum.reverse()
-      |> Enum.chunk_every(3, 3, [])
-      |> Enum.join(",")
-      |> String.reverse()
-    end)
-  end
-
   def calculate_percent(donation, budget) do
     if donation != nil do
       percent = donation / budget * 100
@@ -46,6 +34,5 @@ defmodule SapanboonWeb.ProjectsView do
     else
       percent = 0
     end
-
   end
 end
