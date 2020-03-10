@@ -23,7 +23,7 @@
   <body>
     <section id="navigation-section">
       <nav class="navbar navbar-dark bg-primary navbar-expand-lg fixed-top">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/?status=active">
           <img src="<%= Routes.static_path(@conn, "/images/sapanboon-logo-white.png") %>" alt="sapanboon">
           </a>
 
@@ -34,7 +34,7 @@
         <div class="navbar-collapse d-none d-lg-block" id="navigation-collapse-content">
           <ul class="link-menu navbar-nav mr-auto">
             <li class="nav-item">
-              <%= active_link(@conn, "หน้าแรก", to: "/", class: "nav-link") %>
+              <%= active_link(@conn, "หน้าแรก", to: "/?status=active", class: "nav-link") %>
             </li>
             <li class="nav-item">
               <%= active_link(@conn, "เกี่ยวกับเรา", to: "/abouts", class: "nav-link") %>
