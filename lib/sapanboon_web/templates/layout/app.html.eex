@@ -75,7 +75,7 @@
         <li>
           <div class="has-search">
             <span class="icon-search form-control-feedback"></span>
-            <input id="search-box" type="text" class="form-control" placeholder="Search">
+            <input id="search-box-mobile" type="text" class="form-control" placeholder="Search">
           </div>
         </li>
         <li>
