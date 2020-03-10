@@ -62,6 +62,7 @@ function onSubmit() {
   const transactionId = $('#transactionId').val()
   const csrf_token = $("meta[name='csrf-token']").attr('content')
   if (file) {
+    $(".loader").addClass("is-active");
     var formData = new FormData()
     formData.append('file', file)
     formData.append('id', transactionId)
@@ -88,7 +89,9 @@ function onSubmit() {
             window.location.href = '/success/' + data.data.id
           },
           error: function(data) {
+            $("#error-text").text("อัพโหลดสลิปล้มเหลว กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่");
             $('#error-modal').modal('show')
+            $(".loader").removeClass("is-active");
           }
         })
       },

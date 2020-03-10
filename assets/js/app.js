@@ -11,10 +11,10 @@ import css from "../css/app.sass"
 // Import dependencies
 //
 import "phoenix_html"
-import {Socket} from "phoenix"
+import { Socket } from "phoenix"
 import LiveSocket from "phoenix_live_view"
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
+let liveSocket = new LiveSocket("/live", Socket, { params: { _csrf_token: csrfToken } })
 liveSocket.connect()
 
 // Import local files
@@ -24,6 +24,11 @@ liveSocket.connect()
 
 $.ajaxSetup({ cache: true });
 
+$(document).ready(function () {
+    if (window.location.pathname === "/" && !window.location.search) {
+        window.location.search = "?status=active"
+    }
+})
 $('#sidebarCollapse').on('click', function (e) {
     $('#sidebar').toggleClass('active');
     $('.overlay').toggleClass('active');

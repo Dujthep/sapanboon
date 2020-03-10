@@ -82,7 +82,7 @@
                   <span class="text-primary fs-36">
                     <%= 
                     if @transSum > 0 && @transSum != nil do
-                      Float.ceil(calculate_percent(@transSum,@projects.budget),2) 
+                      calculate_percent(@transSum,@projects.budget)
                     else
                       0
                     end 

@@ -23,21 +23,18 @@
   <body>
     <section id="navigation-section">
       <nav class="navbar navbar-dark bg-primary navbar-expand-lg fixed-top">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/?status=active">
           <img src="<%= Routes.static_path(@conn, "/images/sapanboon-logo-white.png") %>" alt="sapanboon">
           </a>
-        <%# <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation-collapse-content" aria-controls="navigation-collapse-content" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button> %>
 
-        <button type="button" id="sidebarCollapse" class="btn btn-default d-xl-none d-lg-none d-md-block">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <span id="sidebarCollapse" class="btn btn-default d-xl-none d-lg-none d-md-block">
+          <span class="navbar-toggler-icon fa-bars"></span>
+        </span>
 
         <div class="navbar-collapse d-none d-lg-block" id="navigation-collapse-content">
           <ul class="link-menu navbar-nav mr-auto">
             <li class="nav-item">
-              <%= active_link(@conn, "หน้าแรก", to: "/", class: "nav-link") %>
+              <%= active_link(@conn, "หน้าแรก", to: "/?status=active", class: "nav-link") %>
             </li>
             <li class="nav-item">
               <%= active_link(@conn, "เกี่ยวกับเรา", to: "/abouts", class: "nav-link") %>
@@ -78,7 +75,7 @@
         <li>
           <div class="has-search">
             <span class="icon-search form-control-feedback"></span>
-            <input id="search-box" type="text" class="form-control" placeholder="Search">
+            <input id="search-box-mobile" type="text" class="form-control" placeholder="Search">
           </div>
         </li>
         <li>
@@ -124,59 +121,61 @@
 
     <!-- Dark Overlay element -->
     <div class="overlay"></div>
+    <!-- Loader -->
+    <div class="loader loader-bouncing"></div>
 
     <main role="main" class="container-fluid p-0">
       <%= render @view_module, @view_template, assigns %>
     </main>
   </body>
-  <footer class="p-3 footer">
-      <div class="row ">
-        <div class="col-lg-3 mb-3">
-          <img  src="<%= Routes.static_path(@conn, "/images/sapanboon-logo.png") %>" alt="sapanboon" width="125px">
-        </div>
-        
-        <div class="col-lg-3 mb-3">
-          <div class="row">
-            <div class="col-6 text-left">
-              <a class="nav-link" href="/">หน้าแรก</a>
-            </div>
-
-            <div class="col-6 text-left">
-              <a class="nav-link" href="/abouts"> เกี่ยวกับเรา </a>
-            </div>
-          </div>
-          <div class="row mt-2 mb-2">
-            <div class="col-12 border-bottom"></div>
-          </div>
-
-          <div class="row">
-            <div class="col-6 text-left">
-              <a class="nav-link " href="/contact"> ติดต่อเรา </a>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="col-lg-3 mb-3 text-left">
-          <p class="fs-light-footer text-dark">
-              ที่อยู่: มูลนิธิสะพานบุญ 556 ถนนลาดพร้าว แขวงพลับพลา เขตวังทองหลาง 10310 <br> 
-              ประเทศไทย <br> 
-              อีเมล: admin@sapanboon.org <br> 
-              โทรศัพท์:081-651-1718
-          </p>
-        </div>
-
-        <div class="col-lg-3 mb-3 text-left">
-          <p class="fs-light-footer text-left">ติดตามความเคลื่อนไหว</p>
-            <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/facebook-icon.svg") %>" alt="facebook-sapanboon">
-            <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/ig-icon.svg") %>" alt="ig-sapanboon">
-            <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/twitter-icon.svg") %>" alt="twitter-sapanboon">
-        </div>
-        
+  <footer class="p-3">
+    <div class="row footer">
+      <div class="col-lg-3 mb-3">
+        <img  src="<%= Routes.static_path(@conn, "/images/sapanboon-logo.png") %>" alt="sapanboon" width="125px">
       </div>
-      <div class="d-flex justify-content-center">
-          <span>© 2019 Sapanboon, All Rights Reserved. Design with Sapanboon</span>
+      
+      <div class="col-lg-3 mb-3">
+        <div class="row">
+          <div class="col-6 text-left">
+            <a class="nav-link" href="/">หน้าแรก</a>
+          </div>
+
+          <div class="col-6 text-left">
+            <a class="nav-link" href="/abouts"> เกี่ยวกับเรา </a>
+          </div>
         </div>
-    </footer>
+        <div class="row mt-2 mb-2">
+          <div class="col-12 border-bottom"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-6 text-left">
+            <a class="nav-link " href="/contact"> ติดต่อเรา </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-lg-3 mb-3 text-left">
+        <p class="fs-light-footer text-dark">
+            ที่อยู่: มูลนิธิสะพานบุญ 556 ถนนลาดพร้าว แขวงพลับพลา เขตวังทองหลาง 10310 <br> 
+            ประเทศไทย <br> 
+            อีเมล: admin@sapanboon.org <br> 
+            โทรศัพท์:081-651-1718
+        </p>
+      </div>
+
+      <div class="col-lg-3 mb-3 text-left">
+        <p class="fs-light-footer text-left">ติดตามความเคลื่อนไหว</p>
+          <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/facebook-icon.svg") %>" alt="facebook-sapanboon">
+          <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/ig-icon.svg") %>" alt="ig-sapanboon">
+          <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/twitter-icon.svg") %>" alt="twitter-sapanboon">
+      </div>
+      
+      <div class="d-flex justify-content-center col-12">
+        <span>© 2019 Sapanboon, All Rights Reserved. Design with Sapanboon</span>
+      </div>
+    </div>
+  </footer>
 </html>
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>

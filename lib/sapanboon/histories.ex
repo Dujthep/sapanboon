@@ -14,7 +14,7 @@ defmodule Sapanboon.Histories do
 
   def list_histories_by_projectId(id) do
     History
-      |> where([h], h.projectId == ^id)
+      |> where([h], h.projectId == ^id and h.status == "approved")
       |> Repo.all()
   end
 
@@ -24,7 +24,7 @@ defmodule Sapanboon.Histories do
     |> Repo.update()
   end
 
-  def get_history!(id), do: Repo.get!(History, id)
+  def get_history!(id),do: Repo.get!(History, id)
 
   def get_history_by_trans_id(transId), do: Repo.get_by(History, transId: transId)
 
@@ -56,6 +56,10 @@ defmodule Sapanboon.Histories do
   end
 
   def sum_history(id) do
-    Repo.one(from h in History, where: h.projectId == ^id , select: sum(h.amount))
+    Repo.one(
+      from h in History, 
+      where: h.projectId == ^id and h.status == "approved" ,
+      select: sum(h.amount)
+      )
   end
 end
