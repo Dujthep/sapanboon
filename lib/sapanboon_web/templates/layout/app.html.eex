@@ -121,6 +121,8 @@
 
     <!-- Dark Overlay element -->
     <div class="overlay"></div>
+    <!-- Loader -->
+    <div class="loader loader-bouncing"></div>
 
     <main role="main" class="container-fluid p-0">
       <%= render @view_module, @view_template, assigns %>
