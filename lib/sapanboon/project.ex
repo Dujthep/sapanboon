@@ -17,7 +17,7 @@ defmodule Sapanboon.Project do
     cond do
       status == nil or status == "" ->
         Projects
-        |> join(:inner, [p], h in History, on: p.projectId == h.projectId)
+        |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
         |> where([p], p.projectStatus != "inactive")
         |> limit(6)
         |> offset((^page - 1) * 6)
@@ -30,7 +30,7 @@ defmodule Sapanboon.Project do
 
       status == "complete" ->
         Projects
-        |> join(:inner, [p], h in History, on: p.projectId == h.projectId)
+        |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
         |> where([p], p.projectStatus == "complete")
         |> or_where([p], p.projectStatus == "expire")
         |> limit(6)
@@ -44,7 +44,7 @@ defmodule Sapanboon.Project do
 
       true ->
         Projects
-        |> join(:inner, [p], h in History, on: p.projectId == h.projectId)
+        |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
         |> where([p], p.projectStatus == ^status)
         |> limit(6)
         |> offset((^page - 1) * 6)
