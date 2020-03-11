@@ -69,7 +69,7 @@
                 </span>
               </div>
               <div class="progress">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.donation,project.budget)  %>%" aria-valuenow="<%= calculate_percent(project.donation,project.budget)  %>" aria-valuemin="0" aria-valuemax="100"><%= calculate_percent(project.donation,project.budget)  %>%</div>
+                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.total,project.budget)  %>%" aria-valuenow="<%= calculate_percent(project.total,project.budget)  %>" aria-valuemin="0" aria-valuemax="100"><%= calculate_percent(project.total,project.budget)  %>%</div>
               </div>
               <div>
                 <span class="text-normal">

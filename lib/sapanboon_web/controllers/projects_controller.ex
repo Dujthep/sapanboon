@@ -10,6 +10,12 @@ defmodule SapanboonWeb.ProjectsController do
   def index(conn, params) do
     list_project = Project.list_project_by_status(Map.get(params, "status"), 1)
 
+    IO.inspect("============")
+
+    IO.inspect(list_project)
+
+    IO.inspect("============")
+
     month = [
       "ม.ค.",
       "ก.พ.",
@@ -24,7 +30,6 @@ defmodule SapanboonWeb.ProjectsController do
       "พ.ย.",
       "ธ.ค."
     ]
-
     render(conn, "index.html", list_project: list_project, conn: conn, month: month)
   end
 

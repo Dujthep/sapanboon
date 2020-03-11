@@ -20,6 +20,10 @@ defmodule Sapanboon.Project do
         |> where([p], p.projectStatus != "inactive")
         |> limit(6)
         |> offset((^page - 1) * 6)
+        |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
+          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,
+          donation: p.donation,images1: p.images1,total: sum(h.amount),donation: count(h)})
+        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images1])
         |> order_by([p], desc: p.code)
         |> Repo.all()
 
@@ -29,14 +33,23 @@ defmodule Sapanboon.Project do
         |> or_where([p], p.projectStatus == "expire")
         |> limit(6)
         |> offset((^page - 1) * 6)
+        |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
+          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,
+          donation: p.donation,images1: p.images1,total: sum(h.amount),donation: count(h)})
+        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images1])
         |> order_by([p], desc: p.code)
         |> Repo.all()
 
       true ->
         Projects
+        |> join(:inner, [p], h in History, on: p.projectId == h.projectId)
         |> where([p], p.projectStatus == ^status)
         |> limit(6)
         |> offset((^page - 1) * 6)
+        |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
+          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,
+          donation: p.donation,images1: p.images1,total: sum(h.amount),donation: count(h)})
+        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images1])
         |> order_by([p], desc: p.code)
         |> Repo.all()
     end
