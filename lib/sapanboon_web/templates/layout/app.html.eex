@@ -98,7 +98,6 @@
           <% end %>
         <%  end %>
         <li>
-          <div class="p-1">
             <div class="d-flex login-tmp">
               <div class="col-4 align-self-center text-center">
                 <img src="<%= Routes.static_path(@conn, "/images/username-log-in.svg") %>" alt="sapanboon">
@@ -114,7 +113,6 @@
                 </div>
               <%  end %>
             </div>
-          </div>
         </li>
       </ul>
     </nav>
