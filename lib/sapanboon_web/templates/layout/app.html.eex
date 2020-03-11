@@ -28,7 +28,7 @@
           </a>
 
         <span id="sidebarCollapse" class="btn btn-default d-xl-none d-lg-none d-md-block">
-          <span class="navbar-toggler-icon fa-bars"></span>
+          <span class="fa-bars"></span>
         </span>
 
         <div class="navbar-collapse d-none d-lg-block" id="navigation-collapse-content">
@@ -179,3 +179,4 @@
   </footer>
 </html>
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
