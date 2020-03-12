@@ -14,6 +14,13 @@ defmodule SapanboonWeb.ProjectsView do
     }
   end
 
+  def render("update_status.json", _assigns) do
+    %{
+      status: "successfully",
+      message: "update status success."
+    }
+  end
+
   def format_date_time(date) do
     {date.year, date.month, date.day}
     # |> Calendar.Strftime.strftime!("%A %d %B", :th)

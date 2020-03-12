@@ -95,6 +95,12 @@ defmodule Sapanboon.Project do
     |> Repo.insert()
   end
 
+  def update_projects(%Projects{} = projects, attrs) do
+    projects
+    |> Projects.changeset(attrs)
+    |> Repo.update()
+  end
+
   def insert_or_update_projects(%Projects{} = projects, attrs) do
     projects
     |> Projects.changeset(attrs)
