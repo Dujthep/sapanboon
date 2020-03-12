@@ -21,8 +21,12 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def insert_transaction(conn, %{"id" => id, "amount" => amount, "fullName" => fullName}) do
+
     {id, _} = Integer.parse(id)
-    {amount, _} = Integer.parse(amount)
+
+    {amount, _} = if amount == "on", 
+      do:  :string.to_integer(to_char_list(String.replace(conn.query_params["inputAmount"], ",", ""))),
+      else: Integer.parse(amount)
 
     url = Application.fetch_env!(:sapanboon, :api_transaction)
     paymentType = "PromptPay"
