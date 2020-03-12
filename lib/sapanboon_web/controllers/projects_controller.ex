@@ -8,29 +8,9 @@ defmodule SapanboonWeb.ProjectsController do
   alias Sapanboon.Histories.History
 
   def index(conn, params) do
+    month = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."]
     list_project = Project.list_project_by_status(Map.get(params, "status"), 1)
-
-    IO.inspect("============")
-
-    IO.inspect(list_project)
-
-    IO.inspect("============")
-
-    month = [
-      "ม.ค.",
-      "ก.พ.",
-      "มี.ค.",
-      "เม.ย.",
-      "พ.ค.",
-      "มิ.ย.",
-      "ก.ค.",
-      "ส.ค.",
-      "ก.ย.",
-      "ต.ค.",
-      "พ.ย.",
-      "ธ.ค."
-    ]
-    render(conn, "index.html", list_project: list_project, conn: conn, month: month)
+    render(conn, "index.html", list_project: list_project, month: month)
   end
 
   def detail(conn, %{"id" => id}) do
@@ -41,7 +21,6 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def insert_transaction(conn, %{"id" => id, "amount" => amount, "fullName" => fullName}) do
-    IO.inspect(amount)
     {id, _} = Integer.parse(id)
     {amount, _} = Integer.parse(amount)
 
@@ -50,29 +29,18 @@ defmodule SapanboonWeb.ProjectsController do
     statusPending = "pending"
 
     projects = Project.get_projects!(id)
-    IO.inspect(projects)
+    trans_params = %{
+      ProjectID: projects.projectId, 
+      Amount: amount,
+      Email: conn.assigns[:user].email,
+      PaymentType: paymentType,
+      FullName: fullName
+    }
+    |> Poison.encode!()
 
-    trans_params =
-      %{
-        ProjectID: projects.projectId,
-        Amount: amount,
-        Email: conn.assigns[:user].email,
-        PaymentType: paymentType,
-        FullName: fullName
-      }
-      |> Poison.encode!()
-
-      IO.inspect(url <> "/transaction")
-
-    case HTTPoison.post(
-           url <> "/transaction",
-           trans_params,
-           %{"Content-Type" => "application/json"}
-         ) do
+    case HTTPoison.post(url <> "/transaction",trans_params,%{"Content-Type" => "application/json"}) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body = Poison.Parser.parse!(body)
-        IO.inspect(body)
-
         params = %{
           amount: body["amount"],
           code: projects.code,
@@ -86,21 +54,18 @@ defmodule SapanboonWeb.ProjectsController do
           transDate: body["created"],
           transNo: to_string(body["transactionNo"])
         }
+    case Histories.create_history(params) do
+      {:ok, history} ->
+          conn
+          |> put_flash(:info, "History created successfully.")
+          |> redirect(to: Routes.payment_path(conn, :index, history.id))
 
-        case Histories.create_history(params) do
-          {:ok, history} ->
-            conn
-            |> put_flash(:info, "History created successfully.")
-            |> redirect(to: Routes.payment_path(conn, :index, history.id))
-
-          {:error, %Ecto.Changeset{} = changeset} ->
-            conn
-            |> redirect(to: Routes.projects_path(conn, :detail, id))
-        end
-
+        {:error, %Ecto.Changeset{} = changeset} ->
+          conn
+          |> redirect(to: Routes.projects_path(conn, :detail, id))
+      end
       {:ok, %HTTPoison.Response{status_code: 404}} ->
         IO.puts("Not found :(")
-
       {:error, %HTTPoison.Error{reason: reason}} ->
         IO.inspect(reason)
     end
@@ -117,7 +82,6 @@ defmodule SapanboonWeb.ProjectsController do
         conn
         |> put_status(:ok)
         |> render("show.json", projects: projects)
-
       {:error, %{errors: errors}} ->
         conn
         |> put_status(422)
@@ -127,20 +91,18 @@ defmodule SapanboonWeb.ProjectsController do
 
   def update(conn, params) do
     projects =
-      case Project.get_projects_by_project_id(Map.get(params, "projectId")) do
+    case Project.get_projects_by_project_id(Map.get(params, "projectId")) do
         projects ->
           case projects do
             nil -> %Projects{projectId: Map.get(params, "projectId")}
             projects -> projects
           end
       end
-
     case Project.insert_or_update_projects(projects, params) do
       {:ok, projects} ->
         conn
         |> put_status(:ok)
         |> render("show.json", projects: projects)
-
       {:error, %{errors: errors}} ->
         conn
         |> put_status(422)

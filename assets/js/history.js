@@ -47,6 +47,7 @@ $(document).ready(function () {
     const transId = $("td #file-upload").attr("data-payload")
     const csrf_token = $("meta[name='csrf-token']").attr('content')
     if (file) {
+      $(".loader").addClass("is-active");
       $('#slip-confirm-modal').modal('hide');
       var formData = new FormData();
       formData.append('file', file);

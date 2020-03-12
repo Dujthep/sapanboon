@@ -160,6 +160,7 @@
         <!-- /END THE FEATURETTES -->
 </div>
 
+<%= if @projects.projectStatus == "active" do %>
 <div id="payment-panel" class="bg-blue">
   <div class="container d-flex flex-column pt-5">
     <label class="fs-28 text-center txt-light-dark-gray">ร่วมบริจาค</label>
@@ -248,6 +249,7 @@
 
   </div>
 </div>
+<% end %>
 
 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/detail.js") %>"></script>

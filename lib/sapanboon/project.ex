@@ -27,7 +27,6 @@ defmodule Sapanboon.Project do
         |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images1])
         |> order_by([p], desc: p.code)
         |> Repo.all()
-
       status == "complete" ->
         Projects
         |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
@@ -41,7 +40,6 @@ defmodule Sapanboon.Project do
         |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images1])
         |> order_by([p], desc: p.code)
         |> Repo.all()
-
       true ->
         Projects
         |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
