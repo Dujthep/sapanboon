@@ -38,8 +38,6 @@ defmodule SapanboonWeb.ProjectsView do
     if donation != nil do
       percent = donation / budget * 100
       if percent < 1, do: 1, else: percent
-    else
-      percent = 0
     end
   end
 end

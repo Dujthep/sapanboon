@@ -5,7 +5,6 @@ defmodule SapanboonWeb.ProjectsController do
   alias Sapanboon.Project
   alias Sapanboon.Project.Projects
   alias Sapanboon.Histories
-  alias Sapanboon.Histories.History
 
   def index(conn, params) do
     month = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."]
