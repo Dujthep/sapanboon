@@ -73,6 +73,17 @@ defmodule Sapanboon.Project do
       |> Repo.all([])
   end
 
+  def update_expire_project() do
+    dateTime = Calendar.DateTime.now! "Asia/Bangkok"
+    Projects
+      |> join(:inner, [p], h in History, on: p.projectId == h.projectId)
+      |> where([p], p.dateTo <= ^dateTime and p.projectStatus == "active")
+      |> group_by([p], [p.projectId, p.budget])
+      |> having([p, h], sum(h.amount) <= p.budget)
+      |> select([:projectId])
+      |> Repo.all([])
+  end
+
   def get_project_by_param(param) do
     like = "%#{param}%"
 
