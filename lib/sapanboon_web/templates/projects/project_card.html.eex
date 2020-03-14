@@ -18,12 +18,14 @@
         <section class="card">
           <div class="card-body">
             <section class="card-title" title="SPB<%= project.code %>">
-              <span class="text-large text-dark">
-                SPB<%= project.code %>
-              </span>
-              <span class="text-large">
-                <%= project.name %>
-              </span>
+              <a href="/details/<%= project.id %>">
+                <span class="text-large text-dark">
+                  SPB<%= project.code %>
+                </span>
+                <span class="text-large">
+                  <%= project.name %>
+                </span>
+              </a>
             </section>
             <div class="bottom-left px-2">
             </div>
@@ -50,7 +52,7 @@
                 </span>
               </div>
             </div>
-            
+
             </section>
 
             <section class="project-progress">
@@ -65,7 +67,7 @@
                 <%= "#{d.day}"<>" "<>Enum.at(@month, d.month - 1)<>" "<>"#{d.year+ 543}" %>
                  -
                 <% d = project.dateTo %>
-                <%= "#{d.day}"<>" "<>Enum.at(@month, d.month - 1)<>" "<>"#{d.year+ 543}" %> 
+                <%= "#{d.day}"<>" "<>Enum.at(@month, d.month - 1)<>" "<>"#{d.year+ 543}" %>
                 </span>
               </div>
               <div class="progress">
