@@ -258,7 +258,7 @@
       if ("<%= inspect @conn.assigns[:user] %>" != 'nil') {
         return true
       } else {
-        window.location = "<%= Application.fetch_env!(:sapanboon, :login_page) %>"
+        window.location = "http://localhost:4000/login"
         return false
       }
   }
