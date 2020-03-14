@@ -32,10 +32,10 @@
             <div class="row">
               <div class="top-right px-2">
                 <a id='line-icon' data-id='<%= project.projectId %>' data-title='<%= project.name %>'>
-                  <img class="icon-detail pointer" src="/images/line-icon.svg">
+                  <img class="icon-detail pointer" src="/images/line.svg">
                 </a>
                 <a id="face-icon" data-id='<%= project.id %>' data-title='<%= project.images1 %>'>
-                  <img class="icon-detail pointer" src="/images/facebook-icon.svg">
+                  <img class="icon-detail pointer" src="/images/facebook.svg">
                 </a>
               </div>
             </div>
