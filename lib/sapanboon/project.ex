@@ -55,7 +55,7 @@ defmodule Sapanboon.Project do
     end
   end
 
-  def update_pending_project() do
+  def update_active_project() do
     dateTime = Calendar.DateTime.now! "Asia/Bangkok"
     Projects
       |> where([p], p.dateFrom <= ^dateTime and p.projectStatus == "pending")

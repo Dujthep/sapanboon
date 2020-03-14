@@ -8,9 +8,12 @@ defmodule SapanboonWeb.CrontabController do
 
   require Logger
 
-  def pending(conn, _params) do
-    crontab = Project.update_pending_project()
-    render(conn, "show.json", crontab: crontab)
+  def active(conn, _params) do
+    Project.update_active_project()
+    conn
+    |> put_status(200)
+    |> put_view(SapanboonWeb.ProjectsView)
+    |> render("update_status.json")
   end
 
   def complete(conn, _params) do
