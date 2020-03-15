@@ -34,6 +34,10 @@ defmodule SapanboonWeb.ProjectsView do
       else: "nav-link text-large"
   end
 
+  def get_code(code) do
+      "SPB" <> Integer.to_string(code)
+  end
+
   def calculate_percent(donation, budget) do
     if donation != nil do
       percent = donation / budget * 100
@@ -43,7 +47,13 @@ defmodule SapanboonWeb.ProjectsView do
 
   def calculate_date(dateFrom,dateTo) do
     if (dateFrom != nil and dateTo != nil) do
-      Kernel.trunc((((DateTime.diff(dateFrom, dateTo)/60)/60)/24))
+      day = Kernel.trunc((((DateTime.diff(dateFrom, dateTo)/60)/60)/24))
+      if (day > 0) do format_number(day) else 0 end 
     end
+  end
+
+  def get_date_thai(date) do
+    month = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."]
+    "#{date.day}"<>" "<>Enum.at(month, date.month - 1)<>" "<>"#{date.year+ 543}"
   end
 end

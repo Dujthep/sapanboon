@@ -20,7 +20,7 @@
             <section class="card-title" title="SPB<%= project.code %>">
               <a href="/details/<%= project.id %>">
                 <span class="text-large text-dark">
-                  SPB<%= project.code %>
+                  <%= get_code(project.code) %>
                 </span>
                 <span class="text-large">
                   <%= project.name %>
@@ -46,13 +46,12 @@
               </a>
               <div class="row">
               <div class="bottom-left px-2">
-                <i class="icon-username"></i>
-                <span class="text-normal text-dark">
-                  <%= project.donation %>
-                </span>
+                  <i class="icon-username"></i>
+                  <span class="text-normal text-dark">
+                    <%= project.donation %>
+                  </span>
+                </div>
               </div>
-            </div>
-
             </section>
 
             <section class="project-progress">
@@ -63,11 +62,7 @@
               <div class="text-between">
                 <h2 class="text-large"><%= format_number(project.budget) %></h2>
                 <span class="text-normal">
-                <% d = project.dateFrom %>
-                <%= "#{d.day}"<>" "<>Enum.at(@month, d.month - 1)<>" "<>"#{d.year+ 543}" %>
-                 -
-                <% d = project.dateTo %>
-                <%= "#{d.day}"<>" "<>Enum.at(@month, d.month - 1)<>" "<>"#{d.year+ 543}" %>
+                  <%= get_date_thai(project.dateFrom) %> - <%= get_date_thai(project.dateTo) %>
                 </span>
               </div>
               <div class="progress">
@@ -81,11 +76,7 @@
               </div>
               <div>
                 <span class="text-normal">
-                เหลือเวลาอีก
-                <%= Kernel.trunc(
-                  (
-                    ((DateTime.diff(project.dateTo, DateTime.utc_now)/60)/60)/24)
-                  ) %> วัน
+                  เหลือเวลาอีก <%= calculate_date(project.dateTo, DateTime.utc_now)%> วัน
                 </span>
               </div>
             </section>
@@ -94,7 +85,9 @@
                 <%= project.introduce %>
             </p>
 
-            <a id="go-detail" class="btn btn-primary btn-block" href="/details/<%= project.id %>">ร่วมบริจาค SPB<%= project.code %></a>
+            <a id="go-detail" class="btn btn-primary btn-block" href="/details/<%= project.id %>">
+                ร่วมบริจาค <%= get_code(project.code) %>
+            </a>
 
           </div>
         </section>
