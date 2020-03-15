@@ -96,6 +96,46 @@ defmodule Sapanboon.Project do
 
   def get_projects!(id), do: Repo.get!(Projects, id)
 
+  def get_projects_by_Id(id) do
+    Projects
+      |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
+      |> where([p], p.id == ^id)
+      |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,location: p.location,
+          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,
+          donation: p.donation,projectStatus: p.projectStatus,overview: p.overview,
+          images1: p.images1,
+          images2: p.images2,
+          images3: p.images3,
+          projectSteps1: p.projectSteps1,
+          projectSteps2: p.projectSteps2,
+          projectSteps3: p.projectSteps3,
+          projectSteps4: p.projectSteps4,
+          projectSteps5: p.projectSteps5,
+          benefits1: p.benefits1,
+          benefits2: p.benefits2,
+          benefits3: p.benefits3,
+          benefits4: p.benefits4,
+          benefits5: p.benefits5,
+          members1: p.members1,
+          members2: p.members2,
+          members3: p.members3,
+          members4: p.members4,
+          members5: p.members5,
+          donation: sum(h.amount),
+          donator: count(h)
+        })
+      |> group_by([p], [
+        p.id, p.projectId, p.name, p.code,p.location,
+        p.introduce, p.dateFrom, p.dateTo, p.budget,
+        p.donation, p.projectStatus, p.overview,
+        p.images1,p.images2,p.images3,
+        p.projectSteps1,p.projectSteps2,p.projectSteps3,p.projectSteps4,p.projectSteps5,
+        p.benefits1, p.benefits2, p.benefits3, p.benefits4, p.benefits5,
+        p.members1, p.members2, p.members3, p.members4, p.members5
+        ])
+      |> Repo.all()
+  end
+
   def get_projects_by_project_id(projectId), do: Repo.get_by(Projects, projectId: projectId)
 
   def create_projects(attrs \\ %{}) do

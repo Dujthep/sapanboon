@@ -34,9 +34,10 @@
             <%= calculate_date(@projects.dateTo, @projects.start_date) %>
           <% end %>
 
-          <%= if (@projects.projectStatus == "inactive") do %>
-              -
-          <% end %>วัน
+          <%= if (@projects.projectStatus == "inactive" || @projects.projectStatus == "expire") do %>
+              0
+          <% end %>
+          วัน
         </p>
 
         <%= if (@projects.projectStatus == "active") do %>
@@ -69,8 +70,8 @@
           </div>
           <div class="box-donate d-flex justify-content-center">
             <span class="text-primary fs-24">
-              <%= if (@transSum != nil) do format_number(@transSum) else 0 end %>
-              <span class="text-primary fs-16 align-self-center pl-1">บาท</span>
+              <%= if (@projects.donation != nil) do format_number(@projects.donation) else 0 end %>
+            <span class="text-primary fs-16 align-self-center pl-1">บาท</span>
             </span>
           </div>
         </div>
@@ -80,14 +81,19 @@
           <div class="box-budget border-right-0">
             <span class="fs-18 fs-black-1">โครงการ</span>
             <span class="text-primary fs-36">
-              <%= if (@transSum > 0 && @transSum != nil) do calculate_percent(@transSum,@projects.budget) else 0 end %>%
+              <%= if (@projects.donation > 0 && @projects.donation != nil) do 
+                    calculate_percent(@projects.donation,@projects.budget) 
+                  else 
+                    0 
+                  end 
+              %>%
             </span>
           </div>
 
           <div class="box-budget border-right-0">
             <span class="fs-18 fs-black-1">เป้าหมาย</span>
             <span class="text-primary fs-36">
-              <%= format_number(@projects.budget) %>
+                <%= format_number(@projects.budget) %>
               <span class="text-primary fs-16">บาท</span>
             </span>
           </div>
@@ -95,7 +101,7 @@
           <div class="box-budget">
             <span class="fs-18 fs-black-1">จำนวนผู้บริจาค</span>
             <span class="text-primary fs-36">
-              <%= Enum.count(@histories) %>
+              <%= if @projects.donator != nil do format_number(@projects.donator) else 0 end %>
             </span>
           </div>
 
@@ -120,21 +126,75 @@
   <div class="row featurette">
     <div class="col-md-12 order-md-2">
       <p class="fs-medium-24-bold">ขั้นตอนการดำเนินโครงการ</p>
-      <p class="lead"><%= @projects.projectSteps1 %></p>
+      <%= if ( @projects.projectSteps1 != nil &&  @projects.projectSteps1 != "") do %>
+        <p class="lead"><%= @projects.projectSteps1 %></p>
+      <%= end %>
+
+      <%= if ( @projects.projectSteps2 != nil &&  @projects.projectSteps2 != "") do %>
+        <p class="lead"><%= @projects.projectSteps2 %></p>
+      <%= end %>
+
+      <%= if ( @projects.projectSteps3 != nil &&  @projects.projectSteps3 != "") do %>
+        <p class="lead"><%= @projects.projectSteps3 %></p>
+      <%= end %>
+
+      <%= if ( @projects.projectSteps4 != nil &&  @projects.projectSteps4 != "") do %>
+        <p class="lead"><%= @projects.projectSteps4 %></p>
+      <%= end %>
+
+      <%= if ( @projects.projectSteps5 != nil &&  @projects.projectSteps5 != "") do %>
+        <p class="lead"><%= @projects.projectSteps5 %></p>
+      <%= end %>
     </div>
   </div>
 
   <div class="row featurette">
     <div class="col-md-12">
       <p class="fs-medium-24-bold">ประโยชน์ของโครงการ</p>
-      <p class="lead"><%= @projects.benefits1 %></p>
+        <%= if ( @projects.benefits1 != nil &&  @projects.benefits1 != "") do %>
+          <p class="lead"><%= @projects.benefits1 %></p>
+        <%= end %>
+
+        <%= if ( @projects.benefits2 != nil &&  @projects.benefits2 != "") do %>
+          <p class="lead"><%= @projects.benefits2 %></p>
+        <%= end %>
+
+        <%= if ( @projects.benefits3 != nil &&  @projects.benefits3 != "") do %>
+          <p class="lead"><%= @projects.benefits3 %></p>
+        <%= end %>
+
+        <%= if ( @projects.benefits4 != nil &&  @projects.benefits4 != "") do %>
+          <p class="lead"><%= @projects.benefits4 %></p>
+        <%= end %>
+        
+        <%= if ( @projects.benefits5 != nil &&  @projects.benefits5 != "") do %>
+          <p class="lead"><%= @projects.benefits5 %></p>
+        <%= end %>
     </div>
   </div>
 
   <div class="row featurette">
     <div class="col-md-12">
       <p class="fs-medium-24-bold">สมาชิกของโครงการ</p>
-      <p class="lead"><%= @projects.members1 %></p>
+      <%= if ( @projects.members1 != nil &&  @projects.members1 != "") do %>
+        <p class="lead"><%= @projects.members1 %></p>
+      <%= end %>
+
+      <%= if ( @projects.members2 != nil &&  @projects.members2 != "") do %>
+        <p class="lead"><%= @projects.members2 %></p>
+      <%= end %>
+
+      <%= if ( @projects.members3 != nil &&  @projects.members3 != "") do %>
+        <p class="lead"><%= @projects.members3 %></p>
+      <%= end %>
+
+      <%= if ( @projects.members4 != nil &&  @projects.members4 != "") do %>
+        <p class="lead"><%= @projects.members4 %></p>
+      <%= end %>
+
+      <%= if ( @projects.members5 != nil &&  @projects.members5 != "") do %>
+        <p class="lead"><%= @projects.members5 %></p>
+      <%= end %>
     </div>
   </div>
 

@@ -13,10 +13,7 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def detail(conn, %{"id" => id}) do
-    projects = Project.get_projects!(id)
-    histories = Histories.list_histories_by_projectId(projects.projectId)
-    transSum = Histories.sum_history(projects.projectId)
-    render(conn, "detail.html", projects: projects, histories: histories, transSum: transSum)
+    render(conn, "detail.html", projects: Enum.at(Project.get_projects_by_Id(id),0))
   end
 
   def insert_transaction(conn, %{"id" => id, "amount" => amount, "fullName" => fullName}) do
