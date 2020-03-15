@@ -69,7 +69,7 @@
                 </div>
                 <div class="box-donate d-flex justify-content-center">
                   <span class="text-primary fs-24">
-                    <%= format_number(@transSum) %>
+                    <%= if (@transSum != nil) do format_number(@transSum) else 0 end %>
                     <span class="text-primary fs-16 align-self-center pl-1">บาท</span>
                   </span>
                 </div>
