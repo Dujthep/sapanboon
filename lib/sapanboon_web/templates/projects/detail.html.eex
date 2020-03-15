@@ -235,7 +235,7 @@
                 <label id="input-payment" class="payment-amount px-3" for="free-style">
                   <div id="input-free-style" class="form-wrapper" style="display: none">
                     <input id="input-amount" type="text" class="form-input fs-medium-20-24 text-center number" 
-                    maxlength="9" name="inputAmount" 
+                    maxlength="9" name="inputAmount" pattern="[0-9]" inputmode="numeric"
                     onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 &amp;&amp; event.charCode <= 57" required="">
                   </div>
                   <span id="label-free-style" class="fs-medium-20 text-primary">ระบุจำนวนเงิน</span>
