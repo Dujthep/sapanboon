@@ -168,7 +168,7 @@
       SPB<%= @projects.code %> <%= @projects.name %>
     </label>
 
-    <form id="donator-form" method="get" action="/transaction/<%= @projects.id %>" onsubmit="return checkform()" novalidate="novalidate">
+  <form id="donator-form" method="get" action="/transaction/<%= @projects.id %>" onsubmit="return checkform()" novalidate="novalidate">
       <div class="form-group">
         <label class="fs-28">จำนวนเงิน</label>
         <section class="payment">
@@ -189,7 +189,9 @@
               <input type="radio" name="amount" id="free-style">
               <label id="input-payment" class="payment-amount px-3" for="free-style">
                 <div id="input-free-style" class="form-wrapper" style="display: none">
-                  <input id="input-amount" type="text" class="form-input fs-medium-20-24 text-center number" maxlength="9" name="inputAmount" onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 &amp;&amp; event.charCode <= 57" required="">
+                  <input id="input-amount" type="text" class="form-input fs-medium-20-24 text-center number" 
+                  maxlength="9" name="inputAmount" 
+                  onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 &amp;&amp; event.charCode <= 57" required="">
                 </div>
                 <span id="label-free-style" class="fs-medium-20 text-primary">ระบุจำนวนเงิน</span>
               </label>
@@ -244,7 +246,6 @@
           </div>
         </div>
       </div>
-
     </form>
 
   </div>

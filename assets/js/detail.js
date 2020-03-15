@@ -1,4 +1,5 @@
 import $ from 'jquery'
+import v from 'jquery-validation'
 window.jQuery = $
 window.$ = $
 
@@ -44,6 +45,21 @@ function shareFacebook() {
 
 $(document).ready(function() {
   $('#go-payment').click(function() {
+
+    v('#donator-form').validate({
+      rules: {
+        inputAmount: {
+          required: true
+        }
+      },
+      messages: {
+        inputAmount: {
+          required: 'โปรดระบุจำนวนเงิน',
+          maxlength: 'โปรดระบุจำนวนเงินไม่เกิด 7 หลัก'
+        }
+      }
+    })
+
     let csrf_token = document
       .querySelector("meta[name='csrf-token']")
       .getAttribute('content')
@@ -62,19 +78,19 @@ $(document).ready(function() {
       ? data.fullName = $('full-name').val()
       : data.fullName == ''
 
-    $.ajax({
-      url: '/transaction',
-      type: 'POST',
-      data: data,
-      beforeSend: function(xhr) {
-        xhr.setRequestHeader('X-CSRF-Token', csrf_token)
-      },
-      dataType: 'json',
-      success: function(res) {
-        console.log(res)
-      },
-      error: function() {}
-    })
+    if (data.amount != "") {
+      $.ajax({
+        url: '/transaction',
+        type: 'POST',
+        data: data,
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('X-CSRF-Token', csrf_token)
+        },
+        dataType: 'json',
+        success: function(res) {},
+        error: function() {}
+      })
+    }
   })
 
   $('input.number').keyup(function(event) {
@@ -91,7 +107,6 @@ $(document).ready(function() {
   })
 
   $(document).on('click', 'input[name="amount"]', function() {
-    console.log($(this).val())
     $('input[name=inputAmount]').removeClass('error')
     if ($(this).val() === 'on') {
       $('#input-free-style').show()
@@ -103,4 +118,5 @@ $(document).ready(function() {
       $('#input-amount').val('')
     }
   })
+  
 })
