@@ -17,8 +17,7 @@
         <tr>
           <td class="text-center">
             <span class="fs-medium-16 bold">
-              <% d = history.transDate %>
-              <%= "#{d.day}"<>" "<>Enum.at(@month, d.month - 1)<>" "<>"#{d.year+ 543}" %>
+              <%= get_date_thai(history.transDate) %>
             </span>
           </td>
           <td class="text-center">
@@ -27,7 +26,7 @@
             </span>
           </td>
           <td>
-            <span class="fs-16">SPB<%= history.code %></span>
+            <span class="fs-16"><%= get_code(history.code) %></span>
             <span class="fs-16"><%= history.name %></span>
           </td>
           <td class="text-right">

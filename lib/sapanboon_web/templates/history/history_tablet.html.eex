@@ -15,14 +15,13 @@
       <%= for history <- @list_histories do %>
         <tr>
           <td colspan="7"><span class="fs-medium-16 bold">
-            <% d = history.transDate %>
-            <%= "#{d.day}"<>" "<>Enum.at(@month, d.month - 1)<>" "<>"#{d.year+ 543}" %>
+            <%= get_date_thai(history.transDate) %>
           </span></td>
         </tr>
         <tr>
           <td class="text-center"><span class="fs-16"><%= history.transNo %></span></td>
           <td>
-            <span class="fs-16">SPB<%= history.code %></span>
+            <span class="fs-16"><%= get_code(history.code) %></span>
             <span class="fs-16"><%= history.name %></span>
           </td>
           <td class="text-right"><span class="fs-16 txt-bright-cyan"><%= format_number(history.amount) %></span></td>
@@ -49,7 +48,7 @@
                 <input type="file"
                   name="file-upload"
                   id="file-upload"
-                  style="display:none" accept="image/jpg, image/png"
+                  style="display:none" accept="image/*"
                   data-payload="<%= history.transId %>">
               </label>
             <% end %>
