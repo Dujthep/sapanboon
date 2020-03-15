@@ -60,7 +60,7 @@
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <label for="file-upload">
                                         <span id="btn-upload" class="btn btn-file pointer" aria-hidden="true">เลือกไฟล์</span>
-                                        <input type="file" name="file-upload" id="file-upload" style="display:none" accept="image/jpg, image/png">
+                                        <input type="file" name="file-upload" id="file-upload" style="display:none" accept="image/*">
                                     </label>
                                 </div>
                             </div>
