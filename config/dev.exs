@@ -4,7 +4,7 @@ use Mix.Config
 config :sapanboon, Sapanboon.Repo,
   username: "postgres",
   password: "secret",
-  database: "sapanboon_dev",
+  database: "sapanboon_beta",
   hostname: "sapanboon.odds.team",
   port: "5433",
   show_sensitive_data_on_connection_error: true,

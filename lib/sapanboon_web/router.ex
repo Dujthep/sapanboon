@@ -18,9 +18,9 @@ defmodule SapanboonWeb.Router do
   scope "/api", SapanboonWeb do
     pipe_through :api
     post "/project", ProjectsController, :create
-    delete "/project:id", ProjectsController, :delete
     put "/project", ProjectsController, :update
     put "/transaction", HistoryController, :update_transaction
+    delete "/project:id", ProjectsController, :delete
   end
 
   scope "/crontab", SapanboonWeb do
@@ -32,17 +32,17 @@ defmodule SapanboonWeb.Router do
   scope "/", SapanboonWeb do
     pipe_through :browser
     get "/", ProjectsController, :index
-    get "/details/:id", ProjectsController, :detail
-    get "/transaction/:id", ProjectsController, :insert_transaction
-    get "/load_more", ProjectsController, :load_more
-    get "/details/:id/payment", PaymentController, :index
     get "/abouts", AboutController, :index
-    get "/contact", ContactController, :index
-    get "/login", LoginController, :index
-    get "/history", HistoryController, :index
-    get "/success/:id", SuccessController, :index
     get "/admin", LoginController, :admin
+    get "/contact", ContactController, :index
+    get "/details/:id", ProjectsController, :detail
+    get "/details/:id/payment", PaymentController, :index
+    get "/history", HistoryController, :index
+    get "/load_more", ProjectsController, :load_more
+    get "/login", LoginController, :index
+    get "/transaction/:id", ProjectsController, :insert_transaction
     get "/search", ProjectsController, :search
+    get "/success/:id", SuccessController, :index
   end
 
   scope "/auth", SapanboonWeb do
@@ -52,8 +52,4 @@ defmodule SapanboonWeb.Router do
     get "/:provider/callback", LoginController, :callback
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", SapanboonWeb do
-  #   pipe_through :api
-  # end
 end
