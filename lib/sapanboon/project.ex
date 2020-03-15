@@ -23,7 +23,7 @@ defmodule Sapanboon.Project do
         |> offset((^page - 1) * 6)
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
           introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,
-          donation: p.donation,images1: p.images1,total: sum(h.amount),donation: count(h)})
+          donation: p.donation,images1: p.images1,donation: sum(h.amount),donator: count(h)})
         |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images1])
         |> order_by([p], desc: p.code)
         |> Repo.all()
@@ -36,7 +36,7 @@ defmodule Sapanboon.Project do
         |> offset((^page - 1) * 6)
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
           introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,
-          donation: p.donation,images1: p.images1,total: sum(h.amount),donation: count(h)})
+          donation: p.donation,images1: p.images1,donation: sum(h.amount),donator: count(h)})
         |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images1])
         |> order_by([p], desc: p.code)
         |> Repo.all()
@@ -48,7 +48,7 @@ defmodule Sapanboon.Project do
         |> offset((^page - 1) * 6)
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
           introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,
-          donation: p.donation,images1: p.images1,total: sum(h.amount),donation: count(h)})
+          donation: p.donation,images1: p.images1,donation: sum(h.amount),donator: count(h)})
         |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images1])
         |> order_by([p], desc: p.code)
         |> Repo.all()
