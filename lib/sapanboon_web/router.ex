@@ -24,8 +24,9 @@ defmodule SapanboonWeb.Router do
   end
 
   scope "/crontab", SapanboonWeb do
-    put "/pending", CrontabController, :pending
+    put "/active", CrontabController, :active
     put "/complete", CrontabController, :complete
+    put "/expire", CrontabController, :expire
   end
 
   scope "/", SapanboonWeb do

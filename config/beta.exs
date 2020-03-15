@@ -29,6 +29,7 @@ config :logger, level: :info
 
 config :sapanboon, :api_transaction, "https://beta.api.sapanboon.org"
 config :sapanboon, :admin_page, "https://beta.admin.sapanboon.org/sapanboon/?uid="
+config :sapanboon, :login_page, "http://localhost:4000/login"
 
 # ## SSL Support
 #

@@ -55,7 +55,7 @@ defmodule Sapanboon.Project do
     end
   end
 
-  def update_pending_project() do
+  def update_active_project() do
     dateTime = Calendar.DateTime.now! "Asia/Bangkok"
     Projects
       |> where([p], p.dateFrom <= ^dateTime and p.projectStatus == "pending")
@@ -69,6 +69,17 @@ defmodule Sapanboon.Project do
       |> where([p], p.projectStatus == "active")
       |> group_by([p], [p.projectId, p.budget])
       |> having([p, h], sum(h.amount) >= p.budget)
+      |> select([:projectId])
+      |> Repo.all([])
+  end
+
+  def update_expire_project() do
+    dateTime = Calendar.DateTime.now! "Asia/Bangkok"
+    Projects
+      |> join(:inner, [p], h in History, on: p.projectId == h.projectId)
+      |> where([p], p.dateTo <= ^dateTime and p.projectStatus == "active")
+      |> group_by([p], [p.projectId, p.budget])
+      |> having([p, h], sum(h.amount) <= p.budget)
       |> select([:projectId])
       |> Repo.all([])
   end

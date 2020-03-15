@@ -80,12 +80,12 @@
                 <div class="box-budget border-right-0">
                   <span class="fs-18 fs-black-1">โครงการ</span>
                   <span class="text-primary fs-36">
-                    <%= 
+                    <%=
                     if @transSum > 0 && @transSum != nil do
                       calculate_percent(@transSum,@projects.budget)
                     else
                       0
-                    end 
+                    end
                     %>%
                   </span>
                 </div>
@@ -258,7 +258,7 @@
       if ("<%= inspect @conn.assigns[:user] %>" != 'nil') {
         return true
       } else {
-        window.location = "http://localhost:4000/login"
+        window.location = "<%= Application.fetch_env!(:sapanboon, :login_page) %>"
         return false
       }
   }
