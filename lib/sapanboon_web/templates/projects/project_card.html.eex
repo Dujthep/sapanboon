@@ -82,11 +82,12 @@
               </div>
             </section>
 
-            <section class="card-text" title="<%= project.introduce %>">
-              <%= project.introduce %>
-            </section>
+            <p class="card-text txt-dark-gray" title="<%= project.introduce %>">
+                <%= project.introduce %>
+            </p>
 
-            <a type="button" class="btn btn-primary w-100" href="/details/<%= project.id %>"> ร่วมบริจาค SPB<%= project.code %> </a>
+            <a id="go-detail" class="btn btn-primary btn-block" href="/details/<%= project.id %>">ร่วมบริจาค SPB<%= project.code %></a>
+
           </div>
         </section>
       </section>

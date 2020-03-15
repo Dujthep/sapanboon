@@ -143,7 +143,7 @@ $(document).ready(function () {
               ${data.introduce}
             </section>
 
-            <a type="button" class="btn btn-primary w-100" href="/details/${data.id}"> ร่วมบริจาค SPB${data.code} </a>
+            <a id="go-detail" class="btn btn-primary btn-block" href="/details/${data.id}">ร่วมบริจาค SPB${data.code} </a>
 
           </div>
         </section>
