@@ -14,64 +14,59 @@ defmodule SapanboonWeb.ProjectsController do
     render(conn, "detail.html", projects: Enum.at(Project.get_projects_by_Id(id),0))
   end
 
-  def insert_transaction(conn, %{"id" => id, "amount" => amount, "fullName" => fullName}) do
+  def create_transaction(conn, %{"id" => id, "amount" => amount, "fullName" => fullName}) do
 
     {id, _} = Integer.parse(id)
-
     {amount, _} = if amount == "on", 
       do:  :string.to_integer(to_char_list(String.replace(conn.query_params["inputAmount"], ",", ""))),
       else: Integer.parse(amount)
 
-    url = Application.fetch_env!(:sapanboon, :api_transaction)
+    projects = Project.get_projects!(id)  
     paymentType = "PromptPay"
     statusPending = "pending"
-
-    projects = Project.get_projects!(id)
-    trans_params = %{
+    transaction_params = %{
       ProjectID: projects.projectId, 
       Amount: amount,
       Email: conn.assigns[:user].email,
       PaymentType: paymentType,
       FullName: fullName
-    }
-    |> Poison.encode!()
+    } |> Poison.encode!()
 
-    case HTTPoison.post(url <> "/transaction",trans_params,%{"Content-Type" => "application/json"}) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        body = Poison.Parser.parse!(body)
-        params = %{
-          amount: body["amount"],
-          code: projects.code,
-          email: conn.assigns[:user].email,
-          fullName: fullName,
-          status: statusPending,
-          name: projects.name,
-          paymentType: paymentType,
-          projectId: projects.projectId,
-          transId: body["id"],
-          transDate: body["created"],
-          transNo: to_string(body["transactionNo"])
-        }
+    url = Application.fetch_env!(:sapanboon, :api_transaction)
+    case HTTPoison.post(url <> "/transaction",transaction_params,%{"Content-Type" => "application/json"}) do
+        {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+          body = Poison.Parser.parse!(body)
+          params = %{
+            amount: body["amount"],
+            code: projects.code,
+            email: conn.assigns[:user].email,
+            fullName: fullName,
+            status: statusPending,
+            name: projects.name,
+            paymentType: paymentType,
+            projectId: projects.projectId,
+            transId: body["id"],
+            transDate: body["created"],
+            transNo: to_string(body["transactionNo"])
+          }
     case Histories.create_history(params) do
-      {:ok, history} ->
+        {:ok, history} ->
           conn
           |> put_flash(:info, "History created successfully.")
           |> redirect(to: Routes.payment_path(conn, :index, history.id))
-
         {:error, %Ecto.Changeset{} = changeset} ->
           conn
           |> redirect(to: Routes.projects_path(conn, :detail, id))
       end
-      {:ok, %HTTPoison.Response{status_code: 404}} ->
-        IO.puts("Not found :(")
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        IO.inspect(reason)
+        {:ok, %HTTPoison.Response{status_code: 404}} ->
+          IO.puts("Not found :(")
+        {:error, %HTTPoison.Error{reason: reason}} ->
+          IO.inspect(reason)
     end
   end
 
   def load_more(conn, params) do
-    list = Project.list_project_by_status(Map.get(params, "status"), Map.get(params, "page"))
-    json(conn, list)
+    json(conn, Project.list_project_by_status(Map.get(params, "status"), Map.get(params, "page")))
   end
 
   def create(conn, params) do

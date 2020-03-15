@@ -72,10 +72,7 @@
                     aria-valuenow="<%= calculate_percent(project.donation,project.budget)  %>" 
                     aria-valuemin="0" aria-valuemax="100">
                     <%= if (project.donation > 0 && project.donation != nil) do 
-                          calculate_percent(project.donation, project.budget) 
-                        else 
-                          0 
-                        end
+                          calculate_percent(project.donation, project.budget) else 0  end
                     %>%
                 </div>
               </div>

@@ -40,7 +40,7 @@ defmodule SapanboonWeb.Router do
     get "/history", HistoryController, :index
     get "/load_more", ProjectsController, :load_more
     get "/login", LoginController, :index
-    get "/transaction/:id", ProjectsController, :insert_transaction
+    get "/transaction/:id", ProjectsController, :create_transaction
     get "/search", ProjectsController, :search
     get "/success/:id", SuccessController, :index
   end
