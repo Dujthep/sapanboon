@@ -48,7 +48,7 @@
               <div class="bottom-left px-2">
                   <i class="icon-username"></i>
                   <span class="text-normal text-dark">
-                    <%= project.donation %>
+                    <%= project.donator %>
                   </span>
                 </div>
               </div>
