@@ -40,4 +40,10 @@ defmodule SapanboonWeb.ProjectsView do
       if percent < 1, do: 1 |> round , else: percent |> round 
     end
   end
+
+  def calculate_date(dateFrom,dateTo) do
+    if (dateFrom != nil and dateTo != nil) do
+      Kernel.trunc((((DateTime.diff(dateFrom, dateTo)/60)/60)/24))
+    end
+  end
 end

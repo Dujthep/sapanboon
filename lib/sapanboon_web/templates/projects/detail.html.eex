@@ -1,55 +1,56 @@
 <div class="d-sm-block">
   <div class="box-social">
   <span class="fs-18 font-white">ชวนเพื่อนมาบริจาค</span>
-      <a id='line-icon' data-id='<%= @projects.projectId %>' data-title='<%= @projects.name %>'>
-        <img class='icon pointer' src='<%= Routes.static_path(@conn, "/images/line.svg") %>'>
-      </a>
+  
+  <a id='line-icon' 
+     data-id='<%= @projects.projectId %>'
+     data-title='<%= @projects.name %>'>
+    <img class='icon pointer' src='<%= Routes.static_path(@conn, "/images/line.svg") %>'>
+  </a>
 
-      <a id="face-icon" data-id='<%= @projects.id %>' data-title='<%= @projects.images1 %>'>
-        <img class='icon pointer' src='<%= Routes.static_path(@conn, "/images/facebook.svg") %>' >
-      </a>
+  <a id="face-icon"
+     data-id='<%= @projects.id %>'
+     data-title='<%= @projects.images1 %>'>
+    <img class='icon pointer' src='<%= Routes.static_path(@conn, "/images/facebook.svg") %>'>
+  </a>
 </div>
 
 <div class="carousel-inner">
   <img id="cover-image" class="cover-image" src="<%= @projects.images1 %>">
   <div class="detail-banner-detail-page box-title-detail-page d-none d-sm-block">
     <div class="container position-relative">
-      <h1 class="fs-32">
-        SPB<%= @projects.code %> <%= @projects.name %>
-        <input type="hidden" id="projectName" name="projectName" value="<%= @projects.name %>">
-      </h1>
-      <img id='location-icon' class='d-inline' src='<%= Routes.static_path(@conn, "/images/location-icon.svg") %>' alt='location-sapanboon'>
-      <p class="fs-18 d-inline"><%= @projects.location %></p>
-      <p class="fs-18 margin-30">ระยะเวลาโครงการคงเหลือ
-        <%= if @projects.projectStatus == "active" do %>
-          <%=  Kernel.trunc((((DateTime.diff(@projects.dateTo, DateTime.utc_now)/60)/60)/24)) %>
-         <% end %>
+        <h1 class="fs-32">
+          SPB<%= @projects.code %> <%= @projects.name %>
+          <input type="hidden" id="projectName" name="projectName" value="<%= @projects.name %>">
+        </h1>
+        <img id='location-icon' class='d-inline' src='<%= Routes.static_path(@conn, "/images/location-icon.svg") %>' alt='location-sapanboon'>
+        <p class="fs-18 d-inline"><%= @projects.location %></p>
+        <p class="fs-18 margin-30">ระยะเวลาโครงการคงเหลือ
+          <%= if (@projects.projectStatus == "active") do %>
+            <%= calculate_date(@projects.dateTo, DateTime.utc_now) %>
+          <% end %>
 
-        <%= if @projects.projectStatus == "pending" do %>
-         <%=  Kernel.trunc((((DateTime.diff(@projects.dateTo, @projects.start_date)/60)/60)/24)) %>
-        <% end %>
+          <%= if (@projects.projectStatus == "pending") do %>
+            <%= calculate_date(@projects.dateTo, @projects.start_date) %>
+          <% end %>
 
-        <%= if @projects.projectStatus == "inactive" do %>
-            -
-        <% end %>วัน
-      </p>
+          <%= if (@projects.projectStatus == "inactive") do %>
+              -
+          <% end %>วัน
+        </p>
 
-        <%= if @projects.projectStatus == "active" do %>
+        <%= if (@projects.projectStatus == "active") do %>
           <a class="btn btn-primary btn-block" href="#payment-panel">
             <%= "ร่วมบริจาค SPB#{@projects.code}" %>
           </a>
         <% end %>
 
-        <%= if @projects.projectStatus == "complete" do %>
-          <a class="btn btn-secondary btn-block">
-            สำเร็จแล้ว
-          </a>
+        <%= if (@projects.projectStatus == "complete") do %>
+          <a class="btn btn-secondary btn-block">สำเร็จแล้ว</a>
         <% end %>
 
-        <%= if @projects.projectStatus == "expire" do %>
-          <a class="btn btn-secondary btn-block">
-            หมดเวลาระดมทุน
-          </a>
+        <%= if (@projects.projectStatus == "expire") do %>
+          <a class="btn btn-secondary btn-block">หมดเวลาระดมทุน</a>
         <% end %>
       </div>
     </div>
@@ -57,199 +58,183 @@
 </div>
 
 <div class="container marketing">
-        <!-- START THE FEATURETTES -->
-        <div class="row d-none d-sm-block mt-5 mb-5">
-          <div class="col">
-            <div class="d-flex flex-column">
-              <div class="d-inline-flex justify-content-center">
-                <div class="box-donate d-flex justify-content-center">
-                  <span class="fs-24">ยอดบริจาคขณะนี้</span>
-                </div>
-                <div class="box-donate">
-                </div>
-                <div class="box-donate d-flex justify-content-center">
-                  <span class="text-primary fs-24">
-                    <%= if (@transSum != nil) do format_number(@transSum) else 0 end %>
-                    <span class="text-primary fs-16 align-self-center pl-1">บาท</span>
-                  </span>
-                </div>
-              </div>
-
-              <div class="d-inline-flex justify-content-center mt-3">
-
-                <div class="box-budget border-right-0">
-                  <span class="fs-18 fs-black-1">โครงการ</span>
-                  <span class="text-primary fs-36">
-                    <%=
-                    if @transSum > 0 && @transSum != nil do
-                      calculate_percent(@transSum,@projects.budget)
-                    else
-                      0
-                    end
-                    %>%
-                  </span>
-                </div>
-
-                <div class="box-budget border-right-0">
-                  <span class="fs-18 fs-black-1">เป้าหมาย</span>
-                  <span class="text-primary fs-36">
-                    <%= format_number(@projects.budget) %>
-                    <span class="text-primary fs-16">บาท</span>
-                  </span>
-                </div>
-
-                <div class="box-budget">
-                  <span class="fs-18 fs-black-1">จำนวนผู้บริจาค</span>
-                  <span class="text-primary fs-36">
-                    <%= Enum.count(@histories) %>
-                  </span>
-                </div>
-
-              </div>
-            </div>
+  <div class="row d-none d-sm-block mt-5 mb-5">
+    <div class="col">
+      <div class="d-flex flex-column">
+        <div class="d-inline-flex justify-content-center">
+          <div class="box-donate d-flex justify-content-center">
+            <span class="fs-24">ยอดบริจาคขณะนี้</span>
+          </div>
+          <div class="box-donate">
+          </div>
+          <div class="box-donate d-flex justify-content-center">
+            <span class="text-primary fs-24">
+              <%= if (@transSum != nil) do format_number(@transSum) else 0 end %>
+              <span class="text-primary fs-16 align-self-center pl-1">บาท</span>
+            </span>
           </div>
         </div>
 
-        <!-- ภาพรวมโครงการ -->
-        <div class="row featurette mb-5">
-          <div class="col-md-12">
-            <p class="fs-medium-24-bold">ภาพรวมโครงการ</p>
-            <p class="lead"><%= @projects.overview %></p>
+        <div class="d-inline-flex justify-content-center mt-3">
+
+          <div class="box-budget border-right-0">
+            <span class="fs-18 fs-black-1">โครงการ</span>
+            <span class="text-primary fs-36">
+              <%= if (@transSum > 0 && @transSum != nil) do calculate_percent(@transSum,@projects.budget) else 0 end %>%
+            </span>
           </div>
-        </div>
 
-       <!-- รูปที่ 1 -->
-        <div class="col-md-12 text-center">
-          <img class="featurette-image img-fluid mx-auto lmg-detail"
-              data-src="holder.js/500x500/auto" alt="500x500"
-              src="<%= @projects.images2 %>" data-holder-rendered="true">
-        </div>
-
-        <hr class="featurette-divider">
-
-        <!-- ขั้นตอนการดำเนินโครงการ -->
-        <div class="row featurette">
-          <div class="col-md-12 order-md-2">
-            <p class="fs-medium-24-bold">ขั้นตอนการดำเนินโครงการ</p>
-            <p class="lead"><%= @projects.projectSteps1 %></p>
+          <div class="box-budget border-right-0">
+            <span class="fs-18 fs-black-1">เป้าหมาย</span>
+            <span class="text-primary fs-36">
+              <%= format_number(@projects.budget) %>
+              <span class="text-primary fs-16">บาท</span>
+            </span>
           </div>
-        </div>
 
-        <!-- ประโยชน์ของโครงการ -->
-        <div class="row featurette">
-          <div class="col-md-12">
-            <p class="fs-medium-24-bold">ประโยชน์ของโครงการ</p>
-            <p class="lead"><%= @projects.benefits1 %></p>
+          <div class="box-budget">
+            <span class="fs-18 fs-black-1">จำนวนผู้บริจาค</span>
+            <span class="text-primary fs-36">
+              <%= Enum.count(@histories) %>
+            </span>
           </div>
-        </div>
 
-        <!-- สมาชิกของโครงการ -->
-        <div class="row featurette">
-          <div class="col-md-12">
-            <p class="fs-medium-24-bold">สมาชิกของโครงการ</p>
-            <p class="lead"><%= @projects.members1 %></p>
-          </div>
-        </div>
-
-       <!-- รูปที่ 2 -->
-        <div class="col-md-12 text-center mb-5">
-          <img class="featurette-image img-fluid mx-auto lmg-detail"
-              data-src="holder.js/500x500/auto" alt="500x500"
-              src="<%= @projects.images3 %>" data-holder-rendered="true">
-        </div>
-        <!-- /END THE FEATURETTES -->
-</div>
-
-<%= if @projects.projectStatus == "active" do %>
-<div id="payment-panel" class="bg-blue">
-  <div class="container d-flex flex-column pt-5">
-    <label class="fs-28 text-center txt-light-dark-gray">ร่วมบริจาค</label>
-    <label class="fs-medium-24-32 text-center">
-      SPB<%= @projects.code %> <%= @projects.name %>
-    </label>
-
-  <form id="donator-form" method="get" action="/transaction/<%= @projects.id %>" onsubmit="return checkform()" novalidate="novalidate">
-      <div class="form-group">
-        <label class="fs-28">จำนวนเงิน</label>
-        <section class="payment">
-          <div class="row">
-            <div class="col-md-3 col-xs-6 pb-3">
-              <input type="radio" name="amount" id="one-thousand" value="1000" checked="">
-              <label class="payment-amount fs-medium-24 text-primary" for="one-thousand">1,000 บาท</label>
-            </div>
-            <div class="col-md-3 col-xs-6 pb-3">
-              <input type="radio" name="amount" id="five-hundred" value="500">
-              <label class="payment-amount fs-medium-24 text-primary" for="five-hundred">500 บาท</label>
-            </div>
-            <div class="col-md-3 col-xs-6 pb-3">
-              <input type="radio" name="amount" id="one-hundred" value="100">
-              <label class="payment-amount fs-medium-24 text-primary" for="one-hundred">100 บาท</label>
-            </div>
-            <div class="col-md-3 col-xs-6 pb-3">
-              <input type="radio" name="amount" id="free-style">
-              <label id="input-payment" class="payment-amount px-3" for="free-style">
-                <div id="input-free-style" class="form-wrapper" style="display: none">
-                  <input id="input-amount" type="text" class="form-input fs-medium-20-24 text-center number" 
-                  maxlength="9" name="inputAmount" 
-                  onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 &amp;&amp; event.charCode <= 57" required="">
-                </div>
-                <span id="label-free-style" class="fs-medium-20 text-primary">ระบุจำนวนเงิน</span>
-              </label>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <div class="container-input">
-        <div class="form-group row">
-          <div class="col-sm-6">
-            <div class="form-wrapper">
-              <input type="text" class="form-input" id="full-name" name="fullName" value='<%= if @conn.assigns[:user] do @conn.assigns[:user].name end %>'>
-              <label class="form-label" for="fullName">
-                <span class="form-label-content">ชื่อ-นามสกุล</span>
-              </label>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="form-wrapper">
-              <input type="text" class="form-input" id="tel-no" name="telNo" maxlength="10" onkeypress="return (event.charCode == 47 || event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 &amp;&amp; event.charCode <= 57">
-              <label class="form-label" for="telNo">
-                <span class="form-label-content">เบอร์โทรศัพท์</span>
-              </label>
-              <span class="fs-14 txt-light-gray">*เว้นว่างไว้หากไม่ประสงค์ออกนาม</span>
-            </div>
-          </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row featurette mb-5">
+    <div class="col-md-12">
+      <p class="fs-medium-24-bold">ภาพรวมโครงการ</p>
+      <p class="lead"><%= @projects.overview %></p>
+    </div>
+  </div>
+  <div class="col-md-12 text-center">
+    <img class="featurette-image img-fluid mx-auto lmg-detail"
+        data-src="holder.js/500x500/auto" alt="500x500"
+        src="<%= @projects.images2 %>" data-holder-rendered="true">
+  </div>
 
-      <div class="form-group">
-        <div class="d-flex flex-wrap justify-content-center">
-          <div class="col-center-sm-4">
-              <button class="btn btn-primary" id="go-payment">ยืนยันการบริจาค</button>
-          </div>
-        </div>
-      </div>
+  <hr class="featurette-divider">
 
-      <div class="form-group mb-5">
-        <div class="d-flex justify-content-center">
-          <div class="box-social-payment">
-            <span class="fs-18 font-black">ชวนเพื่อนมาบริจาค</span>
+  <div class="row featurette">
+    <div class="col-md-12 order-md-2">
+      <p class="fs-medium-24-bold">ขั้นตอนการดำเนินโครงการ</p>
+      <p class="lead"><%= @projects.projectSteps1 %></p>
+    </div>
+  </div>
 
-            <a id="line-icon-down">
-              <img class="icon-detail pointer" src="/images/line-icon.svg">
-            </a>
+  <div class="row featurette">
+    <div class="col-md-12">
+      <p class="fs-medium-24-bold">ประโยชน์ของโครงการ</p>
+      <p class="lead"><%= @projects.benefits1 %></p>
+    </div>
+  </div>
 
-            <a id="face-icon-down">
-              <img class="icon-detail pointer" src="/images/facebook-icon.svg">
-            </a>
+  <div class="row featurette">
+    <div class="col-md-12">
+      <p class="fs-medium-24-bold">สมาชิกของโครงการ</p>
+      <p class="lead"><%= @projects.members1 %></p>
+    </div>
+  </div>
 
-          </div>
-        </div>
-      </div>
-    </form>
-
+  <div class="col-md-12 text-center mb-5">
+    <img class="featurette-image img-fluid mx-auto lmg-detail"
+        data-src="holder.js/500x500/auto" alt="500x500"
+        src="<%= @projects.images3 %>" data-holder-rendered="true">
   </div>
 </div>
+
+<%= if (@projects.projectStatus == "active") do %>
+  <div id="payment-panel" class="bg-blue">
+    <div class="container d-flex flex-column pt-5">
+      <label class="fs-28 text-center txt-light-dark-gray">ร่วมบริจาค</label>
+      <label class="fs-medium-24-32 text-center">
+        SPB<%= @projects.code %> <%= @projects.name %>
+      </label>
+
+    <form id="donator-form" method="get" action="/transaction/<%= @projects.id %>" onsubmit="return checkform()" novalidate="novalidate">
+        <div class="form-group">
+          <label class="fs-28">จำนวนเงิน</label>
+          <section class="payment">
+            <div class="row">
+              <div class="col-md-3 col-xs-6 pb-3">
+                <input type="radio" name="amount" id="one-thousand" value="1000" checked="">
+                <label class="payment-amount fs-medium-24 text-primary" for="one-thousand">1,000 บาท</label>
+              </div>
+              <div class="col-md-3 col-xs-6 pb-3">
+                <input type="radio" name="amount" id="five-hundred" value="500">
+                <label class="payment-amount fs-medium-24 text-primary" for="five-hundred">500 บาท</label>
+              </div>
+              <div class="col-md-3 col-xs-6 pb-3">
+                <input type="radio" name="amount" id="one-hundred" value="100">
+                <label class="payment-amount fs-medium-24 text-primary" for="one-hundred">100 บาท</label>
+              </div>
+              <div class="col-md-3 col-xs-6 pb-3">
+                <input type="radio" name="amount" id="free-style">
+                <label id="input-payment" class="payment-amount px-3" for="free-style">
+                  <div id="input-free-style" class="form-wrapper" style="display: none">
+                    <input id="input-amount" type="text" class="form-input fs-medium-20-24 text-center number" 
+                    maxlength="9" name="inputAmount" 
+                    onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 &amp;&amp; event.charCode <= 57" required="">
+                  </div>
+                  <span id="label-free-style" class="fs-medium-20 text-primary">ระบุจำนวนเงิน</span>
+                </label>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="container-input">
+          <div class="form-group row">
+            <div class="col-sm-6">
+              <div class="form-wrapper">
+                <input type="text" class="form-input" id="full-name" name="fullName" value='<%= if @conn.assigns[:user] do @conn.assigns[:user].name end %>'>
+                <label class="form-label" for="fullName">
+                  <span class="form-label-content">ชื่อ-นามสกุล</span>
+                </label>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-wrapper">
+                <input type="text" class="form-input" id="tel-no" name="telNo" maxlength="10" onkeypress="return (event.charCode == 47 || event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 &amp;&amp; event.charCode <= 57">
+                <label class="form-label" for="telNo">
+                  <span class="form-label-content">เบอร์โทรศัพท์</span>
+                </label>
+                <span class="fs-14 txt-light-gray">*เว้นว่างไว้หากไม่ประสงค์ออกนาม</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="d-flex flex-wrap justify-content-center">
+            <div class="col-center-sm-4">
+                <button class="btn btn-primary" id="go-payment">ยืนยันการบริจาค</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mb-5">
+          <div class="d-flex justify-content-center">
+            <div class="box-social-payment">
+              <span class="fs-18 font-black">ชวนเพื่อนมาบริจาค</span>
+
+              <a id="line-icon-down">
+                <img class="icon-detail pointer" src="/images/line-icon.svg">
+              </a>
+
+              <a id="face-icon-down">
+                <img class="icon-detail pointer" src="/images/facebook-icon.svg">
+              </a>
+
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
 <% end %>
 
 <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
