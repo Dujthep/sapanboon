@@ -37,7 +37,7 @@ defmodule SapanboonWeb.ProjectsView do
   def calculate_percent(donation, budget) do
     if donation != nil do
       percent = donation / budget * 100
-      if percent < 1, do: 1, else: percent
+      if percent < 1, do: 1 |> round , else: percent |> round 
     end
   end
 end
