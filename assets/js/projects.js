@@ -155,7 +155,7 @@ $(document).ready(function () {
     if (e.which === 13) {
       // console.log(window.location, $(this).val())
       const csrf_token = $("meta[name='csrf-token']").attr("content")
-      const url = 'http://localhost:4000'
+      const url = window.location.origin
       $.ajax({
         url: url + `/search/?param=${$(this).val()}`,
         type: 'GET',
