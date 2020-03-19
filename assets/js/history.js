@@ -63,7 +63,7 @@ $(document).ready(function () {
             url: 'api/transaction',
             data: {
               transId: transId,
-              imageSlip: imagePath
+              imgSlip: imagePath
             },
             type: 'PUT',
             beforeSend: function(xhr) {

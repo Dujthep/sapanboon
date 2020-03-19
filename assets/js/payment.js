@@ -78,7 +78,7 @@ function onSubmit() {
           url: '/api/transaction',
           data: {
             transId: transactionId,
-            imageSlip: imagePath
+            imgSlip: imagePath
           },
           type: 'PUT',
           beforeSend: function(xhr) {

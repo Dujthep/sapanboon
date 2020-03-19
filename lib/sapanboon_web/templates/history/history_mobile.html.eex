@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-sm-12">
         <span class="fs-medium-16 bold">
-            <%= get_date_thai(history.transDate) %>
+            <%= get_date_thai(history.transactionDate) %>
         </span>
       </div>
     </div>
@@ -37,9 +37,9 @@
               <img src="<%= Routes.static_path(@conn, "/images/more.svg") %>" />
             </span>
             <div class="dropdown-menu">
-              <%= if history.imageSlip && history.status !== "reject" do %>
+              <%= if history.imgSlip && history.status !== "reject" do %>
                 <div class="dropdown-item">
-                  <span class="pointer" id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.imageSlip %>">
+                  <span class="pointer" id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.imgSlip %>">
                     <img src="<%= Routes.static_path(@conn, "/images/view-reciept-mobile.svg") %>" />
                     ดูสลิป
                   </span>

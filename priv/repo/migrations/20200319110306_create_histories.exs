@@ -8,11 +8,11 @@ defmodule Sapanboon.Repo.Migrations.CreateHistories do
       add :name, :string
       add :email, :string
       add :transId, :string
-      add :transDate, :utc_datetime
-      add :transNo, :string
+      add :transactionDate, :utc_datetime
+      add :transactionNo, :integer
       add :amount, :integer
       add :status, :string
-      add :imageSlip, :string
+      add :imgSlip, :string
       add :paymentType, :string
       add :fullName, :string
 

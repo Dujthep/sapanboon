@@ -17,15 +17,15 @@ defmodule SapanboonWeb.ProjectsController do
   def create_transaction(conn, %{"id" => id, "amount" => amount, "fullName" => fullName}) do
 
     {id, _} = Integer.parse(id)
-    {amount, _} = if amount == "on", 
+    {amount, _} = if amount == "on",
       do:  :string.to_integer(to_char_list(String.replace(conn.query_params["inputAmount"], ",", ""))),
       else: Integer.parse(amount)
 
-    projects = Project.get_projects!(id)  
+    projects = Project.get_projects!(id)
     paymentType = "PromptPay"
     statusPending = "pending"
     transaction_params = %{
-      ProjectID: projects.projectId, 
+      ProjectID: projects.projectId,
       Amount: amount,
       Email: conn.assigns[:user].email,
       PaymentType: paymentType,
@@ -46,8 +46,8 @@ defmodule SapanboonWeb.ProjectsController do
             paymentType: paymentType,
             projectId: projects.projectId,
             transId: body["id"],
-            transDate: body["created"],
-            transNo: to_string(body["transactionNo"])
+            transactionDate: body["created"],
+            transactionNo: to_string(body["transactionNo"])
           }
     case Histories.create_history(params) do
         {:ok, history} ->

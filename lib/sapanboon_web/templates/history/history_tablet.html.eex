@@ -15,11 +15,11 @@
       <%= for history <- @list_histories do %>
         <tr>
           <td colspan="7"><span class="fs-medium-16 bold">
-            <%= get_date_thai(history.transDate) %>
+            <%= get_date_thai(history.transactionDate) %>
           </span></td>
         </tr>
         <tr>
-          <td class="text-center"><span class="fs-16"><%= history.transNo %></span></td>
+          <td class="text-center"><span class="fs-16"><%= history.transactionNo %></span></td>
           <td>
             <span class="fs-16"><%= get_code(history.code) %></span>
             <span class="fs-16"><%= history.name %></span>
@@ -54,8 +54,8 @@
             <% end %>
           </td>
           <td class="text-center">
-            <%= if history.imageSlip && history.status !== "reject" do %>
-              <span class="pointer" id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.imageSlip %>">
+            <%= if history.imgSlip && history.status !== "reject" do %>
+              <span class="pointer" id="view-slip" data-toggle="modal" data-target="#slip-modal" data="<%= history.imgSlip %>">
                 <img src="<%= Routes.static_path(@conn, "/images/view-reciept-mobile.svg") %>" />
               </span>
             <% end %>

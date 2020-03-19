@@ -3,7 +3,7 @@ defmodule Sapanboon.Histories.History do
   import Ecto.Changeset
 
   @derive {Jason.Encoder, only:
-    [:projectId, :code, :name, :email, :transId, :transDate, :transNo, :amount, :status, :imageSlip, :paymentType, :fullName]
+    [:projectId, :code, :name, :email, :transId, :transactionDate, :transactionNo, :amount, :status, :imgSlip, :paymentType, :fullName]
   }
 
   schema "histories" do
@@ -12,11 +12,11 @@ defmodule Sapanboon.Histories.History do
     field :name, :string
     field :email, :string
     field :transId, :string
-    field :transDate, :utc_datetime
-    field :transNo, :string
+    field :transactionDate, :utc_datetime
+    field :transactionNo, :integer
     field :amount, :integer
     field :status, :string
-    field :imageSlip, :string
+    field :imgSlip, :string
     field :paymentType, :string
     field :fullName, :string
 
@@ -26,7 +26,7 @@ defmodule Sapanboon.Histories.History do
   @doc false
   def changeset(history, attrs) do
     history
-    |> cast(attrs, [:projectId, :code, :name, :email, :transId, :transDate, :transNo, :amount, :status, :imageSlip, :paymentType, :fullName])
-    # |> validate_required([:projectId, :code, :name, :email, :transId, :transDate, :transNo, :amount, :status, :imageSlip, :paymentType, :fullName])
+    |> cast(attrs, [:projectId, :code, :name, :email, :transId, :transactionDate, :transactionNo, :amount, :status, :imgSlip, :paymentType, :fullName])
+    # |> validate_required([:projectId, :code, :name, :email, :transId, :transactionDate, :transactionNo, :amount, :status, :imgSlip, :paymentType, :fullName])
   end
 end

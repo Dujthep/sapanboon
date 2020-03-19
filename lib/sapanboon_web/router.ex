@@ -19,8 +19,9 @@ defmodule SapanboonWeb.Router do
     pipe_through :api
     post "/project", ProjectsController, :create
     put "/project", ProjectsController, :update
-    put "/transaction", HistoryController, :update_transaction
     delete "/project:id", ProjectsController, :delete
+    put "/transaction", HistoryController, :update
+    post "/transaction", HistoryController, :create
   end
 
   scope "/crontab", SapanboonWeb do
