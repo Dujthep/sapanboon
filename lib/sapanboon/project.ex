@@ -37,7 +37,7 @@ defmodule Sapanboon.Project do
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
           introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,
           donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)})
-        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images])
+        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images3])
         |> order_by([p], desc: p.code)
         |> Repo.all()
       true ->
