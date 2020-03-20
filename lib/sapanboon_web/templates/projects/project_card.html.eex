@@ -65,15 +65,26 @@
                   <%= get_date_thai(project.dateFrom) %> - <%= get_date_thai(project.dateTo) %>
                 </span>
               </div>
+                kkkkkkk <%= calculate_percent(project.donation,project.budget) %> kkkkkk
               <div class="progress">
                 <div class="progress-bar bg-warning" 
                     role="progressbar" 
-                    style="width: <%= calculate_percent(project.donation,project.budget)  %>%" 
-                    aria-valuenow="<%= calculate_percent(project.donation,project.budget)  %>" 
+                    style="width: 
+                    <%= if (calculate_percent(project.donation,project.budget) > 0) do %>
+                    <%= calculate_percent(project.donation,project.budget) %>%
+                    <%= else %>
+                    <%= 0 %>px
+                    <%= end %>" 
+                    aria-valuenow="
+                    <%= if (calculate_percent(project.donation,project.budget) > 0) do %>
+                    <%= calculate_percent(project.donation,project.budget) %>%
+                    <%= else %>
+                    <%= 0 %>px
+                    <%= end %>" 
                     aria-valuemin="0" aria-valuemax="100">
-                    <%= if (project.donation > 0 && project.donation != nil) do 
-                          calculate_percent(project.donation, project.budget) else 0  end
-                    %>%
+                    <%= if (project.donation > 0 && project.donation != nil) do %>
+                      <%= calculate_percent(project.donation, project.budget) %>% 
+                    <% end %>
                 </div>
               </div>
               <div>
