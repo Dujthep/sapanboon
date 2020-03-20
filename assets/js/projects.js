@@ -127,8 +127,7 @@ $(document).ready(function () {
               </div>
               <div class="text-between">
                 <h2 class="text-large">${currencyFormat(data.budget)}</h2>
-                <span class="text-normal">${get_date_thai(data.dateFrom) } - ${get_date_thai(data.dateTo) }
-                </span>
+                <span class="text-normal">01/02/62 - 01/06/62</span>
               </div>
               <div class="progress">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.donation,project.budget)  %>%" aria-valuenow="<%= calculate_percent(project.donation,project.budget)  %>" aria-valuemin="0" aria-valuemax="100">75%</div>
