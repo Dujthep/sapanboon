@@ -44,6 +44,7 @@ defmodule Sapanboon.Project do
         Projects
         |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
         |> where([p], p.projectStatus == ^status)
+        |> or_where([p], p.projectStatus != "complete")
         |> limit(6)
         |> offset((^page - 1) * 6)
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
