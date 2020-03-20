@@ -12,8 +12,6 @@ defmodule SapanboonWeb.LoginController do
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     user_params = %{
       token: auth.credentials.token,
-      first_name: auth.info.first_name,
-      last_name: auth.info.last_name,
       email: auth.info.email,
       provider: conn.path_params["provider"],
       uid: auth.uid,
@@ -44,6 +42,20 @@ defmodule SapanboonWeb.LoginController do
 
       user ->
         {:ok, user}
+    end
+  end
+
+  def create(conn, params) do
+    changeset = User.changeset(%User{}, params)
+    case Repo.insert(changeset) do
+      {:ok, login} ->
+        conn
+        |> put_status(:ok)
+        |> render("show.json", login: login)
+      {:error, %{errors: errors}} ->
+        conn
+        |> put_status(422)
+        |> render(SapanboonWeb.ErrorView, "422.json")
     end
   end
 

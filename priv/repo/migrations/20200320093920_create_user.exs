@@ -4,8 +4,6 @@ defmodule Sapanboon.Repo.Migrations.CreateUser do
   def change do
     create table(:users) do
       add :email, :string
-      add :first_name, :string
-      add :last_name, :string
       add :provider, :string
       add :token, :string
       add :uid, :string

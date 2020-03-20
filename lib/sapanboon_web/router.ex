@@ -22,6 +22,7 @@ defmodule SapanboonWeb.Router do
     delete "/project:id", ProjectsController, :delete
     put "/transaction", HistoryController, :update
     post "/transaction", HistoryController, :create
+    post "/user", LoginController, :create
   end
 
   scope "/crontab", SapanboonWeb do
