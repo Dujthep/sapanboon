@@ -65,7 +65,7 @@
                   <%= get_date_thai(project.dateFrom) %> - <%= get_date_thai(project.dateTo) %>
                 </span>
               </div>
-                kkkkkkk <%= calculate_percent(project.donation,project.budget) %> kkkkkk
+
               <div class="progress">
                 <div class="progress-bar bg-warning" 
                     role="progressbar" 
@@ -98,9 +98,29 @@
                 <%= project.introduce %>
             </p>
 
-            <a id="go-detail" class="btn btn-primary btn-block" href="/details/<%= project.id %>">
+            <%= if (project.projectStatus == "active") do %>
+              <a id="go-detail" class="btn btn-primary btn-block" href="/details/<%= project.id %>">
                 ร่วมบริจาค <%= get_code(project.code) %>
-            </a>
+              </a>
+            <% end %>
+
+            <%= if (project.projectStatus == "pending") do %>
+              <a id="go-detail-expire" class="btn btn-secondary btn-block" href="/details/<%= project.id %>">
+                ยังไม่ถึงเวลาระดมทุน
+              </a>
+            <% end %>
+
+            <%= if (project.projectStatus == "complete") do %>
+              <a id="go-detail-complete" class="btn btn-secondary btn-block" href="/details/<%= project.id %>">
+                สำเร็จแล้ว
+              </a>
+            <% end %>
+
+            <%= if (project.projectStatus == "expire") do %>
+              <a id="go-detail-expire" class="btn btn-secondary btn-block" href="/details/<%= project.id %>">
+                หมดเวลาระดมทุน
+              </a>
+            <% end %>
 
           </div>
         </section>

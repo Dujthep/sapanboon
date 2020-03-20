@@ -48,7 +48,7 @@ defmodule SapanboonWeb.ProjectsView do
   def calculate_date(dateFrom,dateTo) do
     if (dateFrom != nil and dateTo != nil) do
       day = Kernel.trunc((((DateTime.diff(dateFrom, dateTo)/60)/60)/24))
-      if (day > 0) do format_number(day) else 0 end 
+      if (day > 0) do format_number(day) else "-" end 
     end
   end
 

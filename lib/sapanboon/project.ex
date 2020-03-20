@@ -22,9 +22,10 @@ defmodule Sapanboon.Project do
         |> limit(6)
         |> offset((^page - 1) * 6)
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
-          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,
-          donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)})
-        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images3])
+          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget , projectStatus: p.projectStatus,
+          donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)
+          })
+        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.projectStatus, p.donation, p.id, p.images3])
         |> order_by([p], asc: p.code)
         |> Repo.all()
       status == "complete" ->
@@ -35,9 +36,9 @@ defmodule Sapanboon.Project do
         |> limit(6)
         |> offset((^page - 1) * 6)
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
-          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,
+          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget, projectStatus: p.projectStatus,
           donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)})
-        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images3])
+        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.projectStatus, p.donation, p.id, p.images3])
         |> order_by([p], asc: p.code)
         |> Repo.all()
       true ->
@@ -48,9 +49,9 @@ defmodule Sapanboon.Project do
         |> limit(6)
         |> offset((^page - 1) * 6)
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
-          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,
+          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,projectStatus: p.projectStatus,
           donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)})
-        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.donation, p.id, p.images3])
+        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget,p.projectStatus , p.donation, p.id, p.images3])
         |> order_by([p], asc: p.code)
         |> Repo.all()
     end
