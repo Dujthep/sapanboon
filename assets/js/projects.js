@@ -110,14 +110,14 @@ $(document).ready(function () {
                 <a id='line-icon' data-id="${data.projectId}" data-title="${data.name}">
                   <img class="icon-detail pointer" src="/images/line-icon.svg">
                 </a>
-                <a id="face-icon" data-id="${data.id}" data-title="${data.images1}">
+                <a id="face-icon" data-id="${data.id}" data-title="${data.images}">
                   <img class="icon-detail pointer" src="/images/facebook-icon.svg">
                 </a>
               </div>
             </div>
 
             <section>
-              <img class="card-img-top" src="${data.images1}" alt="project image">
+              <img class="card-img-top" src="${data.images}" alt="project image">
             </section>
 
             <section class="project-progress">
@@ -127,7 +127,8 @@ $(document).ready(function () {
               </div>
               <div class="text-between">
                 <h2 class="text-large">${currencyFormat(data.budget)}</h2>
-                <span class="text-normal">01/02/62 - 01/06/62</span>
+                <span class="text-normal">${get_date_thai(data.dateFrom) } - ${get_date_thai(data.dateTo) }
+                </span>
               </div>
               <div class="progress">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.donation,project.budget)  %>%" aria-valuenow="<%= calculate_percent(project.donation,project.budget)  %>" aria-valuemin="0" aria-valuemax="100">75%</div>
