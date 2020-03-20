@@ -16,7 +16,7 @@
 </div>
 
 <div class="carousel-inner">
-  <img id="cover-image" class="cover-image" src="<%= @projects.images1 %>">
+  <img id="cover-image" class="cover-image" src="<%= @projects.images2 %>">
   <div class="detail-banner-detail-page box-title-detail-page d-none d-sm-block">
     <div class="container position-relative">
         <h1 class="fs-32">
@@ -118,7 +118,7 @@
   <div class="col-md-12 text-center">
     <img class="featurette-image img-fluid mx-auto lmg-detail"
         data-src="holder.js/500x500/auto" alt="500x500"
-        src="<%= @projects.images2 %>" data-holder-rendered="true">
+        src="<%= @projects.images4 %>" data-holder-rendered="true">
   </div>
 
   <hr class="featurette-divider">
@@ -199,9 +199,11 @@
   </div>
 
   <div class="col-md-12 text-center mb-5">
+    <!--
     <img class="featurette-image img-fluid mx-auto lmg-detail"
         data-src="holder.js/500x500/auto" alt="500x500"
         src="<%= @projects.images3 %>" data-holder-rendered="true">
+    -->
   </div>
 </div>
 

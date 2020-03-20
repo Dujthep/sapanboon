@@ -106,6 +106,8 @@ defmodule Sapanboon.Project do
           images1: p.images1,
           images2: p.images2,
           images3: p.images3,
+          images4: p.images4,
+          images5: p.images5,
           projectSteps1: p.projectSteps1,
           projectSteps2: p.projectSteps2,
           projectSteps3: p.projectSteps3,
@@ -128,7 +130,7 @@ defmodule Sapanboon.Project do
         p.id, p.projectId, p.name, p.code,p.location,
         p.introduce, p.dateFrom, p.dateTo, p.budget,
         p.donation, p.projectStatus, p.overview,
-        p.images1,p.images2,p.images3,
+        p.images1,p.images2,p.images3,p.images4,p.images5,
         p.projectSteps1,p.projectSteps2,p.projectSteps3,p.projectSteps4,p.projectSteps5,
         p.benefits1, p.benefits2, p.benefits3, p.benefits4, p.benefits5,
         p.members1, p.members2, p.members3, p.members4, p.members5
