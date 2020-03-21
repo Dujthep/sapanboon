@@ -34,7 +34,7 @@
         <%= if history.status !== "reject" do %>
           <div class="dropleft">
             <span class="pointer" data-toggle="dropdown">
-              <img src="<%= Routes.static_path(@conn, "/images/more.svg") %>" />
+              <img src='<%= Routes.static_path(@conn, "/images/more.svg") %>' /> 
             </span>
             <div class="dropdown-menu">
               <%= if history.imgSlip && history.status !== "reject" do %>
@@ -77,3 +77,6 @@
     </div>
   <% end%>
 </div>
+
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/history.js") %>">
+</script>
