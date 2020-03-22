@@ -14,7 +14,7 @@ pipeline {
     stage('checkout') {
       steps {
         cleanWs()
-        git branch: 'master', credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.GIT_HOST}/${env.NAMESPACE}/${env.APP_NAME}.git"
+        git branch: 'develop', credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.GIT_HOST}/${env.NAMESPACE}/${env.APP_NAME}.git"
       }
     }
     stage('registry') {
@@ -27,22 +27,6 @@ pipeline {
         }
       }
     }
-    // stage('Build') {
-    //   steps {
-    //     sh """
-    //       docker build \
-    //         --build-arg NODE_ENV=$ENV_DEPLOY \
-    //         -t ${env.REGISTRY}/${env.NAMESPACE}/${env.APP_NAME} .
-    //     """
-    //   }
-    // }
-    // stage('Push') {
-    //   steps {
-    //     withDockerRegistry(credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.REGISTRY}") {
-    //       sh "docker push ${env.REGISTRY}/${env.NAMESPACE}/${env.APP_NAME}"
-    //     }
-    //   }
-    // }
     stage('start') {
       steps {
         sh '''#!/bin/bash -xe
