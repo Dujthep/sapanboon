@@ -14,18 +14,20 @@ defmodule Sapanboon.Project do
   end
 
   def list_project_by_status(status, page) do
+
+    IO.inspect(status)
     cond do
       status == nil or status == "" ->
         Projects
         |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
-        |> where([p], p.projectStatus != "inactive")
+        |> where([p], p.projectStatus == "active")
+        |> or_where([p], p.projectStatus == "active")
         |> limit(6)
         |> offset((^page - 1) * 6)
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
-          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget , projectStatus: p.projectStatus,
-          donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)
-          })
-        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.projectStatus, p.donation, p.id, p.images3])
+          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,projectStatus: p.projectStatus,
+          donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)})
+        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget,p.projectStatus , p.donation, p.id, p.images3])
         |> order_by([p], asc: p.code)
         |> Repo.all()
       status == "complete" ->
@@ -44,14 +46,14 @@ defmodule Sapanboon.Project do
       true ->
         Projects
         |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
-        |> where([p], p.projectStatus == ^status)
-        |> or_where([p], p.projectStatus == "active")
+        |> where([p], p.projectStatus != "inactive")
         |> limit(6)
         |> offset((^page - 1) * 6)
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
-          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,projectStatus: p.projectStatus,
-          donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)})
-        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget,p.projectStatus , p.donation, p.id, p.images3])
+          introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget , projectStatus: p.projectStatus,
+          donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)
+          })
+        |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.projectStatus, p.donation, p.id, p.images3])
         |> order_by([p], asc: p.code)
         |> Repo.all()
     end

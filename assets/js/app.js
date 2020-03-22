@@ -25,9 +25,9 @@ liveSocket.connect()
 $.ajaxSetup({ cache: true });
 
 $(document).ready(function () {
-    if (window.location.pathname === "/" && !window.location.search) {
-        window.location.search = "?status=active"
-    }
+    // if (window.location.pathname === "/" && !window.location.search) {
+    //     window.location.search = "?status=active"
+    // }
 })
 $('#sidebarCollapse').on('click', function (e) {
     $('#sidebar').toggleClass('active');

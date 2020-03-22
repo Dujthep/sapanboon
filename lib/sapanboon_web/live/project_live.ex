@@ -12,7 +12,6 @@ defmodule SapanboonWeb.TodoLive do
     end
 
     def mount(_params,project  , socket) do
-        IO.inspect(project)
         {:ok, assign(socket, :temperature, 38)}
     end
 
