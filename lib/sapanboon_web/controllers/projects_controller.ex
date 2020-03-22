@@ -7,6 +7,7 @@ defmodule SapanboonWeb.ProjectsController do
   alias Sapanboon.Histories
 
   def index(conn, params) do
+    IO.inspect(params)
     render(conn, "index.html", list_project: Project.list_project_by_status(Map.get(params, "status"), 1))
   end
 

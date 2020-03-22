@@ -2,10 +2,10 @@
 
   <ul class="nav nav-pills justify-content-center mt-5 mb-5 tab-menu" id="myTab" role="tablist">
     <li class="nav-item">
-      <%= link "โครงการที่กำลังระดมทุน", to: Routes.projects_path(@conn, :index, status: "active"), class: active_class(@conn, "active"),id: "active" %>
+      <%= link "โครงการที่กำลังระดมทุน", to: Routes.projects_path(@conn, :index), class: active_class(@conn, nil),id: "active" %>
     </li>
     <li class="nav-item">
-      <%= link "โครงการทั้งหมด", to: Routes.projects_path(@conn, :index, status: ""), class: active_class(@conn, ""), id: "all" %>
+      <%= link "โครงการทั้งหมด", to: Routes.projects_path(@conn, :index, status: "all"), class: active_class(@conn, "all"), id: "all" %>
     </li>
     <li class="nav-item">
       <%= link "โครงการที่ปิดระดมทุน", to: Routes.projects_path(@conn, :index, status: "complete"), class: active_class(@conn, "complete"), id: "complete" %>
