@@ -54,12 +54,16 @@ $(document).ready(function () {
   }
 
   function calculatePercent(donation, budget) {
-    percent = Math.round((donation / budget) * 100)
-    if (percent < 1 && percent > 0)
-      return 1
-    else
-      return percent
-    end
+    if (donation > 0 && budget > 0) {
+      var percent = Math.round((donation / budget) * 100)
+      if (percent > 0) {
+        return percent
+      } else {
+        return ""
+      }
+    } else {
+      return null
+    }
   }
 
   function formatDate(date) {
@@ -92,6 +96,7 @@ $(document).ready(function () {
   }
 
   function genDom(data) {
+    console.log(data)
     return `
       <section class="col-lg-4 col-md-6 col-sm-6 col-xs-12 pb-5">
         <section class="card">
@@ -127,15 +132,18 @@ $(document).ready(function () {
               </div>
               <div class="text-between">
                 <h2 class="text-large">${currencyFormat(data.budget)}</h2>
-                <span class="text-normal">01/02/62 - 01/06/62</span>
+                <span class="text-normal">${formatDate(data.dateFrom)} - ${formatDate(data.dateTo)}</span>
               </div>
               <div class="progress">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: <%= calculate_percent(project.donation,project.budget)  %>%" aria-valuenow="<%= calculate_percent(project.donation,project.budget)  %>" aria-valuemin="0" aria-valuemax="100">75%</div>
+                <div class="progress-bar bg-warning" role="progressbar" 
+                  style="width: ${ calculatePercent(data.donation,data.budget) ? calculatePercent(data.donation,data.budget)+"%" : ""}" 
+                  aria-valuenow="${ calculatePercent(data.donation,data.budget) ? calculatePercent(data.donation,data.budget) : ""}" 
+                  aria-valuemin="0" aria-valuemax="100">
+                  ${ calculatePercent(data.donation,data.budget) ? calculatePercent(data.donation,data.budget)+"%" : ""}
+                </div>
               </div>
               <div>
-                <span class="text-normal">เหลือเวลาอีก
-                ${checkStatusDate(data)}
-                วัน</span>
+                <span class="text-normal">เหลือเวลาอีก${checkStatusDate(data)}วัน</span>
               </div>
             </section>
 
@@ -156,6 +164,7 @@ $(document).ready(function () {
       // console.log(window.location, $(this).val())
       const csrf_token = $("meta[name='csrf-token']").attr("content")
       const url = window.location.origin
+      console.log(url)
       $.ajax({
         url: url + `/search/?param=${$(this).val()}`,
         type: 'GET',
