@@ -46,6 +46,6 @@ RUN apk add --update bash openssl
 RUN mkdir /app
 WORKDIR /app
 
-COPY --from=build /app/_build/beta/rel/sapanboon ./
+COPY --from=build /app/_build/$ENV_DEPLOY/rel/sapanboon ./
 RUN chown -R nobody: /app
 USER nobody
