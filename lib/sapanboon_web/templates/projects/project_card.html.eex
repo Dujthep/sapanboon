@@ -105,7 +105,7 @@
             <% end %>
 
             <%= if (project.projectStatus == "pending") do %>
-              <a id="go-detail-expire" class="btn btn-secondary btn-block" href="/details/<%= project.id %>">
+              <a id="go-detail-pending" class="btn btn-secondary btn-block" href="/details/<%= project.id %>">
                 ยังไม่ถึงเวลาระดมทุน
               </a>
             <% end %>
