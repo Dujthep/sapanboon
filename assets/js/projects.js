@@ -136,10 +136,10 @@ $(document).ready(function () {
               </div>
               <div class="progress">
                 <div class="progress-bar bg-warning" role="progressbar" 
-                  style="width: ${ calculatePercent(data.donation,data.budget) ? calculatePercent(data.donation,data.budget)+"%" : ""}" 
-                  aria-valuenow="${ calculatePercent(data.donation,data.budget) ? calculatePercent(data.donation,data.budget) : ""}" 
+                  style="width: ${ calculatePercent(data.donation, data.budget) ? calculatePercent(data.donation, data.budget) + "%" : ""}" 
+                  aria-valuenow="${ calculatePercent(data.donation, data.budget) ? calculatePercent(data.donation, data.budget) : ""}" 
                   aria-valuemin="0" aria-valuemax="100">
-                  ${ calculatePercent(data.donation,data.budget) ? calculatePercent(data.donation,data.budget)+"%" : ""}
+                  ${ calculatePercent(data.donation, data.budget) ? calculatePercent(data.donation, data.budget) + "%" : ""}
                 </div>
               </div>
               <div>
@@ -191,9 +191,11 @@ $(document).ready(function () {
   })
 
   $("#load-more").click(function () {
+    console.log(window.location);
     page++
-    $.get(`/load_more?page=${page}`, function (json) {
+    $.get(`/load_more${window.location.search}&page=${page}`, function (json) {
       $.each(json, function (index, data) {
+        console.log(data);
         $("#project-card").append(genDom(data));
       })
     });
