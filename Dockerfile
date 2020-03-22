@@ -16,7 +16,7 @@ ENV ENV_DEPLOY $ENV_DEPLOY
 RUN echo $ENV_DEPLOY
 
 # set build ENV
-ENV MIX_ENV=beta
+ENV MIX_ENV=$ENV_DEPLOY
 
 # install mix dependencies
 COPY mix.exs mix.lock ./
@@ -46,6 +46,10 @@ RUN apk add --update bash openssl
 RUN mkdir /app
 WORKDIR /app
 
-COPY --from=build /app/_build/beta/rel/sapanboon ./
+ARG ENV_DEPLOY
+ENV ENV_DEPLOY $ENV_DEPLOY
+RUN echo $ENV_DEPLOY
+
+COPY --from=build /app/_build/$ENV_DEPLOY/rel/sapanboon ./
 RUN chown -R nobody: /app
 USER nobody

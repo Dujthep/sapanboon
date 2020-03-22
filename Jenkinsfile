@@ -14,14 +14,14 @@ pipeline {
     stage('checkout') {
       steps {
         cleanWs()
-        git branch: 'master', credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.GIT_HOST}/${env.NAMESPACE}/${env.APP_NAME}.git"
+        git branch: 'develop', credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.GIT_HOST}/${env.NAMESPACE}/${env.APP_NAME}.git"
       }
     }
     stage('registry') {
       steps {
         script{
           withDockerRegistry(credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.REGISTRY}") {
-            def image = docker.build("${env.REGISTRY}/${env.NAMESPACE}/${env.APP_NAME}", "--build-arg ENV_DEPLOY=${env.ENV_DEPLOY} .")
+            def image = docker.build("${env.REGISTRY}/${env.NAMESPACE}/${env.APP_NAME}", "--build-arg ENV_DEPLOY=$ENV_DEPLOY .")
             image.push()
           }
         }
