@@ -305,10 +305,11 @@
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/detail.js") %>"></script>
 <script>
   function checkform() {
+    console.log('hi')
       if ("<%= inspect @conn.assigns[:user] %>" != 'nil') {
         return true
       } else {
-        window.location = window.location.origin + / "/login";
+        window.location = window.location.origin + "/login";
         return false
       }
   }
