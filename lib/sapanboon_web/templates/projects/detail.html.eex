@@ -199,11 +199,13 @@
   </div>
 
   <div class="col-md-12 text-center mb-5">
-    <!--
-    <img class="featurette-image img-fluid mx-auto lmg-detail"
+    
+    <%= if ( @projects.images5 != nil &&  @projects.images5 != "") do %>
+      <img class="featurette-image img-fluid mx-auto lmg-detail"
         data-src="holder.js/500x500/auto" alt="500x500"
-        src="<%= @projects.images3 %>" data-holder-rendered="true">
-    -->
+        src="<%= @projects.images5 %>" data-holder-rendered="true">
+    <%= end %>
+    
   </div>
 </div>
 

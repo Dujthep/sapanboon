@@ -31,7 +31,7 @@ function shareFacebook() {
   const id = faceIcon.getAttribute('data-id')
   const pic = faceIcon.getAttribute('data-title')
   const u = window.location.origin + '/details/' + id
-  console.log(u);
+  // console.log(u);
   FB.ui(
     {
       method: 'feed',
@@ -96,7 +96,7 @@ $(document).ready(function () {
   }
 
   function genDom(data) {
-    console.log(data)
+    // console.log(data)
     return `
       <section class="col-lg-4 col-md-6 col-sm-6 col-xs-12 pb-5">
         <section class="card">
@@ -164,7 +164,7 @@ $(document).ready(function () {
       // console.log(window.location, $(this).val())
       const csrf_token = $("meta[name='csrf-token']").attr("content")
       const url = window.location.origin
-      console.log(url)
+      // console.log(url)
       $.ajax({
         url: url + `/search/?param=${$(this).val()}`,
         type: 'GET',
