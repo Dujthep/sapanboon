@@ -134,10 +134,10 @@ $(document).ready(function () {
                 <h2 class="text-large">${currencyFormat(data.budget)}</h2>
                 <span class="text-normal">${formatDate(data.dateFrom)} - ${formatDate(data.dateTo)}</span>
               </div>
-              <div class="progress">
-                <div class="progress-bar bg-warning" role="progressbar" 
-                  style="width: ${ calculatePercent(data.donation, data.budget) ? calculatePercent(data.donation, data.budget) + "%" : ""}" 
-                  aria-valuenow="${ calculatePercent(data.donation, data.budget) ? calculatePercent(data.donation, data.budget) : ""}" 
+              <div class="progress" style="height: 26px;">
+                <div class="progress-bar bg-warning" role="progressbar"
+                  style="height: 26px; width: ${ calculatePercent(data.donation, data.budget) ? calculatePercent(data.donation, data.budget) + "%" : ""}"
+                  aria-valuenow="${ calculatePercent(data.donation, data.budget) ? calculatePercent(data.donation, data.budget) : ""}"
                   aria-valuemin="0" aria-valuemax="100">
                   ${ calculatePercent(data.donation, data.budget) ? calculatePercent(data.donation, data.budget) + "%" : ""}
                 </div>
