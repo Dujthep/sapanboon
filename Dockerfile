@@ -16,7 +16,7 @@ ENV ENV_DEPLOY $ENV_DEPLOY
 RUN echo $ENV_DEPLOY
 
 # set build ENV
-ENV MIX_ENV=beta
+ENV MIX_ENV=$ENV_DEPLOY
 
 # install mix dependencies
 COPY mix.exs mix.lock ./

@@ -21,12 +21,28 @@ pipeline {
       steps {
         script{
           withDockerRegistry(credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.REGISTRY}") {
-            def image = docker.build("${env.REGISTRY}/${env.NAMESPACE}/${env.APP_NAME}", "--build-arg ENV_DEPLOY=${env.ENV_DEPLOY} .")
+            def image = docker.build("${env.REGISTRY}/${env.NAMESPACE}/${env.APP_NAME}", "--build-arg ENV_DEPLOY=$ENV_DEPLOY .")
             image.push()
           }
         }
       }
     }
+    // stage('Build') {
+    //   steps {
+    //     sh """
+    //       docker build \
+    //         --build-arg NODE_ENV=$ENV_DEPLOY \
+    //         -t ${env.REGISTRY}/${env.NAMESPACE}/${env.APP_NAME} .
+    //     """
+    //   }
+    // }
+    // stage('Push') {
+    //   steps {
+    //     withDockerRegistry(credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.REGISTRY}") {
+    //       sh "docker push ${env.REGISTRY}/${env.NAMESPACE}/${env.APP_NAME}"
+    //     }
+    //   }
+    // }
     stage('start') {
       steps {
         sh '''#!/bin/bash -xe
