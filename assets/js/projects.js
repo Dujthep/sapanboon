@@ -164,6 +164,10 @@ $(document).ready(function () {
         },
         contentType: "application/json",
         success: function (data) {
+          $("#all").addClass("active");
+          $('#active').removeClass("active")
+          $('#complete').removeClass("active")
+
           $("#project-card").empty()
           $.each(data, function (index, d) {
             $("#project-card").append(genDom(d));

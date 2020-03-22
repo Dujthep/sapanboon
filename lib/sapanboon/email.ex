@@ -26,7 +26,7 @@ defmodule Sapanboon.Email do
     base_email()
       |> to(mail_user.email)
       |> from("Sapanboon")
-      |> subject(mail_user.status)
+      |> subject(mail_user.status + " : "+ mail_user.name)
       |> assign(:mail_user, mail_user)
       |> assign(:month, month)
       |> render("transaction.html")
