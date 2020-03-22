@@ -36,47 +36,17 @@ config :sapanboon, Sapanboon.Mailer,
   ssl: false, # can be `true`
   retries: 1
 
+config :ueberauth, Ueberauth.Strategy.Google.OAuth,
+  client_id: "581587157167-s2l0vlfofdj5f0uij76ln11o3toruohh.apps.googleusercontent.com", #made up code
+  client_secret: "HlMNukHSTN9-z_O8WeDMUp8J" #made up code
+
+config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
+  client_id: "119501292726732",
+  client_secret: "8224f14476e6b53e22d586dfce131764"
+
 # Do not print debug messages in production
 config :logger, level: :info
 
 config :sapanboon, :api_transaction, "https://beta.api.sapanboon.org"
 config :sapanboon, :admin_page, "https://beta.admin.sapanboon.org/sapanboon/?uid="
-config :sapanboon, :login_page, "http://localhost:4000/login"
-
-# ## SSL Support
-#
-# To get SSL working, you will need to add the `https` key
-# to the previous section and set your `:url` port to 443:
-#
-#     config :sapanboon, SapanboonWeb.Endpoint,
-#       ...
-#       url: [host: "example.com", port: 443],
-#       https: [
-#         :inet6,
-#         port: 443,
-#         cipher_suite: :strong,
-#         keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
-#         certfile: System.get_env("SOME_APP_SSL_CERT_PATH")
-#       ]
-#
-# The `cipher_suite` is set to `:strong` to support only the
-# latest and more secure SSL ciphers. This means old browsers
-# and clients may not be supported. You can set it to
-# `:compatible` for wider support.
-#
-# `:keyfile` and `:certfile` expect an absolute path to the key
-# and cert in disk or a relative path inside priv, for example
-# "priv/ssl/server.key". For all supported SSL configuration
-# options, see https://hexdocs.pm/plug/Plug.SSL.html#configure/1
-#
-# We also recommend setting `force_ssl` in your endpoint, ensuring
-# no data is ever sent via http, always redirecting to https:
-#
-#     config :sapanboon, SapanboonWeb.Endpoint,
-#       force_ssl: [hsts: true]
-#
-# Check `Plug.SSL` for all available options in `force_ssl`.
-
-# Finally import the config/prod.secret.exs which loads secrets
-# and configuration from environment variables.
-# import_config "prod.secret.exs"
+config :sapanboon, :login_page, "https://phx.sapanboon.org/login"

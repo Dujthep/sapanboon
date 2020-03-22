@@ -11,13 +11,6 @@ WORKDIR /app
 RUN mix local.hex --force && \
     mix local.rebar --force
 
-ARG ENV_DEPLOY
-ENV ENV_DEPLOY $ENV_DEPLOY
-RUN echo $ENV_DEPLOY
-
-# set build ENV
-ENV MIX_ENV=$ENV_DEPLOY
-
 # install mix dependencies
 COPY mix.exs mix.lock ./
 COPY config config
@@ -34,8 +27,12 @@ COPY priv priv
 COPY lib lib
 RUN mix compile
 
+ARG ENV_DEPLOY
+ENV ENV_DEPLOY $ENV_DEPLOY
+RUN echo $ENV_DEPLOY
+
 # build release
-RUN mix release
+RUN MIX_ENV=$ENV_DEPLOY mix release
 
 # release stage
 FROM alpine:3.9
