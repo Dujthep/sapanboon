@@ -26,6 +26,18 @@ config :sapanboon, SapanboonWeb.Endpoint,
       ~r"lib/sapanboon_web/templates/.*(eex)$"
     ]
   ]
+
+# Config Sending Email with SMTP
+config :sapanboon, Sapanboon.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: "smtp.gmail.com",
+  port: 587,
+  username: "admin@sapanboon.org",
+  password: "chat8884",
+  tls: :if_available, # can be `:always` or `:never`
+  ssl: false, # can be `true`
+  retries: 1
+
 # Do not print debug messages in production
 config :logger, level: :info
 

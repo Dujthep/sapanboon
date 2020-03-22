@@ -66,6 +66,17 @@ config :sapanboon, SapanboonWeb.Endpoint,
     ]
   ]
 
+# Config Sending Email with SMTP
+config :sapanboon, Sapanboon.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: "smtp.gmail.com",
+  port: 587,
+  username: "sapanboon.dev@gmail.com",
+  password: "Sapanboon1$",
+  tls: :if_available, # can be `:always` or `:never`
+  ssl: false, # can be `true`
+  retries: 1
+
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 

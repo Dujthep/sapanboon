@@ -47,17 +47,6 @@ config :ueberauth, Ueberauth.Strategy.Facebook.OAuth,
   client_id: "119501292726732",
   client_secret: "8224f14476e6b53e22d586dfce131764"
 
-# Config Sending Email with SMTP
-config :sapanboon, Sapanboon.Mailer,
-  adapter: Bamboo.SMTPAdapter,
-  server: "smtp.gmail.com",
-  port: 587,
-  username: "sapanboon.dev@gmail.com",
-  password: "Sapanboon1$",
-  tls: :if_available, # can be `:always` or `:never`
-  ssl: false, # can be `true`
-  retries: 1
-
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
