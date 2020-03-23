@@ -154,18 +154,6 @@ $(document).ready(function() {
                   data.dateFrom
                 )} - ${formatDate(data.dateTo)}</span>
               </div>
-              <div class="progress">
-                <div class="progress-bar bg-warning" role="progressbar" 
-                  style="width: ${
-                    calculatePercent(data.donation, data.budget)
-                      ? calculatePercent(data.donation, data.budget) + '%'
-                      : ''
-                  }" 
-                  aria-valuenow="${
-                    calculatePercent(data.donation, data.budget)
-                      ? calculatePercent(data.donation, data.budget)
-                      : ''
-                  }" 
               <div class="progress" style="height: 26px;">
                 <div class="progress-bar bg-warning" role="progressbar"
                   style="height: 26px; width: ${ calculatePercent(data.donation, data.budget) ? calculatePercent(data.donation, data.budget) + "%" : ""}"
@@ -179,9 +167,9 @@ $(document).ready(function() {
                 </div>
               </div>
               <div>
-                <span class="text-normal">เหลือเวลาอีก${checkStatusDate(
+                <span class="text-normal">เหลือเวลาอีก ${checkStatusDate(
                   data
-                )}วัน</span>
+                )} วัน</span>
               </div>
             </section>
 
@@ -219,7 +207,7 @@ $(document).ready(function() {
   }
 
   function moreText(code, status) {
-    
+
     if (status == 'active') {
       return 'ร่วมบริจาค SPB' + code
     }
