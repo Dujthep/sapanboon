@@ -114,12 +114,14 @@ $(document).ready(function() {
         <section class="card">
           <div class="card-body">
             <section class="card-title" title="ข้อความเต็ม">
-              <span class="text-large text-dark">
-                SPB${data.code}
-              </span>
-              <span class="text-large">
-                ${data.name}
-              </span>
+              <a href="/details/${data.id}">
+                <span class="text-large text-dark">
+                  SPB${data.code}
+                </span>
+                <span class="text-large">
+                  ${data.name}
+                </span>
+              </a>
             </section>
 
             <div class="row">
@@ -138,9 +140,9 @@ $(document).ready(function() {
             </div>
 
             <section>
-              <img class="card-img-top" src="${
-                data.images
-              }" alt="project image">
+              <a href="/details/${data.id}">
+                <img class="card-img-top" src="${data.images}" alt="project image">
+              </a>
             </section>
 
             <section class="project-progress">
