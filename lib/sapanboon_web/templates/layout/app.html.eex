@@ -22,7 +22,7 @@
   </head>
   <body>
     <section id="navigation-section">
-      <nav class="navbar navbar-dark bg-primary navbar-expand-lg fixed-top">
+      <nav class="navbar navbar-dark bg-primary navbar-expand-lg fixed-top p-0">
         <a class="navbar-brand" href="/">
           <img src="<%= Routes.static_path(@conn, "/images/sapanboon-logo-white.png") %>" alt="sapanboon">
           </a>
@@ -48,7 +48,7 @@
               <span class="icon-search form-control-feedback"></span>
               <input id="search-box" type="text" class="form-control" placeholder="Search">
             </li>
-            <li class="nav-item link-menu">
+            <li class="nav-item link-menu login-btn">
               <%= if @conn.assigns[:user] do %>
                 <div class="user-info">
                   <span><%= @conn.assigns.user.name %></span>
