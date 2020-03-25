@@ -12,6 +12,9 @@ use Mix.Config
 config :sapanboon, SapanboonWeb.Endpoint,
   load_from_system_env: true,
   url: [host: "phx.sapanboon.org", port: 80],
+  check_origin: [
+    "//beta.api.sapanboon.org",
+  ]
   cache_static_manifest: "priv/static/cache_manifest.json",
   show_sensitive_data_on_connection_error: true
 

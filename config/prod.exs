@@ -15,7 +15,11 @@ config :sapanboon, SapanboonWeb.Endpoint,
     host: System.get_env("APP_HOSTNAME") || "127.0.0.1",
     port: 80
   ],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  check_origin: [
+    "//api.sapanboon.org",
+  ]
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  show_sensitive_data_on_connection_error: true
 
 config :sapanboon, SapanboonWeb.Endpoint,
   live_reload: [
