@@ -168,7 +168,7 @@ $(document).ready(function() {
                   }
                 </div>
               </div>
-              <div>
+              <div class="pt-2">
                 <span class="text-normal">เหลือเวลาอีก ${checkStatusDate(
                   data
                 )} วัน</span>
