@@ -264,9 +264,13 @@ $(document).ready(function() {
   })
 
   $('#load-more').click(function() {
-    // console.log(window.location);
+    // console.log(window.location)
     page++
-    $.get(`/load_more${window.location.search}&page=${page}`, function(json) {
+    var urlPath = window.location.search
+    if (window.location.search == "") {
+      urlPath = "?status="
+    }
+    $.get(`/load_more${urlPath}&page=${page}`, function(json) {
       $.each(json, function(index, data) {
         $('#project-card').append(genDom(data))
       })
