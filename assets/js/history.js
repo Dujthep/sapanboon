@@ -6,7 +6,10 @@ import 'bootstrap';
 
 $(document).ready(function () {
   $("td #view-slip").click(function() {
-    var index= $('#view-slip').index(this);
+    $('.modal-body #img').attr("src", $(this).attr("data-payload"));
+  })
+
+  $(".dropdown-menu #view-slip").click(function() {
     $('.modal-body #img').attr("src", $(this).attr("data-payload"));
   })
 
@@ -37,7 +40,7 @@ $(document).ready(function () {
   })
 
 
-  $("td #file-upload").change(function() {
+  $("#file-upload").change(function() {
     readURL(this);
   })
 
