@@ -19,12 +19,11 @@ defmodule SapanboonWeb.LoginController do
       role: "user"
     }
 
-    user_params = user_params |> Poison.encode!()
-
     changeset = User.changeset(%User{}, user_params)
 
+    post_params = user_params |> Poison.encode!()
     url = Application.fetch_env!(:sapanboon, :api_transaction)
-    case HTTPoison.post(url <> "/user/insertUser",user_params,%{"Content-Type" => "application/json"}) do
+    case HTTPoison.post(url <> "/user/insertUser",post_params,%{"Content-Type" => "application/json"}) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body = Poison.Parser.parse!(body)
         IO.inspect(body)
