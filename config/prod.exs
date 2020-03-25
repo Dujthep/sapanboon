@@ -17,7 +17,7 @@ config :sapanboon, SapanboonWeb.Endpoint,
   ],
   check_origin: [
     "//api.sapanboon.org",
-  ]
+  ],
   cache_static_manifest: "priv/static/cache_manifest.json",
   show_sensitive_data_on_connection_error: true
 
