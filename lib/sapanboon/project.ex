@@ -9,6 +9,8 @@ defmodule Sapanboon.Project do
   alias Sapanboon.Project.Projects
   alias Sapanboon.Histories.History
 
+  require Logger
+
   def list_project do
     Repo.all(Projects)
   end
@@ -90,12 +92,17 @@ defmodule Sapanboon.Project do
 
   def get_project_by_param(param) do
     like = "%#{param}%"
-    from(
-      p in Projects,
-      where: like(p.name, ^like)
-    )
+    code = 0
+    code = if String.upcase(like) =~ "SPB" do
+      String.slice(like, 4..4)
+        |> String.trim
+        |> String.to_integer
+    end
+
+    Projects
     |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
     |> where([p], p.projectStatus != "inactive")
+    |> where([p], p.code == ^code or like(fragment("lower(?)", p.name), ^like))
     |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
       introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget , projectStatus: p.projectStatus,
       donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)
