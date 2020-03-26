@@ -7,15 +7,6 @@ import 'bootstrap'
 $(document).ready(function() {
 
   $("section #line-icon").click(function() {
-    console.log('Hello')
-    shareLine()
-  })
-
-  $("section #face-icon").click(function() {
-    shareFacebook()
-  })
-
-  function shareLine() {
     const id = $(this).attr("data-id");
     const title = $(this).attr("data-title");
     var src = window.location.origin + '/details/' + id
@@ -28,9 +19,9 @@ $(document).ready(function() {
         '&url=' +
         src
     );
-  }
+  })
 
-  function shareFacebook() {
+  $("section #face-icon").click(function() {
     const id = $(this).attr("data-id")
     const pic = $(this).attr("data-title")
     const u = window.location.origin + '/details/' + id
@@ -44,7 +35,7 @@ $(document).ready(function() {
         console.log(res)
       }
     );
-  }
+  })
 
   let page = 1
 
