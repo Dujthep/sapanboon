@@ -27,6 +27,8 @@ defmodule SapanboonWeb.LoginController do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body = Poison.Parser.parse!(body)
         IO.inspect(body)
+      {:error, _reason} ->
+        IO.inspect(:error)
     end
 
     case insert_or_update_user(changeset) do
