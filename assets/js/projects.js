@@ -237,11 +237,13 @@ $(document).ready(function() {
   }
 
   $('#search-box').on('keydown', function(e) {
-    if (e.which === 13) {
-      // console.log(window.location, $(this).val())
+    if (e.keyCode === 13) {
+      $('#tab-menu').hide()
+      $('#search-result').hide()
+      $('#not-found').hide()
+      $('#load-more').hide()
       const csrf_token = $("meta[name='csrf-token']").attr('content')
       const url = window.location.origin
-      // console.log(url)
       $.ajax({
         url: url + `/search/?param=${$(this).val()}`,
         type: 'GET',
@@ -250,15 +252,16 @@ $(document).ready(function() {
         },
         contentType: 'application/json',
         success: function(data) {
-          $('#all').addClass('active')
-          $('#active').removeClass('active')
-          $('#complete').removeClass('active')
-
-          $('#project-card').empty()
-          $.each(data, function(index, d) {
-            $('#project-card').append(genDom(d))
-          })
-          // location.reload();
+          if (data.length > 0) {
+            $('#search-result').show()
+            $('#project-card').empty()
+            $.each(data, function(_, d) {
+              $('#project-card').append(genDom(d))
+            })
+          } else {
+            $('#project-card').empty()
+            $('#not-found').show()
+          }
         },
         error: function() {}
       })

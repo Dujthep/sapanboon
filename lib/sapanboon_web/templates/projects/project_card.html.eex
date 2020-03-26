@@ -1,6 +1,6 @@
 <div class="list-card container-fluid pb-3">
 
-  <ul class="nav nav-pills justify-content-center mt-5 mb-5 tab-menu" id="myTab" role="tablist">
+  <ul class="nav nav-pills justify-content-center mt-5 mb-5 tab-menu" id="tab-menu" role="tablist">
     <li class="nav-item">
       <%= link "โครงการที่กำลังระดมทุน", to: Routes.projects_path(@conn, :index), class: active_class(@conn, nil),id: "active" %>
     </li>
@@ -11,6 +11,18 @@
       <%= link "โครงการที่ปิดระดมทุน", to: Routes.projects_path(@conn, :index, status: "complete"), class: active_class(@conn, "complete"), id: "complete" %>
     </li>
   </ul>
+
+  <div id="not-found" class="mt-5 mb-5" style="display: none;">
+    <span class="d-flex justify-content-center text-primary bold py-5 my-5 fs-45">
+      ไม่พบโครงการที่ค้นหา
+    </span>
+  </div>
+
+  <div id="search-result" class="mt-5 mb-5" style="display: none;">
+    <span class="d-flex justify-content-center text-primary bold fs-36">
+      ผลการค้นหา
+    </span>
+  </div>
 
   <div id="project-card" class="row">
     <%= for project <- @list_project do %>

@@ -92,11 +92,12 @@ defmodule Sapanboon.Project do
 
   def get_project_by_param(param) do
     like = "%#{param}%"
-    code = 0
     code = if String.upcase(like) =~ "SPB" do
       String.slice(like, 4..4)
         |> String.trim
         |> String.to_integer
+    else
+       0
     end
 
     Projects
