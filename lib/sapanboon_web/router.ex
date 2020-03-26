@@ -13,6 +13,7 @@ defmodule SapanboonWeb.Router do
 
   pipeline :api do
     plug CORSPlug, origin: "*",
+    allow_methods: :all,
     allow_headers: :all,
     allow_credentials: true
     plug :accepts, ["json"]
