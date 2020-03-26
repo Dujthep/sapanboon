@@ -7,6 +7,15 @@ import 'bootstrap'
 $(document).ready(function() {
 
   $("section #line-icon").click(function() {
+    console.log('Hello')
+    shareLine()
+  })
+
+  $("section #face-icon").click(function() {
+    shareFacebook()
+  })
+
+  function shareLine() {
     const id = $(this).attr("data-id");
     const title = $(this).attr("data-title");
     var src = window.location.origin + '/details/' + id
@@ -19,9 +28,9 @@ $(document).ready(function() {
         '&url=' +
         src
     );
-  })
+  }
 
-  $("section #face-icon").click(function() {
+  function shareFacebook() {
     const id = $(this).attr("data-id")
     const pic = $(this).attr("data-title")
     const u = window.location.origin + '/details/' + id
@@ -35,7 +44,7 @@ $(document).ready(function() {
         console.log(res)
       }
     );
-  })
+  }
 
   let page = 1
 
@@ -101,7 +110,6 @@ $(document).ready(function() {
   }
 
   function genDom(data) {
-    // console.log(data)
     return `
       <section class="col-lg-4 col-md-6 col-sm-6 col-xs-12 pb-5">
         <section class="card">
@@ -119,15 +127,11 @@ $(document).ready(function() {
 
             <div class="row">
               <div class="top-right px-2">
-                <a id='line-icon' data-id="${
-                  data.projectId
-                }" data-title="${data.name}">
-                  <img class="icon-detail pointer" src="/images/line-icon.svg">
+                <a id="line-icon" data-id="${data.id}" data-title="${data.name}" onclick="shareLine(${data.id},'${data.name}')">
+                  <img class="icon-detail pointer" src="/images/line.svg">
                 </a>
-                <a id="face-icon" data-id="${
-                  data.id
-                }" data-title="${data.images}">
-                  <img class="icon-detail pointer" src="/images/facebook-icon.svg">
+                <a id="face-icon" data-id="${data.id}" data-title="${data.images}" onclick="shareFacebook(${data.id}, '${data.images}')">
+                  <img class="icon-detail pointer" src="/images/facebook.svg">
                 </a>
               </div>
             </div>
@@ -145,9 +149,7 @@ $(document).ready(function() {
               </div>
               <div class="text-between">
                 <h2 class="text-large">${currencyFormat(data.budget)}</h2>
-                <span class="text-normal">${formatDate(
-                  data.dateFrom
-                )} - ${formatDate(data.dateTo)}</span>
+                <span class="text-normal">${formatDate(data.dateFrom)} - ${formatDate(data.dateTo)}</span>
               </div>
               <div class="progress" style="height: 26px;">
                 <div class="progress-bar bg-warning" role="progressbar"
