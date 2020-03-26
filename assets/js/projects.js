@@ -125,21 +125,28 @@ $(document).ready(function() {
               </a>
             </section>
 
-            <div class="row">
-              <div class="top-right px-2">
-                <a id="line-icon" data-id="${data.id}" data-title="${data.name}" onclick="shareLine(${data.id},'${data.name}')">
-                  <img class="icon-detail pointer" src="/images/line.svg">
-                </a>
-                <a id="face-icon" data-id="${data.id}" data-title="${data.images}" onclick="shareFacebook(${data.id}, '${data.images}')">
-                  <img class="icon-detail pointer" src="/images/facebook.svg">
-                </a>
-              </div>
-            </div>
-
             <section>
+              <div class="row">
+                <div class="top-right px-2">
+                  <a id="line-icon" data-id="${data.id}" data-title="${data.name}" onclick="shareLine(${data.id},'${data.name}')">
+                    <img class="icon-detail pointer" src="/images/line.svg">
+                  </a>
+                  <a id="face-icon" data-id="${data.id}" data-title="${data.images}" onclick="shareFacebook(${data.id}, '${data.images}')">
+                    <img class="icon-detail pointer" src="/images/facebook.svg">
+                  </a>
+                </div>
+              </div>
               <a href="/details/${data.id}">
                 <img class="card-img-top" src="${data.images}" alt="project image">
               </a>
+              <div class="row">
+                <div class="bottom-left px-2">
+                  <i class="icon-username"></i>
+                  <span class="text-normal text-dark">
+                    ${data.donator}
+                  </span>
+                </div>
+              </div>
             </section>
 
             <section class="project-progress">
