@@ -62,3 +62,37 @@ $(document).click(function (e) {
 //         // e.preventDefault();
 //     });
 // });
+
+$(document).ready(function() {
+
+    $("section #line-icon").click(function() {
+      const id = $(this).attr("data-id");
+      const title = $(this).attr("data-title");
+      var src = window.location.origin + '/details/' + id
+      window.open(
+        'https://social-plugins.line.me/lineit/share/ui?' +
+          'text=' +
+          'ขอเชิญร่วมบริจาคโครงการ ' +
+          title +
+          ' ตามรายละเอียดด้านล่างนี้' +
+          '&url=' +
+          src
+      );
+    })
+  
+    $("section #face-icon").click(function() {
+      const id = $(this).attr("data-id")
+      const pic = $(this).attr("data-title")
+      const u = window.location.origin + '/details/' + id
+      FB.ui(
+        {
+          method: 'feed',
+          link: u,
+          picture: pic
+        },
+        function(res) {
+          console.log(res)
+        }
+      );
+    })
+})
