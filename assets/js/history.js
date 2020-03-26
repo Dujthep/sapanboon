@@ -63,7 +63,7 @@ $(document).ready(function () {
         type: 'POST',
         success: function(imagePath){
           $.ajax({
-            url: 'api/transaction',
+            url: '/api/transaction',
             data: {
               transId: transId,
               imgSlip: imagePath
