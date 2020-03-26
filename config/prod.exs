@@ -15,10 +15,6 @@ config :sapanboon, SapanboonWeb.Endpoint,
     host: System.get_env("APP_HOSTNAME") || "127.0.0.1",
     port: 80
   ],
-  check_origin: [
-    "//api.sapanboon.org",
-    "//139.5.145.171:4000"
-  ],
   cache_static_manifest: "priv/static/cache_manifest.json",
   show_sensitive_data_on_connection_error: true
 
