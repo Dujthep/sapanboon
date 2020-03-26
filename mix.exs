@@ -20,7 +20,7 @@ defmodule Sapanboon.MixProject do
   def application do
     [
       mod: {Sapanboon.Application, []},
-      extra_applications: [:logger, :runtime_tools, :ueberauth, :corsica],
+      extra_applications: [:logger, :runtime_tools, :ueberauth],
     ]
   end
 
