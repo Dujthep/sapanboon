@@ -62,7 +62,7 @@ defmodule Sapanboon.Project do
   end
 
   def update_active_project() do
-    dateTime = Calendar.DateTime.now! "Asia/Bangkok"
+    dateTime = DateTime.utc_now()
     Projects
       |> where([p], p.dateFrom <= ^dateTime and p.projectStatus == "pending")
       |> update([set: [projectStatus: "active"]])
@@ -72,7 +72,7 @@ defmodule Sapanboon.Project do
   def update_complete_project() do
     Projects
       |> join(:inner, [p], h in History, on: p.projectId == h.projectId)
-      |> where([p], p.projectStatus == "active")
+      |> where([p, h], p.projectStatus == "active" and h.status == "approved")
       |> group_by([p], [p.projectId, p.budget])
       |> having([p, h], sum(h.amount) >= p.budget)
       |> select([:projectId])
@@ -80,7 +80,7 @@ defmodule Sapanboon.Project do
   end
 
   def update_expire_project() do
-    dateTime = Calendar.DateTime.now! "Asia/Bangkok"
+    dateTime = DateTime.utc_now()
     Projects
       |> join(:inner, [p], h in History, on: p.projectId == h.projectId)
       |> where([p], p.dateTo <= ^dateTime and p.projectStatus == "active")
