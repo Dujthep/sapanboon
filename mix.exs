@@ -54,8 +54,7 @@ defmodule Sapanboon.MixProject do
       {:phoenix_live_view, "~> 0.6.0"},
       {:calendar, "~> 1.0.0"},
       {:httpoison, "~> 1.6"},
-      {:paginator, "~> 0.6"},
-      {:cors_plug, "~> 1.5"}
+      {:paginator, "~> 0.6"}
     ]
   end
 

@@ -37,3 +37,4 @@ npm-debug.log
 .idea/
 .idea/workspace.xml
 sapanboon.iml
+mix.lock
