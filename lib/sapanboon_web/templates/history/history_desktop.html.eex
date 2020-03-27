@@ -17,6 +17,7 @@
         <tr>
           <td class="text-center">
             <span class="fs-medium-16 bold">
+              <%= history.transId %> <br>
               <%= get_date_thai(history.transactionDate) %>
             </span>
           </td>
@@ -50,13 +51,14 @@
           </td>
           <td class="text-center">
             <%= if history.status === "pending" do %>
-              <label class="mb-0" for="file-upload">
-                <span class="pointer" id="btn-upload">
+              <label class="mb-0" for="file-upload-<%= history.id %>">
+                <span class="pointer" id="btn-upload-<%= history.id %>">
                   <img src="<%= Routes.static_path(@conn, "/images/upload-mobile.svg") %>" />
                 </span>
                 <input type="file"
-                  name="file-upload"
-                  id="file-upload"
+                  name="file-upload-<%= history.id %>"
+                  id="file-upload-<%= history.id %>"
+                  onchange="attachedFile('<%= history.id %>','<%= history.transId %>')"
                   style="display:none" accept="image/jpg, image/png"
                   data-payload="<%= history.transId %>">
               </label>

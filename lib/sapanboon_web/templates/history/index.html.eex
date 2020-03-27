@@ -1,7 +1,7 @@
-<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/history.js") %>">
-</script>
-
 <input type="hidden" id="url-api" name="url-api" value="<%= @url_api %>">
+<input type="hidden" id="transactionId" name="transactionId" value="">
+<input type="hidden" id="index-id" name="url-api" value="">
+
 <div class="container py-5">
   <div class="row">
     <div class="col">
@@ -38,13 +38,12 @@
         <img id="img" class="img-fluid" src="" alt="">
       </div>
       <div class="modal-footer">
-        <button id="btn-confirm-slip" class="btn btn-primary fs-18">ตกลง</button>
+        <button id="btn-confirm-slip" class="btn btn-primary fs-18" onclick="confirmModal()">ตกลง</button>
         <button id="btn-ignore-slip" class="btn btn-third fs-18" data-dismiss="modal">ย้อนกลับ</button>
       </div>
     </div>
   </div>
 </div>
-
 
 <div class="modal" id="error-modal">
   <div class="modal-dialog">
@@ -107,3 +106,83 @@
     </div>
   </div>
 </div>
+
+<script>
+
+  function attachedFile(id,transactionId) {
+     $("#index-id").val(id)
+     $("#transactionId").val(transactionId)
+    readURL($('#file-upload-'+id)[0])
+  }
+
+  function confirmModal() {
+    const id = $('#index-id').val()
+    const transactionId = $('#transactionId').val()
+
+    const file = $('#file-upload-'+id)[0].files[0]
+    if (file) {
+      $('.loader').addClass('is-active')
+      var formData = new FormData()
+      formData.append('file', file)
+      formData.append('id', transactionId)
+      $('#slip-confirm-modal').modal('hide')
+      uploadSlipPhx(transactionId,formData)
+    }
+  }
+
+  function uploadSlipPhx(transactionId,formData) {
+    const url = $('#url-api').val()
+    $.ajax({
+        url: url + '/uploadSlipPhx',
+        data: formData,
+        processData: false,
+        contentType: false,
+        type: 'POST',
+        success: function(imagePath) {
+          updateTransaction(transactionId,imagePath)
+        },
+        error: function(data) {
+          $('#error-modal').modal('show')
+          $('.modal-body #error').show()
+          $('.loader').removeClass('is-active')
+        }
+      })
+  }
+
+  function updateTransaction(transactionId,imagePath) {
+    const csrf_token = $("meta[name='csrf-token']").attr('content')
+    $.ajax({
+        url: '/api/transaction',
+        data: {
+          transId: transactionId,
+          imgSlip: imagePath
+        },
+        type: 'PUT',
+        beforeSend: function(xhr) {
+          xhr.setRequestHeader('X-CSRF-Token', csrf_token)
+        },
+        dataType: 'json',
+        success: function() {
+          location.reload()
+        },
+        error: function() {
+          $('.modal-body #confirm').hide()
+          $('.modal-body #error').show()
+          $('.loader').removeClass('is-active')
+        }
+      })
+  }
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      $('#slip-confirm-modal').modal('show')
+      var reader = new FileReader()
+      reader.onload = function(e) {
+        $('#slip-confirm-modal .modal-body #img').attr('src', e.target.result)
+      }
+      reader.readAsDataURL(input.files[0])
+    }
+  }
+</script>
+
+<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/history.js") %>"></script>

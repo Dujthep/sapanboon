@@ -48,15 +48,16 @@
               <% end %>
               <%= if history.status === "pending" do %>
                 <div class="dropdown-item">
-                  <label class="mb-0" for="file-upload">
-                    <span class="pointer" id="btn-upload">
+                  <label class="mb-0" for="file-upload-<%= history.id %>">
+                    <span class="pointer" id="btn-upload-<%= history.id %>">
                       <img src="<%= Routes.static_path(@conn, "/images/upload-mobile.svg") %>" />
                       อัพโหลด
                     </span>
                     <input type="file"
-                      name="file-upload"
-                      id="file-upload"
-                      style="display:none" accept="image/png, image/jpeg"
+                      name="file-upload-<%= history.id %>"
+                      id="file-upload-<%= history.id %>"
+                      onchange="attachedFile('<%= history.id %>','<%= history.transId %>')"
+                      style="display:none" accept="image/jpg, image/png"
                       data-payload="<%= history.transId %>">
                   </label>
                 </div>
