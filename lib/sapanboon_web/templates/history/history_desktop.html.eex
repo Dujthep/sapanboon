@@ -17,7 +17,6 @@
         <tr>
           <td class="text-center">
             <span class="fs-medium-16 bold">
-              <%= history.transId %> <br>
               <%= get_date_thai(history.transactionDate) %>
             </span>
           </td>
