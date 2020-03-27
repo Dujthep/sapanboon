@@ -16,7 +16,11 @@ config :sapanboon, SapanboonWeb.Endpoint,
     port: 80
   ],
   cache_static_manifest: "priv/static/cache_manifest.json",
-  show_sensitive_data_on_connection_error: true
+  check_origin: [
+    "//sapanboon.org",
+    "//139.5.145.171",
+    "//api.sapanboon.org"
+  ]
 
 config :sapanboon, SapanboonWeb.Endpoint,
   live_reload: [
