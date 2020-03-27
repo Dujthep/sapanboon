@@ -7,7 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('line-icon').addEventListener('click', shareLine)
   document.getElementById('face-icon').addEventListener('click', shareFacebook)
   document.getElementById('line-icon-down').addEventListener('click', shareLine)
-  document.getElementById('face-icon-down').addEventListener('click', shareFacebook)
+  document
+    .getElementById('face-icon-down')
+    .addEventListener('click', shareFacebook)
 })
 
 function shareLine() {
@@ -45,7 +47,6 @@ function shareFacebook() {
 
 $(document).ready(function() {
   $('#go-payment').click(function() {
-
     v('#donator-form').validate({
       rules: {
         inputAmount: {
@@ -60,10 +61,6 @@ $(document).ready(function() {
       }
     })
 
-    let csrf_token = document
-      .querySelector("meta[name='csrf-token']")
-      .getAttribute('content')
-
     let data = {
       id: $('#project-id').val(),
       amount: '',
@@ -73,23 +70,30 @@ $(document).ready(function() {
     $('input[name="amount"]:checked').val() === 'on'
       ? (data.amount = $('#input-amount').val())
       : (data.amount = $('input[name="amount"]:checked').val())
-    
+
     $('input[name="fullName"]').val() !== ''
-      ? data.fullName = $('full-name').val()
+      ? (data.fullName = $('full-name').val())
       : data.fullName == ''
 
-    if (data.amount != "") {
+    const csrf_token = $("meta[name='csrf-token']").attr('content')
+    if (data.amount != '') {
       $.ajax({
         url: '/transaction',
+        data: JSON.stringify(data),
         type: 'POST',
-        data: data,
         beforeSend: function(xhr) {
           xhr.setRequestHeader('X-CSRF-Token', csrf_token)
         },
-        dataType: 'json',
-        success: function(res) {},
-        error: function() {}
+        contentType: 'application/json',
+        success: function(res) {
+          console.log("success ======")
+          console.log(res)
+        },
+        error: function() {
+          console.log("error ======")
+        }
       })
+
     }
   })
 
@@ -118,5 +122,4 @@ $(document).ready(function() {
       $('#input-amount').val('')
     }
   })
-  
 })
