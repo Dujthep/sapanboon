@@ -13,7 +13,7 @@
           appId: '119501292726732',
           autoLogAppEvents : true,
           xfbml            : true,
-          version          : 'v5.0'
+          version          : 'v4.0'
         });
       };
     </script>

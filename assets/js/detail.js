@@ -42,15 +42,10 @@ function shareFacebook() {
   console.log(encodeURI(pic));
   FB.ui(
     {
-      method: 'share_open_graph',
-      action_type: 'og.shares',
-      action_properties: JSON.stringify({
-        object: {
-          'og:url': encodeURI(u),
-          'og:description': name,
-          'og:image': encodeURI(pic)
-        }
-      })
+      method: 'feed',
+      link: encodeURI(u),
+      picture: encodeURI(pic),
+      name: name
     },
     function (res) {
       console.log(res)
