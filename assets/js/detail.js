@@ -39,11 +39,12 @@ function shareFacebook() {
   // $('meta[property=og\\:image]').attr('content', pic);
   // $('meta[property=og\\:description]').attr('content', name);
   console.log(encodeURI(u));
+  console.log(encodeURI(pic));
   FB.ui(
     {
       method: 'feed',
       link: encodeURI(u),
-      picture: pic,
+      picture: encodeURI(pic),
       name: name
     },
     function (res) {
