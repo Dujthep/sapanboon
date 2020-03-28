@@ -44,7 +44,7 @@ function shareFacebook() {
     {
       method: 'feed',
       link: encodeURI(u),
-      picture: encodeURI(pic),
+      source: encodeURI(pic),
       name: name
     },
     function (res) {
