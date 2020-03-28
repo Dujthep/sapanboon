@@ -10,7 +10,9 @@
 
   <a id="face-icon"
      data-id='<%= @projects.id %>'
-     data-title='<%= @projects.images1 %>'>
+     data-title='<%= @projects.images1 %>'
+     data-name='<%= @projects.name %>'
+    >
     <img class='icon pointer' src='<%= Routes.static_path(@conn, "/images/facebook.svg") %>'>
   </a>
 </div>

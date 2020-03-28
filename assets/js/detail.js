@@ -34,13 +34,17 @@ function shareFacebook() {
   const pic = faceIcon.getAttribute('data-title')
   const name = faceIcon.getAttribute('data-name')
   const u = window.location.origin + '/details/' + id
-  $('meta[property=og\\:image]').attr('content', pic);
-  $('meta[property=og\\:description]').attr('content', name);
+  console.log(pic)
+  console.log(name);
+  // $('meta[property=og\\:image]').attr('content', pic);
+  // $('meta[property=og\\:description]').attr('content', name);
+  console.log(encodeURI(u));
   FB.ui(
     {
       method: 'feed',
-      link: u,
-      picture: pic
+      link: encodeURI(u),
+      picture: pic,
+      name: name
     },
     function (res) {
       console.log(res)
