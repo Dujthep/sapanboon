@@ -3,7 +3,7 @@ import v from 'jquery-validation'
 window.jQuery = $
 window.$ = $
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('line-icon').addEventListener('click', shareLine)
   document.getElementById('face-icon').addEventListener('click', shareFacebook)
   document.getElementById('line-icon-down').addEventListener('click', shareLine)
@@ -19,12 +19,12 @@ function shareLine() {
   var src = window.location.origin + '/details/' + id
   window.open(
     'https://social-plugins.line.me/lineit/share/ui?' +
-      'text=' +
-      'ขอเชิญร่วมบริจาคโครงการ ' +
-      title +
-      ' ตามรายละเอียดด้านล่างนี้' +
-      '&url=' +
-      src
+    'text=' +
+    'ขอเชิญร่วมบริจาคโครงการ ' +
+    title +
+    ' ตามรายละเอียดด้านล่างนี้' +
+    '&url=' +
+    src
   )
 }
 
@@ -33,20 +33,23 @@ function shareFacebook() {
   const id = faceIcon.getAttribute('data-id')
   const pic = faceIcon.getAttribute('data-title')
   const u = window.location.origin + '/details/' + id
+  console.log(u);
+  console.log(pic)
+  $('meta[property=og\\:image]').attr('content', u);
   FB.ui(
     {
       method: 'feed',
       link: u,
       picture: pic
     },
-    function(res) {
+    function (res) {
       console.log(res)
     }
   )
 }
 
-$(document).ready(function() {
-  $('#go-payment').click(function() {
+$(document).ready(function () {
+  $('#go-payment').click(function () {
     v('#donator-form').validate({
       rules: {
         inputAmount: {
@@ -81,15 +84,15 @@ $(document).ready(function() {
         url: '/transaction',
         data: JSON.stringify(data),
         type: 'POST',
-        beforeSend: function(xhr) {
+        beforeSend: function (xhr) {
           xhr.setRequestHeader('X-CSRF-Token', csrf_token)
         },
         contentType: 'application/json',
-        success: function(res) {
+        success: function (res) {
           console.log("success ======")
           console.log(res)
         },
-        error: function() {
+        error: function () {
           console.log("error ======")
         }
       })
@@ -97,12 +100,12 @@ $(document).ready(function() {
     }
   })
 
-  $('input.number').keyup(function(event) {
+  $('input.number').keyup(function (event) {
     // skip for arrow keys
     if (event.which >= 37 && event.which <= 40) return
 
     // format number
-    $(this).val(function(index, value) {
+    $(this).val(function (index, value) {
       const valueReplace = value.split(',').join('')
       return valueReplace > 0
         ? value.replace(/\D/g, '').replace(/\B(?=(\d{3})+(?!\d))/g, ',')
@@ -110,7 +113,7 @@ $(document).ready(function() {
     })
   })
 
-  $(document).on('click', 'input[name="amount"]', function() {
+  $(document).on('click', 'input[name="amount"]', function () {
     $('input[name=inputAmount]').removeClass('error')
     if ($(this).val() === 'on') {
       $('#input-free-style').show()
