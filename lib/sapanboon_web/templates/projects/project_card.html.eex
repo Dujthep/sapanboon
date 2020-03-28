@@ -149,6 +149,8 @@
 <script>
 function shareLine(id,title) {
     var src = window.location.origin + '/details/' + id
+    console.log(id, title)
+    console.log(src);
     window.open(
       'https://social-plugins.line.me/lineit/share/ui?' +
         'text=' +

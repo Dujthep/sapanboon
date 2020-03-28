@@ -17,6 +17,8 @@ function shareLine() {
   const id = lineIcon.getAttribute('data-id')
   const title = lineIcon.getAttribute('data-title')
   var src = window.location.origin + '/details/' + id
+  console.log(id, title)
+  console.log(src);
   window.open(
     'https://social-plugins.line.me/lineit/share/ui?' +
     'text=' +
