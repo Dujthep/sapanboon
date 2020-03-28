@@ -163,11 +163,7 @@ function shareLine(id,title) {
   function shareFacebook(id,pic) {
     const faceIcon = document.getElementById('face-icon')
     const name = faceIcon.getAttribute('data-name')
-    console.log(pic)
-    console.log(name);
-    $('meta[property=og\\:image]').attr('content', pic);
-    $('meta[property=og\\:description]').attr('content', name);
-    console.log($('meta[property=og\\:image]'))
+    const u = window.location.origin + '/details/' + id
     FB.ui(
       {
         method: 'feed',

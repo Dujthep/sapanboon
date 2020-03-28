@@ -47,10 +47,6 @@ function shareFacebook() {
   const pic = faceIcon.getAttribute('data-title')
   const name = faceIcon.getAttribute('data-name')
   const u = window.location.origin + '/details/' + id
-
-  $('meta[property=og\\:image]').attr('content', pic);
-  $('meta[property=og\\:description]').attr('content', name);
-  console.log($('meta[property=og\\:image]'))
   FB.ui(
     {
       method: 'feed',
