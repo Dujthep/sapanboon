@@ -1,3 +1,4 @@
+<%= if @meta_attrs, do: meta_tags(@meta_attrs) %>
 <div class="d-sm-block">
   <div class="box-social">
   <span class="fs-18 font-white">ชวนเพื่อนมาบริจาค</span>
