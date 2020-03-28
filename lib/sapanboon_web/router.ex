@@ -12,7 +12,6 @@ defmodule SapanboonWeb.Router do
   end
 
   pipeline :api do
-    plug CORSPlug, origin: "*"
     plug :accepts, ["json"]
   end
 
