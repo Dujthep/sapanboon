@@ -32,10 +32,10 @@ function shareFacebook() {
   const faceIcon = document.getElementById('face-icon')
   const id = faceIcon.getAttribute('data-id')
   const pic = faceIcon.getAttribute('data-title')
+  const name = faceIcon.getAttribute('data-name')
   const u = window.location.origin + '/details/' + id
-  console.log(u);
-  console.log(pic)
-  $('meta[property=og\\:image]').attr('content', u);
+  $('meta[property=og\\:image]').attr('content', pic);
+  $('meta[property=og\\:description]').attr('content', name);
   FB.ui(
     {
       method: 'feed',

@@ -45,7 +45,7 @@
                   <a id='line-icon' data-id='<%= project.id %>' data-title='<%= project.name %>'>
                     <img class="icon-detail pointer" src="/images/line.svg">
                   </a>
-                  <a id="face-icon" data-id='<%= project.id %>' data-title='<%= project.images %>'>
+                  <a id="face-icon" data-id='<%= project.id %>' data-title='<%= project.images %>' data-name='<%= project.name %>'>
                     <img class="icon-detail pointer" src="/images/facebook.svg">
                   </a>
                 </div>
