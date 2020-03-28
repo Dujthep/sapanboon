@@ -33,7 +33,7 @@
           <% end %>
 
           <%= if (@projects.projectStatus == "pending") do %>
-            <%= calculate_date(@projects.dateTo, @projects.start_date) %>
+            <%= calculate_date(@projects.dateTo, @projects.dateFrom) %>
           <% end %>
 
           <%= if (@projects.projectStatus == "inactive" || @projects.projectStatus == "expire") do %>
@@ -75,7 +75,7 @@
           <% end %>
 
           <%= if (@projects.projectStatus == "pending") do %>
-            <%= calculate_date(@projects.dateTo, @projects.start_date) %>
+            <%= calculate_date(@projects.dateTo, @projects.dateFrom) %>
           <% end %>
 
           <%= if (@projects.projectStatus == "inactive" || @projects.projectStatus == "expire") do %>

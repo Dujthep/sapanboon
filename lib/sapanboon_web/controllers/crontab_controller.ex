@@ -8,55 +8,31 @@ defmodule SapanboonWeb.CrontabController do
 
   require Logger
 
-  def active(conn, _params) do
-    Project.update_active_project()
-    conn
-    |> put_status(200)
-    |> put_view(SapanboonWeb.ProjectsView)
-    |> render("update_status.json")
-  end
+  def update(conn, params) do
+    case Project.get_projects_by_project_id(Map.get(params, "projectId")) do
+      projects ->
+        case projects do
+          nil -> conn
+            |> put_status(404)
+            |> put_view(SapanboonWeb.ErrorView)
+            |> render("404.json")
+            %{} ->
+              update = %{projectStatus: Map.get(params, "projectStatus")}
+              case Project.update_projects(projects, update) do
+                {:ok, projects} ->
+                  conn
+                  |> put_status(:ok)
+                  |> put_view(SapanboonWeb.ProjectsView)
+                  |> render("show.json", projects: projects)
 
-  def complete(conn, _params) do
-    projects = Project.update_complete_project()
-    Enum.each projects, fn project ->
-      projectId = Project.get_projects_by_project_id(project.projectId)
-      params = %{projectStatus: "complete"}
-      case Project.update_projects(projectId, params) do
-        {:ok, projects} ->
-          Logger.info "update status 'complete' projectId: #{inspect(project.projectId)} success"
-        {:error, %{errors: errors}} ->
-          conn
-          |> put_status(422)
-          |> put_view(SapanboonWeb.ErrorView)
-          |> render("422.json", errors)
-      end
+                {:error, %{errors: errors}} ->
+                  conn
+                  |> put_status(422)
+                  |> put_view(SapanboonWeb.ErrorView)
+                  |> render("422.json", errors)
+              end
+        end
     end
-    conn
-    |> put_status(200)
-    |> put_view(SapanboonWeb.ProjectsView)
-    |> render("update_status.json")
-  end
-
-  def expire(conn, _params) do
-    projects = Project.update_expire_project()
-    Logger.info "projects: #{inspect(projects)}"
-    Enum.each projects, fn project ->
-      projectId = Project.get_projects_by_project_id(project.projectId)
-      params = %{projectStatus: "expire"}
-      case Project.update_projects(projectId, params) do
-        {:ok, projects} ->
-          Logger.info "update status 'expire' projectId: #{inspect(project.projectId)} success"
-        {:error, %{errors: errors}} ->
-          conn
-          |> put_status(422)
-          |> put_view(SapanboonWeb.ErrorView)
-          |> render("422.json", errors)
-      end
-    end
-    conn
-    |> put_status(200)
-    |> put_view(SapanboonWeb.ProjectsView)
-    |> render("update_status.json")
   end
 
 end
