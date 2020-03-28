@@ -57,11 +57,5 @@ defmodule SapanboonWeb.ProjectsView do
     "#{date.day}"<>" "<>Enum.at(month, date.month - 1)<>" "<>"#{date.year+ 543}"
   end
 
-  def meta_tags(attrs_list) do
-    Enum.map(attrs_list, &meta_tag/1)
-  end
 
-  def meta_tag(attrs) do
-    tag(:meta, Enum.into(attrs, []))
-  end
 end

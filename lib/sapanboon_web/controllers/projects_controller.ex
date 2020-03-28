@@ -10,19 +10,20 @@ defmodule SapanboonWeb.ProjectsController do
     IO.inspect(params)
 
     render(conn, "index.html",
-      list_project: Project.list_project_by_status(Map.get(params, "status"), 1)
+      list_project: Project.list_project_by_status(Map.get(params, "status"), 1),
+      meta_attrs: []
     )
   end
 
   def detail(conn, %{"id" => id}) do
     project = Enum.at(Project.get_projects_by_Id(id), 0)
 
-    IO.inspect(project)
-
     attrs_list = [
-      %{name: "description", content: project.name},
+      %{name: "og:description", content: project.name},
       %{property: "og:image", content: project.images2}
     ]
+
+    IO.inspect(attrs_list)
 
     render(conn, "detail.html", projects: project, meta_attrs: attrs_list)
   end
