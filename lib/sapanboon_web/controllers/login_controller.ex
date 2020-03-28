@@ -6,7 +6,7 @@ defmodule SapanboonWeb.LoginController do
   # alias Sapanboon.SapanboonWeb.Login
 
   def index(conn, _params) do
-    render(conn, "index.html", login: "")
+    render(conn, "index.html", login: "",meta_attrs: [])
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
