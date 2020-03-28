@@ -3,7 +3,7 @@
   <span class="fs-18 font-white">ชวนเพื่อนมาบริจาค</span>
   
   <a id='line-icon' 
-     data-id='<%= @projects.projectId %>'
+     data-id='<%= @projects.id %>'
      data-title='<%= @projects.name %>'>
     <img class='icon pointer' src='<%= Routes.static_path(@conn, "/images/line.svg") %>'>
   </a>
