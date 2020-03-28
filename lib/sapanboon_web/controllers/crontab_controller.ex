@@ -39,6 +39,7 @@ defmodule SapanboonWeb.CrontabController do
 
   def expire(conn, _params) do
     projects = Project.update_expire_project()
+    Logger.info "projects: #{inspect(projects)}"
     Enum.each projects, fn project ->
       projectId = Project.get_projects_by_project_id(project.projectId)
       params = %{projectStatus: "expire"}

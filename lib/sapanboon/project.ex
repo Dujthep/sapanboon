@@ -28,7 +28,7 @@ defmodule Sapanboon.Project do
         |> offset((^page - 1) * 6)
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
           introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget,projectStatus: p.projectStatus,
-          donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)})
+          donation: p.donation,images: p.images3,donation: sum(coalesce(h.amount,0)),donator: count(h)})
         |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget,p.projectStatus , p.donation, p.id, p.images3])
         |> order_by([p], asc: p.code)
         |> Repo.all()
@@ -41,7 +41,7 @@ defmodule Sapanboon.Project do
         |> offset((^page - 1) * 6)
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
           introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget, projectStatus: p.projectStatus,
-          donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)})
+          donation: p.donation,images: p.images3,donation: sum(coalesce(h.amount,0)),donator: count(h)})
         |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.projectStatus, p.donation, p.id, p.images3])
         |> order_by([p], asc: p.code)
         |> Repo.all()
@@ -53,7 +53,7 @@ defmodule Sapanboon.Project do
         |> offset((^page - 1) * 6)
         |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
           introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget , projectStatus: p.projectStatus,
-          donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)
+          donation: p.donation,images: p.images3,donation: sum(coalesce(h.amount,0)),donator: count(h)
           })
         |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.projectStatus, p.donation, p.id, p.images3])
         |> order_by([p], asc: p.code)
@@ -72,20 +72,21 @@ defmodule Sapanboon.Project do
   def update_complete_project() do
     Projects
       |> join(:inner, [p], h in History, on: p.projectId == h.projectId)
-      |> where([p, h], p.projectStatus == "active" and h.status == "approved")
+      |> where([p, h], p.projectStatus == "active")
       |> group_by([p], [p.projectId, p.budget])
-      |> having([p, h], sum(h.amount) >= p.budget)
+      |> having([p, h], fragment("SUM(CASE WHEN ? = 'approved' THEN ? ELSE 0 END)", h.status, h.amount) >= p.budget)
       |> select([:projectId])
       |> Repo.all([])
   end
 
   def update_expire_project() do
     dateTime = DateTime.utc_now()
+    Logger.info "dateTime: #{inspect(dateTime)}"
     Projects
       |> join(:inner, [p], h in History, on: p.projectId == h.projectId)
-      |> where([p], p.dateTo <= ^dateTime and p.projectStatus == "active")
+      |> where([p, h], p.dateTo <= ^dateTime and p.projectStatus == "active")
       |> group_by([p], [p.projectId, p.budget])
-      |> having([p, h], sum(h.amount) <= p.budget)
+      |> having([p, h], fragment("SUM(CASE WHEN ? = 'approved' THEN ? ELSE 0 END)", h.status, h.amount) <= p.budget)
       |> select([:projectId])
       |> Repo.all([])
   end
@@ -106,7 +107,7 @@ defmodule Sapanboon.Project do
     |> where([p], p.code == ^code or like(fragment("lower(?)", p.name), ^like))
     |> select([p, h], %{id: p.id,projectId: p.projectId,name: p.name,code: p.code,
       introduce: p.introduce,dateFrom: p.dateFrom,dateTo: p.dateTo,budget: p.budget , projectStatus: p.projectStatus,
-      donation: p.donation,images: p.images3,donation: sum(h.amount),donator: count(h)
+      donation: p.donation,images: p.images3,donation: sum(coalesce(h.amount,0)),donator: count(h)
       })
     |> group_by([p], [p.projectId, p.name, p.code, p.introduce, p.dateFrom, p.dateTo, p.budget, p.projectStatus, p.donation, p.id, p.images3])
     |> order_by([p], asc: p.code)
@@ -143,7 +144,7 @@ defmodule Sapanboon.Project do
           members3: p.members3,
           members4: p.members4,
           members5: p.members5,
-          donation: sum(h.amount),
+          donation: sum(coalesce(h.amount,0)),
           donator: count(h)
         })
       |> group_by([p], [
