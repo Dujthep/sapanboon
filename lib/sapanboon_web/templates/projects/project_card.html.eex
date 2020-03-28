@@ -163,17 +163,24 @@ function shareLine(id,title) {
   }
 
   function shareFacebook(id,pic) {
-    const u = window.location.origin + '/details/' + id
+    const faceIcon = document.getElementById('face-icon')
+    const name = faceIcon.getAttribute('data-name')
+    console.log(pic)
+    console.log(name);
+    $('meta[property=og\\:image]').attr('content', pic);
+    $('meta[property=og\\:description]').attr('content', name);
+    console.log($('meta[property=og\\:image]'))
     FB.ui(
       {
         method: 'feed',
-        link: u,
-        picture: pic
+        link: encodeURI(u),
+        picture: encodeURI(pic),
+        name: name
       },
-      function(res) {
+      function (res) {
         console.log(res)
       }
-    );
+    )
   }
 
 </script>

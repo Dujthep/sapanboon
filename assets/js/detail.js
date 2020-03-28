@@ -38,6 +38,7 @@ function shareFacebook() {
   console.log(name);
   $('meta[property=og\\:image]').attr('content', pic);
   $('meta[property=og\\:description]').attr('content', name);
+  console.log($('meta[property=og\\:image]'))
   FB.ui(
     {
       method: 'feed',
