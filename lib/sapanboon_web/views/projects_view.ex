@@ -41,14 +41,14 @@ defmodule SapanboonWeb.ProjectsView do
   def calculate_percent(donation, budget) do
     if donation != nil do
       percent = donation / budget * 100
-      if percent < 1, do: 1 |> round , else: percent |> round 
+      if percent < 1, do: 1 |> round , else: percent |> round
     end
   end
 
   def calculate_date(dateFrom,dateTo) do
     if (dateFrom != nil and dateTo != nil) do
       day = Kernel.trunc((((DateTime.diff(dateFrom, dateTo)/60)/60)/24))
-      if (day > 0) do format_number(day) else "-" end 
+      if (day > 0) do format_number(day) else "-" end
     end
   end
 
@@ -56,4 +56,6 @@ defmodule SapanboonWeb.ProjectsView do
     month = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."]
     "#{date.day}"<>" "<>Enum.at(month, date.month - 1)<>" "<>"#{date.year+ 543}"
   end
+
+
 end
