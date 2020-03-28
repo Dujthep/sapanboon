@@ -48,9 +48,9 @@
               <span class="icon-search form-control-feedback"></span>
               <input id="search-box" type="text" class="form-control" placeholder="Search">
             </li>
-            <li class="nav-item link-menu login-btn">
+            <div class="link-menu d-none d-lg-block px-4">
               <%= if @conn.assigns[:user] do %>
-                <div class="user-info" id="user-info-id">
+                <div class="user-info">
                   <span><%= @conn.assigns.user.name %></span>
                   <div class="user-menu"> 
                     <%= link "รายการของฉัน", to: Routes.history_path(@conn, :index)%>
@@ -63,7 +63,7 @@
               <% else %>
                 <%= active_link(@conn, "เข้าสู่ระบบ", to: "/login", class: "nav-link", id: "go-login") %>
               <%  end%>
-            </li>
+            </div>
           </ul>
         </div>
       </nav>
