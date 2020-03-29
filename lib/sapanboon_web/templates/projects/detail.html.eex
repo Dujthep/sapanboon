@@ -301,16 +301,16 @@
           <section class="payment">
             <div class="row">
               <div class="col-md-3 col-xs-6 pb-3">
-                <input type="radio" name="amount" id="one-thousand" value="1000" checked="">
-                <label class="payment-amount fs-medium-24 text-primary" for="one-thousand">1,000 บาท</label>
+                <input type="radio" name="amount" id="one-thousand-radio" value="1000" checked="">
+                <label class="payment-amount fs-medium-24 text-primary" for="one-thousand-radio" id="one-thousand">1,000 บาท</label>
               </div>
               <div class="col-md-3 col-xs-6 pb-3">
-                <input type="radio" name="amount" id="five-hundred" value="500">
-                <label class="payment-amount fs-medium-24 text-primary" for="five-hundred">500 บาท</label>
+                <input type="radio" name="amount" id="five-hundred-radio" value="500">
+                <label class="payment-amount fs-medium-24 text-primary" for="five-hundred-radio" id="five-hundred">500 บาท</label>
               </div>
               <div class="col-md-3 col-xs-6 pb-3">
-                <input type="radio" name="amount" id="one-hundred" value="100">
-                <label class="payment-amount fs-medium-24 text-primary" for="one-hundred">100 บาท</label>
+                <input type="radio" name="amount" value="100" id="one-hundred-radio">
+                <label class="payment-amount fs-medium-24 text-primary" for="one-hundred-radio" id="one-hundred">100 บาท</label>
               </div>
               <div class="col-md-3 col-xs-6 pb-3">
                 <input type="radio" name="amount" id="free-style">
