@@ -58,9 +58,9 @@
                                     <label class="fs-18">หลักฐานการโอนเงิน</label>
                                 </div>
                                 <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <label for="file-upload">
+                                    <label for="upload">
                                         <span id="btn-upload" class="btn btn-file pointer" aria-hidden="true">เลือกไฟล์</span>
-                                        <input type="file" name="file-upload" id="file-upload" style="display:none" accept="image/*">
+                                        <input type="file" name="upload" id="upload" style="display:none" accept="image/*">
                                     </label>
                                 </div>
                             </div>
