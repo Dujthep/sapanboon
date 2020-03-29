@@ -6,7 +6,7 @@ window.jQuery = $;
 window.$ = $;
 
 document.addEventListener('DOMContentLoaded', function() {
-  $("#file-upload").val('');
+  $("#upload").val('');
   onGenerateQR()
   addEventChangeToUploadButtonID()
   addEventClickToConfirmPaymentID()
@@ -20,7 +20,7 @@ function onGenerateQR() {
 }
 
 function addEventChangeToUploadButtonID() {
-  var upload = document.getElementById('file-upload')
+  var upload = document.getElementById('upload')
   if (upload) {
     upload.addEventListener('change', function() {
       attachedFile()
@@ -49,7 +49,7 @@ function readURL(input) {
 }
 
 function attachedFile() {
-  const file = $('#file-upload')[0].files[0]
+  const file = $('#upload')[0].files[0]
   if (file) {
     $('#fileName').text(file.name)
     $('#btn-upload').css('background-color', '#ffbb42')
@@ -58,7 +58,7 @@ function attachedFile() {
 
 function onSubmit() {
   const url = $("#url-api").val()
-  const file = $('#file-upload')[0].files[0]
+  const file = $('#upload')[0].files[0]
   const transactionId = $('#transactionId').val()
   const csrf_token = $("meta[name='csrf-token']").attr('content')
   if (file) {
