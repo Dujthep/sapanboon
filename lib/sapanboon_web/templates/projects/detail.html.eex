@@ -43,7 +43,7 @@
         </p>
 
         <%= if (@projects.projectStatus == "active") do %>
-          <a class="btn btn-primary btn-block" href="#payment-panel">
+          <a class="btn btn-primary btn-block" href="#payment-panel" id="pj-code-<%= @projects.code %>">
             <%= "ร่วมบริจาค SPB#{@projects.code}" %>
           </a>
         <% end %>
@@ -86,7 +86,7 @@
 
 
         <%= if (@projects.projectStatus == "active") do %>
-          <a class="btn btn-primary btn-block" href="#payment-panel">
+          <a class="btn btn-primary btn-block" href="#payment-panel" id="pj-code-<%= @projects.code %>">
             <%= "ร่วมบริจาค SPB#{@projects.code}" %>
           </a>
         <% end %>
