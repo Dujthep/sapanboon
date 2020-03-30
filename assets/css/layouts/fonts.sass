@@ -4,6 +4,9 @@
 .fs-14
     font-size: 14px
 
+.fs-16
+    font-size: 16px
+
 .fs-18
     font-size: 18px
 
@@ -30,12 +33,16 @@
 
 .fs-medium-24-32, .btn-primary, .btn-gray, .btn-secondary, .btn-third
     font-size: 32px
-    @extend .fs-medium
+
+.fs-medium-24-32 
+  @media screen and (max-width: 768px) 
+    font-size: 24px !important
+  font-size: 32px !important
 
 .fs-medium-20-24
-  @media screen and (max-width: 768px)
+  @media screen and (max-width: 768px) 
     font-size: 20px !important
-    font-size: 24px !important
+  font-size: 24px !important
 
 .fs-28
     font-size: 28px

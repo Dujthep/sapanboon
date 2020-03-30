@@ -29,16 +29,16 @@
       <section class="col-lg-4 col-md-6 col-sm-6 col-xs-12 pb-5">
         <section class="card">
           <div class="card-body">
-            <section class="card-title" title="SPB<%= project.code %>">
+            <h5 class="card-title fs-24" title="SPB<%= project.code %>">
               <a href="/details/<%= project.id %>">
-                <span class="text-large text-dark" id="SPB<%= project.code %>">
+                <span class="text-dark" id="SPB<%= project.code %>">
                   <%= get_code(project.code) %>
                 </span>
-                <span class="text-large" id="pj-name-SPB<%= project.code %>">
+                <span id="pj-name-SPB<%= project.code %>">
                   <%= project.name %>
                 </span>
               </a>
-            </section>
+            </h5>
             <section>
               <div class="bottom-left px-2">
                 <i class="icon-username"></i>

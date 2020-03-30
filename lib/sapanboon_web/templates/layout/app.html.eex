@@ -135,11 +135,11 @@
       <div class="col-lg-3 mb-3">
         <div class="row">
           <div class="col-6 text-left">
-            <a class="nav-link" href="/">หน้าแรก</a>
+            <a class="nav-link text-dark" href="/">หน้าแรก</a>
           </div>
 
           <div class="col-6 text-left">
-            <a class="nav-link" href="/abouts"> เกี่ยวกับเรา </a>
+            <a class="nav-link text-dark" href="/abouts"> เกี่ยวกับเรา </a>
           </div>
         </div>
         <div class="row mt-2 mb-2">
@@ -148,7 +148,7 @@
 
         <div class="row">
           <div class="col-6 text-left">
-            <a class="nav-link " href="/contact"> ติดต่อเรา </a>
+            <a class="nav-link text-dark" href="/contact"> ติดต่อเรา </a>
           </div>
         </div>
 

@@ -12,7 +12,7 @@
   font-weight: normal
 
 .list-card
-  justify-content: center;
+  justify-content: center
   .card
     border-radius: 4px
     border: solid 1px $very-light-pink
@@ -51,10 +51,24 @@
 
       .card-text
         +ellipsis(3)
-        font-size: px-to-rem(18px)
-        height: 100px
+        height: 79px
         overflow-y: auto
 
       button
         @extend .text-large
         height: px-to-rem(68px)
+
+.card-title a
+  @media screen and (max-width: 1024px) 
+    font-size: 20px !important
+  
+  @media screen and (max-width: 320px) 
+    font-size: 18px !important
+  
+  font-size: 24px !important
+
+.fs-medium-24-32 
+  @media screen and (max-width: 768px) 
+    font-size: 24px !important
+  
+  font-size: 32px !important

@@ -168,9 +168,9 @@ $(document).ready(function() {
               </div>
             </section>
 
-            <section class="card-text" title="ข้อความเต็ม">
+            <p class="card-text txt-dark-gray" title="${data.introduce}">
               ${data.introduce}
-            </section>
+            </p>
 
             <a id="${moreId(data.projectStatus)}" class="${moreClass(data.projectStatus)}" href="/details/${data.id}">
               ${moreText(data.code, data.projectStatus)}
