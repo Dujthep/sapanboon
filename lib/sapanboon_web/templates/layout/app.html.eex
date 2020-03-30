@@ -34,13 +34,13 @@
         <div class="navbar-collapse d-none d-lg-block" id="navigation-collapse-content">
           <ul class="link-menu navbar-nav mr-auto">
             <li class="nav-item">
-              <%= active_link(@conn, "หน้าแรก", to: "/", class: "nav-link") %>
+              <%= active_link(@conn, "หน้าแรก", to: "/", class: "p-0 nav-link m-0 fs-16 fs-light text-white mx-2 bold") %>
             </li>
             <li class="nav-item">
-              <%= active_link(@conn, "เกี่ยวกับเรา", to: "/abouts", class: "nav-link") %>
+              <%= active_link(@conn, "เกี่ยวกับเรา", to: "/abouts", class: "p-0 nav-link m-0 fs-16 fs-light text-white mx-2 bold") %>
             </li>
             <li class="nav-item">
-              <%= active_link(@conn, "ติดต่อเรา", to: "/contact", class: "nav-link") %>
+              <%= active_link(@conn, "ติดต่อเรา", to: "/contact", class: "p-0 nav-link m-0 fs-16 fs-light text-white mx-2 bold") %>
             </li>
           </ul>
           <ul class="navbar-nav ml-auto">
