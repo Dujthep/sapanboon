@@ -44,13 +44,13 @@
             </li>
           </ul>
           <ul class="navbar-nav ml-auto">
-            <li class="nav-link has-search">
+            <li class="nav-link has-search mt-2">
               <span class="icon-search form-control-feedback"></span>
               <input id="search-box" type="text" class="form-control" placeholder="Search">
             </li>
             <li class="nav-item link-menu login-btn">
               <%= if @conn.assigns[:user] do %>
-                <div class="user-info" id="user-info-id">
+                <div class="user-info px-3 mt-2" id="user-info-id">
                   <span><%= @conn.assigns.user.name %></span>
                   <div class="user-menu"> 
                     <%= link "รายการของฉัน", to: Routes.history_path(@conn, :index)%>
@@ -103,8 +103,8 @@
                 <img src="<%= Routes.static_path(@conn, "/images/username-log-in.svg") %>" alt="sapanboon">
               </div>
               <%= if @conn.assigns[:user] do %>
-                <div class="col-8 align-self-center p-0">
-                  <span class="fs-medium-18"><%= @conn.assigns.user.name %></span><br>
+                <div class="col-8 align-self-center">
+                  <span class="fs-medium-18 "><%= @conn.assigns.user.name %></span><br>
                   <%= link "ออกจากระบบ", to: Routes.login_path(@conn, :delete), class: "fs-16" %>
                 </div>
               <% else %>
