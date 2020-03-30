@@ -119,14 +119,14 @@
                     <%= calculate_percent(@projects.donation,@projects.budget) %>%
                     <%= else %>
                     <%= 0 %>px
-                    <%= end %>"
+                    <% end %>"
             role="progressbar"
             aria-valuenow="
                     <%= if (calculate_percent(@projects.donation,@projects.budget) > 0) do %>
                     <%= calculate_percent(@projects.donation,@projects.budget) %>%
                     <%= else %>
                     <%= 0 %>px
-                    <%= end %>"
+                    <% end %>"
             aria-valuemin="0"
             aria-valuemax="100">
             <%= if (@projects.donation > 0 && @projects.donation != nil) do %>
@@ -206,23 +206,23 @@
       <p class="fs-medium-24-bold">ขั้นตอนการดำเนินโครงการ</p>
       <%= if ( @projects.projectSteps1 != nil &&  @projects.projectSteps1 != "") do %>
         <p class="lead">1. <%= @projects.projectSteps1 %></p>
-      <%= end %>
+      <% end %>
 
       <%= if ( @projects.projectSteps2 != nil &&  @projects.projectSteps2 != "") do %>
         <p class="lead">2. <%= @projects.projectSteps2 %></p>
-      <%= end %>
+      <% end %>
 
       <%= if ( @projects.projectSteps3 != nil &&  @projects.projectSteps3 != "") do %>
         <p class="lead">3. <%= @projects.projectSteps3 %></p>
-      <%= end %>
+      <% end %>
 
       <%= if ( @projects.projectSteps4 != nil &&  @projects.projectSteps4 != "") do %>
         <p class="lead">4. <%= @projects.projectSteps4 %></p>
-      <%= end %>
+      <% end %>
 
       <%= if ( @projects.projectSteps5 != nil &&  @projects.projectSteps5 != "") do %>
         <p class="lead">5. <%= @projects.projectSteps5 %></p>
-      <%= end %>
+      <% end %>
     </div>
   </div>
 
@@ -231,23 +231,23 @@
       <p class="fs-medium-24-bold">ประโยชน์ของโครงการ</p>
         <%= if ( @projects.benefits1 != nil &&  @projects.benefits1 != "") do %>
           <p class="lead">1. <%= @projects.benefits1 %></p>
-        <%= end %>
+        <% end %>
 
         <%= if ( @projects.benefits2 != nil &&  @projects.benefits2 != "") do %>
           <p class="lead">2. <%= @projects.benefits2 %></p>
-        <%= end %>
+        <% end %>
 
         <%= if ( @projects.benefits3 != nil &&  @projects.benefits3 != "") do %>
           <p class="lead">3. <%= @projects.benefits3 %></p>
-        <%= end %>
+        <% end %>
 
         <%= if ( @projects.benefits4 != nil &&  @projects.benefits4 != "") do %>
           <p class="lead">4. <%= @projects.benefits4 %></p>
-        <%= end %>
+        <% end %>
         
         <%= if ( @projects.benefits5 != nil &&  @projects.benefits5 != "") do %>
           <p class="lead">5. <%= @projects.benefits5 %></p>
-        <%= end %>
+        <% end %>
     </div>
   </div>
 
@@ -256,23 +256,23 @@
       <p class="fs-medium-24-bold">สมาชิกของโครงการ</p>
       <%= if ( @projects.members1 != nil &&  @projects.members1 != "") do %>
         <p class="lead">1. <%= @projects.members1 %></p>
-      <%= end %>
+      <% end %>
 
       <%= if ( @projects.members2 != nil &&  @projects.members2 != "") do %>
         <p class="lead">2. <%= @projects.members2 %></p>
-      <%= end %>
+      <% end %>
 
       <%= if ( @projects.members3 != nil &&  @projects.members3 != "") do %>
         <p class="lead">3. <%= @projects.members3 %></p>
-      <%= end %>
+      <% end %>
 
       <%= if ( @projects.members4 != nil &&  @projects.members4 != "") do %>
         <p class="lead">4. <%= @projects.members4 %></p>
-      <%= end %>
+      <% end %>
 
       <%= if ( @projects.members5 != nil &&  @projects.members5 != "") do %>
         <p class="lead">5. <%= @projects.members5 %></p>
-      <%= end %>
+      <% end %>
     </div>
   </div>
 
@@ -282,7 +282,7 @@
       <img class="featurette-image img-fluid mx-auto lmg-detail"
         data-src="holder.js/500x500/auto" alt="500x500"
         src="<%= @projects.images5 %>" data-holder-rendered="true">
-    <%= end %>
+    <% end %>
     
   </div>
 </div>
