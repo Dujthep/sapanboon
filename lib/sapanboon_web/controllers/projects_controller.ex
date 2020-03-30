@@ -11,6 +11,7 @@ defmodule SapanboonWeb.ProjectsController do
 
     render(conn, "index.html",
       list_project: Project.list_project_by_status(Map.get(params, "status"), 1),
+      count: Project.count_project(Map.get(params, "status")),
       meta_attrs: []
     )
   end
@@ -94,7 +95,12 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def load_more(conn, params) do
-    json(conn, Project.list_project_by_status(Map.get(params, "status"), Map.get(params, "page")))
+    json(conn,
+      %{
+        list_project: Project.list_project_by_status(Map.get(params, "status"), Map.get(params, "page")),
+        count: Project.count_project(Map.get(params, "status"))
+      }
+    )
   end
 
   def create(conn, params) do

@@ -1,2 +1,2 @@
-<%= render "project_card.html",conn: @conn , list_project: @list_project %>
+<%= render "project_card.html",conn: @conn , list_project: @list_project, count: @count %>
 <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/projects.js") %>"></script>

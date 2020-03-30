@@ -15,128 +15,68 @@ defmodule Sapanboon.Project do
     Repo.all(Projects)
   end
 
-  def list_project_by_status(status, page) do
-    IO.inspect(status)
-
+  def count_project(status) do
     cond do
       status == nil or status == "" ->
         Projects
-        |> join(:left, [p], h in History,
-          on: p.projectId == h.projectId and h.status == "approved"
-        )
-        |> where([p], p.projectStatus == "active")
-        |> or_where([p], p.projectStatus == "active")
-        |> limit(6)
-        |> offset((^page - 1) * 6)
-        |> select([p, h], %{
-          id: p.id,
-          projectId: p.projectId,
-          name: p.name,
-          code: p.code,
-          introduce: p.introduce,
-          dateFrom: p.dateFrom,
-          dateTo: p.dateTo,
-          budget: p.budget,
-          projectStatus: p.projectStatus,
-          donation: p.donation,
-          images: p.images3,
-          donation: sum(coalesce(h.amount, 0)),
-          donator: count(h)
-        })
-        |> group_by([p], [
-          p.projectId,
-          p.name,
-          p.code,
-          p.introduce,
-          p.dateFrom,
-          p.dateTo,
-          p.budget,
-          p.projectStatus,
-          p.donation,
-          p.id,
-          p.images3
-        ])
-        |> order_by([p], asc: p.code)
-        |> Repo.all()
-
+          |> where([p], p.projectStatus == "active")
+          |> Repo.aggregate(:count, :projectStatus)
+      status == "all" ->
+        Projects
+          |> where([p], p.projectStatus != "inactive")
+          |> Repo.aggregate(:count, :projectStatus)
       status == "complete" ->
         Projects
-        |> join(:left, [p], h in History,
-          on: p.projectId == h.projectId and h.status == "approved"
-        )
-        |> where([p], p.projectStatus == "complete")
-        |> or_where([p], p.projectStatus == "expire")
-        |> limit(6)
-        |> offset((^page - 1) * 6)
-        |> select([p, h], %{
-          id: p.id,
-          projectId: p.projectId,
-          name: p.name,
-          code: p.code,
-          introduce: p.introduce,
-          dateFrom: p.dateFrom,
-          dateTo: p.dateTo,
-          budget: p.budget,
-          projectStatus: p.projectStatus,
-          donation: p.donation,
-          images: p.images3,
-          donation: sum(coalesce(h.amount, 0)),
-          donator: count(h)
-        })
-        |> group_by([p], [
-          p.projectId,
-          p.name,
-          p.code,
-          p.introduce,
-          p.dateFrom,
-          p.dateTo,
-          p.budget,
-          p.projectStatus,
-          p.donation,
-          p.id,
-          p.images3
-        ])
-        |> order_by([p], asc: p.code)
-        |> Repo.all()
+          |> where([p], p.projectStatus == "complete" or p.projectStatus == "expire")
+          |> Repo.aggregate(:count, :projectStatus)
+    end
+  end
 
-      true ->
-        Projects
-        |> join(:left, [p], h in History,
-          on: p.projectId == h.projectId and h.status == "approved"
-        )
-        |> where([p], p.projectStatus != "inactive")
-        |> limit(6)
-        |> offset((^page - 1) * 6)
-        |> select([p, h], %{
-          id: p.id,
-          projectId: p.projectId,
-          name: p.name,
-          code: p.code,
-          introduce: p.introduce,
-          dateFrom: p.dateFrom,
-          dateTo: p.dateTo,
-          budget: p.budget,
-          projectStatus: p.projectStatus,
-          donation: p.donation,
-          images: p.images3,
-          donation: sum(coalesce(h.amount, 0)),
-          donator: count(h)
-        })
-        |> group_by([p], [
-          p.projectId,
-          p.name,
-          p.code,
-          p.introduce,
-          p.dateFrom,
-          p.dateTo,
-          p.budget,
-          p.projectStatus,
-          p.donation,
-          p.id,
-          p.images3
-        ])
-        |> order_by([p], asc: p.code)
-        |> Repo.all()
+  def quiry_project(sql_status, page) do
+    Projects
+      |> join(:left, [p], h in History,
+        on: p.projectId == h.projectId and h.status == "approved"
+      )
+      |> where(^sql_status)
+      |> limit(6)
+      |> offset((^page - 1) * 6)
+      |> select([p, h], %{
+        id: p.id,
+        projectId: p.projectId,
+        name: p.name,
+        code: p.code,
+        introduce: p.introduce,
+        dateFrom: p.dateFrom,
+        dateTo: p.dateTo,
+        budget: p.budget,
+        projectStatus: p.projectStatus,
+        donation: p.donation,
+        images: p.images3,
+        donation: sum(coalesce(h.amount, 0)),
+        donator: count(h)
+      })
+      |> group_by([p], [
+        p.projectId,
+        p.name,
+        p.code,
+        p.introduce,
+        p.dateFrom,
+        p.dateTo,
+        p.budget,
+        p.projectStatus,
+        p.donation,
+        p.id,
+        p.images3
+      ])
+      |> order_by([p], asc: p.code)
+      |> Repo.all()
+  end
+
+  def list_project_by_status(status, page) do
+    cond do
+      status == nil or status == "" -> quiry_project(dynamic([p], p.projectStatus == "active"), page)
+      status == "all" -> quiry_project(dynamic([p], p.projectStatus != "inactive" or p.projectStatus == "expire"), page)
+      status == "complete" -> quiry_project(dynamic([p], p.projectStatus == "complete" or p.projectStatus == "expire"), page)
     end
   end
 
@@ -148,7 +88,6 @@ defmodule Sapanboon.Project do
             |> String.replace("SPB", "")
             |> String.replace("%", "")
     code = if Regex.match?(~r{\A\d*\z}, code) do code else 0 end
-    Logger.info("Deleting user from the system: #{inspect(code)}")
 
     Projects
     |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
