@@ -25,21 +25,36 @@ liveSocket.connect()
 $.ajaxSetup({ cache: true });
 
 $(document).ready(function () {
-    // if (window.location.pathname === "/" && !window.location.search) {
-    //     window.location.search = "?status=active"
-    // }
+  // if (window.location.pathname === "/" && !window.location.search) {
+  //     window.location.search = "?status=active"
+  // }
+  var btn = $('#scroll-top');
+
+  $(window).scroll(function () {
+    if ($(window).scrollTop() > 300) {
+      btn.addClass('show');
+    } else {
+      btn.removeClass('show');
+    }
+  });
+
+  btn.on('click', function (e) {
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: 0 }, '300');
+  });
+
 })
 $('#sidebarCollapse').on('click', function (e) {
-    $('#sidebar').toggleClass('active');
-    $('.overlay').toggleClass('active');
-    e.stopPropagation();
+  $('#sidebar').toggleClass('active');
+  $('.overlay').toggleClass('active');
+  e.stopPropagation();
 });
 $(document).click(function (e) {
-    if (e.target.id !== "search-box") {
-        $('#sidebar').removeClass('active');
-        $('.overlay').removeClass('active');
-    }
-    e.stopPropagation();
+  if (e.target.id !== "search-box") {
+    $('#sidebar').removeClass('active');
+    $('.overlay').removeClass('active');
+  }
+  e.stopPropagation();
 });
 
 // const tabs = document.querySelectorAll('.tab-menu > li > a');
@@ -63,36 +78,36 @@ $(document).click(function (e) {
 //     });
 // });
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $("section #line-icon").click(function() {
-      const id = $(this).attr("data-id");
-      const title = $(this).attr("data-title");
-      var src = window.location.origin + '/details/' + id
-      window.open(
-        'https://social-plugins.line.me/lineit/share/ui?' +
-          'text=' +
-          'ขอเชิญร่วมบริจาคโครงการ ' +
-          title +
-          ' ตามรายละเอียดด้านล่างนี้' +
-          '&url=' +
-          src
-      );
-    })
-  
-    $("section #face-icon").click(function() {
-      const id = $(this).attr("data-id")
-      const pic = $(this).attr("data-title")
-      const u = window.location.origin + '/details/' + id
-      FB.ui(
-        {
-          method: 'feed',
-          link: u,
-          picture: pic
-        },
-        function(res) {
-          console.log(res)
-        }
-      );
-    })
+  $("section #line-icon").click(function () {
+    const id = $(this).attr("data-id");
+    const title = $(this).attr("data-title");
+    var src = window.location.origin + '/details/' + id
+    window.open(
+      'https://social-plugins.line.me/lineit/share/ui?' +
+      'text=' +
+      'ขอเชิญร่วมบริจาคโครงการ ' +
+      title +
+      ' ตามรายละเอียดด้านล่างนี้' +
+      '&url=' +
+      src
+    );
+  })
+
+  $("section #face-icon").click(function () {
+    const id = $(this).attr("data-id")
+    const pic = $(this).attr("data-title")
+    const u = window.location.origin + '/details/' + id
+    FB.ui(
+      {
+        method: 'feed',
+        link: u,
+        picture: pic
+      },
+      function (res) {
+        console.log(res)
+      }
+    );
+  })
 })

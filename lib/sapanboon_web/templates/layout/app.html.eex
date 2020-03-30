@@ -123,6 +123,7 @@
     <div class="loader loader-bouncing"></div>
 
     <main role="main" class="container-fluid p-0">
+      <a id="scroll-top"></a>
       <%= render @view_module, @view_template, assigns %>
     </main>
   </body>

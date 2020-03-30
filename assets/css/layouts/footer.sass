@@ -21,9 +21,6 @@ footer
       img
         +width(125px)
         +height(125px)
-        
-       
-            
 
     .navbar-nav.nav-footer
       flex-direction: row
@@ -31,7 +28,6 @@ footer
       li.nav-item
         a.nav-link
           padding-top: 0
-
 
     #contact
       display: flex
@@ -49,3 +45,38 @@ footer
     display: flex
     align-items: center
     justify-content: center
+
+#scroll-top
+  display: inline-block
+  width: 60px
+  height: 60px
+  text-align: center
+  background-color: #9eadb5
+  border-radius: 50%
+  position: fixed
+  bottom: 30px
+  right: 30px
+  transition: background-color .3s,opacity .5s, visibility .5s
+  opacity: 0
+  visibility: hidden
+  z-index: 1000
+
+#scroll-top::after
+  content: "\f077"
+  font-family: FontAwesome
+  font-weight: normal
+  font-style: normal
+  font-size: 2em
+  line-height: 50px
+  color: #fff
+
+#scroll-top:hover
+  cursor: pointer
+  background-color: #333
+
+#scroll-top:active
+  background-color: #555
+
+#scroll-top.show
+  opacity: 1
+  visibility: visible
