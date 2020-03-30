@@ -143,14 +143,12 @@ defmodule Sapanboon.Project do
   def get_project_by_param(param) do
     like = "%#{param}%"
 
-    code =
-      if String.upcase(like) =~ "SPB" do
-        String.slice(param, 3..String.length(param))
-        |> String.trim()
-        |> String.to_integer()
-      else
-        0
-      end
+    code = String.upcase(like)
+            |> String.trim()
+            |> String.replace("SPB", "")
+            |> String.replace("%", "")
+    code = if Regex.match?(~r{\A\d*\z}, code) do code else 0 end
+    Logger.info("Deleting user from the system: #{inspect(code)}")
 
     Projects
     |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")

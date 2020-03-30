@@ -228,7 +228,7 @@ $(document).ready(function() {
   }
 
   $('#search-box').on('keydown', function(e) {
-    if (e.keyCode === 13) {
+    if ($(this).val() && e.keyCode === 13) {
       $('#tab-menu').hide()
       $('#search-result').hide()
       $('#not-found').hide()
