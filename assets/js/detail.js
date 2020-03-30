@@ -30,19 +30,6 @@ function shareLine() {
   )
 }
 
-// function shareLine(id, title) {
-//   var src = window.location.origin + '/details/' + id
-//   window.open(
-//     'https://social-plugins.line.me/lineit/share/ui?' +
-//     'text=' +
-//     'ขอเชิญร่วมบริจาคโครงการ ' +
-//     title +
-//     ' ตามรายละเอียดด้านล่างนี้' +
-//     '&url=' +
-//     src
-//   );
-// }
-
 function shareFacebook() {
   const faceIcon = document.getElementById('face-icon')
   const id = faceIcon.getAttribute('data-id')
