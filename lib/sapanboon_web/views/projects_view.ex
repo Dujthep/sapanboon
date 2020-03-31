@@ -53,7 +53,6 @@ defmodule SapanboonWeb.ProjectsView do
   end
 
   def check_more(count, project) do
-    length(project)
     Logger.info("Deleting count: #{inspect(count)}")
     Logger.info("Deleting count: #{inspect(length(project))}")
     if count > length(project) do true else false end

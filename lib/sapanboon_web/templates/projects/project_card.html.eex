@@ -79,15 +79,15 @@
                     style="height: 26px; width:
                     <%= if (calculate_percent(project.donation,project.budget) > 0) do %>
                     <%= calculate_percent(project.donation,project.budget) %>%
-                    <%= else %>
+                    <% else %>
                     <%= 0 %>px
-                    <%= end %>"
+                    <% end %>"
                     aria-valuenow="
                     <%= if (calculate_percent(project.donation,project.budget) > 0) do %>
                     <%= calculate_percent(project.donation,project.budget) %>%
-                    <%= else %>
+                    <% else %>
                     <%= 0 %>px
-                    <%= end %>"
+                    <% end %>"
                     aria-valuemin="0" aria-valuemax="100">
                     <%= if (project.donation > 0 && project.donation != nil) do %>
                       <%= calculate_percent(project.donation, project.budget) %>%

@@ -117,14 +117,14 @@
             style="height: 26px; width:
                     <%= if (calculate_percent(@projects.donation,@projects.budget) > 0) do %>
                     <%= calculate_percent(@projects.donation,@projects.budget) %>%
-                    <%= else %>
+                    <% else %>
                     <%= 0 %>px
                     <% end %>"
             role="progressbar"
             aria-valuenow="
                     <%= if (calculate_percent(@projects.donation,@projects.budget) > 0) do %>
                     <%= calculate_percent(@projects.donation,@projects.budget) %>%
-                    <%= else %>
+                    <% else %>
                     <%= 0 %>px
                     <% end %>"
             aria-valuemin="0"
