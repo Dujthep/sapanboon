@@ -14,7 +14,7 @@ pipeline {
     stage('checkout') {
       steps {
         cleanWs()
-        git branch: 'develop', credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.GIT_HOST}/${env.NAMESPACE}/${env.APP_NAME}.git"
+        git branch: 'master', credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.GIT_HOST}/${env.NAMESPACE}/${env.APP_NAME}.git"
       }
     }
     stage('registry') {
