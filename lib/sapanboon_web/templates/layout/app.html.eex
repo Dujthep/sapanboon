@@ -11,7 +11,7 @@
     <script>
       window.fbAsyncInit = function() {
         FB.init({
-          appId: '<%= Application.fetch_env!(:ueberauth, Ueberauth.Strategy.Facebook.OAuth, :client_id) %>',
+          appId: '982418975482839',
           autoLogAppEvents : true,
           xfbml            : true,
           version          : 'v5.0'
