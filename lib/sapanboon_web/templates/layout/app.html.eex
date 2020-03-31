@@ -11,7 +11,7 @@
     <script>
       window.fbAsyncInit = function() {
         FB.init({
-          appId: '982418975482839',
+          appId: '<%= Application.fetch_env!(:ueberauth, Ueberauth.Strategy.Facebook.OAuth, :client_id) %>',
           autoLogAppEvents : true,
           xfbml            : true,
           version          : 'v5.0'
@@ -52,7 +52,7 @@
               <%= if @conn.assigns[:user] do %>
                 <div class="user-info px-3 mt-2" id="user-info-id">
                   <span><%= @conn.assigns.user.name %></span>
-                  <div class="user-menu"> 
+                  <div class="user-menu">
                     <%= link "รายการของฉัน", to: Routes.history_path(@conn, :index)%>
                     <%= if @conn.assigns.user.role  === "admin" do %>
                       <%= link "หน้าจอ Admin", to: Routes.login_path(@conn, :admin)%>
@@ -132,7 +132,7 @@
       <div class="col-lg-3 mb-3">
         <img  src="<%= Routes.static_path(@conn, "/images/sapanboon-logo.png") %>" alt="sapanboon" width="125px">
       </div>
-      
+
       <div class="col-lg-3 mb-3">
         <div class="row">
           <div class="col-6 text-left">
@@ -157,9 +157,9 @@
 
       <div class="col-lg-3 mb-3 text-left">
         <p class="fs-light-footer text-dark">
-            ที่อยู่: มูลนิธิสะพานบุญ 556 ถนนลาดพร้าว แขวงพลับพลา เขตวังทองหลาง 10310 <br> 
-            ประเทศไทย <br> 
-            อีเมล: admin@sapanboon.org <br> 
+            ที่อยู่: มูลนิธิสะพานบุญ 556 ถนนลาดพร้าว แขวงพลับพลา เขตวังทองหลาง 10310 <br>
+            ประเทศไทย <br>
+            อีเมล: admin@sapanboon.org <br>
             โทรศัพท์:081-651-1718
         </p>
       </div>
@@ -170,7 +170,7 @@
           <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/ig-icon.svg") %>" alt="ig-sapanboon">
           <img class="social-icon" src="<%= Routes.static_path(@conn, "/images/twitter-icon.svg") %>" alt="twitter-sapanboon">
       </div>
-      
+
       <div class="d-flex justify-content-center col-12">
         <span>© 2019 Sapanboon, All Rights Reserved. Design with Sapanboon</span>
       </div>
