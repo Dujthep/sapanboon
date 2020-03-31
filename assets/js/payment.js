@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function onGenerateQR() {
   var qr_dom = $('#qrcode')
-  var txt = PromptPayQR.gen_text('0955198387', $('#amount').val())
+  var txt = PromptPayQR.gen_text('0994000001711', $('#amount').val())
   qr_dom.innerHTML = ''
   new QRCode(qrcode, txt)
 }
