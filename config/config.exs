@@ -35,8 +35,8 @@ config :phoenix, :json_library, Jason
 # Config Authentication
 config :ueberauth, Ueberauth,
   providers: [
-    google: { Ueberauth.Strategy.Google, [default_scope: "email profile plus.me"] },
-    facebook: { Ueberauth.Strategy.Facebook, [default_scope: "email public_profile", display: "popup"] },
+    google: {Ueberauth.Strategy.Google, [default_scope: "email profile plus.me"]},
+    facebook: {Ueberauth.Strategy.Facebook, [default_scope: "email,public_profile"]}
   ]
 
 # Import environment specific config. This must remain at the bottom
