@@ -6,10 +6,12 @@ defmodule SapanboonWeb.LoginController do
   # alias Sapanboon.SapanboonWeb.Login
 
   def index(conn, _params) do
-    render(conn, "index.html", login: "",meta_attrs: [])
+    render(conn, "index.html", login: "", meta_attrs: [])
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+    IO.inspect(auth)
+
     user_params = %{
       token: auth.credentials.token,
       email: auth.info.email,
@@ -23,10 +25,14 @@ defmodule SapanboonWeb.LoginController do
 
     post_params = user_params |> Poison.encode!()
     url = Application.fetch_env!(:sapanboon, :api_transaction)
-    case HTTPoison.post(url <> "/user/insertUser",post_params,%{"Content-Type" => "application/json"}) do
+
+    case HTTPoison.post(url <> "/user/insertUser", post_params, %{
+           "Content-Type" => "application/json"
+         }) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
         body = Poison.Parser.parse!(body)
         IO.inspect(body)
+
       {:error, _reason} ->
         IO.inspect(:error)
     end
@@ -57,11 +63,13 @@ defmodule SapanboonWeb.LoginController do
 
   def create(conn, params) do
     changeset = User.changeset(%User{}, params)
+
     case Repo.insert(changeset) do
       {:ok, login} ->
         conn
         |> put_status(:ok)
         |> render("show.json", login: login)
+
       {:error, %{errors: errors}} ->
         conn
         |> put_status(422)
