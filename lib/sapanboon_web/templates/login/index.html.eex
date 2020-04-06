@@ -7,9 +7,9 @@
 
   <div class="d-flex align-items-center justify-content-center" style="min-height: 400px;">
     <div class="col-md-6 col-sm-12 text-center ">
-      <div class="form-group">
-        <a class="btn btn-facebook btn-lg btn-block" id="facebook-login" href="/auth/facebook"><span class="fa fa-facebook"></span> เข้าสู่ระบบด้วย Facebook</a>
-      </div>
+      <%# <div class="form-group"> %>
+        <%# <a class="btn btn-facebook btn-lg btn-block" id="facebook-login" href="/auth/facebook"><span class="fa fa-facebook"></span> เข้าสู่ระบบด้วย Facebook</a> %>
+      <%# </div> %>
       <div class="form-group">
         <a class="btn btn-google btn-lg btn-block" id="google-login" href="/auth/google?scope=email%20profile"><span class="fa fa-google"></span> เข้าสู่ระบบด้วย Google</a>
       </div>
