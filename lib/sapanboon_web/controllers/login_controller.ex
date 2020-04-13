@@ -19,22 +19,21 @@ defmodule SapanboonWeb.LoginController do
       role: "user"
     }
 
+    # post_params = user_params |> Poison.encode!()
+    # url = Application.fetch_env!(:sapanboon, :api_transaction)
+
+    # case HTTPoison.post(url <> "/user/insertUser", post_params, %{
+    #        "Content-Type" => "application/json"
+    #      }) do
+    #   {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+    #     body = Poison.Parser.parse!(body)
+    #     IO.inspect(body)
+
+    #   {:error, _reason} ->
+    #     IO.inspect(:error)
+    # end
+
     changeset = User.changeset(%User{}, user_params)
-
-    post_params = user_params |> Poison.encode!()
-    url = Application.fetch_env!(:sapanboon, :api_transaction)
-
-    case HTTPoison.post(url <> "/user/insertUser", post_params, %{
-           "Content-Type" => "application/json"
-         }) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        body = Poison.Parser.parse!(body)
-        IO.inspect(body)
-
-      {:error, _reason} ->
-        IO.inspect(:error)
-    end
-
     case insert_or_update_user(changeset) do
       {:ok, user} ->
         conn
