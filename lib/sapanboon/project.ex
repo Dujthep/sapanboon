@@ -11,10 +11,6 @@ defmodule Sapanboon.Project do
 
   require Logger
 
-  def list_project do
-    Repo.all(Projects)
-  end
-
   def count_project(status) do
     cond do
       status == nil or status == "" ->
