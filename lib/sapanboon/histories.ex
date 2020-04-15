@@ -15,7 +15,7 @@ defmodule Sapanboon.Histories do
   def get_history_list_by_email(email) do
     History
     |> where([h], h.email == ^email)
-    |> order_by([h], [desc: h.transId])
+    |> order_by([h], [desc: h.transactionNo])
     |> Repo.all()
   end
 
