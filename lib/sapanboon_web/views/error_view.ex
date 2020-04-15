@@ -3,7 +3,7 @@ defmodule SapanboonWeb.ErrorView do
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.
-  
+
   def render("500.html", _assigns) do
     render("500_page.html",%{})
   end
@@ -23,8 +23,8 @@ defmodule SapanboonWeb.ErrorView do
     %{errors: %{message: "Page not found"}}
   end
 
-  def render("422.json", assigns) do
-    %{errors: %{message: "Bad request", assigns: assigns}}
+  def render("422.json", errors) do
+    %{errors: %{message: "Bad request", errors: errors}}
   end
 
   def render("500.json", _assigns) do

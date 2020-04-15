@@ -2,8 +2,6 @@ defmodule SapanboonWeb.HistoryController do
   use SapanboonWeb, :controller
 
   alias Sapanboon.Histories
-  alias Sapanboon.Histories.History
-
   alias Sapanboon.{Mailer, Email}
 
   def index(conn, _params) do
@@ -79,7 +77,8 @@ defmodule SapanboonWeb.HistoryController do
       {:error, %{errors: errors}} ->
         conn
         |> put_status(422)
-        |> render(SapanboonWeb.ErrorView, "422.json")
+        |> put_view(SapanboonWeb.ErrorView)
+        |> render("422.json", errors)
     end
   end
 
