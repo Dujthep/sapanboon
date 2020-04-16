@@ -87,5 +87,22 @@ defmodule Sapanboon.ProjectTest do
       assert p5.projectStatus == "complete" || p5.projectStatus == "expire"
     end
 
+    test "search project by 'SPB1' return project name 'สร้างสถานปฎิบัติธรรม สมเด็จพระสังฆราช (อมฺพรมหาเถร) วัดราชบพิธ'" do
+      [p] = Project.search_project("SPB1")
+      assert p.name == "สร้างสถานปฎิบัติธรรม สมเด็จพระสังฆราช (อมฺพรมหาเถร) วัดราชบพิธ"
+    end
+
+    test "search project by 'โครงการปล่อยปลาดุก' return project name 'โครงการปล่อยปลาดุกหน้าเขียง วันที่ 1 มีนาคม 2563'" do
+      [p] = Project.search_project("โครงการปล่อยปลาดุก")
+      assert p.name == "โครงการปล่อยปลาดุกหน้าเขียง วันที่ 1 มีนาคม 2563"
+    end
+
+    test "search project by 'บริจาค' return 3 projects" do
+      [p1, p2, p3] = Project.search_project("บริจาค")
+      assert p1.name == "บริจาคเครื่องอุปโภคบริโภคให้กับ Mercy Centre"
+      assert p2.name == "บริจาคเครื่องอุปโภคบริโภคกับมูลนิธิโรงเรียนบ้านเด็กตาบอด"
+      assert p3.name == "บริจาคเครื่องอุปโภคบริโภคกับมูลนิธิบ้านนกขมิ้น"
+    end
+
   end
 end
