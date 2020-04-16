@@ -68,5 +68,24 @@ defmodule Sapanboon.ProjectTest do
       assert p1.projectStatus == "active"
     end
 
+    test "list_project_by_status where status is 'all' return 5is projectStatus not eq 'inactive'" do
+      [p1, p2, p3, p4, p5, p6] = Project.list_project_by_status("all", 1)
+      assert p1.projectStatus != "inactive"
+      assert p2.projectStatus != "inactive"
+      assert p3.projectStatus != "inactive"
+      assert p4.projectStatus != "inactive"
+      assert p5.projectStatus != "inactive"
+      assert p6.projectStatus != "inactive"
+    end
+
+    test "list_project_by_status where status is 'complete' return list project is projectStatus eq 'complete' or 'expire'" do
+      [p1, p2, p3, p4, p5] = Project.list_project_by_status("complete", 1)
+      assert p1.projectStatus == "complete" || p1.projectStatus == "expire"
+      assert p2.projectStatus == "complete" || p2.projectStatus == "expire"
+      assert p3.projectStatus == "complete" || p3.projectStatus == "expire"
+      assert p4.projectStatus == "complete" || p4.projectStatus == "expire"
+      assert p5.projectStatus == "complete" || p5.projectStatus == "expire"
+    end
+
   end
 end

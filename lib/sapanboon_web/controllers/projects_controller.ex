@@ -163,6 +163,6 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def search(conn, %{"param" => param}) do
-    json(conn, Project.get_project_by_param(param))
+    json(conn, Project.search_project(param))
   end
 end

@@ -71,12 +71,12 @@ defmodule Sapanboon.Project do
   def list_project_by_status(status, page) do
     cond do
       status == nil or status == "" -> quiry_project(dynamic([p], p.projectStatus == "active"), page)
-      status == "all" -> quiry_project(dynamic([p], p.projectStatus != "inactive" or p.projectStatus == "expire"), page)
+      status == "all" -> quiry_project(dynamic([p], p.projectStatus != "inactive"), page)
       status == "complete" -> quiry_project(dynamic([p], p.projectStatus == "complete" or p.projectStatus == "expire"), page)
     end
   end
 
-  def get_project_by_param(param) do
+  def search_project(param) do
     like = "%#{param}%"
 
     code = String.upcase(like)
