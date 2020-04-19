@@ -110,7 +110,7 @@ defmodule Sapanboon.ProjectTest do
     end
 
     test "get_projects_detail! returns the projects by id and sum donation, donator" do
-      projects = Project.get_projects_detail(5)
+      [projects] = Project.get_projects_detail(5)
       assert projects.id == 5
       assert projects.donation == 150
       assert projects.donator == 5

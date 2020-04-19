@@ -197,7 +197,7 @@ defmodule Sapanboon.Project do
       p.members4,
       p.members5
     ])
-    |> Repo.one()
+    |> Repo.all()
   end
 
   def get_projects_by_project_id(projectId), do: Repo.get_by(Projects, projectId: projectId)
