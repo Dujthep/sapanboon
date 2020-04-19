@@ -8,7 +8,7 @@ defmodule Sapanboon.ProjectTest do
     alias Sapanboon.Project.Projects
 
     @valid_attrs %{
-      projectId: "", name: "some name", code: 1, taxId: "some taxId", projectOwner: "some projectOwner",
+      projectId: "some projectId", name: "some name", code: 1, taxId: "some taxId", projectOwner: "some projectOwner",
       dateFrom: "2011-05-18T15:01:01Z", dateTo: "2011-05-18T15:01:01Z", location: "some location",
       budget: 10000, introduce: "some introduce", overview: "some overview", email: "some email",
       facebook: "some facebook", instagram: "instagram", twitter: "twitter", website: "website", line: "line",
@@ -102,6 +102,23 @@ defmodule Sapanboon.ProjectTest do
       assert p1.name == "บริจาคเครื่องอุปโภคบริโภคให้กับ Mercy Centre"
       assert p2.name == "บริจาคเครื่องอุปโภคบริโภคกับมูลนิธิโรงเรียนบ้านเด็กตาบอด"
       assert p3.name == "บริจาคเครื่องอุปโภคบริโภคกับมูลนิธิบ้านนกขมิ้น"
+    end
+
+    test "get_projects! returns the projects with given id" do
+      project = projects_fixture()
+      assert Project.get_projects!(project.id) == project
+    end
+
+    test "get_projects_detail! returns the projects by id and sum donation, donator" do
+      projects = Project.get_projects_detail(5)
+      assert projects.id == 5
+      assert projects.donation == 150
+      assert projects.donator == 5
+    end
+
+    test "get_projects_by_project_id returns the projects with given projectId" do
+      project = projects_fixture()
+      assert Project.get_projects_by_project_id(project.projectId) == project
     end
 
   end

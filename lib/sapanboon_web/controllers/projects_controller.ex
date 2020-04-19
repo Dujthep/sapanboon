@@ -17,7 +17,7 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def detail(conn, %{"id" => id}) do
-    project = Enum.at(Project.get_projects_by_Id(id), 0)
+    project = Enum.at(Project.get_projects_detail(id), 0)
 
     attrs_list = [
       %{name: "og:description", content: project.introduce},

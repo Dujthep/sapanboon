@@ -123,7 +123,7 @@ defmodule Sapanboon.Project do
 
   def get_projects!(id), do: Repo.get!(Projects, id)
 
-  def get_projects_by_Id(id) do
+  def get_projects_detail(id) do
     Projects
     |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
     |> where([p], p.id == ^id)
@@ -197,7 +197,7 @@ defmodule Sapanboon.Project do
       p.members4,
       p.members5
     ])
-    |> Repo.all()
+    |> Repo.one()
   end
 
   def get_projects_by_project_id(projectId), do: Repo.get_by(Projects, projectId: projectId)
