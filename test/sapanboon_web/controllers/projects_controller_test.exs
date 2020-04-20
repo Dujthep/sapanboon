@@ -26,14 +26,24 @@ defmodule SapanboonWeb.ProjectsControllerTest do
   end
 
   describe "detail" do
-    test "lists all project is active", %{conn: conn} do
+    test "get project Detail", %{conn: conn} do
       conn = get(conn, Routes.projects_path(conn, :detail, 15))
       items = conn.assigns.projects
-
-      assert items.introduce =~
-               "โครงการปล่อยปลาหน้าเขียง เปิดรับเงินบริจาคจากผู้มีจิตศรัทธา"
+      assert items.benefits1 =~
+               "เป็นการช่วยเหลือผู้ป่วยที่ติดเชื้อเอดส์"
     end
   end
+
+   describe "search" do
+    test "search project", %{conn: conn} do
+      conn = get(conn, Routes.projects_path(conn, :load_more))
+      items = Poison.Parser.parse!(conn.resp_body)
+
+      IO.inspect(items["count"])
+      assert items["count"] == 7
+    end
+  end
+
   # describe "get Detail" do
   #   test "get Project Detail", %{conn: conn} do
   #     (conn = get(conn, Routes.projects_path(conn, :detail)))
