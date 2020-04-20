@@ -21,6 +21,8 @@ defmodule SapanboonWeb.LoginController do
 
     changeset = User.changeset(%User{}, user_params)
 
+    IO.inspect(changeset)
+
     post_params = user_params |> Poison.encode!()
     url = Application.fetch_env!(:sapanboon, :api_transaction)
 
@@ -34,6 +36,8 @@ defmodule SapanboonWeb.LoginController do
       {:error, _reason} ->
         IO.inspect(:error)
     end
+
+    IO.inspect("done")
 
     case insert_or_update_user(changeset) do
       {:ok, user} ->
