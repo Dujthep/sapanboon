@@ -26,6 +26,7 @@ defmodule SapanboonWeb.Router do
   end
 
   scope "/crontab", SapanboonWeb do
+    pipe_through :api
     put "/project", CrontabController, :update
   end
 

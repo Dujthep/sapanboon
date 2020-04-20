@@ -11,7 +11,7 @@ defmodule SapanboonWeb.TodoLive do
         """
     end
 
-    def mount(_params,project  , socket) do
+    def mount(_params, _project, socket) do
         {:ok, assign(socket, :temperature, 38)}
     end
 

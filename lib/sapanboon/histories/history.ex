@@ -27,6 +27,5 @@ defmodule Sapanboon.Histories.History do
   def changeset(history, attrs) do
     history
     |> cast(attrs, [:projectId, :code, :name, :email, :transId, :transactionDate, :transactionNo, :amount, :status, :imgSlip, :paymentType, :fullName])
-    # |> validate_required([:projectId, :code, :name, :email, :transId, :transactionDate, :transactionNo, :amount, :status, :imgSlip, :paymentType, :fullName])
   end
 end

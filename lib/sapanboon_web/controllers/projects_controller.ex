@@ -15,7 +15,7 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def detail(conn, %{"id" => id}) do
-    project = Enum.at(Project.get_projects_by_Id(id), 0)
+    project = Enum.at(Project.get_projects_detail(id), 0)
 
     attrs_list = [
       %{name: "og:description", content: project.introduce},
@@ -33,7 +33,7 @@ defmodule SapanboonWeb.ProjectsController do
       if amount == "on",
         do:
           :string.to_integer(
-            to_char_list(String.replace(conn.query_params["inputAmount"], ",", ""))
+            to_charlist(String.replace(conn.query_params["inputAmount"], ",", ""))
           ),
         else: Integer.parse(amount)
 
@@ -79,7 +79,7 @@ defmodule SapanboonWeb.ProjectsController do
             |> put_flash(:info, "History created successfully.")
             |> redirect(to: Routes.payment_path(conn, :index, history.id))
 
-          {:error, %Ecto.Changeset{} = changeset} ->
+          {:error, _} ->
             conn
             |> redirect(to: Routes.projects_path(conn, :detail, id))
         end
@@ -113,7 +113,8 @@ defmodule SapanboonWeb.ProjectsController do
       {:error, %{errors: errors}} ->
         conn
         |> put_status(422)
-        |> render(SapanboonWeb.ErrorView, "422.json")
+        |> put_view(SapanboonWeb.ErrorView)
+        |> render("422.json", errors)
     end
   end
 
@@ -162,6 +163,6 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def search(conn, %{"param" => param}) do
-    json(conn, Project.get_project_by_param(param))
+    json(conn, Project.search_project(param))
   end
 end

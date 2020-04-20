@@ -11,10 +11,6 @@ defmodule Sapanboon.Project do
 
   require Logger
 
-  def list_project do
-    Repo.all(Projects)
-  end
-
   def count_project(status) do
     cond do
       status == nil or status == "" ->
@@ -75,12 +71,12 @@ defmodule Sapanboon.Project do
   def list_project_by_status(status, page) do
     cond do
       status == nil or status == "" -> quiry_project(dynamic([p], p.projectStatus == "active"), page)
-      status == "all" -> quiry_project(dynamic([p], p.projectStatus != "inactive" or p.projectStatus == "expire"), page)
+      status == "all" -> quiry_project(dynamic([p], p.projectStatus != "inactive"), page)
       status == "complete" -> quiry_project(dynamic([p], p.projectStatus == "complete" or p.projectStatus == "expire"), page)
     end
   end
 
-  def get_project_by_param(param) do
+  def search_project(param) do
     like = "%#{param}%"
 
     code = String.upcase(like)
@@ -90,44 +86,44 @@ defmodule Sapanboon.Project do
     code = if Regex.match?(~r{\A\d*\z}, code) do code else 0 end
 
     Projects
-    |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
-    |> where([p], p.projectStatus != "inactive")
-    |> where([p], p.code == ^code or like(fragment("lower(?)", p.name), ^like))
-    |> select([p, h], %{
-      id: p.id,
-      projectId: p.projectId,
-      name: p.name,
-      code: p.code,
-      introduce: p.introduce,
-      dateFrom: p.dateFrom,
-      dateTo: p.dateTo,
-      budget: p.budget,
-      projectStatus: p.projectStatus,
-      donation: p.donation,
-      images: p.images3,
-      donation: sum(coalesce(h.amount, 0)),
-      donator: count(h)
-    })
-    |> group_by([p], [
-      p.projectId,
-      p.name,
-      p.code,
-      p.introduce,
-      p.dateFrom,
-      p.dateTo,
-      p.budget,
-      p.projectStatus,
-      p.donation,
-      p.id,
-      p.images3
-    ])
-    |> order_by([p], asc: p.code)
-    |> Repo.all()
+      |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
+      |> where([p], p.projectStatus != "inactive")
+      |> where([p], p.code == ^code or like(fragment("lower(?)", p.name), ^like))
+      |> select([p, h], %{
+        id: p.id,
+        projectId: p.projectId,
+        name: p.name,
+        code: p.code,
+        introduce: p.introduce,
+        dateFrom: p.dateFrom,
+        dateTo: p.dateTo,
+        budget: p.budget,
+        projectStatus: p.projectStatus,
+        donation: p.donation,
+        images: p.images3,
+        donation: sum(coalesce(h.amount, 0)),
+        donator: count(h)
+      })
+      |> group_by([p], [
+        p.projectId,
+        p.name,
+        p.code,
+        p.introduce,
+        p.dateFrom,
+        p.dateTo,
+        p.budget,
+        p.projectStatus,
+        p.donation,
+        p.id,
+        p.images3
+      ])
+      |> order_by([p], asc: p.code)
+      |> Repo.all()
   end
 
   def get_projects!(id), do: Repo.get!(Projects, id)
 
-  def get_projects_by_Id(id) do
+  def get_projects_detail(id) do
     Projects
     |> join(:left, [p], h in History, on: p.projectId == h.projectId and h.status == "approved")
     |> where([p], p.id == ^id)

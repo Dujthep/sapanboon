@@ -2,9 +2,6 @@ defmodule SapanboonWeb.CrontabController do
   use SapanboonWeb, :controller
 
   alias Sapanboon.Project
-  alias Sapanboon.Project.Projects
-  alias Sapanboon.Histories
-  alias Sapanboon.Histories.History
 
   require Logger
 
