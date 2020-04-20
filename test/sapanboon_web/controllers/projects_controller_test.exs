@@ -34,8 +34,8 @@ defmodule SapanboonWeb.ProjectsControllerTest do
     end
   end
 
-   describe "search" do
-    test "search project", %{conn: conn} do
+  describe "load_more" do
+    test "load_more project", %{conn: conn} do
       conn = get(conn, Routes.projects_path(conn, :load_more))
       items = Poison.Parser.parse!(conn.resp_body)
 
