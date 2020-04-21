@@ -1,4 +1,4 @@
-<input type="hidden" id="url-api" name="url-api" value="<%= @url_api %>">
+<input type="hidden" id="url-api" name="url-api" value="<%= Application.fetch_env!(:sapanboon, :api_transaction) %>">
 <input type="hidden" id="transactionId" name="transactionId" value="">
 <input type="hidden" id="index-id" name="url-api" value="">
 

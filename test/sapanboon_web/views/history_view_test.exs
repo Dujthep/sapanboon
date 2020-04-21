@@ -6,14 +6,14 @@ defmodule SapanboonWeb.HistoryViewTest do
   test "renders show.json" do
     expected = %{data: %{
       status: "successfully",
-      id: 1,
       code: 2,
-      title: "some name"
+      title: "some name",
+      email: "some email"
     }}
     history = %{history: %{
-      id: 1,
       code: 2,
-      name: "some name"
+      name: "some name",
+      email: "some email"
     }}
     assert render(HistoryView, "show.json", history) == expected
   end
@@ -21,14 +21,14 @@ defmodule SapanboonWeb.HistoryViewTest do
   test "renders page.json" do
     expected = %{
       status: "successfully",
-      id: 1,
       code: 2,
-      title: "some name"
+      title: "some name",
+      email: "some email"
     }
     history = %{history: %{
-      id: 1,
       code: 2,
-      name: "some name"
+      name: "some name",
+      email: "some email"
     }}
     assert render(HistoryView, "page.json", history) == expected
   end

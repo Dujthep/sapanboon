@@ -17,3 +17,7 @@ config :sapanboon, SapanboonWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :sapanboon, :api_transaction, "http://localhost:8080"
+config :sapanboon, :admin_page, "http://localhost:4200/sapanboon/?uid="
+config :sapanboon, :login_page, "http://localhost:4000/login"

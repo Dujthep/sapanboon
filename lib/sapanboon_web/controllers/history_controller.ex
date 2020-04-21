@@ -5,23 +5,8 @@ defmodule SapanboonWeb.HistoryController do
   alias Sapanboon.{Mailer, Email}
 
   def index(conn, _params) do
-    month = [
-      "ม.ค.",
-      "ก.พ.",
-      "มี.ค.",
-      "เม.ย.",
-      "พ.ค.",
-      "มิ.ย.",
-      "ก.ค.",
-      "ส.ค.",
-      "ก.ย.",
-      "ต.ค.",
-      "พ.ย.",
-      "ธ.ค."
-    ]
-    url_api = Application.fetch_env!(:sapanboon, :api_transaction)
     list_histories = Histories.get_history_list_by_email(conn.assigns[:user].email)
-    render(conn, "index.html", list_histories: list_histories, url_api: url_api, month: month,meta_attrs: [])
+    render(conn, "index.html", list_histories: list_histories, meta_attrs: [])
   end
 
   def update(conn, params) do

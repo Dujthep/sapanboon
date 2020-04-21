@@ -9,9 +9,9 @@ defmodule SapanboonWeb.HistoryView do
   def render("page.json", %{history: history}) do
     %{
       status: "successfully",
-      id: history.id,
       code: history.code,
-      title: history.name
+      title: history.name,
+      email: history.email
     }
   end
 

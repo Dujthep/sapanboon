@@ -58,26 +58,11 @@ $(document).ready(function() {
   }
 
   function formatDate(date) {
-    var monthNames = [
-      'ม.ค.',
-      'ก.พ.',
-      'มี.ค.',
-      'เม.ย.',
-      'พ.ค.',
-      'มิ.ย.',
-      'ก.ค.',
-      'ส.ค.',
-      'ก.ย.',
-      'ต.ค.',
-      'พ.ย.',
-      'ธ.ค.'
-    ]
+    var monthNames = ["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."]
     var d = new Date(date)
-
     var day = d.getDate()
     var monthIndex = d.getMonth()
     var year = d.getFullYear() + 543
-
     return day + ' ' + monthNames[monthIndex] + ' ' + year
   }
 
