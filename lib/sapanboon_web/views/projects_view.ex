@@ -12,7 +12,7 @@ defmodule SapanboonWeb.ProjectsView do
     %{
       status: "successfully",
       code: projects.code,
-      title: projects.name
+      name: projects.name
     }
   end
 

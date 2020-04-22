@@ -21,24 +21,7 @@ defmodule SapanboonWeb.HistoryController do
           %{} ->
             case Histories.update_history(history, params) do
               {:ok, history} ->
-                map_status = %{
-                  "pending" => "รอตรวจสอบเอกสาร",
-                  "approved" => "อนุมัติการบริจาค",
-                  "cancel" => "ยกเลิกการบริจาค",
-                  "reject" => "ไม่อนุมัติการบริจาค"
-                }
-                dateTime = Calendar.DateTime.now! "Asia/Bangkok"
-                mail_user = %{
-                  projectName: history.name,
-                  email: history.email,
-                  fullName: history.fullName,
-                  amount: history.amount,
-                  paymentType: history.paymentType,
-                  transactionNo: history.transactionNo,
-                  dateTime: dateTime,
-                  status: map_status[history.status]
-                }
-                Email.send_email(mail_user) |> Mailer.deliver_later()
+                send_mail(history)
                 conn
                 |> put_status(:ok)
                 |> render("show.json", history: history)
@@ -50,6 +33,27 @@ defmodule SapanboonWeb.HistoryController do
             end
         end
     end
+  end
+
+  def send_mail(history) do
+    map_status = %{
+      "pending" => "รอตรวจสอบเอกสาร",
+      "approved" => "อนุมัติการบริจาค",
+      "cancel" => "ยกเลิกการบริจาค",
+      "reject" => "ไม่อนุมัติการบริจาค"
+    }
+    dateTime = Calendar.DateTime.now! "Asia/Bangkok"
+    mail_user = %{
+      projectName: history.name,
+      email: history.email,
+      fullName: history.fullName,
+      amount: history.amount,
+      paymentType: history.paymentType,
+      transactionNo: history.transactionNo,
+      dateTime: dateTime,
+      status: map_status[history.status]
+    }
+    Email.send_email(mail_user) |> Mailer.deliver_later()
   end
 
   def create(conn, params) do

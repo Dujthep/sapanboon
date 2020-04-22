@@ -1,31 +1,45 @@
 defmodule SapanboonWeb.ContabControllerTest do
   use SapanboonWeb.ConnCase
+  alias Sapanboon.Project
 
-  describe "crontab" do
+  @create_attrs %{code: 1, projectId: "mock projectId", name: "mock name"}
 
-    test "Update by projectStatus is pending gives a 200 response", %{conn: conn} do
-      params = %{projectId: "5d274a30403c12000113676c", projectStatus: "pending"}
-      response = conn
-            |> put(Routes.crontab_path(conn, :update, params))
-            |> json_response(200)
-      expected = %{
-        "data" => %{
-          "code" => 4,
-          "status" => "successfully",
-          "title" => "โครงการปล่อยปลาดุกหน้าเขียง วันที่ 1 มีนาคม 2563"
-          }
-        }
-      assert response == expected
-    end
+  def fixture(:projects) do
+    {:ok, projects} = Project.create_projects(@create_attrs)
+    projects
+  end
+
+  defp create_projects(_) do
+    projects = fixture(:projects)
+    {:ok, projects: projects}
+  end
+
+  describe "contab" do
+    setup [:create_projects]
 
     test "Update when projectId not found gives a 404 response", %{conn: conn} do
-      params = %{projectId: "mock projectId", projectStatus: "mock pending"}
-      response = conn
+      params = %{projectId: "", projectStatus: ""}
+      actual = conn
             |> put(Routes.crontab_path(conn, :update, params))
             |> json_response(404)
 
       expected = %{"errors" => %{"message" => "Page not found"}}
-      assert response == expected
+      assert actual == expected
+    end
+
+    test "Update by projectStatus is pending gives a 200 response", %{conn: conn} do
+      params = %{projectId: "mock projectId", projectStatus: "pending"}
+      actual = conn
+            |> put(Routes.crontab_path(conn, :update, params))
+            |> json_response(200)
+      expected = %{
+        "data" => %{
+          "code" => 1,
+          "status" => "successfully",
+          "name" => "mock name"
+          }
+        }
+      assert actual == expected
     end
 
   end
