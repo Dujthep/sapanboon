@@ -1,5 +1,5 @@
 defmodule SapanboonWeb.ShareHelperTest do
-  use SapanboonWeb.ConnCase
+  use ExUnit.Case
   alias SapanboonWeb.ShareHelper
 
   test "format_number by 10000000 return 10,000,000" do
