@@ -2,6 +2,47 @@ defmodule SapanboonWeb.ProjectsControllerTest do
   use SapanboonWeb.ConnCase
   alias Sapanboon.Project
 
+  @valid_attrs %{
+    projectId: "some projectId",
+    name: "some name",
+    code: 1,
+    taxId: "some taxId",
+    projectOwner: "some projectOwner",
+    dateFrom: "2011-05-18T15:01:01Z",
+    dateTo: "2011-05-18T15:01:01Z",
+    location: "some location",
+    budget: 10000,
+    introduce: "some introduce",
+    overview: "some overview",
+    email: "some email",
+    facebook: "some facebook",
+    instagram: "instagram",
+    twitter: "twitter",
+    website: "website",
+    line: "line",
+    projectSteps1: "projectSteps1",
+    projectSteps2: "projectSteps2",
+    projectSteps3: "projectSteps3",
+    projectSteps4: "projectSteps4",
+    projectSteps5: "projectSteps5",
+    members1: "members1",
+    members2: "members2",
+    members3: "members3",
+    members4: "members4",
+    members5: "members5",
+    benefits1: "benefits1",
+    benefits2: "benefits2",
+    benefits3: "benefits3",
+    benefits4: "benefits4",
+    benefits5: "benefits5",
+    images1: "images1",
+    images2: "images2",
+    images3: "images3",
+    images4: "images4",
+    images5: "images5",
+    projectStatus: "projectStatus",
+    donation: 0
+  }
   #   @create_attrs %{code: "some code", cover: "some cover", introduce: "some introduce", donation: 42, donator: 42, dateTo: "2010-04-17T14:00:00Z", budget: 42, project_id: "some project_id", start_date: "2010-04-17T14:00:00Z", status: "some status", title: "some title"}
   #   @update_attrs %{code: "some updated code", cover: "some updated cover", introduce: "some updated introduce", donation: 43, donator: 43, dateTo: "2011-05-18T15:01:01Z", budget: 43, project_id: "some updated project_id", start_date: "2011-05-18T15:01:01Z", status: "some updated status", title: "some updated title"}
   #   @invalid_attrs %{code: nil, cover: nil, introduce: nil, donation: nil, donator: nil, dateTo: nil, budget: nil, project_id: nil, start_date: nil, status: nil, title: nil}
@@ -29,6 +70,7 @@ defmodule SapanboonWeb.ProjectsControllerTest do
     test "get project Detail", %{conn: conn} do
       conn = get(conn, Routes.projects_path(conn, :detail, 15))
       items = conn.assigns.projects
+
       assert items.benefits1 =~
                "เป็นการช่วยเหลือผู้ป่วยที่ติดเชื้อเอดส์"
     end
@@ -39,8 +81,25 @@ defmodule SapanboonWeb.ProjectsControllerTest do
       conn = get(conn, Routes.projects_path(conn, :load_more))
       items = Poison.Parser.parse!(conn.resp_body)
 
-      IO.inspect(items["count"])
       assert items["count"] == 7
+    end
+  end
+
+  describe "create project" do
+    test "create project", %{conn: conn} do
+      conn = post(conn, Routes.projects_path(conn, :create, @valid_attrs))
+      project = conn.assigns.projects
+
+      assert project.projectId =~ "projectId"
+    end
+  end
+
+  describe "update project" do
+    test "update project and return sucess", %{conn: conn} do
+      conn = put(conn, Routes.projects_path(conn, :update, @valid_attrs))
+      project = conn.assigns.projects
+
+      assert project.projectId =~ "projectId"
     end
   end
 
