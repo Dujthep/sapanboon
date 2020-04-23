@@ -142,26 +142,6 @@ defmodule SapanboonWeb.ProjectsController do
     end
   end
 
-  def delete(conn, %{"projectId" => projectId}) do
-    case Project.get_projects_by_project_id(projectId) do
-      projects ->
-        case projects do
-          nil ->
-            conn
-            |> put_status(404)
-            |> render(SapanboonWeb.ErrorView, "404.json")
-
-          %{} ->
-            case Project.delete_projects(projects) do
-              {:ok, _projects} ->
-                conn
-                |> put_status(:ok)
-                |> render("show.json", projects: projects)
-            end
-        end
-    end
-  end
-
   def search(conn, %{"param" => param}) do
     json(conn, Project.search_project(param))
   end

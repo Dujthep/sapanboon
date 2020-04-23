@@ -19,7 +19,6 @@ defmodule SapanboonWeb.Router do
     pipe_through :api
     post "/project", ProjectsController, :create
     put "/project", ProjectsController, :update
-    delete "/project:id", ProjectsController, :delete
     put "/transaction", HistoryController, :update
     post "/transaction", HistoryController, :create
     post "/user", LoginController, :create
