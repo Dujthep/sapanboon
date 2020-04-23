@@ -37,21 +37,25 @@ pipeline {
   }
   post {
     success {
-      withCredentials([string(credentialsId: 'sapanboon-slack-token', variable: 'slackCredentials')]) {
+      script{
         def msg = changeLogs()
-        slackSend (
-          token: slackCredentials,
-          color: '#00FF00',
-          message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})\n ```${msg}```")
+        withCredentials([string(credentialsId: 'sapanboon-slack-token', variable: 'slackCredentials')]) {
+          slackSend (
+            token: slackCredentials,
+            color: '#00FF00',
+            message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})\n ```${msg}```")
+        }
       }
     }
     failure {
-      withCredentials([string(credentialsId: 'sapanboon-slack-token', variable: 'slackCredentials')]) {
+      script{
         def msg = changeLogs()
-        slackSend (
-          token: slackCredentials,
-          color: '#FF0000',
-          message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})\n ```${msg}```")
+        withCredentials([string(credentialsId: 'sapanboon-slack-token', variable: 'slackCredentials')]) {
+          slackSend (
+            token: slackCredentials,
+            color: '#FF0000',
+            message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})\n ```${msg}```")
+        }
       }
     }
     always{
