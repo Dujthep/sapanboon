@@ -1,88 +1,79 @@
-# defmodule SapanboonWeb.HistoryControllerTest do
-#   use SapanboonWeb.ConnCase
+defmodule SapanboonWeb.HistoryControllerTest do
+  use SapanboonWeb.ConnCase
 
-#   alias Sapanboon.Histories
+  alias Sapanboon.Histories
 
-#   @create_attrs %{code: "some code", donation: 42, project_id: "some project_id", status: "some status", title: "some title", transactionDate: "2010-04-17T14:00:00Z", trans_id: "some trans_id"}
-#   @update_attrs %{code: "some updated code", donation: 43, project_id: "some updated project_id", status: "some updated status", title: "some updated title", transactionDate: "2011-05-18T15:01:01Z", trans_id: "some updated trans_id"}
-#   @invalid_attrs %{code: nil, donation: nil, project_id: nil, status: nil, title: nil, transactionDate: nil, trans_id: nil}
+  @history_attrs %{id: 1, projectId: "mock projectId", code: 1, name: "mock name", email: "mock email", transId: "mock transId", transactionDate: "2010-04-17T14:00:00Z", transactionNo: 1, amount: 1000, status: "mock status", imgSlip: "mock imgSlip", paymentType: "mock paymentType", fullName: "mock fullName"}
 
-#   def fixture(:history) do
-#     {:ok, history} = Histories.create_history(@create_attrs)
-#     history
-#   end
+  def fixture(:history) do
+    {:ok, history} = Histories.create_history(@history_attrs)
+    history
+  end
 
-#   describe "index" do
-#     test "lists all histories", %{conn: conn} do
-#       conn = get(conn, Routes.history_path(conn, :index))
-#       assert html_response(conn, 200) =~ "Listing Histories"
-#     end
-#   end
+  defp create_history(_) do
+    history = fixture(:history)
+    {:ok, history: history}
+  end
 
-#   describe "new history" do
-#     test "renders form", %{conn: conn} do
-#       conn = get(conn, Routes.history_path(conn, :new))
-#       assert html_response(conn, 200) =~ "New History"
-#     end
-#   end
+  describe "index" do
+    setup [:create_history]
 
-#   describe "create history" do
-#     test "redirects to show when data is valid", %{conn: conn} do
-#       conn = post(conn, Routes.history_path(conn, :create), history: @create_attrs)
+    test "lists histories not empty", %{conn: conn} do
+      user = %Sapanboon.User{email: "mock email"}
+      conn = conn
+              |> assign(:user, user)
+              |> get(Routes.history_path(conn, :index))
 
-#       assert %{id: id} = redirected_params(conn)
-#       assert redirected_to(conn) == Routes.history_path(conn, :show, id)
+      list_histories = conn.assigns.list_histories
+      assert Enum.count(list_histories) == 1
+    end
 
-#       conn = get(conn, Routes.history_path(conn, :show, id))
-#       assert html_response(conn, 200) =~ "Show History"
-#     end
+    test "lists histories is empty", %{conn: conn} do
+      user = %Sapanboon.User{email: ""}
+      conn = conn
+              |> assign(:user, user)
+              |> get(Routes.history_path(conn, :index))
 
-#     test "renders errors when data is invalid", %{conn: conn} do
-#       conn = post(conn, Routes.history_path(conn, :create), history: @invalid_attrs)
-#       assert html_response(conn, 200) =~ "New History"
-#     end
-#   end
+      list_histories = conn.assigns.list_histories
+      assert Enum.count(list_histories) == 0
+    end
+  end
 
-#   describe "edit history" do
-#     setup [:create_history]
+  describe "create history" do
+    test "gives a status 200 when data is valid", %{conn: conn} do
+      actual = conn
+                |> post(Routes.history_path(conn, :create, @history_attrs))
+                |> json_response(200)
 
-#     test "renders form for editing chosen history", %{conn: conn, history: history} do
-#       conn = get(conn, Routes.history_path(conn, :edit, history))
-#       assert html_response(conn, 200) =~ "Edit History"
-#     end
-#   end
+      expected = %{"data" => %{"code" => 1, "email" => "mock email", "status" => "successfully", "title" => "mock name"}}
 
-#   describe "update history" do
-#     setup [:create_history]
+      assert actual == expected
+    end
+  end
 
-#     test "redirects when data is valid", %{conn: conn, history: history} do
-#       conn = put(conn, Routes.history_path(conn, :update, history), history: @update_attrs)
-#       assert redirected_to(conn) == Routes.history_path(conn, :show, history)
+  describe "update history" do
+    setup [:create_history]
 
-#       conn = get(conn, Routes.history_path(conn, :show, history))
-#       assert html_response(conn, 200) =~ "some updated code"
-#     end
+    test "gives a status 404 when transId is nil", %{conn: conn} do
+      params = %{transId: nil}
+      actual = conn
+            |> put(Routes.history_path(conn, :update, params))
+            |> json_response(404)
 
-#     test "renders errors when data is invalid", %{conn: conn, history: history} do
-#       conn = put(conn, Routes.history_path(conn, :update, history), history: @invalid_attrs)
-#       assert html_response(conn, 200) =~ "Edit History"
-#     end
-#   end
+      expected = %{"errors" => %{"message" => "Page not found"}}
 
-#   describe "delete history" do
-#     setup [:create_history]
+      assert actual == expected
+    end
 
-#     test "deletes chosen history", %{conn: conn, history: history} do
-#       conn = delete(conn, Routes.history_path(conn, :delete, history))
-#       assert redirected_to(conn) == Routes.history_path(conn, :index)
-#       assert_error_sent 404, fn ->
-#         get(conn, Routes.history_path(conn, :show, history))
-#       end
-#     end
-#   end
+    test "gives a status 200 when update success", %{conn: conn} do
+      actual = conn
+                |> put(Routes.history_path(conn, :update, @history_attrs))
+                |> json_response(200)
 
-#   defp create_history(_) do
-#     history = fixture(:history)
-#     {:ok, history: history}
-#   end
-# end
+      expected = %{"data" => %{"code" => 1, "email" => "mock email", "status" => "successfully", "title" => "mock name"}}
+      assert actual == expected
+    end
+
+  end
+
+end

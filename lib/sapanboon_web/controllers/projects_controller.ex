@@ -7,8 +7,6 @@ defmodule SapanboonWeb.ProjectsController do
   alias Sapanboon.Histories
 
   def index(conn, params) do
-    IO.inspect(params)
-
     render(conn, "index.html",
       list_project: Project.list_project_by_status(Map.get(params, "status"), 1),
       count: Project.count_project(Map.get(params, "status")),
@@ -17,7 +15,7 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def detail(conn, %{"id" => id}) do
-    project = Enum.at(Project.get_projects_by_Id(id), 0)
+    project = Enum.at(Project.get_projects_detail(id), 0)
 
     attrs_list = [
       %{name: "og:description", content: project.introduce},
@@ -35,7 +33,7 @@ defmodule SapanboonWeb.ProjectsController do
       if amount == "on",
         do:
           :string.to_integer(
-            to_char_list(String.replace(conn.query_params["inputAmount"], ",", ""))
+            to_charlist(String.replace(conn.query_params["inputAmount"], ",", ""))
           ),
         else: Integer.parse(amount)
 
@@ -81,7 +79,7 @@ defmodule SapanboonWeb.ProjectsController do
             |> put_flash(:info, "History created successfully.")
             |> redirect(to: Routes.payment_path(conn, :index, history.id))
 
-          {:error, %Ecto.Changeset{} = changeset} ->
+          {:error, _} ->
             conn
             |> redirect(to: Routes.projects_path(conn, :detail, id))
         end
@@ -95,9 +93,11 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def load_more(conn, params) do
-    json(conn,
+    json(
+      conn,
       %{
-        list_project: Project.list_project_by_status(Map.get(params, "status"), Map.get(params, "page")),
+        list_project:
+          Project.list_project_by_status(Map.get(params, "status"), Map.get(params, "page")),
         count: Project.count_project(Map.get(params, "status"))
       }
     )
@@ -113,7 +113,8 @@ defmodule SapanboonWeb.ProjectsController do
       {:error, %{errors: errors}} ->
         conn
         |> put_status(422)
-        |> render(SapanboonWeb.ErrorView, "422.json")
+        |> put_view(SapanboonWeb.ErrorView)
+        |> render("422.json", errors)
     end
   end
 
@@ -141,27 +142,7 @@ defmodule SapanboonWeb.ProjectsController do
     end
   end
 
-  def delete(conn, %{"projectId" => projectId}) do
-    case Project.get_projects_by_project_id(projectId) do
-      projects ->
-        case projects do
-          nil ->
-            conn
-            |> put_status(404)
-            |> render(SapanboonWeb.ErrorView, "404.json")
-
-          %{} ->
-            case Project.delete_projects(projects) do
-              {:ok, _projects} ->
-                conn
-                |> put_status(:ok)
-                |> render("show.json", projects: projects)
-            end
-        end
-    end
-  end
-
   def search(conn, %{"param" => param}) do
-    json(conn, Project.get_project_by_param(param))
+    json(conn, Project.search_project(param))
   end
 end

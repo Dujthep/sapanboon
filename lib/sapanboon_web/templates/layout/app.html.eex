@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
-    <meta name="description" 
+    <meta name="og:description" 
     content="มูลนิธิสะพานบุญจัดตั้งขึ้นจากกัลยาณมิตรหลายท่าน ที่ต้องการสร้างทานบารมีร่วมกันช่วยทำนุบำรุงพระพุทธศาสนา 
     โดยมีวัตถุประสงค์หลักเพื่อให้ประชาชน บุคคลทั่วไป สามารถร่วมกันบริจาคทานซึ่งเป็นหนึ่งในบุญกิริยาวัตถุ 10 
     ได้โดยง่าย สะดวก รวดเร็ว โปร่งใส ตรวจสอบได้ โดยสร้าง Crowdfunding Platform 
     และนำเทคโนโลยีสมัยใหม่เข้ามาช่วย">
-    <meta property="image" 
+    <meta property="og:image" 
     content="<%= Routes.static_path(@conn, "/images/sapanboon-logo.png") %>"/>
 
 

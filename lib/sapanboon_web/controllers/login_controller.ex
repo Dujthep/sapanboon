@@ -70,7 +70,8 @@ defmodule SapanboonWeb.LoginController do
       {:error, %{errors: errors}} ->
         conn
         |> put_status(422)
-        |> render(SapanboonWeb.ErrorView, "422.json")
+        |> put_view(SapanboonWeb.ErrorView)
+        |> render("422.json", errors)
     end
   end
 

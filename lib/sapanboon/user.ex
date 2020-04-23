@@ -20,5 +20,4 @@ defmodule Sapanboon.User do
     |> validate_required([:email, :provider, :uid, :name, :role])
   end
 
-  def get_by!(id), do: Repo.get!(History, id)
 end
