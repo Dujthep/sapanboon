@@ -1,6 +1,5 @@
 defmodule SapanboonWeb.ProjectsControllerTest do
   use SapanboonWeb.ConnCase
-  alias Sapanboon.Project
 
   @valid_attrs %{
     projectId: "some projectId",
@@ -86,20 +85,26 @@ defmodule SapanboonWeb.ProjectsControllerTest do
   end
 
   describe "create project" do
-    test "create project", %{conn: conn} do
-      conn = post(conn, Routes.projects_path(conn, :create, @valid_attrs))
-      project = conn.assigns.projects
+    test "gives a status 200 when data is valid", %{conn: conn} do
+      actual = conn
+                |> post(Routes.projects_path(conn, :create, @valid_attrs))
+                |> json_response(200)
 
-      assert project.projectId =~ "projectId"
+      expected = %{"data" => %{"code" => 1, "name" => "some name", "status" => "successfully"}}
+
+      assert actual == expected
     end
   end
 
   describe "update project" do
-    test "update project and return sucess", %{conn: conn} do
-      conn = put(conn, Routes.projects_path(conn, :update, @valid_attrs))
-      project = conn.assigns.projects
+    test "gives a status 200 when update success", %{conn: conn} do
+      actual = conn
+                |> put(Routes.projects_path(conn, :update, @valid_attrs))
+                |> json_response(200)
 
-      assert project.projectId =~ "projectId"
+      expected = %{"data" => %{"code" => 1, "name" => "some name", "status" => "successfully"}}
+
+      assert actual == expected
     end
   end
 

@@ -65,7 +65,7 @@ defmodule SapanboonWeb.HistoryControllerTest do
       assert actual == expected
     end
 
-    test "gives a status 200 when update error", %{conn: conn} do
+    test "gives a status 200 when update success", %{conn: conn} do
       actual = conn
                 |> put(Routes.history_path(conn, :update, @history_attrs))
                 |> json_response(200)
