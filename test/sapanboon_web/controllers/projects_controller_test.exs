@@ -1,5 +1,6 @@
 defmodule SapanboonWeb.ProjectsControllerTest do
   use SapanboonWeb.ConnCase
+  alias Sapanboon.Project
 
   @valid_attrs %{
     projectId: "some projectId",
@@ -46,10 +47,15 @@ defmodule SapanboonWeb.ProjectsControllerTest do
   #   @update_attrs %{code: "some updated code", cover: "some updated cover", introduce: "some updated introduce", donation: 43, donator: 43, dateTo: "2011-05-18T15:01:01Z", budget: 43, project_id: "some updated project_id", start_date: "2011-05-18T15:01:01Z", status: "some updated status", title: "some updated title"}
   #   @invalid_attrs %{code: nil, cover: nil, introduce: nil, donation: nil, donator: nil, dateTo: nil, budget: nil, project_id: nil, start_date: nil, status: nil, title: nil}
 
-  #   def fixture(:projects) do
-  #     {:ok, projects} = Project.create_projects(@create_attrs)
-  #     projects
-  #   end
+  def fixture(:projects) do
+    {:ok, projects} = Project.create_projects(@valid_attrs)
+    projects
+  end
+
+  defp create_projects(_) do
+    projects = fixture(:projects)
+    {:ok, projects: projects}
+  end
 
   describe "index" do
     test "lists all project is active", %{conn: conn} do
@@ -85,6 +91,8 @@ defmodule SapanboonWeb.ProjectsControllerTest do
   end
 
   describe "create project" do
+    setup [:create_projects]
+
     test "gives a status 200 when data is valid", %{conn: conn} do
       actual = conn
                 |> post(Routes.projects_path(conn, :create, @valid_attrs))
@@ -97,7 +105,20 @@ defmodule SapanboonWeb.ProjectsControllerTest do
   end
 
   describe "update project" do
-    test "gives a status 200 when update success", %{conn: conn} do
+    setup [:create_projects]
+
+    test "insert when projectId is nil, response status 200", %{conn: conn} do
+      params = %{projectId: nil, name: "some name", code: 1,}
+      actual = conn
+                |> put(Routes.projects_path(conn, :update, params))
+                |> json_response(200)
+
+      expected = %{"data" => %{"code" => 1, "name" => "some name", "status" => "successfully"}}
+
+      assert actual == expected
+    end
+
+    test "update when projectId not nil", %{conn: conn} do
       actual = conn
                 |> put(Routes.projects_path(conn, :update, @valid_attrs))
                 |> json_response(200)
@@ -106,6 +127,7 @@ defmodule SapanboonWeb.ProjectsControllerTest do
 
       assert actual == expected
     end
+
   end
 
   # describe "get Detail" do
