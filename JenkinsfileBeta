@@ -14,7 +14,7 @@ pipeline {
     stage('checkout') {
       steps {
         cleanWs()
-        git branch: 'release', credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.GIT_HOST}/${env.NAMESPACE}/${env.APP_NAME}.git"
+        git branch: 'develop', credentialsId: 'sapanboon-gitlab-odds', url: "https://${env.GIT_HOST}/${env.NAMESPACE}/${env.APP_NAME}.git"
       }
     }
     stage('registry') {
@@ -38,6 +38,7 @@ pipeline {
   post {
     success {
       withCredentials([string(credentialsId: 'sapanboon-slack-token', variable: 'slackCredentials')]) {
+        def msg = changeLogs()
         slackSend (
           token: slackCredentials,
           color: '#00FF00',
@@ -46,6 +47,7 @@ pipeline {
     }
     failure {
       withCredentials([string(credentialsId: 'sapanboon-slack-token', variable: 'slackCredentials')]) {
+        def msg = changeLogs()
         slackSend (
           token: slackCredentials,
           color: '#FF0000',

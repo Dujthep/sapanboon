@@ -38,6 +38,7 @@ pipeline {
   post {
     success {
       withCredentials([string(credentialsId: 'sapanboon-slack-token', variable: 'slackCredentials')]) {
+        def msg = changeLogs()
         slackSend (
           token: slackCredentials,
           color: '#00FF00',
@@ -46,6 +47,7 @@ pipeline {
     }
     failure {
       withCredentials([string(credentialsId: 'sapanboon-slack-token', variable: 'slackCredentials')]) {
+        def msg = changeLogs()
         slackSend (
           token: slackCredentials,
           color: '#FF0000',
