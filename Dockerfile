@@ -22,9 +22,6 @@ COPY assets assets
 RUN cd assets && npm install && npm rebuild node-sass && npm run deploy
 RUN mix phx.digest
 
-# test coverage
-RUN mix test --cover
-
 # build project
 COPY priv priv
 COPY lib lib
