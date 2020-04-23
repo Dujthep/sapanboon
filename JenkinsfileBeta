@@ -38,13 +38,36 @@ pipeline {
   post {
     success {
       withCredentials([string(credentialsId: 'sapanboon-slack-token', variable: 'slackCredentials')]) {
-        slackSend (token: slackCredentials, color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        slackSend (
+          token: slackCredentials,
+          color: '#00FF00',
+          message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})\n ```${msg}```")
       }
     }
     failure {
       withCredentials([string(credentialsId: 'sapanboon-slack-token', variable: 'slackCredentials')]) {
-        slackSend (token: slackCredentials, color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        slackSend (
+          token: slackCredentials,
+          color: '#FF0000',
+          message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})\n ```${msg}```")
       }
     }
+    always{
+      cobertura coberturaReportFile: "coverage.xml"
+    }
   }
+}
+
+@NonCPS
+def changeLogs() {
+    def msg = "Changes:"
+    def changeLogSets = currentBuild.changeSets
+    for (int i = 0; i < changeLogSets.size(); i++) {
+        def entries = changeLogSets[i].items
+        for (int j = 0; j < entries.length; j++) {
+            def entry = entries[j]
+            msg +=  "\n\t- ${entry.msg} [${entry.author}]"
+        }
+    }
+    return msg
 }
