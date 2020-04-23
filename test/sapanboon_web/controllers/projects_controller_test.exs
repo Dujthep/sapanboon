@@ -3,19 +3,19 @@ defmodule SapanboonWeb.ProjectsControllerTest do
   alias Sapanboon.Project
 
   @valid_attrs %{
-    projectId: "some projectId",
-    name: "some name",
+    projectId: "mock projectId",
+    name: "mock name",
     code: 1,
-    taxId: "some taxId",
-    projectOwner: "some projectOwner",
+    taxId: "mock taxId",
+    projectOwner: "mock projectOwner",
     dateFrom: "2011-05-18T15:01:01Z",
     dateTo: "2011-05-18T15:01:01Z",
-    location: "some location",
+    location: "mock location",
     budget: 10000,
-    introduce: "some introduce",
-    overview: "some overview",
-    email: "some email",
-    facebook: "some facebook",
+    introduce: "mock introduce",
+    overview: "mock overview",
+    email: "mock email",
+    facebook: "mock facebook",
     instagram: "instagram",
     twitter: "twitter",
     website: "website",
@@ -40,11 +40,11 @@ defmodule SapanboonWeb.ProjectsControllerTest do
     images3: "images3",
     images4: "images4",
     images5: "images5",
-    projectStatus: "projectStatus",
+    projectStatus: "mock projectStatus",
     donation: 0
   }
-  #   @create_attrs %{code: "some code", cover: "some cover", introduce: "some introduce", donation: 42, donator: 42, dateTo: "2010-04-17T14:00:00Z", budget: 42, project_id: "some project_id", start_date: "2010-04-17T14:00:00Z", status: "some status", title: "some title"}
-  #   @update_attrs %{code: "some updated code", cover: "some updated cover", introduce: "some updated introduce", donation: 43, donator: 43, dateTo: "2011-05-18T15:01:01Z", budget: 43, project_id: "some updated project_id", start_date: "2011-05-18T15:01:01Z", status: "some updated status", title: "some updated title"}
+  #   @create_attrs %{code: "mock code", cover: "mock cover", introduce: "mock introduce", donation: 42, donator: 42, dateTo: "2010-04-17T14:00:00Z", budget: 42, project_id: "mock project_id", start_date: "2010-04-17T14:00:00Z", status: "mock status", title: "mock title"}
+  #   @update_attrs %{code: "mock updated code", cover: "mock updated cover", introduce: "mock updated introduce", donation: 43, donator: 43, dateTo: "2011-05-18T15:01:01Z", budget: 43, project_id: "mock updated project_id", start_date: "2011-05-18T15:01:01Z", status: "mock updated status", title: "mock updated title"}
   #   @invalid_attrs %{code: nil, cover: nil, introduce: nil, donation: nil, donator: nil, dateTo: nil, budget: nil, project_id: nil, start_date: nil, status: nil, title: nil}
 
   def fixture(:projects) do
@@ -98,7 +98,7 @@ defmodule SapanboonWeb.ProjectsControllerTest do
                 |> post(Routes.projects_path(conn, :create, @valid_attrs))
                 |> json_response(200)
 
-      expected = %{"data" => %{"code" => 1, "name" => "some name", "status" => "successfully"}}
+      expected = %{"data" => %{"code" => 1, "name" => "mock name", "status" => "successfully"}}
 
       assert actual == expected
     end
@@ -108,12 +108,12 @@ defmodule SapanboonWeb.ProjectsControllerTest do
     setup [:create_projects]
 
     test "insert when projectId is nil, response status 200", %{conn: conn} do
-      params = %{projectId: nil, name: "some name", code: 1,}
+      params = %{projectId: nil, name: "mock name", code: 1,}
       actual = conn
                 |> put(Routes.projects_path(conn, :update, params))
                 |> json_response(200)
 
-      expected = %{"data" => %{"code" => 1, "name" => "some name", "status" => "successfully"}}
+      expected = %{"data" => %{"code" => 1, "name" => "mock name", "status" => "successfully"}}
 
       assert actual == expected
     end
@@ -123,11 +123,33 @@ defmodule SapanboonWeb.ProjectsControllerTest do
                 |> put(Routes.projects_path(conn, :update, @valid_attrs))
                 |> json_response(200)
 
-      expected = %{"data" => %{"code" => 1, "name" => "some name", "status" => "successfully"}}
+      expected = %{"data" => %{"code" => 1, "name" => "mock name", "status" => "successfully"}}
 
       assert actual == expected
     end
 
+  end
+
+  describe "search" do
+    setup [:create_projects]
+
+    test "search by 'mock name'", %{conn: conn} do
+      param = %{param: "mock name"}
+      [projects] = conn
+              |> get(Routes.projects_path(conn, :search, param))
+              |> json_response(200)
+
+      assert projects["name"] == "mock name"
+      assert projects["budget"] == 10000
+      assert projects["projectId"] == "mock projectId"
+    end
+
+    test "search by 'not have result', should return emtpy list", %{conn: conn} do
+      param = %{param: "not have result"}
+      assert conn
+          |> get(Routes.projects_path(conn, :search, param))
+          |> json_response(200) == []
+    end
   end
 
   # describe "get Detail" do
@@ -178,7 +200,7 @@ defmodule SapanboonWeb.ProjectsControllerTest do
   #       assert redirected_to(conn) == Routes.projects_path(conn, :show, projects)
 
   #       conn = get(conn, Routes.projects_path(conn, :show, projects))
-  #       assert html_response(conn, 200) =~ "some updated code"
+  #       assert html_response(conn, 200) =~ "mock updated code"
   #     end
 
   #     test "renders errors when data is invalid", %{conn: conn, projects: projects} do
