@@ -10,7 +10,8 @@ defmodule Sapanboon.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      test_coverage: [tool: :covertool]
     ]
   end
 
@@ -54,7 +55,8 @@ defmodule Sapanboon.MixProject do
       {:phoenix_live_view, "~> 0.6.0"},
       {:calendar, "~> 1.0.0"},
       {:httpoison, "~> 1.6"},
-      {:paginator, "~> 0.6"}
+      {:paginator, "~> 0.6"},
+      {:covertool, "~> 2.0"}
     ]
   end
 
