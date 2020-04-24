@@ -4,104 +4,104 @@ defmodule Sapanboon.ProjectTest do
   alias Sapanboon.Project
   require Logger
 
-  describe "project" do
-    alias Sapanboon.Project.Projects
+  alias Sapanboon.Project.Projects
 
-    @valid_attrs %{
-      projectId: "some projectId",
-      name: "some name",
-      code: 1,
-      taxId: "some taxId",
-      projectOwner: "some projectOwner",
-      dateFrom: "2011-05-18T15:01:01Z",
-      dateTo: "2011-05-18T15:01:01Z",
-      location: "some location",
-      budget: 10000,
-      introduce: "some introduce",
-      overview: "some overview",
-      email: "some email",
-      facebook: "some facebook",
-      instagram: "instagram",
-      twitter: "twitter",
-      website: "website",
-      line: "line",
-      projectSteps1: "projectSteps1",
-      projectSteps2: "projectSteps2",
-      projectSteps3: "projectSteps3",
-      projectSteps4: "projectSteps4",
-      projectSteps5: "projectSteps5",
-      members1: "members1",
-      members2: "members2",
-      members3: "members3",
-      members4: "members4",
-      members5: "members5",
-      benefits1: "benefits1",
-      benefits2: "benefits2",
-      benefits3: "benefits3",
-      benefits4: "benefits4",
-      benefits5: "benefits5",
-      images1: "images1",
-      images2: "images2",
-      images3: "images3",
-      images4: "images4",
-      images5: "images5",
-      projectStatus: "projectStatus",
-      donation: 0
-    }
+  @valid_attrs %{
+    projectId: "some projectId",
+    name: "some name",
+    code: 1,
+    taxId: "some taxId",
+    projectOwner: "some projectOwner",
+    dateFrom: "2011-05-18T15:01:01Z",
+    dateTo: "2011-05-18T15:01:01Z",
+    location: "some location",
+    budget: 10000,
+    introduce: "some introduce",
+    overview: "some overview",
+    email: "some email",
+    facebook: "some facebook",
+    instagram: "instagram",
+    twitter: "twitter",
+    website: "website",
+    line: "line",
+    projectSteps1: "projectSteps1",
+    projectSteps2: "projectSteps2",
+    projectSteps3: "projectSteps3",
+    projectSteps4: "projectSteps4",
+    projectSteps5: "projectSteps5",
+    members1: "members1",
+    members2: "members2",
+    members3: "members3",
+    members4: "members4",
+    members5: "members5",
+    benefits1: "benefits1",
+    benefits2: "benefits2",
+    benefits3: "benefits3",
+    benefits4: "benefits4",
+    benefits5: "benefits5",
+    images1: "images1",
+    images2: "images2",
+    images3: "images3",
+    images4: "images4",
+    images5: "images5",
+    projectStatus: "projectStatus",
+    donation: 0
+  }
 
-    @update_attrs %{
-      projectId: "update projectId",
-      name: "some name",
-      code: 1,
-      taxId: "some taxId",
-      projectOwner: "some projectOwner",
-      dateFrom: "2011-05-18T15:01:01Z",
-      dateTo: "2011-05-18T15:01:01Z",
-      location: "some location",
-      budget: 10000,
-      introduce: "some introduce",
-      overview: "some overview",
-      email: "some email",
-      facebook: "some facebook",
-      instagram: "instagram",
-      twitter: "twitter",
-      website: "website",
-      line: "line",
-      projectSteps1: "projectSteps1",
-      projectSteps2: "projectSteps2",
-      projectSteps3: "projectSteps3",
-      projectSteps4: "projectSteps4",
-      projectSteps5: "projectSteps5",
-      members1: "members1",
-      members2: "members2",
-      members3: "members3",
-      members4: "members4",
-      members5: "members5",
-      benefits1: "benefits1",
-      benefits2: "benefits2",
-      benefits3: "benefits3",
-      benefits4: "benefits4",
-      benefits5: "benefits5",
-      images1: "images1",
-      images2: "images2",
-      images3: "images3",
-      images4: "images4",
-      images5: "images5",
-      projectStatus: "projectStatus",
-      donation: 0
-    }
+  @update_attrs %{
+    projectId: "update projectId",
+    name: "some name",
+    code: 1,
+    taxId: "some taxId",
+    projectOwner: "some projectOwner",
+    dateFrom: "2011-05-18T15:01:01Z",
+    dateTo: "2011-05-18T15:01:01Z",
+    location: "some location",
+    budget: 10000,
+    introduce: "some introduce",
+    overview: "some overview",
+    email: "some email",
+    facebook: "some facebook",
+    instagram: "instagram",
+    twitter: "twitter",
+    website: "website",
+    line: "line",
+    projectSteps1: "projectSteps1",
+    projectSteps2: "projectSteps2",
+    projectSteps3: "projectSteps3",
+    projectSteps4: "projectSteps4",
+    projectSteps5: "projectSteps5",
+    members1: "members1",
+    members2: "members2",
+    members3: "members3",
+    members4: "members4",
+    members5: "members5",
+    benefits1: "benefits1",
+    benefits2: "benefits2",
+    benefits3: "benefits3",
+    benefits4: "benefits4",
+    benefits5: "benefits5",
+    images1: "images1",
+    images2: "images2",
+    images3: "images3",
+    images4: "images4",
+    images5: "images5",
+    projectStatus: "projectStatus",
+    donation: 0
+  }
 
-    @invalid_attrs %{code: nil, name: nil}
+  @invalid_attrs %{code: nil, name: nil}
 
-    def projects_fixture(attrs \\ %{}) do
-      {:ok, projects} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Project.create_projects()
+  def projects_fixture(attrs \\ %{}) do
+    {:ok, projects} =
+      attrs
+      |> Enum.into(@valid_attrs)
+      |> Project.create_projects()
 
-      projects
-    end
+    projects
+  end
 
+  describe "count project" do
     test "count_project where status is 'nil' return project count is projectStatus eq 'active'" do
       assert Project.count_project(nil) == 7
     end
@@ -113,17 +113,41 @@ defmodule Sapanboon.ProjectTest do
     test "count_project where status is 'complete' return project count is projectStatus eq 'complete' or 'expire'" do
       assert Project.count_project("complete") == 5
     end
+  end
 
-    test "create_projects with valid data creates a projects" do
+  describe "create and update project" do
+    test "create projects with valid data creates a projects" do
       assert {:ok, %Projects{} = projects} = Project.create_projects(@valid_attrs)
       assert projects.code == 1
       assert projects.name == "some name"
     end
 
-    test "create_projects with invalid data returns error changeset" do
+    test "create projects with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} = Project.create_projects(@invalid_attrs)
     end
 
+    test "update project" do
+      project = projects_fixture()
+      assert {:ok, %Projects{} = projects} = Project.update_projects(project, @update_attrs);
+      assert(projects.projectId =~ "update projectId")
+    end
+
+    test "insert or update project" do
+      project = projects_fixture()
+      assert {:ok, %Projects{} = projects} = Project.insert_or_update_projects(project, @update_attrs)
+    end
+  end
+
+  describe "find and update" do
+    test "find_by_project_id_and_update_projects, returns project status ok" do
+      projectId = "5d274a30403c12000113676c"
+      update = %{projectStatus: "change to active"}
+      assert {:ok, %Projects{} = projects} = Project.find_by_project_id_and_update_projects(projectId, update);
+      assert projects.projectStatus == "change to active"
+    end
+  end
+
+  describe "list project" do
     test "list_project_by_status where status is 'nil' return list project is projectStatus eq 'active'" do
       [p1, p2, p3, p4, p5, p6] = Project.list_project_by_status(nil, 1)
       assert p1.projectStatus == "active"
@@ -157,7 +181,9 @@ defmodule Sapanboon.ProjectTest do
       assert p4.projectStatus == "complete" || p4.projectStatus == "expire"
       assert p5.projectStatus == "complete" || p5.projectStatus == "expire"
     end
+  end
 
+  describe "search project" do
     test "search project by 'SPB1' return project name 'สร้างสถานปฎิบัติธรรม สมเด็จพระสังฆราช (อมฺพรมหาเถร) วัดราชบพิธ'" do
       [p] = Project.search_project("SPB1")
       assert p.name == "สร้างสถานปฎิบัติธรรม สมเด็จพระสังฆราช (อมฺพรมหาเถร) วัดราชบพิธ"
@@ -174,7 +200,9 @@ defmodule Sapanboon.ProjectTest do
       assert p2.name == "บริจาคเครื่องอุปโภคบริโภคกับมูลนิธิโรงเรียนบ้านเด็กตาบอด"
       assert p3.name == "บริจาคเครื่องอุปโภคบริโภคกับมูลนิธิบ้านนกขมิ้น"
     end
+  end
 
+  describe "get project by ?" do
     test "get_projects! returns the projects with given id" do
       project = projects_fixture()
       assert Project.get_projects!(project.id) == project
@@ -191,24 +219,6 @@ defmodule Sapanboon.ProjectTest do
       project = projects_fixture()
       assert Project.get_projects_by_project_id(project.projectId) == project
     end
-
-    test "Create Project and should be ok when response" do
-      assert {:ok, %Projects{} = projects} = Project.create_projects(@valid_attrs)
-    end
-
-    test "update  project" do
-      project = projects_fixture()
-
-      assert {:ok, %Projects{} = projects} = Project.update_projects(project, @update_attrs);
-      assert(projects.projectId =~ "update projectId")
-    end
-
-    test "insert or update project" do
-      assert {:ok, %Projects{} = projects} = Project.insert_or_update_projects(projects_fixture(), @update_attrs)
-    end
-
-    test "Delete Project by pass project" do
-      assert {:ok, %Projects{} = projects} = Project.delete_projects(projects_fixture())
-    end
   end
+
 end
