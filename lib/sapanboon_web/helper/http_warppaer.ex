@@ -13,7 +13,7 @@ defmodule SapanboonWeb.HttpWrapper do
     when status_code in [200, 201, 204],
     do: {:ok, parse_body(body)}
 
-  defp process_response_body({:ok, %HTTPoison.Response{status_code: status_code, body: body, headers: headers}}, url) do
+  defp process_response_body({:ok, %HTTPoison.Response{status_code: status_code, body: body}}, url) do
     {
       :error,
       %{
@@ -23,15 +23,6 @@ defmodule SapanboonWeb.HttpWrapper do
       }
     }
   end
-
-  defp process_response_body({:error, %HTTPoison.Error{reason: {_, reason}}}, _url),
-    do: {:error, reason}
-
-  defp process_response_body({:error, %HTTPoison.Error{reason: reason}}, _url),
-    do: {:error, reason}
-
-  defp process_response_body({:error, reason}, _url),
-    do: {:error, reason}
 
   defp parse_body(body) do
     with {:ok, body} <- Poison.Parser.parse(body, keys: :atoms) do

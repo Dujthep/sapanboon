@@ -32,6 +32,3 @@ config :sapanboon, Sapanboon.Mailer,
 config :sapanboon, :api_transaction, "http://localhost:8080"
 config :sapanboon, :admin_page, "http://localhost:4200/sapanboon/?uid="
 config :sapanboon, :login_page, "http://localhost:4000/login"
-
-config :sapanboon,
-  http_adapter: Http.Mock

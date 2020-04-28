@@ -1,6 +1,5 @@
 defmodule SapanboonWeb.LoginControllerTest do
   use SapanboonWeb.ConnCase
-  alias Sapanboon.SapanboonWeb
 
   @ueberauth_auth %{
     credentials: %{
@@ -22,7 +21,6 @@ defmodule SapanboonWeb.LoginControllerTest do
       conn
       |> assign(:ueberauth_auth, @ueberauth_auth)
       |> get("/auth/google/callback")
-
     assert html_response(conn, 302) =~ "You are being"
   end
 
@@ -31,8 +29,6 @@ defmodule SapanboonWeb.LoginControllerTest do
       conn
       |> assign(:ueberauth_auth, @ueberauth_auth)
       |> get(Routes.login_path(conn, :delete))
-
-      IO.inspect(conn)
     assert redirected_to(conn, 302)
   end
 end

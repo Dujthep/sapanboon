@@ -152,11 +152,6 @@ defmodule SapanboonWeb.ProjectsControllerTest do
     end
   end
 
-  describe "create_transaction" do
-    test "search by 'mock name'", %{conn: conn} do
-    end
-  end
-
   # describe "get Detail" do
   #   test "get Project Detail", %{conn: conn} do
   #     (conn = get(conn, Routes.projects_path(conn, :detail)))
