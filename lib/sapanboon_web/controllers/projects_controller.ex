@@ -70,7 +70,7 @@ defmodule SapanboonWeb.ProjectsController do
           |> put_flash(:info, "History created successfully.")
           |> redirect(to: Routes.payment_path(conn, :index, history.id))
         {:error, _} ->
-          Logger.error("error create_history: #{inspect(reason)}")
+          Logger.error("error create_history")
           conn
           |> put_view(SapanboonWeb.ErrorView)
           |> render("500.html")
