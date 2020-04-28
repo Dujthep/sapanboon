@@ -5,6 +5,7 @@ defmodule SapanboonWeb.ProjectsController do
   alias Sapanboon.Project
   alias Sapanboon.Project.Projects
   alias Sapanboon.Histories
+  alias SapanboonWeb.HttpWrapper
 
   def index(conn, params) do
     render(conn, "index.html",
@@ -27,21 +28,13 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def create_transaction(conn, %{"id" => id, "amount" => amount, "fullName" => fullName}) do
-    {id, _} = Integer.parse(id)
 
-    {amount, _} =
-      if amount == "on",
-        do:
-          :string.to_integer(
-            to_charlist(String.replace(conn.query_params["inputAmount"], ",", ""))
-          ),
-        else: Integer.parse(amount)
-
+    {amount, _} = Integer.parse(amount |> String.split(",") |> Enum.join)
     projects = Project.get_projects!(id)
     paymentType = "PromptPay"
     statusPending = "pending"
 
-    transaction_params =
+    params =
       %{
         ProjectID: projects.projectId,
         Amount: amount,
@@ -53,14 +46,12 @@ defmodule SapanboonWeb.ProjectsController do
 
     url = Application.fetch_env!(:sapanboon, :api_transaction)
 
-    case HTTPoison.post(url <> "/transaction", transaction_params, %{
-           "Content-Type" => "application/json"
-         }) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        body = Poison.Parser.parse!(body)
-
+    options = %{"Content-Type" => "application/json"}
+    case HttpWrapper.post(url <> "/transaction", params, options) do
+      {:ok, body} ->
+        Logger.info("body: #{inspect(body)}")
         params = %{
-          amount: body["amount"],
+          amount: body.amount,
           code: projects.code,
           email: conn.assigns[:user].email,
           fullName: fullName,
@@ -68,28 +59,29 @@ defmodule SapanboonWeb.ProjectsController do
           name: projects.name,
           paymentType: paymentType,
           projectId: projects.projectId,
-          transId: body["id"],
-          transactionDate: body["created"],
-          transactionNo: to_string(body["transactionNo"])
+          transId: body.id,
+          transactionDate: body.created,
+          transactionNo: to_string(body.transactionNo)
         }
 
-        case Histories.create_history(params) do
-          {:ok, history} ->
-            conn
-            |> put_flash(:info, "History created successfully.")
-            |> redirect(to: Routes.payment_path(conn, :index, history.id))
-
-          {:error, _} ->
-            conn
-            |> redirect(to: Routes.projects_path(conn, :detail, id))
-        end
-
-      {:ok, %HTTPoison.Response{status_code: 404}} ->
-        IO.puts("Not found :(")
-
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        IO.inspect(reason)
+      case Histories.create_history(params) do
+        {:ok, history} ->
+          conn
+          |> put_flash(:info, "History created successfully.")
+          |> redirect(to: Routes.payment_path(conn, :index, history.id))
+        {:error, _} ->
+          Logger.error("error create_history: #{inspect(reason)}")
+          conn
+          |> put_view(SapanboonWeb.ErrorView)
+          |> render("500.html")
+      end
+    {:error, reason} ->
+      Logger.error("error http post: #{inspect(reason)}")
+      conn
+      |> put_view(SapanboonWeb.ErrorView)
+      |> render("500.html")
     end
+
   end
 
   def load_more(conn, params) do

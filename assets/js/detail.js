@@ -50,56 +50,6 @@ function shareFacebook() {
 }
 
 $(document).ready(function () {
-  $('#go-payment').click(function () {
-    v('#donator-form').validate({
-      rules: {
-        inputAmount: {
-          required: true
-        }
-      },
-      messages: {
-        inputAmount: {
-          required: 'โปรดระบุจำนวนเงิน',
-          maxlength: 'โปรดระบุจำนวนเงินไม่เกิด 7 หลัก'
-        }
-      }
-    })
-
-    let data = {
-      id: $('#project-id').val(),
-      amount: '',
-      fullName: ''
-    }
-
-    $('input[name="amount"]:checked').val() === 'on'
-      ? (data.amount = $('#input-amount').val())
-      : (data.amount = $('input[name="amount"]:checked').val())
-
-    $('input[name="fullName"]').val() !== ''
-      ? (data.fullName = $('full-name').val())
-      : data.fullName == ''
-
-    const csrf_token = $("meta[name='csrf-token']").attr('content')
-    if (data.amount != '') {
-      $.ajax({
-        url: '/transaction',
-        data: JSON.stringify(data),
-        type: 'POST',
-        beforeSend: function (xhr) {
-          xhr.setRequestHeader('X-CSRF-Token', csrf_token)
-        },
-        contentType: 'application/json',
-        success: function (res) {
-          console.log("success ======")
-          console.log(res)
-        },
-        error: function () {
-          console.log("error ======")
-        }
-      })
-
-    }
-  })
 
   $('input.number').keyup(function (event) {
     // skip for arrow keys
