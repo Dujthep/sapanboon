@@ -4,8 +4,8 @@ defmodule Sapanboon.Histories do
   """
 
   import Ecto.Query, warn: false
-  alias Sapanboon.Repo
 
+  alias Sapanboon.Repo
   alias Sapanboon.Histories.History
 
   def get_history!(id),do: Repo.get!(History, id)
@@ -27,6 +27,12 @@ defmodule Sapanboon.Histories do
 
   def update_history(%History{} = history, attrs) do
     history
+    |> History.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def find_by_trans_id_and_update_history(transId, attrs) do
+    Repo.get_by(History, transId: transId)
     |> History.changeset(attrs)
     |> Repo.update()
   end

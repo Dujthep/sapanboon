@@ -10,8 +10,9 @@ defmodule SapanboonWeb.HistoryView do
     %{
       status: "successfully",
       code: history.code,
-      title: history.name,
-      email: history.email
+      name: history.name,
+      email: history.email,
+      transId: history.transId
     }
   end
 

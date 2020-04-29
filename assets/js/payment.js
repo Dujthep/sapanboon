@@ -86,7 +86,7 @@ function onSubmit() {
           },
           dataType: 'json',
           success: function(data) {
-            window.location.href = '/success/' + data.data.id
+            window.location.href = '/success/' + data.data.transId
           },
           error: function(data) {
             $("#error-text").text("อัพโหลดสลิปล้มเหลว กรุณาลองใหม่ภายหลัง หรือติดต่อเจ้าหน้าที่");

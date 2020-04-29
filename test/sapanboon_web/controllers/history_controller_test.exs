@@ -45,7 +45,7 @@ defmodule SapanboonWeb.HistoryControllerTest do
                 |> post(Routes.history_path(conn, :create, @history_attrs))
                 |> json_response(200)
 
-      expected = %{"data" => %{"code" => 1, "email" => "mock email", "status" => "successfully", "title" => "mock name"}}
+      expected = %{"data" => %{"code" => 1, "email" => "mock email", "status" => "successfully", "name" => "mock name", "transId" => "mock transId"}}
 
       assert actual == expected
     end
@@ -54,23 +54,12 @@ defmodule SapanboonWeb.HistoryControllerTest do
   describe "update history" do
     setup [:create_history]
 
-    test "gives a status 404 when transId is nil", %{conn: conn} do
-      params = %{transId: nil}
-      actual = conn
-            |> put(Routes.history_path(conn, :update, params))
-            |> json_response(404)
-
-      expected = %{"errors" => %{"message" => "Page not found"}}
-
-      assert actual == expected
-    end
-
     test "gives a status 200 when update success", %{conn: conn} do
       actual = conn
                 |> put(Routes.history_path(conn, :update, @history_attrs))
                 |> json_response(200)
 
-      expected = %{"data" => %{"code" => 1, "email" => "mock email", "status" => "successfully", "title" => "mock name"}}
+      expected = %{"data" => %{"code" => 1, "email" => "mock email", "status" => "successfully", "name" => "mock name", "transId" => "mock transId"}}
       assert actual == expected
     end
 

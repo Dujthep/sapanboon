@@ -4,7 +4,6 @@ defmodule Sapanboon.Project do
   """
 
   import Ecto.Query, warn: false
-  import Ecto.Changeset
 
   alias Sapanboon.Repo
   alias Sapanboon.Project.Projects
@@ -217,7 +216,7 @@ defmodule Sapanboon.Project do
 
   def find_by_project_id_and_update_projects(projectId, attrs) do
     Repo.get_by(Projects, projectId: projectId)
-    |> change(attrs)
+    |> Projects.changeset(attrs)
     |> Repo.update()
   end
 

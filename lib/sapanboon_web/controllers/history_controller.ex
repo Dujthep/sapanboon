@@ -10,28 +10,17 @@ defmodule SapanboonWeb.HistoryController do
   end
 
   def update(conn, params) do
-    case Histories.get_history_by_trans_id(Map.get(params, "transId")) do
-      history ->
-        case history do
-          nil ->
-            conn
-            |> put_status(404)
-            |> put_view(SapanboonWeb.ErrorView)
-            |> render("404.json")
-          %{} ->
-            case Histories.update_history(history, params) do
-              {:ok, history} ->
-                send_mail(history)
-                conn
-                |> put_status(:ok)
-                |> render("show.json", history: history)
-              {:error, %{errors: errors}} ->
-                conn
-                |> put_status(422)
-                |> put_view(SapanboonWeb.ErrorView)
-                |> render("422.json", errors)
-            end
-        end
+    case Histories.find_by_trans_id_and_update_history(Map.get(params, "transId"), params) do
+      {:ok, history} ->
+        send_mail(history)
+        conn
+        |> put_status(:ok)
+        |> render("show.json", history: history)
+      {:error, %{errors: errors}} ->
+        conn
+        |> put_status(422)
+        |> put_view(SapanboonWeb.ErrorView)
+        |> render("422.json", errors)
     end
   end
 
