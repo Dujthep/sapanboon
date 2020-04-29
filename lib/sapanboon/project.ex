@@ -208,20 +208,17 @@ defmodule Sapanboon.Project do
     |> Repo.insert()
   end
 
-  def update_projects(%Projects{} = projects, attrs) do
-    projects
-    |> Projects.changeset(attrs)
-    |> Repo.update()
-  end
-
   def find_by_project_id_and_update_projects(projectId, attrs) do
     Repo.get_by(Projects, projectId: projectId)
     |> Projects.changeset(attrs)
     |> Repo.update()
   end
 
-  def insert_or_update_projects(%Projects{} = projects, attrs) do
-    projects
+  def insert_or_update_projects_by_project_id(projectId, attrs) do
+    case Repo.get_by(Projects, projectId: projectId) do
+      nil  -> %Projects{projectId: projectId}
+      projects -> projects
+    end
     |> Projects.changeset(attrs)
     |> Repo.insert_or_update()
   end

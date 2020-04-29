@@ -3,7 +3,6 @@ defmodule SapanboonWeb.ProjectsController do
   require Logger
 
   alias Sapanboon.Project
-  alias Sapanboon.Project.Projects
   alias Sapanboon.Histories
   alias SapanboonWeb.HttpWrapper
 
@@ -111,16 +110,7 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def update(conn, params) do
-    projects =
-      case Project.get_projects_by_project_id(Map.get(params, "projectId")) do
-        projects ->
-          case projects do
-            nil -> %Projects{projectId: Map.get(params, "projectId")}
-            projects -> projects
-          end
-      end
-
-    case Project.insert_or_update_projects(projects, params) do
+    case Project.insert_or_update_projects_by_project_id(Map.get(params, "projectId"), params) do
       {:ok, projects} ->
         conn
         |> put_status(:ok)

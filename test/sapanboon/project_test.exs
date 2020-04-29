@@ -48,48 +48,6 @@ defmodule Sapanboon.ProjectTest do
     donation: 0
   }
 
-  @update_attrs %{
-    projectId: "update projectId",
-    name: "some name",
-    code: 1,
-    taxId: "some taxId",
-    projectOwner: "some projectOwner",
-    dateFrom: "2011-05-18T15:01:01Z",
-    dateTo: "2011-05-18T15:01:01Z",
-    location: "some location",
-    budget: 10000,
-    introduce: "some introduce",
-    overview: "some overview",
-    email: "some email",
-    facebook: "some facebook",
-    instagram: "instagram",
-    twitter: "twitter",
-    website: "website",
-    line: "line",
-    projectSteps1: "projectSteps1",
-    projectSteps2: "projectSteps2",
-    projectSteps3: "projectSteps3",
-    projectSteps4: "projectSteps4",
-    projectSteps5: "projectSteps5",
-    members1: "members1",
-    members2: "members2",
-    members3: "members3",
-    members4: "members4",
-    members5: "members5",
-    benefits1: "benefits1",
-    benefits2: "benefits2",
-    benefits3: "benefits3",
-    benefits4: "benefits4",
-    benefits5: "benefits5",
-    images1: "images1",
-    images2: "images2",
-    images3: "images3",
-    images4: "images4",
-    images5: "images5",
-    projectStatus: "projectStatus",
-    donation: 0
-  }
-
   @invalid_attrs %{code: nil, name: nil}
 
   def projects_fixture(attrs \\ %{}) do
@@ -126,24 +84,30 @@ defmodule Sapanboon.ProjectTest do
       assert {:error, %Ecto.Changeset{}} = Project.create_projects(@invalid_attrs)
     end
 
-    test "update project" do
-      project = projects_fixture()
-      assert {:ok, %Projects{} = projects} = Project.update_projects(project, @update_attrs);
-      assert(projects.projectId =~ "update projectId")
-    end
-
-    test "insert or update project" do
-      project = projects_fixture()
-      assert {:ok, %Projects{} = projects} = Project.insert_or_update_projects(project, @update_attrs)
-    end
   end
 
   describe "find and update" do
-    test "find_by_project_id_and_update_projects, returns project status ok" do
+    test "find and update by projectId only" do
       projectId = "5d274a30403c12000113676c"
       update = %{projectStatus: "change to active"}
       assert {:ok, %Projects{} = projects} = Project.find_by_project_id_and_update_projects(projectId, update);
       assert projects.projectStatus == "change to active"
+    end
+
+    test "update by projectId" do
+      projectId = "5d274a30403c12000113676c"
+      params = %{projectStatus: "update projectStatus"}
+      assert {:ok, %Projects{} = projects} = Project.insert_or_update_projects_by_project_id(projectId, params)
+      assert projects.projectStatus == "update projectStatus"
+    end
+
+    test "insert by projectId" do
+      projectId = "insert projectId"
+      params = %{code: 1, name: "some name", projectStatus: "insert new projectStatus"}
+      assert {:ok, %Projects{} = projects} = Project.insert_or_update_projects_by_project_id(projectId, params)
+      assert projects.code == 1
+      assert projects.projectId == "insert projectId"
+      assert projects.projectStatus == "insert new projectStatus"
     end
   end
 
