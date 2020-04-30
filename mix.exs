@@ -11,7 +11,7 @@ defmodule Sapanboon.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      test_coverage: [tool: :covertool]
+      test_coverage: [tool: ExCoveralls]
     ]
   end
 
@@ -56,7 +56,7 @@ defmodule Sapanboon.MixProject do
       {:calendar, "~> 1.0.0"},
       {:httpoison, "~> 1.6"},
       {:paginator, "~> 0.6"},
-      {:covertool, "~> 2.0"}
+      {:excoveralls, "~> 0.10", only: :test}
     ]
   end
 

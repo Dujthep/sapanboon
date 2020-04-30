@@ -22,6 +22,9 @@ COPY assets assets
 RUN cd assets && npm install && npm rebuild node-sass && npm run deploy
 RUN mix phx.digest
 
+# run test
+RUN MIX_ENV=test mix coveralls.xml
+
 # build project
 COPY priv priv
 COPY lib lib
