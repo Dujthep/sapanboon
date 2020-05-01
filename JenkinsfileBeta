@@ -59,7 +59,7 @@ pipeline {
       }
     }
     always{
-      cobertura coberturaReportFile: "coverage.xml"
+      cobertura coberturaReportFile: "coverage/excoveralls.xml"
     }
   }
 }

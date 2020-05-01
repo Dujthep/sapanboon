@@ -58,12 +58,6 @@ pipeline {
         }
       }
     }
-    // always{
-    //   cobertura coberturaReportFile: "coverage.xml"
-    // }
-    always {
-      step([$class: 'CoberturaPublisher', coberturaReportFile: 'cover/excoveralls.xml'])
-    }
   }
 }
 

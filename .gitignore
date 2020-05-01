@@ -38,3 +38,4 @@ npm-debug.log
 .idea/workspace.xml
 sapanboon.iml
 mix.lock
+.DS_Store
