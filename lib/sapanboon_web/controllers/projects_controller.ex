@@ -62,18 +62,8 @@ defmodule SapanboonWeb.ProjectsController do
           transactionDate: body.created,
           transactionNo: to_string(body.transactionNo)
         }
+        create_history(conn, params)
 
-      case Histories.create_history(params) do
-        {:ok, history} ->
-          conn
-          |> put_flash(:info, "History created successfully.")
-          |> redirect(to: Routes.payment_path(conn, :index, history.id))
-        {:error, _} ->
-          Logger.error("error create_history")
-          conn
-          |> put_view(SapanboonWeb.ErrorView)
-          |> render("500.html")
-      end
     {:error, reason} ->
       Logger.error("error http post: #{inspect(reason)}")
       conn
@@ -81,6 +71,20 @@ defmodule SapanboonWeb.ProjectsController do
       |> render("500.html")
     end
 
+  end
+
+  def create_history(conn, params) do
+    case Histories.create_history(params) do
+      {:ok, history} ->
+        conn
+        |> put_flash(:info, "History created successfully.")
+        |> redirect(to: Routes.payment_path(conn, :index, history.id))
+      {:error, _} ->
+        Logger.error("error create_history")
+        conn
+        |> put_view(SapanboonWeb.ErrorView)
+        |> render("500.html")
+    end
   end
 
   def load_more(conn, params) do

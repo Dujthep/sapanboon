@@ -1,8 +1,8 @@
 <div class="d-sm-block">
   <div class="box-social">
   <span class="fs-18 font-white">ชวนเพื่อนมาบริจาค</span>
-  
-  <a id='line-icon' 
+
+  <a id='line-icon'
      data-id='<%= @projects.id %>'
      data-title='<%= @projects.name %>'>
     <img class='icon pointer' src='<%= Routes.static_path(@conn, "/images/line.svg") %>'>
@@ -159,11 +159,11 @@
           <div class="box-budget border-right-0">
             <span class="fs-18 fs-black-1">โครงการ</span>
             <span class="text-primary fs-36">
-              <%= if (@projects.donation > 0 && @projects.donation != nil) do 
-                    calculate_percent(@projects.donation,@projects.budget) 
-                  else 
-                    0 
-                  end 
+              <%= if (@projects.donation > 0 && @projects.donation != nil) do
+                    calculate_percent(@projects.donation,@projects.budget)
+                  else
+                    0
+                  end
               %>%
             </span>
           </div>
@@ -242,7 +242,7 @@
         <%= if ( @projects.benefits4 != nil &&  @projects.benefits4 != "") do %>
           <p class="fs-20 txt-light-dark-gray mb-0">4. <%= @projects.benefits4 %></p>
         <% end %>
-        
+
         <%= if ( @projects.benefits5 != nil &&  @projects.benefits5 != "") do %>
           <p class="fs-20 txt-light-dark-gray mb-0">5. <%= @projects.benefits5 %></p>
         <% end %>
@@ -275,13 +275,13 @@
   </div>
 
   <div class="col-md-12 text-center mb-5">
-    
+
     <%= if ( @projects.images5 != nil &&  @projects.images5 != "") do %>
       <img class="featurette-image img-fluid mx-auto lmg-detail"
         data-src="holder.js/500x500/auto" alt="500x500"
         src="<%= @projects.images5 %>" data-holder-rendered="true">
     <% end %>
-    
+
   </div>
 </div>
 
@@ -293,7 +293,7 @@
         SPB<%= @projects.code %> <%= @projects.name %>
       </label>
 
-    <form id="donator-form" method="get" action="/transaction/<%= @projects.id %>" onsubmit="return checkform()" novalidate="novalidate">
+    <form id="donator-form" method="get" action="/create_transaction/<%= @projects.id %>" onsubmit="return checkform()" novalidate="novalidate">
         <div class="form-group">
           <label class="fs-28">จำนวนเงิน</label>
           <section class="payment">
@@ -314,7 +314,7 @@
                 <input type="radio" name="amount" id="free-style">
                 <label id="input-payment" class="payment-amount px-3" for="free-style">
                   <div id="input-free-style" class="form-wrapper" style="display: none">
-                    <input id="input-amount" type="text" class="form-input fs-medium-20-24 text-center number" 
+                    <input id="input-amount" type="text" class="form-input fs-medium-20-24 text-center number"
                     maxlength="9" name="inputAmount" pattern="[0-9]" inputmode="numeric"
                     onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 &amp;&amp; event.charCode <= 57" required="">
                   </div>

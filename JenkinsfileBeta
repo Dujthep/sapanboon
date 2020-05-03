@@ -58,9 +58,6 @@ pipeline {
         }
       }
     }
-    always{
-      cobertura coberturaReportFile: "coverage/excoveralls.xml"
-    }
   }
 }
 

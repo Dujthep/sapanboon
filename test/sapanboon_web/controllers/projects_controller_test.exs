@@ -43,9 +43,6 @@ defmodule SapanboonWeb.ProjectsControllerTest do
     projectStatus: "mock projectStatus",
     donation: 0
   }
-  #   @create_attrs %{code: "mock code", cover: "mock cover", introduce: "mock introduce", donation: 42, donator: 42, dateTo: "2010-04-17T14:00:00Z", budget: 42, project_id: "mock project_id", start_date: "2010-04-17T14:00:00Z", status: "mock status", title: "mock title"}
-  #   @update_attrs %{code: "mock updated code", cover: "mock updated cover", introduce: "mock updated introduce", donation: 43, donator: 43, dateTo: "2011-05-18T15:01:01Z", budget: 43, project_id: "mock updated project_id", start_date: "2011-05-18T15:01:01Z", status: "mock updated status", title: "mock updated title"}
-  #   @invalid_attrs %{code: nil, cover: nil, introduce: nil, donation: nil, donator: nil, dateTo: nil, budget: nil, project_id: nil, start_date: nil, status: nil, title: nil}
 
   def fixture(:projects) do
     {:ok, projects} = Project.create_projects(@valid_attrs)
@@ -152,77 +149,22 @@ defmodule SapanboonWeb.ProjectsControllerTest do
     end
   end
 
-  # describe "get Detail" do
-  #   test "get Project Detail", %{conn: conn} do
-  #     (conn = get(conn, Routes.projects_path(conn, :detail)))
-  #     IO.inspect(conn.assgigns)
-  #   end
-  # end
+  describe "create_transaction" do
+    setup [:create_projects]
 
-  #   describe "new projects" do
-  #     test "renders form", %{conn: conn} do
-  #       conn = get(conn, Routes.projects_path(conn, :new))
-  #       assert html_response(conn, 200) =~ "New Projects"
-  #     end
-  #   end
+    test "call create_transaction should redirect to payment path", %{conn: conn} do
+      params = %{amount: 1000, fullName: "some fullName"}
+      user = %Sapanboon.User{email: "mock email"}
+      conn = conn
+              |> assign(:user, user)
+              |> get(Routes.projects_path(conn, :create_transaction, 5, params))
 
-  #   describe "create projects" do
-  #     test "redirects to show when data is valid", %{conn: conn} do
-  #       conn = post(conn, Routes.projects_path(conn, :create), projects: @create_attrs)
+      assert %{id: id} = redirected_params(conn)
+      assert redirected_to(conn) == Routes.payment_path(conn, :index, id)
 
-  #       assert %{id: id} = redirected_params(conn)
-  #       assert redirected_to(conn) == Routes.projects_path(conn, :show, id)
+      conn = get(conn, Routes.payment_path(conn, :index, id))
+      assert html_response(conn, 200) =~ "กรุณาแสกน QR เพื่อบริจาค"
+    end
+  end
 
-  #       conn = get(conn, Routes.projects_path(conn, :show, id))
-  #       assert html_response(conn, 200) =~ "Show Projects"
-  #     end
-
-  #     test "renders errors when data is invalid", %{conn: conn} do
-  #       conn = post(conn, Routes.projects_path(conn, :create), projects: @invalid_attrs)
-  #       assert html_response(conn, 200) =~ "New Projects"
-  #     end
-  #   end
-
-  #   describe "edit projects" do
-  #     setup [:create_projects]
-
-  #     test "renders form for editing chosen projects", %{conn: conn, projects: projects} do
-  #       conn = get(conn, Routes.projects_path(conn, :edit, projects))
-  #       assert html_response(conn, 200) =~ "Edit Projects"
-  #     end
-  #   end
-
-  #   describe "update projects" do
-  #     setup [:create_projects]
-
-  #     test "redirects when data is valid", %{conn: conn, projects: projects} do
-  #       conn = put(conn, Routes.projects_path(conn, :update, projects), projects: @update_attrs)
-  #       assert redirected_to(conn) == Routes.projects_path(conn, :show, projects)
-
-  #       conn = get(conn, Routes.projects_path(conn, :show, projects))
-  #       assert html_response(conn, 200) =~ "mock updated code"
-  #     end
-
-  #     test "renders errors when data is invalid", %{conn: conn, projects: projects} do
-  #       conn = put(conn, Routes.projects_path(conn, :update, projects), projects: @invalid_attrs)
-  #       assert html_response(conn, 200) =~ "Edit Projects"
-  #     end
-  #   end
-
-  #   describe "delete projects" do
-  #     setup [:create_projects]
-
-  #     test "deletes chosen projects", %{conn: conn, projects: projects} do
-  #       conn = delete(conn, Routes.projects_path(conn, :delete, projects))
-  #       assert redirected_to(conn) == Routes.projects_path(conn, :index)
-  #       assert_error_sent 404, fn ->
-  #         get(conn, Routes.projects_path(conn, :show, projects))
-  #       end
-  #     end
-  #   end
-
-  #   defp create_projects(_) do
-  #     projects = fixture(:projects)
-  #     {:ok, projects: projects}
-  #   end
 end
