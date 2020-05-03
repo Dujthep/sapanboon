@@ -3,7 +3,6 @@ defmodule SapanboonWeb.LoginController do
   plug(Ueberauth)
 
   alias Sapanboon.{Repo, User}
-  # alias Sapanboon.SapanboonWeb.Login
 
   def index(conn, _params) do
     render(conn, "index.html", login: "", meta_attrs: [])
@@ -19,25 +18,10 @@ defmodule SapanboonWeb.LoginController do
       role: "user"
     }
 
-    # post_params = user_params |> Poison.encode!()
-    # url = Application.fetch_env!(:sapanboon, :api_transaction)
-
-    # case HTTPoison.post(url <> "/user/insertUser", post_params, %{
-    #        "Content-Type" => "application/json"
-    #      }) do
-    #   {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-    #     body = Poison.Parser.parse!(body)
-    #     IO.inspect(body)
-
-    #   {:error, _reason} ->
-    #     IO.inspect(:error)
-    # end
-
     changeset = User.changeset(%User{}, user_params)
     case insert_or_update_user(changeset) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "Welcome back")
         |> put_session(:user_id, user.id)
         |> redirect(to: Routes.projects_path(conn, :index))
 
