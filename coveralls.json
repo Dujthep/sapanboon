@@ -1,21 +1,10 @@
 {
   "skip_files": [
-    "lib/sapanboon_web/views/about_view.ex",
-    "lib/sapanboon_web/views/contact_view.ex",
-    "lib/sapanboon_web/views/email_view.ex",
     "lib/sapanboon_web/views/error_helpers.ex",
-    "lib/sapanboon_web/views/payment_view.ex",
-    "lib/sapanboon_web/views/success_view.ex",
     "lib/sapanboon_web/endpoint.ex",
-    "lib/sapanboon_web/gettext.ex",
-    "lib/sapanboon_web/helper/http_warppaer.ex",
-    "lib/sapanboon_web/channels/user_socket.ex",
-    "lib/sapanboon/repo.ex",
-    "lib/sapanboon/release.ex",
-    "lib/sapanboon/mailer.ex",
     "lib/sapanboon_web.ex",
-    "lib/sapanboon.ex",
-    "test/support"
+    "lib/sapanboon/release.ex",
+    "test/support/channel_case.ex"
   ],
   "coverage_options": {
     "minimum_coverage": 80
