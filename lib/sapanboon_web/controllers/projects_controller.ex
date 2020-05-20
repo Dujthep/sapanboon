@@ -134,6 +134,9 @@ defmodule SapanboonWeb.ProjectsController do
   end
 
   def email(conn, params) do
+    
+    Logger.info("body: #{inspect(params)}")
+
     mail_user = %{
       projectName: "Test project",
       email: "closer123456@gmail.com",
