@@ -22,6 +22,7 @@ defmodule SapanboonWeb.Router do
     put "/transaction", HistoryController, :update
     post "/transaction", HistoryController, :create
     post "/user", LoginController, :create
+    get "/email", ProjectsController, :email
   end
 
   scope "/crontab", SapanboonWeb do

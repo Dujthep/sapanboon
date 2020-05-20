@@ -5,6 +5,7 @@ defmodule SapanboonWeb.ProjectsController do
   alias Sapanboon.Project
   alias Sapanboon.Histories
   alias SapanboonWeb.HttpWrapper
+  alias Sapanboon.{Mailer, Email}
 
   def index(conn, params) do
     render(conn, "index.html",
@@ -131,4 +132,25 @@ defmodule SapanboonWeb.ProjectsController do
   def search(conn, %{"param" => param}) do
     json(conn, Project.search_project(param))
   end
+
+  def email(conn, params) do
+    mail_user = %{
+      projectName: "Test project",
+      email: "closer123456@gmail.com",
+      fullName: "Test",
+      amount: "100,000",
+      paymentType: "Test",
+      transactionNo: "111111111111",
+      dateTime: "10/10/2020 20:20",
+      status: "อนุมัติการบริจาค"
+    }
+    Email.send_email_test(mail_user) 
+    |> Mailer.deliver_later()
+
+    render(conn, "index.html",
+    list_project: Project.list_project_by_status(Map.get(params, "status"), 1),
+    count: Project.count_project(Map.get(params, "status")),
+    meta_attrs: [])
+  end
+
 end
