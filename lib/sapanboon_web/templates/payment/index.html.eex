@@ -42,7 +42,7 @@
 
                     <div class="d-flex justify-content-center"> 
                         <%# <div id="qrcode"></div>  %>
-                        <img width="30%" src='data:image/png;base64, <%= @qrcode %>' />
+                        <img width="30%" src="data:image/png;base64, <%= @qrcode %>"/> 
                     </div>
 
                         <div class="col-md-12 mt-3">
