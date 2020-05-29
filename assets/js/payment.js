@@ -7,7 +7,7 @@ window.$ = $;
 
 document.addEventListener('DOMContentLoaded', function() {
   $("#upload").val('');
-  onGenerateQR()
+  // onGenerateQR()
   addEventChangeToUploadButtonID()
   addEventClickToConfirmPaymentID()
 })

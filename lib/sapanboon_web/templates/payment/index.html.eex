@@ -41,8 +41,9 @@
                     <div class="text-center">
 
                     <div class="d-flex justify-content-center"> 
-                        <%# <div id="qrcode"></div>  %>
-                        <img width="30%" src="data:image/png;base64, <%= @qrcode %>"/> 
+                        <div id="qrcode">
+                            <img width="50%" src="data:image/png;base64, <%= @qrcode %>"/> 
+                        </div> 
                     </div>
 
                         <div class="col-md-12 mt-3">
@@ -53,7 +54,8 @@
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <label class="fs-24"
                                         name="amount"
-                                        id="amount"><%= format_number(@history.amount) %> บาท
+                                        id="amount">
+                                        <%= format_number(@history.amount) %> บาท
                                     </label>
                                 </div>
                             </div>
