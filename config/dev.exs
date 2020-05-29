@@ -74,3 +74,10 @@ config :phoenix, :plug_init_mode, :runtime
 config :sapanboon, :api_transaction, "http://localhost:8080"
 config :sapanboon, :admin_page, "http://localhost:4200/sapanboon/?uid="
 config :sapanboon, :login_page, "http://localhost:4000/login"
+
+config :sapanboon, :scb_payment,
+  url_partners: "https://api-sandbox.partners.scb/partners/sandbox/v1",
+  resource_owner_id: "l710fd5909bcb64676a0d58c9f4910a504",
+  application_key: "l710fd5909bcb64676a0d58c9f4910a504",
+  application_secret: "41b6f92fa6874e4bad0dfbda956735b6",
+  ppId: "406242648868404"

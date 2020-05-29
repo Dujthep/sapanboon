@@ -1,70 +1,56 @@
 defmodule Sapanboon.QRcode do
 
-  def generateQRcode(amount, transactionId, projectCode) do
+  alias SapanboonWeb.HttpWrapper
+  require Logger
 
-    token = getSCBToken()["data"]["tokenType"] <> " " <> getSCBToken()["data"]["accessToken"]
-    uuid = Ecto.UUID.generate()
-    url = "https://api-sandbox.partners.scb/partners/sandbox/v1/payment/qrcode/create"
+  def generate_qr_code(amount, transactionNo, projectCode) do
+    scb_token = get_scb_token()
+    token = scb_token.data.tokenType <> " " <> scb_token.data.accessToken
+    url = Application.fetch_env!(:sapanboon, :scb_payment)[:url_partners] <> "/payment/qrcode/create"
     body = %{
       qrType: "PP",
       ppType: "BILLERID",
-      ppId: "406242648868404",
+      ppId: Application.fetch_env!(:sapanboon, :scb_payment)[:ppId],
       amount: amount,
-      ref1: transactionId,
+      ref1: transactionNo,
       ref2: projectCode,
       ref3: "QWS"
-    }
-    |> Poison.encode!()
+    } |> Poison.encode!()
 
     headers = %{
       "Content-Type": "application/json",
+      resourceOwnerId: Application.fetch_env!(:sapanboon, :scb_payment)[:resource_owner_id],
+      requestUId: Ecto.UUID.generate(),
       authorization: token,
-      resourceOwnerId: "l710fd5909bcb64676a0d58c9f4910a504",
-      requestUId: uuid,
       "accept-language": "EN",
     }
-    case HTTPoison.post(url, body, headers) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        body
-        |> Poison.decode!()
 
-      {:ok, %HTTPoison.Response{status_code: 404}} ->
-        IO.puts("Not found :(")
-
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        {:error, reason}
-        IO.inspect(reason)
+    case HttpWrapper.post(url, body, headers) do
+      {:ok, body} -> body
+      {:error, reason} -> Logger.error("error generate_qr_code: #{inspect(reason)}")
     end
+
   end
 
-  def getSCBToken do
-
-    uuid = Ecto.UUID.generate()
-    url = "https://api-sandbox.partners.scb/partners/sandbox/v1/oauth/token"
+  def get_scb_token() do
+    url = Application.fetch_env!(:sapanboon, :scb_payment)[:url_partners] <> "/oauth/token"
     body = %{
-      applicationKey: "l710fd5909bcb64676a0d58c9f4910a504",
-      applicationSecret: "41b6f92fa6874e4bad0dfbda956735b6"
-    }|> Poison.encode!()
+      applicationKey: Application.fetch_env!(:sapanboon, :scb_payment)[:application_key],
+      applicationSecret: Application.fetch_env!(:sapanboon, :scb_payment)[:application_secret]
+    } |> Poison.encode!()
 
     headers = %{
       "Content-Type": "application/json",
-      resourceOwnerId: "l710fd5909bcb64676a0d58c9f4910a504",
-      requestUId: uuid,
+      resourceOwnerId: Application.fetch_env!(:sapanboon, :scb_payment)[:resource_owner_id],
+      requestUId: Ecto.UUID.generate(),
       "accept-language": "EN"
     }
 
-    case HTTPoison.post(url, body, headers) do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        body
-        |> Poison.decode!()
-
-      {:ok, %HTTPoison.Response{status_code: 404}} ->
-        IO.puts("Not found :(")
-
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        {:error, reason}
-        IO.inspect(reason)
+    case HttpWrapper.post(url, body, headers) do
+      {:ok, body} -> body
+      {:error, reason} -> Logger.error("error get_scb_token: #{inspect(reason)}")
     end
+
   end
 
 end
