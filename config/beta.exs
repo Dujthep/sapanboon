@@ -54,3 +54,10 @@ config :logger, level: :info
 config :sapanboon, :api_transaction, "https://beta.api.sapanboon.org"
 config :sapanboon, :admin_page, "https://beta.admin.sapanboon.org/sapanboon/?uid="
 config :sapanboon, :login_page, "https://phx.sapanboon.org/login"
+
+config :sapanboon, :scb_payment,
+  url_partners: "https://api-sandbox.partners.scb/partners/sandbox/v1",
+  resource_owner_id: "l710fd5909bcb64676a0d58c9f4910a504",
+  application_key: "l710fd5909bcb64676a0d58c9f4910a504",
+  application_secret: "41b6f92fa6874e4bad0dfbda956735b6",
+  ppId: "406242648868404"
