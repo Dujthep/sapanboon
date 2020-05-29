@@ -8,18 +8,18 @@ defmodule Sapanboon.QRcode do
     body = %{
       qrType: "PP",
       ppType: "BILLERID",
-      ppId: "633153421253554",
+      ppId: "406242648868404",
       amount: amount,
       ref1: transactionId,
       ref2: projectCode,
-      ref3: "VJO"
+      ref3: "QWS"
     }
     |> Poison.encode!()
 
     headers = %{
       "Content-Type": "application/json",
       authorization: token,
-      resourceOwnerId: "l726d98af10f0b446da083bfbfed746c3c",
+      resourceOwnerId: "l710fd5909bcb64676a0d58c9f4910a504",
       requestUId: uuid,
       "accept-language": "EN",
     }
@@ -42,13 +42,13 @@ defmodule Sapanboon.QRcode do
     uuid = Ecto.UUID.generate()
     url = "https://api-sandbox.partners.scb/partners/sandbox/v1/oauth/token"
     body = %{
-      applicationKey: "l726d98af10f0b446da083bfbfed746c3c",
-      applicationSecret: "4de6cbeace2b4d5b94b62bdb645e6bcd"
+      applicationKey: "l710fd5909bcb64676a0d58c9f4910a504",
+      applicationSecret: "41b6f92fa6874e4bad0dfbda956735b6"
     }|> Poison.encode!()
 
     headers = %{
       "Content-Type": "application/json",
-      resourceOwnerId: "l726d98af10f0b446da083bfbfed746c3c",
+      resourceOwnerId: "l710fd5909bcb64676a0d58c9f4910a504",
       requestUId: uuid,
       "accept-language": "EN"
     }
