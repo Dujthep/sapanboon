@@ -113,3 +113,22 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function () {
+       setInterval(function(){ 
+           const path = window.location.pathname.split('/');
+           const url =  window.location.origin + "/" +path[1]+ '/' + path[2] + '/checkstatus';
+            $.get({
+                url: url,
+                processData: false,
+                contentType: false,
+                type: 'GET',
+                success: function (data) {
+                    if(data.status == "approved")
+                        window.location.href = '/success/' + data.transId
+                },
+            })
+        }, 3000);
+  });
+</script>

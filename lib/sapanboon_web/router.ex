@@ -44,6 +44,7 @@ defmodule SapanboonWeb.Router do
     get "/create_transaction/:id", ProjectsController, :create_transaction
     get "/search", ProjectsController, :search
     get "/success/:transId", SuccessController, :index
+    get "/details/:id/checkstatus", PaymentController, :checkStatus
   end
 
   scope "/auth", SapanboonWeb do
@@ -52,5 +53,4 @@ defmodule SapanboonWeb.Router do
     get "/:provider", LoginController, :request
     get "/:provider/callback", LoginController, :callback
   end
-
 end
